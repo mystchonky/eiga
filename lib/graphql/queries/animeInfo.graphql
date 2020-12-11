@@ -1,0 +1,26 @@
+query AnimeInfo($id: Int) {
+  Media(id: $id, type: ANIME) {
+    id
+    title {
+      english
+      romaji
+      native
+    }
+    coverImage {
+      medium
+    }
+    bannerImage
+    description
+    genres
+    studios {
+      edges {
+        node{
+          name
+        }
+      }
+    }
+    episodes
+    averageScore
+    
+  }
+}
