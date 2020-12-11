@@ -40,22 +40,27 @@ class AnimeInfo extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            animeName,
-                            maxLines: 2,
-                            style: Theme.of(context).textTheme.subtitle1,
-                          ),
-                          Text(
-                            anime.title.native,
-                            style: Theme.of(context).textTheme.subtitle2,
-                          )
-                        ],
+                      Expanded(
+                        flex: 7,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              animeName,
+                              maxLines: 2,
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                            Text(
+                              anime.title.native,
+                              style: Theme.of(context).textTheme.subtitle2,
+                            )
+                          ],
+                        ),
                       ),
-                      Image.network(anime.coverImage.medium)
+                      Expanded(
+                          flex: 3,
+                          child: Image.network(anime.coverImage.medium))
                     ],
                   ),
                   SizedBox(height: 20),

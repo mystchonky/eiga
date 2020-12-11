@@ -39,6 +39,7 @@ class App extends StatelessWidget {
       client: client,
       child: CacheProvider(
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           darkTheme: ThemeData(
             brightness: Brightness.dark,
           ),
