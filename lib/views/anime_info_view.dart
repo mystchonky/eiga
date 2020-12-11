@@ -25,10 +25,51 @@ class AnimeInfo extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         }
 
-        final animeName = AnimeInfo$Query.fromJson(result.data).media.title.romaji;
+        final anime = AnimeInfo$Query.fromJson(result.data).media;
+        final animeName = anime.title.romaji;
 
         return Scaffold(
-          appBar: AppBar(title: Text(animeName),),
+          appBar: AppBar(
+            title: Text(animeName),
+          ),
+          body: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            animeName,
+                            maxLines: 2,
+                            style: Theme.of(context).textTheme.subtitle1,
+                          ),
+                          Text(
+                            anime.title.native,
+                            style: Theme.of(context).textTheme.subtitle2,
+                          )
+                        ],
+                      ),
+                      Image.network(anime.coverImage.medium)
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "Description",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    anime.description.replaceAll(RegExp('<br>'), ""),
+                    style: Theme.of(context).textTheme.subtitle2,
+                  )
+                ],
+              )),
         );
       },
     );

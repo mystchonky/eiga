@@ -67,7 +67,7 @@ class _SearchPaneState extends State<SearchPane> {
                   controller: _scrollController,
                   children: <Widget>[
                     for (var d in data)
-                      GestureDetector(
+                      InkWell(
                         child: SearchCard(
                           data: d,
                         ),
