@@ -1,5 +1,5 @@
 query AnimeInfo($id: Int) {
-  Media(id: $id, type: ANIME) {
+  Media(id: $id, type: ANIME, isAdult:false) {
     id
     title {
       english

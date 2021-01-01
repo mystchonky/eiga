@@ -364,7 +364,10 @@ class SearchDataQuery
                           value: VariableNode(name: NameNode(value: 'search'))),
                       ArgumentNode(
                           name: NameNode(value: 'type'),
-                          value: EnumValueNode(name: NameNode(value: 'ANIME')))
+                          value: EnumValueNode(name: NameNode(value: 'ANIME'))),
+                      ArgumentNode(
+                          name: NameNode(value: 'isAdult'),
+                          value: BooleanValueNode(value: false))
                     ],
                     directives: [],
                     selectionSet: SelectionSetNode(selections: [
@@ -473,7 +476,10 @@ class AnimeInfoQuery extends GraphQLQuery<AnimeInfo$Query, AnimeInfoArguments> {
                     value: VariableNode(name: NameNode(value: 'id'))),
                 ArgumentNode(
                     name: NameNode(value: 'type'),
-                    value: EnumValueNode(name: NameNode(value: 'ANIME')))
+                    value: EnumValueNode(name: NameNode(value: 'ANIME'))),
+                ArgumentNode(
+                    name: NameNode(value: 'isAdult'),
+                    value: BooleanValueNode(value: false))
               ],
               directives: [],
               selectionSet: SelectionSetNode(selections: [

@@ -7,7 +7,7 @@ query SearchData($page: Int, $perPage: Int, $search: String) {
       hasNextPage
       perPage
     }
-    media(search: $search, type: ANIME) {
+    media(search: $search, type: ANIME, isAdult: false) {
       id
       title {
         english
