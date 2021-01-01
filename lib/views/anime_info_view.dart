@@ -60,7 +60,12 @@ class AnimeInfo extends StatelessWidget {
                       ),
                       Expanded(
                           flex: 3,
-                          child: Image.network(anime.coverImage.medium))
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.network(
+                                anime.coverImage.medium,
+                                fit: BoxFit.cover,
+                              )))
                     ],
                   ),
                   SizedBox(height: 20),

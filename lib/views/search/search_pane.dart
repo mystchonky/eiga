@@ -19,6 +19,7 @@ class SearchPane extends StatefulWidget {
 
 class _SearchPaneState extends State<SearchPane> {
   ScrollController _scrollController = new ScrollController();
+  bool updating = false;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +28,10 @@ class _SearchPaneState extends State<SearchPane> {
           documentNode: SearchDataQuery().document,
           variables: {'search': widget.searchStr, 'page': 1, 'perPage': 5}),
       builder: (
-          QueryResult result, {
-            Future<QueryResult> Function() refetch,
-            FetchMore fetchMore,
-          }) {
+        QueryResult result, {
+        Future<QueryResult> Function() refetch,
+        FetchMore fetchMore,
+      }) {
         if (result.hasException) {
           return Text(result.exception.toString());
         }
@@ -55,6 +56,7 @@ class _SearchPaneState extends State<SearchPane> {
               ];
 
               fetchMoreResultData['Page']['media'] = combined;
+              updating = false;
 
               return fetchMoreResultData;
             });
@@ -63,34 +65,51 @@ class _SearchPaneState extends State<SearchPane> {
           child: Column(
             children: [
               Expanded(
-                child: ListView(
-                  controller: _scrollController,
-                  children: <Widget>[
-                    for (var d in data)
-                      InkWell(
-                        child: SearchCard(
-                          data: d,
+                child: NotificationListener(
+                  child: ListView(
+                    controller: _scrollController,
+                    children: <Widget>[
+                      for (var d in data)
+                        InkWell(
+                          child: SearchCard(
+                            data: d,
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                new MaterialPageRoute(
+                                    builder: (context) => AnimeInfo(
+                                          id: d.id,
+                                        )));
+                          },
                         ),
-                        onTap: (){
-                          Navigator.push(context, new MaterialPageRoute(builder: (context) => AnimeInfo(id: d.id,)));
-                        },
-                      ),
-                    if (result.loading)
-                      Center(
-                        child: CircularProgressIndicator(),
-                      )
-                  ],
+                      if (result.loading)
+                        Center(
+                          child: CircularProgressIndicator(),
+                        )
+                    ],
+                  ),
+                  onNotification: (sn) {
+                    if (sn is OverscrollNotification) {
+                      if (!result.loading &&
+                          pageInfo.hasNextPage &&
+                          !updating) {
+                        fetchMore(opts);
+                        updating = true;
+                      }
+                    }
+                  },
                 ),
               ),
-              FlatButton(
-                child: Text("FetchMore"),
-                onPressed: () {
-                  if (!result.loading && pageInfo.hasNextPage) {
-                    fetchMore(opts);
-                  }
-                },
-                color: Colors.amber,
-              )
+              // FlatButton(
+              //   child: Text("FetchMore"),
+              //   onPressed: () {
+              //     if (!result.loading && pageInfo.hasNextPage) {
+              //       fetchMore(opts);
+              //     }
+              //   },
+              //   color: Colors.amber,
+              // )
             ],
           ),
         );
