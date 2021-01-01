@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'views/search_view.dart';
+import 'views/search_page.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 void main() {
@@ -7,19 +7,10 @@ void main() {
   runApp(App());
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   final HttpLink httpLink = HttpLink(
     uri: 'https://graphql.anilist.co/',
   );
-
-  // final AuthLink authLink = AuthLink(
-  //   getToken: () async => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
-  //   // OR
-  //   // getToken: () => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
-  // );
-
-  //final Link link = authLink.concat(httpLink);
-  //final Link link = this.httpLink;
 
   ValueNotifier<GraphQLClient> client;
 
@@ -34,9 +25,16 @@ class App extends StatelessWidget {
   }
 
   @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  int _selectedIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
     return GraphQLProvider(
-      client: client,
+      client: widget.client,
       child: CacheProvider(
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -45,11 +43,37 @@ class App extends StatelessWidget {
           ),
           themeMode: ThemeMode.dark,
           home: Scaffold(
-            body: SafeArea(child: SearchPage()),
+            body: SafeArea(
+              child: IndexedStack(
+                index: _selectedIndex,
+                children: [
+                  Text("Home"),
+                  SearchPage(),
+                  Text("Profile")
+                ],
+              ),
+            ),
             resizeToAvoidBottomInset: false,
+            bottomNavigationBar: BottomNavigationBar(
+              items: [
+                BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.search), label: "Discover"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.account_circle), label: "Profile")
+              ],
+              currentIndex: _selectedIndex,
+              onTap: _onBottomNavTapped,
+            ),
           ),
         ),
       ),
     );
+  }
+
+  void _onBottomNavTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 }
