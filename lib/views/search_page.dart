@@ -49,7 +49,6 @@ class _SearchPageState extends State<SearchPage> {
           searchStr: searchStr,
           currentPage: currentPage,
         ),
-        SizedBox(height: 10),
       ]),
     );
   }
