@@ -30,6 +30,19 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   int _selectedIndex = 0;
+  final _pageViewController = PageController(
+    initialPage: 0
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _pageViewController.addListener(() {
+      setState(() {
+        _selectedIndex = _pageViewController.page.floor();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +57,10 @@ class _AppState extends State<App> {
           themeMode: ThemeMode.dark,
           home: Scaffold(
             body: SafeArea(
-              child: IndexedStack(
-                index: _selectedIndex,
-                children: [
-                  Text("Home"),
-                  SearchPage(),
-                  Text("Profile")
-                ],
+              child: PageView(
+                //index: _selectedIndex,
+                controller: _pageViewController,
+                children: [Text("Home"), SearchPage(), Text("Profile")],
               ),
             ),
             resizeToAvoidBottomInset: false,
@@ -73,7 +83,7 @@ class _AppState extends State<App> {
 
   void _onBottomNavTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _pageViewController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.linearToEaseOut);
     });
   }
 }
