@@ -16,6 +16,7 @@ dependencies:
   json_annotation: ^3.1.0
   equatable: ^1.2.5
   gql: '>=0.12.3 <1.0.0'
+  web_scraper: ^0.0.8
   
 
 dev_dependencies:

@@ -1,3 +1,4 @@
+import './watch/sources.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../graphql/graphql_api.dart';
@@ -74,14 +75,33 @@ class AnimeInfo extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   SizedBox(height: 10),
-                  Expanded(
-                    flex: 1,
-                    child: SingleChildScrollView(
-                      child: Text(
-                        anime.description.replaceAll(RegExp('<br>'), ""),
-                        style: Theme.of(context).textTheme.subtitle2,
+                  Container(
+                    constraints: BoxConstraints(maxHeight: 250),
+                    child: Expanded(
+                      flex: 1,
+                      child: SingleChildScrollView(
+                        child: Text(
+                          anime.description.replaceAll(RegExp('<br>'), ""),
+                          style: Theme.of(context).textTheme.bodyText2,
+                        ),
                       ),
                     ),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      RaisedButton.icon(
+                          label: Text("Watch Now"),
+                          icon: Icon(Icons.play_arrow),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                new MaterialPageRoute(
+                                    builder: (context) =>
+                                        FourAnime(search: animeName)));
+                          }),
+                    ],
                   )
                 ],
               )),

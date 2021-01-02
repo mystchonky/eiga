@@ -78,9 +78,7 @@ class _SearchPaneState extends State<SearchPane> {
                             Navigator.push(
                                 context,
                                 new MaterialPageRoute(
-                                    builder: (context) => AnimeInfo(
-                                          id: d.id,
-                                        )));
+                                    builder: (context) => AnimeInfo( id: d.id, )));
                           },
                         ),
                       if (result.loading)
