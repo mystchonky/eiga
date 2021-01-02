@@ -74,9 +74,14 @@ class AnimeInfo extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    anime.description.replaceAll(RegExp('<br>'), ""),
-                    style: Theme.of(context).textTheme.subtitle2,
+                  Expanded(
+                    flex: 1,
+                    child: SingleChildScrollView(
+                      child: Text(
+                        anime.description.replaceAll(RegExp('<br>'), ""),
+                        style: Theme.of(context).textTheme.subtitle2,
+                      ),
+                    ),
                   )
                 ],
               )),
