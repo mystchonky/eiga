@@ -32,14 +32,19 @@ class _FourAnimeState extends State<FourAnime> {
   Widget getView() {
     switch (view) {
       case currentView.animeList:
-        return AnimeListView(search: widget.search, onAnimeSelected: (link){
-          setState(() {
-            view = currentView.episodeList;
-            animeLink = link;
-          });
-        },);
+        return AnimeListView(
+          search: widget.search,
+          onAnimeSelected: (link) {
+            setState(() {
+              view = currentView.episodeList;
+              animeLink = link;
+            });
+          },
+        );
       case currentView.episodeList:
-        return Container(color: Colors.blue[100],);
+        return EpisodeListView(
+          animeLink: animeLink,
+        );
     }
   }
 }
@@ -105,5 +110,60 @@ class AnimeListView extends StatelessWidget {
         .find_all('div.info > a')
         .map((e) => AnimeEntry(e.text, soup.attr(e, 'href')))
         .toList();
+  }
+}
+
+class EpisodeEntry {
+  final String title;
+  final String link;
+
+  EpisodeEntry(this.title, this.link);
+}
+
+class EpisodeListView extends StatelessWidget {
+  final String animeLink;
+
+  const EpisodeListView({Key key, @required this.animeLink}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: loadEpisodeList(),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              return Center(child: CircularProgressIndicator());
+            default:
+              if (snapshot.hasError)
+                return Text('Error: ${snapshot.error}');
+              else
+                return GridView.count(
+                    padding: EdgeInsets.all(20),
+                    crossAxisCount: 6,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    children: List.generate(snapshot.data.length, (index) {
+                      return RaisedButton(
+                        child: Text(snapshot.data[index].title),
+                        onPressed: () => OpenEpisode(snapshot.data[index].link),
+                      );
+                    }));
+          }
+        });
+  }
+
+  Future<List> loadEpisodeList() async {
+    var response = await http.get(animeLink);
+    var soup = Beautifulsoup(response.body);
+    return soup
+        .find_all('ul.episodes.range.active > li > a')
+        .map((e) => EpisodeEntry(e.text, soup.attr(e, 'href')))
+        .toList();
+  }
+
+  void OpenEpisode(String link) async {
+    var response = await http.get(link);
+    var soup = Beautifulsoup(response.body);
+    var vidLink = Beautifulsoup(soup.find(id:'div.videojs-desktop').innerHtml).find(id: 'source').attributes['src'];
   }
 }
