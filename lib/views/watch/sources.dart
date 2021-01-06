@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:android_intent/android_intent.dart';
+import 'package:android_intent/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:beautifulsoup/beautifulsoup.dart';
@@ -165,5 +169,16 @@ class EpisodeListView extends StatelessWidget {
     var response = await http.get(link);
     var soup = Beautifulsoup(response.body);
     var vidLink = Beautifulsoup(soup.find(id:'div.videojs-desktop').innerHtml).find(id: 'source').attributes['src'];
+
+    if (Platform.isAndroid){
+      AndroidIntent intent = AndroidIntent(
+        action: 'action_view',
+        data: vidLink,
+        type: 'video/**',
+        flags: [Flag.FLAG_GRANT_READ_URI_PERMISSION],
+
+      ); 
+      await intent.launch();
+    }
   }
 }
