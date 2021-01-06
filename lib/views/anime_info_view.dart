@@ -77,15 +77,15 @@ class AnimeInfo extends StatelessWidget {
                   SizedBox(height: 10),
                   Container(
                     constraints: BoxConstraints(maxHeight: 250),
-                    child: Expanded(
-                      flex: 1,
+                    // child: Expanded(
+                    //   flex: 1,
                       child: SingleChildScrollView(
                         child: Text(
                           anime.description.replaceAll(RegExp('<br>'), ""),
                           style: Theme.of(context).textTheme.bodyText2,
                         ),
                       ),
-                    ),
+  //                  ),
                   ),
                   SizedBox(height: 10),
                   Row(
