@@ -149,7 +149,8 @@ class EpisodeListView extends StatelessWidget {
                     children: List.generate(snapshot.data.length, (index) {
                       return RaisedButton(
                         child: Text(snapshot.data[index].title),
-                        onPressed: () => OpenEpisode(snapshot.data[index].link),
+                        onPressed: () =>
+                            OpenEpisode(snapshot.data[index].link, context),
                       );
                     }));
           }
@@ -165,19 +166,30 @@ class EpisodeListView extends StatelessWidget {
         .toList();
   }
 
-  void OpenEpisode(String link) async {
+  void OpenEpisode(String link, BuildContext con) async {
+    showDialog(
+        context: con,
+        builder: (context) {
+          return SimpleDialog(
+            contentPadding: EdgeInsets.all(10),
+            children: [
+              Container(child: Center(child: CircularProgressIndicator())),
+            ],
+          );
+        });
     var response = await http.get(link);
     var soup = Beautifulsoup(response.body);
-    var vidLink = Beautifulsoup(soup.find(id:'div.videojs-desktop').innerHtml).find(id: 'source').attributes['src'];
+    var vidLink = Beautifulsoup(soup.find(id: 'div.videojs-desktop').innerHtml)
+        .find(id: 'source')
+        .attributes['src'];
 
-    if (Platform.isAndroid){
+    if (Platform.isAndroid) {
       AndroidIntent intent = AndroidIntent(
         action: 'action_view',
         data: vidLink,
         type: 'video/**',
         flags: [Flag.FLAG_GRANT_READ_URI_PERMISSION],
-
-      ); 
+      );
       await intent.launch();
     }
   }
