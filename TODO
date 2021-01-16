@@ -1,7 +1,8 @@
 [x]loading dialog when episode starts 
 []if only 1 anime available, skip to episode view directly
-[]refactoring and split into multiple files 
-[]better file structure
+[x]refactoring and split into multiple files 
+[x]better file structure
 []design
 []default search page with no data
 []handle errors : no match found etc
+[]intent failed

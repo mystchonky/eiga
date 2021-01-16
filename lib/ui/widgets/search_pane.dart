@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../../graphql/graphql_api.dart';
-import '../anime_info_view.dart';
+import '../views/anime_info_view.dart';
 import 'search_card.dart';
 
 class SearchPane extends StatefulWidget {
@@ -99,15 +99,6 @@ class _SearchPaneState extends State<SearchPane> {
                   },
                 ),
               ),
-              // FlatButton(
-              //   child: Text("FetchMore"),
-              //   onPressed: () {
-              //     if (!result.loading && pageInfo.hasNextPage) {
-              //       fetchMore(opts);
-              //     }
-              //   },
-              //   color: Colors.amber,
-              // )
             ],
           ),
         );

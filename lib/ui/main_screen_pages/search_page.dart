@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'search/search_pane.dart';
+import '../widgets/search_pane.dart';
 
 class SearchPage extends StatefulWidget {
   @override

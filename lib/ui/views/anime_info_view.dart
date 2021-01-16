@@ -1,7 +1,7 @@
-import './watch/sources.dart';
+import '../../models/sources/4anime.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import '../graphql/graphql_api.dart';
+import '../../graphql/graphql_api.dart';
 
 class AnimeInfo extends StatelessWidget {
   final int id;
