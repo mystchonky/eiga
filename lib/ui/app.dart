@@ -21,14 +21,14 @@ class App extends StatefulWidget {
       clientId: '4721',
       grantType: OAuth2Helper.IMPLICIT_GRANT,
     );
-    
 
     final AuthLink authLink = AuthLink(
-      getToken: () async => 'Bearer '+ (await oauth2Helper.getToken()).accessToken,
+      getToken: () async =>
+          'Bearer ' + (await oauth2Helper.getToken()).accessToken,
     );
 
     final Link link = authLink.concat(httpLink);
-   
+
     client = ValueNotifier(
       GraphQLClient(
         cache: InMemoryCache(),
@@ -50,46 +50,35 @@ class _AppState extends State<App> {
   final _pageViewController = PageController(initialPage: 0);
 
   @override
-  void initState() {
-    super.initState();
-    _pageViewController.addListener(() {
-      setState(() {
-        _selectedIndex = _pageViewController.page.floor();
-      });
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GraphQLProvider(
       client: widget.client,
       child: CacheProvider(
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          darkTheme: ThemeData(
-              brightness: Brightness.dark,
-              primaryColor: Colors.grey[900],
-              accentColor: Colors.tealAccent[400]),
-          themeMode: ThemeMode.dark,
           home: Scaffold(
             body: SafeArea(
               child: PageView(
                 physics: NeverScrollableScrollPhysics(),
                 controller: _pageViewController,
-                children: [Text("Home"), SearchPage(), Text("Profile")],
+                children: [Center(child: Text("Profile")), Center(child: Text("Library")),SearchPage()],
               ),
             ),
             resizeToAvoidBottomInset: false,
             bottomNavigationBar: BottomNavigationBar(
               items: [
-                BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.search), label: "Discover"),
+                    icon: Icon(Icons.account_circle), label: ""
+                    //activeIcon: Icon(Icons.profile)
+                    ),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.account_circle), label: "Profile")
+                    icon: Icon(Icons.collections_bookmark), label: ""),
+                BottomNavigationBarItem(icon: Icon(Icons.explore), label: "")
               ],
               currentIndex: _selectedIndex,
               onTap: _onBottomNavTapped,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
             ),
           ),
         ),
@@ -101,6 +90,7 @@ class _AppState extends State<App> {
     setState(() {
       _pageViewController.animateToPage(index,
           duration: Duration(milliseconds: 500), curve: Curves.linearToEaseOut);
+      _selectedIndex = index;
     });
   }
 }
