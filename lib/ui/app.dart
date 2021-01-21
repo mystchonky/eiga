@@ -55,25 +55,37 @@ class _AppState extends State<App> {
       client: widget.client,
       child: CacheProvider(
         child: MaterialApp(
+          theme: ThemeData(fontFamily: "Inter"),
           debugShowCheckedModeBanner: false,
           home: Scaffold(
             body: SafeArea(
               child: PageView(
                 physics: NeverScrollableScrollPhysics(),
                 controller: _pageViewController,
-                children: [Center(child: Text("Profile")), Center(child: Text("Library")),SearchPage()],
+                children: [
+                  Center(child: Text("Profile")),
+                  Center(child: Text("Library")),
+                  SearchPage()
+                ],
               ),
             ),
             resizeToAvoidBottomInset: false,
             bottomNavigationBar: BottomNavigationBar(
               items: [
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.account_circle), label: ""
+                    icon: Icon(Icons.account_circle_outlined),
+                    activeIcon: Icon(Icons.account_circle),
+                     label: ""
                     //activeIcon: Icon(Icons.profile)
                     ),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.collections_bookmark), label: ""),
-                BottomNavigationBarItem(icon: Icon(Icons.explore), label: "")
+                    icon: Icon(Icons.collections_bookmark_outlined),
+                    activeIcon: Icon(Icons.collections_bookmark),
+                    label: ""),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.explore_outlined),
+                    activeIcon: Icon(Icons.explore),
+                    label: "")
               ],
               currentIndex: _selectedIndex,
               onTap: _onBottomNavTapped,

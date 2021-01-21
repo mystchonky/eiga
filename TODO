@@ -6,3 +6,6 @@
 []default search page with no data
 []handle errors : no match found etc
 []intent failed
+[]login token refresh
+[]authentication failure when fetching data
+[]logout methods

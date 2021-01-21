@@ -24,24 +24,22 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      //padding: EdgeInsets.symmetric(horizontal: 10.0),
       child: Column(children: [
-        Row(
-          children: [
-            Expanded(
-              child: TextField(
-                decoration: new InputDecoration(
-                  hintText: "Search",
-                ),
-                controller: searchController,
-                onSubmitted: updateSearch,
-              ),
+        AppBar(
+          title: TextField(
+            decoration: new InputDecoration(
+              hintText: "Search",
             ),
+            controller: searchController,
+            onSubmitted: updateSearch,
+          ),
+          actions: [
             IconButton(
                 icon: Icon(Icons.search),
                 onPressed: () {
                   updateSearch(searchController.text);
-                })
+                }),
           ],
         ),
         SizedBox(height: 10),
@@ -53,6 +51,3 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 }
-
-
-
