@@ -6,6 +6,9 @@ import 'package:beautifulsoup/beautifulsoup.dart';
 import 'dart:io';
 import 'package:eiga/models/episode_entry.dart';
 
+import 'package:html/parser.dart' as parser;
+import 'package:html/dom.dart' as dom;
+
 class EpisodeListView extends StatelessWidget {
   final String animeLink;
 
@@ -60,10 +63,23 @@ class EpisodeListView extends StatelessWidget {
           );
         });
     var response = await http.get(link);
-    var soup = Beautifulsoup(response.body);
-    var vidLink = Beautifulsoup(soup.find(id: 'div.videojs-desktop').innerHtml)
-        .find(id: 'source')
-        .attributes['src'];
+    dom.Document d = parser.parse(response.body);
+    List<dom.Element> a = d.querySelectorAll('script');
+    var vidLink;
+    for (dom.Element i in a) {
+      if (i.innerHtml.contains("document.write( '<a ")) {
+        String str = i.innerHtml;
+        const start = 'href=\\"';
+        const end = '\\">';
+
+        final startIndex = str.indexOf(start);
+        final endIndex = str.indexOf(end, startIndex + start.length);
+
+        vidLink = str.substring(startIndex + start.length, endIndex);
+        break;
+      }
+    }
+    print('done');
 
     if (Platform.isAndroid) {
       AndroidIntent intent = AndroidIntent(

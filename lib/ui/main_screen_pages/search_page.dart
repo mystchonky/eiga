@@ -13,12 +13,12 @@ class _SearchPageState extends State<SearchPage> {
   final searchController = TextEditingController();
 
   void updateSearch(String str) {
-    setState(() {
-      if (str != "" && str.length > 2) {
+    if (str != "" && str.length > 2) {
+      setState(() {
         searchStr = str;
         currentPage = 1;
-      }
-    });
+      });
+    }
   }
 
   @override

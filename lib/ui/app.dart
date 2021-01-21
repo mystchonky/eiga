@@ -75,9 +75,7 @@ class _AppState extends State<App> {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.account_circle_outlined),
                     activeIcon: Icon(Icons.account_circle),
-                     label: ""
-                    //activeIcon: Icon(Icons.profile)
-                    ),
+                    label: ""),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.collections_bookmark_outlined),
                     activeIcon: Icon(Icons.collections_bookmark),
