@@ -15,7 +15,7 @@ query SearchData($page: Int, $perPage: Int, $search: String) {
         native
       }
       coverImage {
-        medium
+        large
       }
     }
   }

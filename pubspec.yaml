@@ -20,6 +20,7 @@ dependencies:
   beautifulsoup: ^0.0.1
   android_intent: '>=0.3.7+7 <2.0.0'
   oauth2_client: ^1.6.1
+  cached_network_image: ^2.5.0
   
 
 dev_dependencies:

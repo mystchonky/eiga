@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../graphql/graphql_api.dart';
 
@@ -27,12 +28,14 @@ class _SearchCardState extends State<SearchCard>
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(
-                    widget.data.coverImage.medium,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                    borderRadius: BorderRadius.circular(5.0),
+                    child: CachedNetworkImage(
+                      imageUrl: widget.data.coverImage.large,
+                      placeholder: (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                      fit: BoxFit.cover,
+                    )),
               ),
             ),
             SizedBox(width: 10),
