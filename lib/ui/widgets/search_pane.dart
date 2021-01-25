@@ -37,7 +37,7 @@ class _SearchPaneState extends State<SearchPane> {
         }
 
         if (result.data == null && result.loading) {
-          return Center(child: CircularProgressIndicator());
+          return Expanded(child: Center(child: CircularProgressIndicator()));
         }
 
         final pageInfo = SearchData$Query.fromJson(result.data).page.pageInfo;
@@ -61,6 +61,10 @@ class _SearchPaneState extends State<SearchPane> {
               return fetchMoreResultData;
             });
 
+        if (data.isEmpty){
+          return Expanded(child: Center(child: Text("No result found")));
+        }
+
         return Expanded(
           child: Column(
             children: [
@@ -78,7 +82,9 @@ class _SearchPaneState extends State<SearchPane> {
                             Navigator.push(
                                 context,
                                 new MaterialPageRoute(
-                                    builder: (context) => AnimeInfo( id: d.id, )));
+                                    builder: (context) => AnimeInfo(
+                                          id: d.id,
+                                        )));
                           },
                         ),
                       if (result.loading)
@@ -88,13 +94,15 @@ class _SearchPaneState extends State<SearchPane> {
                     ],
                   ),
                   onNotification: (sn) {
-                    if (sn is OverscrollNotification) {
-                      if (!result.loading &&
-                          pageInfo.hasNextPage &&
-                          !updating) {
-                        fetchMore(opts);
-                        updating = true;
-                      }
+                    if (sn is OverscrollNotification &&
+                        !result.loading &&
+                        pageInfo.hasNextPage &&
+                        !updating) {
+                      fetchMore(opts);
+                      updating = true;
+                      return true;
+                    } else {
+                      return false;
                     }
                   },
                 ),

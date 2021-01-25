@@ -7,13 +7,13 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  String searchStr = "Attack on Titan";
+  String searchStr = "";
   int currentPage = 1;
   int perPage = 5;
   final searchController = TextEditingController();
 
   void updateSearch(String str) {
-    if (str != "" && str.length > 2) {
+    if (str != "" && str.length > 1) {
       setState(() {
         searchStr = str;
         currentPage = 1;
@@ -41,13 +41,21 @@ class _SearchPageState extends State<SearchPage> {
                   updateSearch(searchController.text);
                 }),
           ],
+          
         ),
-        SizedBox(height: 10),
-        SearchPane(
-          searchStr: searchStr,
-          currentPage: currentPage,
-        ),
+        checkEmptyString()
       ]),
     );
+  }
+
+  Widget checkEmptyString() {
+    if (searchStr == "") {
+      return Expanded(child: Center(child: Text("Enter some text to search")));
+    } else {
+      return SearchPane(
+        searchStr: searchStr,
+        currentPage: currentPage,
+      );
+    }
   }
 }
