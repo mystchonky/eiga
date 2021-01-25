@@ -1,9 +1,10 @@
 import 'package:eiga/models/oauth2Client.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:oauth2_client/oauth2_helper.dart';
 import 'main_screen_pages/search_page.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+
+import 'widgets/appbars/discover.dart';
 
 class App extends StatefulWidget {
   EigaOAuth2Client oauth2_client = EigaOAuth2Client();
@@ -58,6 +59,7 @@ class _AppState extends State<App> {
           theme: ThemeData(fontFamily: "Inter"),
           debugShowCheckedModeBanner: false,
           home: Scaffold(
+            appBar: loadAppBar(),
             body: SafeArea(
               child: PageView(
                 physics: NeverScrollableScrollPhysics(),
@@ -65,7 +67,9 @@ class _AppState extends State<App> {
                 children: [
                   Center(child: Text("Profile")),
                   Center(child: Text("Library")),
-                  SearchPage()
+                  Center(
+                    child: Text("Discover"),
+                  )
                 ],
               ),
             ),
@@ -102,5 +106,14 @@ class _AppState extends State<App> {
           duration: Duration(milliseconds: 500), curve: Curves.linearToEaseOut);
       _selectedIndex = index;
     });
+  }
+
+  Widget loadAppBar() {
+    switch(_selectedIndex){
+      case (2) : return DiscoverAppBar();
+      default : return null;
+    }
+
+ 
   }
 }

@@ -23,94 +23,96 @@ class _SearchPaneState extends State<SearchPane> {
 
   @override
   Widget build(BuildContext context) {
-    return Query(
-      options: QueryOptions(
-          documentNode: SearchDataQuery().document,
-          variables: {'search': widget.searchStr, 'page': 1, 'perPage': 5}),
-      builder: (
-        QueryResult result, {
-        Future<QueryResult> Function() refetch,
-        FetchMore fetchMore,
-      }) {
-        if (result.hasException) {
-          return Text(result.exception.toString());
-        }
+    return Container(
+      child: Query(
+        options: QueryOptions(
+            documentNode: SearchDataQuery().document,
+            variables: {'search': widget.searchStr, 'page': 1, 'perPage': 5}),
+        builder: (
+          QueryResult result, {
+          Future<QueryResult> Function() refetch,
+          FetchMore fetchMore,
+        }) {
+          if (result.hasException) {
+            return Text(result.exception.toString());
+          }
 
-        if (result.data == null && result.loading) {
-          return Expanded(child: Center(child: CircularProgressIndicator()));
-        }
+          if (result.data == null && result.loading) {
+            return Center(child: CircularProgressIndicator());
+          }
 
-        final pageInfo = SearchData$Query.fromJson(result.data).page.pageInfo;
-        final data = SearchData$Query.fromJson(result.data).page.media;
-        final nextPage = pageInfo.currentPage + 1;
+          final pageInfo = SearchData$Query.fromJson(result.data).page.pageInfo;
+          final data = SearchData$Query.fromJson(result.data).page.media;
+          final nextPage = pageInfo.currentPage + 1;
 
-        FetchMoreOptions opts = FetchMoreOptions(
-            variables: {'page': nextPage},
-            updateQuery: (previousResultData, fetchMoreResultData) {
-              final oldData = previousResultData['Page']['media'];
-              final newData = fetchMoreResultData['Page']['media'];
+          FetchMoreOptions opts = FetchMoreOptions(
+              variables: {'page': nextPage},
+              updateQuery: (previousResultData, fetchMoreResultData) {
+                final oldData = previousResultData['Page']['media'];
+                final newData = fetchMoreResultData['Page']['media'];
 
-              final List<dynamic> combined = [
-                ...oldData as List<dynamic>,
-                ...newData as List<dynamic>
-              ];
+                final List<dynamic> combined = [
+                  ...oldData as List<dynamic>,
+                  ...newData as List<dynamic>
+                ];
 
-              fetchMoreResultData['Page']['media'] = combined;
-              updating = false;
+                fetchMoreResultData['Page']['media'] = combined;
+                updating = false;
 
-              return fetchMoreResultData;
-            });
+                return fetchMoreResultData;
+              });
 
-        if (data.isEmpty){
-          return Expanded(child: Center(child: Text("No result found")));
-        }
+          if (data.isEmpty){
+            return Center(child: Text("No result found"));
+          }
 
-        return Expanded(
-          child: Column(
-            children: [
-              Expanded(
-                child: NotificationListener(
-                  child: ListView(
-                    controller: _scrollController,
-                    children: <Widget>[
-                      for (var d in data)
-                        InkWell(
-                          child: SearchCard(
-                            data: d,
+          return Container(
+            child: Column(
+              children: [
+                Expanded(
+                  child: NotificationListener(
+                    child: ListView(
+                      controller: _scrollController,
+                      children: <Widget>[
+                        for (var d in data)
+                          InkWell(
+                            child: SearchCard(
+                              data: d,
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  new MaterialPageRoute(
+                                      builder: (context) => AnimeInfo(
+                                            id: d.id,
+                                          )));
+                            },
                           ),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                new MaterialPageRoute(
-                                    builder: (context) => AnimeInfo(
-                                          id: d.id,
-                                        )));
-                          },
-                        ),
-                      if (result.loading)
-                        Center(
-                          child: CircularProgressIndicator(),
-                        )
-                    ],
+                        if (result.loading)
+                          Center(
+                            child: CircularProgressIndicator(),
+                          )
+                      ],
+                    ),
+                    onNotification: (sn) {
+                      if (sn is OverscrollNotification &&
+                          !result.loading &&
+                          pageInfo.hasNextPage &&
+                          !updating) {
+                        fetchMore(opts);
+                        updating = true;
+                        return true;
+                      } else {
+                        return false;
+                      }
+                    },
                   ),
-                  onNotification: (sn) {
-                    if (sn is OverscrollNotification &&
-                        !result.loading &&
-                        pageInfo.hasNextPage &&
-                        !updating) {
-                      fetchMore(opts);
-                      updating = true;
-                      return true;
-                    } else {
-                      return false;
-                    }
-                  },
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

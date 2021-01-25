@@ -23,39 +23,36 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //padding: EdgeInsets.symmetric(horizontal: 10.0),
-      child: Column(children: [
-        AppBar(
-          title: TextField(
-            decoration: new InputDecoration(
-              hintText: "Search",
-            ),
-            controller: searchController,
-            onSubmitted: updateSearch,
+    return Scaffold(
+      appBar: AppBar(
+        title: TextField(
+          decoration: new InputDecoration(
+            hintText: "Search",
           ),
-          actions: [
-            IconButton(
-                icon: Icon(Icons.search),
-                onPressed: () {
-                  updateSearch(searchController.text);
-                }),
-          ],
-          
+          controller: searchController,
+          onSubmitted: updateSearch,
         ),
-        checkEmptyString()
-      ]),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                updateSearch(searchController.text);
+              }),
+        ],
+      ),
+      body: checkEmptyString(),
     );
   }
 
   Widget checkEmptyString() {
     if (searchStr == "") {
-      return Expanded(child: Center(child: Text("Enter some text to search")));
+      return Container(child: Center(child: Text("Enter some text to search")));
     } else {
       return SearchPane(
         searchStr: searchStr,
         currentPage: currentPage,
       );
     }
+    return Container();
   }
 }
