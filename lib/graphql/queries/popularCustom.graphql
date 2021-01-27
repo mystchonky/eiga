@@ -1,0 +1,15 @@
+query PopularCustom($season:MediaSeason , $seasonYear: Int){
+    Page (page: 1, perPage: 10) {
+      media (type: ANIME, sort: POPULARITY_DESC, season: $season , seasonYear: $seasonYear) {
+        id
+        title {
+          userPreferred
+        }
+        episodes
+        status
+        coverImage {
+          large
+        }
+      }
+    }
+  }

@@ -147,6 +147,174 @@ class AnimeInfo$Query with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class Popular$Query$Page$Media$MediaTitle with EquatableMixin {
+  Popular$Query$Page$Media$MediaTitle();
+
+  factory Popular$Query$Page$Media$MediaTitle.fromJson(
+          Map<String, dynamic> json) =>
+      _$Popular$Query$Page$Media$MediaTitleFromJson(json);
+
+  String userPreferred;
+
+  @override
+  List<Object> get props => [userPreferred];
+  Map<String, dynamic> toJson() =>
+      _$Popular$Query$Page$Media$MediaTitleToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Popular$Query$Page$Media$MediaCoverImage with EquatableMixin {
+  Popular$Query$Page$Media$MediaCoverImage();
+
+  factory Popular$Query$Page$Media$MediaCoverImage.fromJson(
+          Map<String, dynamic> json) =>
+      _$Popular$Query$Page$Media$MediaCoverImageFromJson(json);
+
+  String large;
+
+  @override
+  List<Object> get props => [large];
+  Map<String, dynamic> toJson() =>
+      _$Popular$Query$Page$Media$MediaCoverImageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Popular$Query$Page$Media with EquatableMixin {
+  Popular$Query$Page$Media();
+
+  factory Popular$Query$Page$Media.fromJson(Map<String, dynamic> json) =>
+      _$Popular$Query$Page$MediaFromJson(json);
+
+  int id;
+
+  Popular$Query$Page$Media$MediaTitle title;
+
+  int episodes;
+
+  @JsonKey(unknownEnumValue: MediaStatus.artemisUnknown)
+  MediaStatus status;
+
+  Popular$Query$Page$Media$MediaCoverImage coverImage;
+
+  @override
+  List<Object> get props => [id, title, episodes, status, coverImage];
+  Map<String, dynamic> toJson() => _$Popular$Query$Page$MediaToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Popular$Query$Page with EquatableMixin {
+  Popular$Query$Page();
+
+  factory Popular$Query$Page.fromJson(Map<String, dynamic> json) =>
+      _$Popular$Query$PageFromJson(json);
+
+  List<Popular$Query$Page$Media> media;
+
+  @override
+  List<Object> get props => [media];
+  Map<String, dynamic> toJson() => _$Popular$Query$PageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Popular$Query with EquatableMixin {
+  Popular$Query();
+
+  factory Popular$Query.fromJson(Map<String, dynamic> json) =>
+      _$Popular$QueryFromJson(json);
+
+  @JsonKey(name: 'Page')
+  Popular$Query$Page page;
+
+  @override
+  List<Object> get props => [page];
+  Map<String, dynamic> toJson() => _$Popular$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class PopularCustom$Query$Page$Media$MediaTitle with EquatableMixin {
+  PopularCustom$Query$Page$Media$MediaTitle();
+
+  factory PopularCustom$Query$Page$Media$MediaTitle.fromJson(
+          Map<String, dynamic> json) =>
+      _$PopularCustom$Query$Page$Media$MediaTitleFromJson(json);
+
+  String userPreferred;
+
+  @override
+  List<Object> get props => [userPreferred];
+  Map<String, dynamic> toJson() =>
+      _$PopularCustom$Query$Page$Media$MediaTitleToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class PopularCustom$Query$Page$Media$MediaCoverImage with EquatableMixin {
+  PopularCustom$Query$Page$Media$MediaCoverImage();
+
+  factory PopularCustom$Query$Page$Media$MediaCoverImage.fromJson(
+          Map<String, dynamic> json) =>
+      _$PopularCustom$Query$Page$Media$MediaCoverImageFromJson(json);
+
+  String large;
+
+  @override
+  List<Object> get props => [large];
+  Map<String, dynamic> toJson() =>
+      _$PopularCustom$Query$Page$Media$MediaCoverImageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class PopularCustom$Query$Page$Media with EquatableMixin {
+  PopularCustom$Query$Page$Media();
+
+  factory PopularCustom$Query$Page$Media.fromJson(Map<String, dynamic> json) =>
+      _$PopularCustom$Query$Page$MediaFromJson(json);
+
+  int id;
+
+  PopularCustom$Query$Page$Media$MediaTitle title;
+
+  int episodes;
+
+  @JsonKey(unknownEnumValue: MediaStatus.artemisUnknown)
+  MediaStatus status;
+
+  PopularCustom$Query$Page$Media$MediaCoverImage coverImage;
+
+  @override
+  List<Object> get props => [id, title, episodes, status, coverImage];
+  Map<String, dynamic> toJson() => _$PopularCustom$Query$Page$MediaToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class PopularCustom$Query$Page with EquatableMixin {
+  PopularCustom$Query$Page();
+
+  factory PopularCustom$Query$Page.fromJson(Map<String, dynamic> json) =>
+      _$PopularCustom$Query$PageFromJson(json);
+
+  List<PopularCustom$Query$Page$Media> media;
+
+  @override
+  List<Object> get props => [media];
+  Map<String, dynamic> toJson() => _$PopularCustom$Query$PageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class PopularCustom$Query with EquatableMixin {
+  PopularCustom$Query();
+
+  factory PopularCustom$Query.fromJson(Map<String, dynamic> json) =>
+      _$PopularCustom$QueryFromJson(json);
+
+  @JsonKey(name: 'Page')
+  PopularCustom$Query$Page page;
+
+  @override
+  List<Object> get props => [page];
+  Map<String, dynamic> toJson() => _$PopularCustom$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class SearchData$Query$Page$PageInfo with EquatableMixin {
   SearchData$Query$Page$PageInfo();
 
@@ -252,6 +420,117 @@ class SearchData$Query with EquatableMixin {
   @override
   List<Object> get props => [page];
   Map<String, dynamic> toJson() => _$SearchData$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Trending$Query$Page$Media$MediaTitle with EquatableMixin {
+  Trending$Query$Page$Media$MediaTitle();
+
+  factory Trending$Query$Page$Media$MediaTitle.fromJson(
+          Map<String, dynamic> json) =>
+      _$Trending$Query$Page$Media$MediaTitleFromJson(json);
+
+  String userPreferred;
+
+  @override
+  List<Object> get props => [userPreferred];
+  Map<String, dynamic> toJson() =>
+      _$Trending$Query$Page$Media$MediaTitleToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Trending$Query$Page$Media$MediaCoverImage with EquatableMixin {
+  Trending$Query$Page$Media$MediaCoverImage();
+
+  factory Trending$Query$Page$Media$MediaCoverImage.fromJson(
+          Map<String, dynamic> json) =>
+      _$Trending$Query$Page$Media$MediaCoverImageFromJson(json);
+
+  String large;
+
+  @override
+  List<Object> get props => [large];
+  Map<String, dynamic> toJson() =>
+      _$Trending$Query$Page$Media$MediaCoverImageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Trending$Query$Page$Media with EquatableMixin {
+  Trending$Query$Page$Media();
+
+  factory Trending$Query$Page$Media.fromJson(Map<String, dynamic> json) =>
+      _$Trending$Query$Page$MediaFromJson(json);
+
+  int id;
+
+  Trending$Query$Page$Media$MediaTitle title;
+
+  int episodes;
+
+  @JsonKey(unknownEnumValue: MediaStatus.artemisUnknown)
+  MediaStatus status;
+
+  Trending$Query$Page$Media$MediaCoverImage coverImage;
+
+  @override
+  List<Object> get props => [id, title, episodes, status, coverImage];
+  Map<String, dynamic> toJson() => _$Trending$Query$Page$MediaToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Trending$Query$Page with EquatableMixin {
+  Trending$Query$Page();
+
+  factory Trending$Query$Page.fromJson(Map<String, dynamic> json) =>
+      _$Trending$Query$PageFromJson(json);
+
+  List<Trending$Query$Page$Media> media;
+
+  @override
+  List<Object> get props => [media];
+  Map<String, dynamic> toJson() => _$Trending$Query$PageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Trending$Query with EquatableMixin {
+  Trending$Query();
+
+  factory Trending$Query.fromJson(Map<String, dynamic> json) =>
+      _$Trending$QueryFromJson(json);
+
+  @JsonKey(name: 'Page')
+  Trending$Query$Page page;
+
+  @override
+  List<Object> get props => [page];
+  Map<String, dynamic> toJson() => _$Trending$QueryToJson(this);
+}
+
+enum MediaStatus {
+  @JsonValue('FINISHED')
+  finished,
+  @JsonValue('RELEASING')
+  releasing,
+  @JsonValue('NOT_YET_RELEASED')
+  notYetReleased,
+  @JsonValue('CANCELLED')
+  cancelled,
+  @JsonValue('HIATUS')
+  hiatus,
+  @JsonValue('ARTEMIS_UNKNOWN')
+  artemisUnknown,
+}
+enum MediaSeason {
+  @JsonValue('WINTER')
+  winter,
+  @JsonValue('SPRING')
+  spring,
+  @JsonValue('SUMMER')
+  summer,
+  @JsonValue('FALL')
+  fall,
+  @JsonValue('ARTEMIS_UNKNOWN')
+  artemisUnknown,
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -420,6 +699,243 @@ class AnimeInfoQuery extends GraphQLQuery<AnimeInfo$Query, AnimeInfoArguments> {
   @override
   AnimeInfo$Query parse(Map<String, dynamic> json) =>
       AnimeInfo$Query.fromJson(json);
+}
+
+class PopularQuery extends GraphQLQuery<Popular$Query, JsonSerializable> {
+  PopularQuery();
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.query,
+        name: NameNode(value: 'Popular'),
+        variableDefinitions: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'Page'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'page'),
+                    value: IntValueNode(value: '1')),
+                ArgumentNode(
+                    name: NameNode(value: 'perPage'),
+                    value: IntValueNode(value: '10'))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'media'),
+                    alias: null,
+                    arguments: [
+                      ArgumentNode(
+                          name: NameNode(value: 'type'),
+                          value: EnumValueNode(name: NameNode(value: 'ANIME'))),
+                      ArgumentNode(
+                          name: NameNode(value: 'sort'),
+                          value: EnumValueNode(
+                              name: NameNode(value: 'POPULARITY_DESC')))
+                    ],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                          name: NameNode(value: 'id'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'title'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                                name: NameNode(value: 'userPreferred'),
+                                alias: null,
+                                arguments: [],
+                                directives: [],
+                                selectionSet: null)
+                          ])),
+                      FieldNode(
+                          name: NameNode(value: 'episodes'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'status'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'coverImage'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                                name: NameNode(value: 'large'),
+                                alias: null,
+                                arguments: [],
+                                directives: [],
+                                selectionSet: null)
+                          ]))
+                    ]))
+              ]))
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'Popular';
+
+  @override
+  List<Object> get props => [document, operationName];
+  @override
+  Popular$Query parse(Map<String, dynamic> json) =>
+      Popular$Query.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class PopularCustomArguments extends JsonSerializable with EquatableMixin {
+  PopularCustomArguments({this.season, this.seasonYear});
+
+  @override
+  factory PopularCustomArguments.fromJson(Map<String, dynamic> json) =>
+      _$PopularCustomArgumentsFromJson(json);
+
+  @JsonKey(unknownEnumValue: MediaSeason.artemisUnknown)
+  final MediaSeason season;
+
+  final int seasonYear;
+
+  @override
+  List<Object> get props => [season, seasonYear];
+  @override
+  Map<String, dynamic> toJson() => _$PopularCustomArgumentsToJson(this);
+}
+
+class PopularCustomQuery
+    extends GraphQLQuery<PopularCustom$Query, PopularCustomArguments> {
+  PopularCustomQuery({this.variables});
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.query,
+        name: NameNode(value: 'PopularCustom'),
+        variableDefinitions: [
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'season')),
+              type: NamedTypeNode(
+                  name: NameNode(value: 'MediaSeason'), isNonNull: false),
+              defaultValue: DefaultValueNode(value: null),
+              directives: []),
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'seasonYear')),
+              type:
+                  NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
+              defaultValue: DefaultValueNode(value: null),
+              directives: [])
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'Page'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'page'),
+                    value: IntValueNode(value: '1')),
+                ArgumentNode(
+                    name: NameNode(value: 'perPage'),
+                    value: IntValueNode(value: '10'))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'media'),
+                    alias: null,
+                    arguments: [
+                      ArgumentNode(
+                          name: NameNode(value: 'type'),
+                          value: EnumValueNode(name: NameNode(value: 'ANIME'))),
+                      ArgumentNode(
+                          name: NameNode(value: 'sort'),
+                          value: EnumValueNode(
+                              name: NameNode(value: 'POPULARITY_DESC'))),
+                      ArgumentNode(
+                          name: NameNode(value: 'season'),
+                          value: VariableNode(name: NameNode(value: 'season'))),
+                      ArgumentNode(
+                          name: NameNode(value: 'seasonYear'),
+                          value:
+                              VariableNode(name: NameNode(value: 'seasonYear')))
+                    ],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                          name: NameNode(value: 'id'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'title'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                                name: NameNode(value: 'userPreferred'),
+                                alias: null,
+                                arguments: [],
+                                directives: [],
+                                selectionSet: null)
+                          ])),
+                      FieldNode(
+                          name: NameNode(value: 'episodes'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'status'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'coverImage'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                                name: NameNode(value: 'large'),
+                                alias: null,
+                                arguments: [],
+                                directives: [],
+                                selectionSet: null)
+                          ]))
+                    ]))
+              ]))
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'PopularCustom';
+
+  @override
+  final PopularCustomArguments variables;
+
+  @override
+  List<Object> get props => [document, operationName, variables];
+  @override
+  PopularCustom$Query parse(Map<String, dynamic> json) =>
+      PopularCustom$Query.fromJson(json);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -599,4 +1115,101 @@ class SearchDataQuery
   @override
   SearchData$Query parse(Map<String, dynamic> json) =>
       SearchData$Query.fromJson(json);
+}
+
+class TrendingQuery extends GraphQLQuery<Trending$Query, JsonSerializable> {
+  TrendingQuery();
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.query,
+        name: NameNode(value: 'Trending'),
+        variableDefinitions: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'Page'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'page'),
+                    value: IntValueNode(value: '1')),
+                ArgumentNode(
+                    name: NameNode(value: 'perPage'),
+                    value: IntValueNode(value: '10'))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'media'),
+                    alias: null,
+                    arguments: [
+                      ArgumentNode(
+                          name: NameNode(value: 'type'),
+                          value: EnumValueNode(name: NameNode(value: 'ANIME'))),
+                      ArgumentNode(
+                          name: NameNode(value: 'sort'),
+                          value: EnumValueNode(
+                              name: NameNode(value: 'POPULARITY_DESC')))
+                    ],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                          name: NameNode(value: 'id'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'title'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                                name: NameNode(value: 'userPreferred'),
+                                alias: null,
+                                arguments: [],
+                                directives: [],
+                                selectionSet: null)
+                          ])),
+                      FieldNode(
+                          name: NameNode(value: 'episodes'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'status'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'coverImage'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                                name: NameNode(value: 'large'),
+                                alias: null,
+                                arguments: [],
+                                directives: [],
+                                selectionSet: null)
+                          ]))
+                    ]))
+              ]))
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'Trending';
+
+  @override
+  List<Object> get props => [document, operationName];
+  @override
+  Trending$Query parse(Map<String, dynamic> json) =>
+      Trending$Query.fromJson(json);
 }

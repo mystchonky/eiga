@@ -1,7 +1,7 @@
 import 'package:eiga/models/oauth2Client.dart';
+import 'package:eiga/ui/pages/discover.dart';
 import 'package:flutter/material.dart';
 import 'package:oauth2_client/oauth2_helper.dart';
-import 'main_screen_pages/search_page.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'widgets/appbars/discover.dart';
@@ -67,9 +67,7 @@ class _AppState extends State<App> {
                 children: [
                   Center(child: Text("Profile")),
                   Center(child: Text("Library")),
-                  Center(
-                    child: Text("Discover"),
-                  )
+                  DiscoverPage()
                 ],
               ),
             ),
@@ -109,11 +107,11 @@ class _AppState extends State<App> {
   }
 
   Widget loadAppBar() {
-    switch(_selectedIndex){
-      case (2) : return DiscoverAppBar();
-      default : return null;
+    switch (_selectedIndex) {
+      case (2):
+        return DiscoverAppBar();
+      default:
+        return null;
     }
-
- 
   }
 }
