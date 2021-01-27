@@ -53,6 +53,5 @@ class _SearchPageState extends State<SearchPage> {
         currentPage: currentPage,
       );
     }
-    return Container();
   }
 }

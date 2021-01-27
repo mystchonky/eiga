@@ -6,7 +6,7 @@ import '../../graphql/graphql_api.dart';
 class AnimeInfo extends StatelessWidget {
   final int id;
 
-  AnimeInfo({this.id});
+  AnimeInfo({@required this.id});
 
   @override
   Widget build(BuildContext context) {
