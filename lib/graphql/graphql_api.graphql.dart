@@ -1151,7 +1151,7 @@ class TrendingQuery extends GraphQLQuery<Trending$Query, JsonSerializable> {
                       ArgumentNode(
                           name: NameNode(value: 'sort'),
                           value: EnumValueNode(
-                              name: NameNode(value: 'POPULARITY_DESC')))
+                              name: NameNode(value: 'TRENDING_DESC')))
                     ],
                     directives: [],
                     selectionSet: SelectionSetNode(selections: [

@@ -3,8 +3,8 @@ import 'package:eiga/ui/widgets/anime_card.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-class PopularList extends StatelessWidget {
-  const PopularList({
+class TrendingList extends StatelessWidget {
+  const TrendingList({
     Key key,
   }) : super(key: key);
 
@@ -14,7 +14,7 @@ class PopularList extends StatelessWidget {
       height: 200,
       child: Query(
           options: QueryOptions(
-            documentNode: PopularQuery().document,
+            documentNode: TrendingQuery().document,
           ),
           builder: (
             QueryResult result, {

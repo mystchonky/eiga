@@ -1,6 +1,6 @@
 query Trending{
     Page (page: 1, perPage: 10) {
-      media (type: ANIME, sort: POPULARITY_DESC) {
+      media (type: ANIME, sort: TRENDING_DESC) {
         id
         title {
           userPreferred

@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+
 import '../../models/sources/4anime.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -64,9 +66,13 @@ class AnimeInfo extends StatelessWidget {
                             flex: 3,
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
-                                child: Image.network(
-                                  anime.coverImage.medium,
+                                child: CachedNetworkImage(
+                                  imageUrl: anime.coverImage.medium,
                                   fit: BoxFit.cover,
+                                  placeholder: (context, url) =>
+                                      Center(child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
                                 )))
                       ],
                     ),
