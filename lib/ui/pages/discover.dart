@@ -20,7 +20,10 @@ class DiscoverPage extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-              PopularList()
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: PopularList(),
+              )
             ],
           ),
         ),
@@ -37,7 +40,10 @@ class DiscoverPage extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-              TrendingList()
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TrendingList(),
+              )
             ],
           ),
         ),

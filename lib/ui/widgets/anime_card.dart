@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class AnimeCard extends StatefulWidget {
   final Popular$Query$Page$Media media;
+
   AnimeCard({
     Key key,
     this.media,
@@ -19,37 +20,56 @@ class _AnimeCardState extends State<AnimeCard>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return InkWell(
-      child: Card(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: InkWell(
         child: Container(
-          width: 150,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          width: 120,
+          decoration:
+              BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5))),
+          clipBehavior: Clip.hardEdge,
+          child: Stack(
             children: [
+              CachedNetworkImage(
+                width: double.infinity,
+                height: double.infinity,
+                imageUrl: widget.media.coverImage.large,
+                placeholder: (context, url) =>
+                    Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                fit: BoxFit.cover,
+              ),
               Container(
-                  height: 140,
-                  child: CachedNetworkImage(
-                    imageUrl: widget.media.coverImage.large,
-                    placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                    fit: BoxFit.cover,
-                  )),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(5.0),
+                alignment: Alignment.bottomCenter,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: <Color>[
+                      Colors.black.withAlpha(0),
+                      Colors.black12,
+                      Colors.black45
+                    ],
+                  ),
+                ),
                 child: Text(
                   widget.media.title.userPreferred,
-                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontSize: 16.0, ),
                   maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
           ),
         ),
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AnimeInfo(id: widget.media.id)));
+        },
       ),
-
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) =>AnimeInfo(id: widget.media.id) ));
-      },
     );
   }
 

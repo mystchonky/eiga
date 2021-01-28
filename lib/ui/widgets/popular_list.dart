@@ -11,7 +11,7 @@ class PopularList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 180,
       child: Query(
           options: QueryOptions(
             documentNode: PopularQuery().document,
