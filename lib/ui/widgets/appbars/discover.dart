@@ -9,10 +9,10 @@ class DiscoverAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Text(
         "Discover",
-        style: TextStyle(color: Colors.black),
+       // style: TextStyle(color: Colors.black),
       ),
-      backgroundColor: Colors.white,
-      actionsIconTheme: IconThemeData(color: Colors.black),
+      //backgroundColor: Colors.white,
+      //actionsIconTheme: IconThemeData(color: Colors.black),
       elevation: 0,
       actions: [
         IconButton(

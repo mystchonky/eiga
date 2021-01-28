@@ -48,14 +48,14 @@ class _AnimeCardState extends State<AnimeCard>
                     end: Alignment.bottomCenter,
                     colors: <Color>[
                       Colors.black.withAlpha(0),
-                      Colors.black12,
-                      Colors.black45
+                      Colors.black26,
+                      Colors.black87
                     ],
                   ),
                 ),
                 child: Text(
                   widget.media.title.userPreferred,
-                  style: TextStyle(color: Colors.white, fontSize: 16.0, ),
+                  style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
