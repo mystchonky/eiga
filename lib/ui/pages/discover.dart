@@ -23,6 +23,7 @@ class DiscoverPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: "Rubik",
+                        color: Colors.white70,
                       ),
                     ),
                   ),
@@ -47,6 +48,7 @@ class DiscoverPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: "Rubik",
+                        color: Colors.white70,
                       ),
                     ),
                   ),
@@ -71,6 +73,7 @@ class DiscoverPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: "Rubik",
+                        color: Colors.white70,
                       ),
                     ),
                   ),

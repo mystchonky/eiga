@@ -74,6 +74,14 @@ class _AppState extends State<App> {
       child: CacheProvider(
         child: MaterialApp(
           theme: ThemeData(fontFamily: "Inter"),
+          darkTheme: ThemeData(
+              fontFamily: "Inter",
+              brightness: Brightness.dark,
+              primaryColor: Colors.blue,
+              scaffoldBackgroundColor: Colors.black,
+              accentColor: Colors.blue,
+              canvasColor: Colors.black),
+          themeMode: ThemeMode.dark,
           debugShowCheckedModeBanner: false,
           home: Scaffold(
             appBar: loadAppBar(),

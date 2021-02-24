@@ -30,7 +30,7 @@ class AnimeInfo extends StatelessWidget {
 
         final anime = AnimeInfo$Query.fromJson(result.data).media;
         final animeName = anime.title.romaji;
-        final animeColor = anime.coverImage.color ?? "#FFFFFF";
+        final animeColor = anime.coverImage.color ?? "#000000";
 
         return Scaffold(
           extendBodyBehindAppBar: true,
@@ -101,13 +101,14 @@ class AnimeInfo extends StatelessWidget {
                                       animeName,
                                       maxLines: 2,
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 16),
+                                          color: Colors.white, fontSize: 18),
                                     ),
-                                    Text(
-                                      anime.title.english,
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 12),
-                                    ),
+                                    if (anime.title.english != null)
+                                      Text(
+                                        anime.title.english,
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 12),
+                                      ),
                                     Text(
                                       anime.title.native,
                                       style: TextStyle(
@@ -123,6 +124,28 @@ class AnimeInfo extends StatelessWidget {
                     ),
                   ]),
                 ),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    width: double.infinity,
+                    child: Wrap(
+                      spacing: 5,
+                      runSpacing: 5,
+                      alignment: WrapAlignment.start,
+                      children: anime.genres.map((gen) {
+                        return Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Theme.of(context).primaryColor),
+                            padding: EdgeInsets.all(5),
+                            child: Text(
+                              gen,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ));
+                      }).toList(),
+                    )),
                 SizedBox(height: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
