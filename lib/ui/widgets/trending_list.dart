@@ -29,8 +29,7 @@ class TrendingList extends StatelessWidget {
               return Center(child: CircularProgressIndicator());
             }
 
-            final data =
-                Popular$Query.fromJson(result.data).page.media;
+            final data = Popular$Query.fromJson(result.data).page.media;
 
             return ListView.builder(
                 itemCount: data.length,

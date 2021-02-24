@@ -1,7 +1,6 @@
 import 'package:eiga/ui/widgets/popular_custom.dart';
 import 'package:eiga/ui/widgets/popular_list.dart';
 import 'package:eiga/ui/widgets/trending_list.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DiscoverPage extends StatelessWidget {
@@ -13,10 +12,7 @@ class DiscoverPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Theme.of(context).primaryColor, width: 3.0),
-                borderRadius: BorderRadius.all(Radius.circular(8.0))
-              ),
+              // ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -24,7 +20,10 @@ class DiscoverPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Popular",
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: "Rubik",
+                      ),
                     ),
                   ),
                   Padding(
@@ -38,10 +37,6 @@ class DiscoverPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Container(
-              decoration: BoxDecoration(
-                  border: Border.all(color: Theme.of(context).primaryColor, width: 3.0),
-                  borderRadius: BorderRadius.all(Radius.circular(8.0))
-              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -49,7 +44,10 @@ class DiscoverPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Trending",
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: "Rubik",
+                      ),
                     ),
                   ),
                   Padding(
@@ -63,10 +61,6 @@ class DiscoverPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Container(
-              decoration: BoxDecoration(
-                  border: Border.all(color: Theme.of(context).primaryColor, width: 3.0),
-                  borderRadius: BorderRadius.all(Radius.circular(8.0))
-              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -74,7 +68,10 @@ class DiscoverPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Popular upcoming",
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: "Rubik",
+                      ),
                     ),
                   ),
                   Padding(

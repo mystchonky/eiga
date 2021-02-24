@@ -21,12 +21,12 @@ class _AnimeCardState extends State<AnimeCard>
   Widget build(BuildContext context) {
     super.build(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 2),
       child: InkWell(
         child: Container(
           width: 120,
           decoration:
-              BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5))),
+              BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(4))),
           clipBehavior: Clip.hardEdge,
           child: Stack(
             children: [
@@ -55,7 +55,10 @@ class _AnimeCardState extends State<AnimeCard>
                 ),
                 child: Text(
                   widget.media.title.userPreferred,
-                  style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),

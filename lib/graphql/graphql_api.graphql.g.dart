@@ -25,13 +25,15 @@ Map<String, dynamic> _$AnimeInfo$Query$Media$MediaTitleToJson(
 AnimeInfo$Query$Media$MediaCoverImage
     _$AnimeInfo$Query$Media$MediaCoverImageFromJson(Map<String, dynamic> json) {
   return AnimeInfo$Query$Media$MediaCoverImage()
-    ..medium = json['medium'] as String;
+    ..large = json['large'] as String
+    ..color = json['color'] as String;
 }
 
 Map<String, dynamic> _$AnimeInfo$Query$Media$MediaCoverImageToJson(
         AnimeInfo$Query$Media$MediaCoverImage instance) =>
     <String, dynamic>{
-      'medium': instance.medium,
+      'large': instance.large,
+      'color': instance.color,
     };
 
 AnimeInfo$Query$Media$StudioConnection$StudioEdge$Studio

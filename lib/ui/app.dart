@@ -1,6 +1,8 @@
 import 'package:eiga/models/oauth2Client.dart';
 import 'package:eiga/ui/pages/discover.dart';
+import 'package:eiga/ui/pages/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:oauth2_client/oauth2_helper.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -8,34 +10,39 @@ import 'widgets/appbars/discover.dart';
 
 class App extends StatefulWidget {
   EigaOAuth2Client oauth2_client = EigaOAuth2Client();
-  OAuth2Helper oauth2Helper;
+  OAuth2Helper oauth2_helper;
 
   final HttpLink httpLink = HttpLink(
     uri: 'https://graphql.anilist.co/',
   );
+  AuthLink authLink;
+  Link link;
 
   ValueNotifier<GraphQLClient> client;
+  final memCache = InMemoryCache();
 
   init() async {
-    oauth2Helper = OAuth2Helper(
+    oauth2_helper = OAuth2Helper(
       oauth2_client,
       clientId: '4721',
       grantType: OAuth2Helper.IMPLICIT_GRANT,
     );
 
-    final AuthLink authLink = AuthLink(
+    authLink = AuthLink(
       getToken: () async =>
-          'Bearer ' + (await oauth2Helper.getToken()).accessToken,
+          'Bearer ' + (await oauth2_helper.getToken()).accessToken,
     );
 
-    final Link link = authLink.concat(httpLink);
+    link = authLink.concat(httpLink);
 
     client = ValueNotifier(
       GraphQLClient(
-        cache: InMemoryCache(),
+        cache: memCache,
         link: link,
       ),
     );
+
+    SystemChrome.setEnabledSystemUIOverlays([]);
   }
 
   App() {
@@ -44,6 +51,16 @@ class App extends StatefulWidget {
 
   @override
   _AppState createState() => _AppState();
+
+  void updateClient() {
+    authLink = AuthLink(
+      getToken: () async =>
+          'Bearer ' + (await oauth2_helper.getToken()).accessToken,
+    );
+
+    link = authLink.concat(httpLink);
+    client.value = GraphQLClient(link: link, cache: memCache);
+  }
 }
 
 class _AppState extends State<App> {
@@ -65,7 +82,17 @@ class _AppState extends State<App> {
                 physics: NeverScrollableScrollPhysics(),
                 controller: _pageViewController,
                 children: [
-                  Center(child: Text("Profile")),
+                  Column(
+                    children: [
+                      Center(child: Text("Profile")),
+                      Center(child: Profile(
+                        logout: () {
+                          widget.oauth2_helper.disconnect();
+                          widget.updateClient();
+                        },
+                      ))
+                    ],
+                  ),
                   Center(child: Text("Library")),
                   DiscoverPage()
                 ],
@@ -103,6 +130,7 @@ class _AppState extends State<App> {
       _pageViewController.animateToPage(index,
           duration: Duration(milliseconds: 500), curve: Curves.linearToEaseOut);
       _selectedIndex = index;
+      //print(await widget.oauth2Helper.getToken());
     });
   }
 

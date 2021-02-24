@@ -34,10 +34,12 @@ class AnimeInfo$Query$Media$MediaCoverImage with EquatableMixin {
           Map<String, dynamic> json) =>
       _$AnimeInfo$Query$Media$MediaCoverImageFromJson(json);
 
-  String medium;
+  String large;
+
+  String color;
 
   @override
-  List<Object> get props => [medium];
+  List<Object> get props => [large, color];
   Map<String, dynamic> toJson() =>
       _$AnimeInfo$Query$Media$MediaCoverImageToJson(this);
 }
@@ -621,7 +623,13 @@ class AnimeInfoQuery extends GraphQLQuery<AnimeInfo$Query, AnimeInfoArguments> {
                     directives: [],
                     selectionSet: SelectionSetNode(selections: [
                       FieldNode(
-                          name: NameNode(value: 'medium'),
+                          name: NameNode(value: 'large'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'color'),
                           alias: null,
                           arguments: [],
                           directives: [],
