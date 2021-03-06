@@ -1,6 +1,6 @@
+import 'package:eiga/models/scraper.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:beautifulsoup/beautifulsoup.dart';
 import 'package:eiga/models/anime_entry.dart';
 
 class AnimeListView extends StatelessWidget {

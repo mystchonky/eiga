@@ -1,8 +1,8 @@
 import 'package:android_intent/android_intent.dart';
 import 'package:android_intent/flag.dart';
+import 'package:eiga/models/scraper.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:beautifulsoup/beautifulsoup.dart';
 import 'dart:io';
 import 'package:eiga/models/episode_entry.dart';
 
@@ -32,7 +32,7 @@ class EpisodeListView extends StatelessWidget {
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
                     children: List.generate(snapshot.data.length, (index) {
-                      return RaisedButton(
+                      return ElevatedButton(
                         child: Text(snapshot.data[index].title),
                         onPressed: () =>
                             OpenEpisode(snapshot.data[index].link, context),

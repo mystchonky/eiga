@@ -14,7 +14,7 @@ dependencies:
   cupertino_icons: '>=1.0.0'
   graphql_flutter: '>=3.0.0'
   http: '>=0.12.2'
-  beautifulsoup: '>=0.0.1'
+  html: '>=0.15.0'
   android_intent: '>=0.3.7+7'
   oauth2_client: '>=1.6.1'
   cached_network_image: '>=2.5.0'
