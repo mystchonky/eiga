@@ -388,8 +388,29 @@ class SearchData$Query$Page$Media with EquatableMixin {
 
   SearchData$Query$Page$Media$MediaCoverImage coverImage;
 
+  @JsonKey(unknownEnumValue: MediaFormat.artemisUnknown)
+  MediaFormat format;
+
+  int averageScore;
+
+  @JsonKey(unknownEnumValue: MediaSeason.artemisUnknown)
+  MediaSeason season;
+
+  int seasonYear;
+
+  int episodes;
+
   @override
-  List<Object> get props => [id, title, coverImage];
+  List<Object> get props => [
+        id,
+        title,
+        coverImage,
+        format,
+        averageScore,
+        season,
+        seasonYear,
+        episodes
+      ];
   Map<String, dynamic> toJson() => _$SearchData$Query$Page$MediaToJson(this);
 }
 
@@ -531,6 +552,30 @@ enum MediaSeason {
   summer,
   @JsonValue('FALL')
   fall,
+  @JsonValue('ARTEMIS_UNKNOWN')
+  artemisUnknown,
+}
+enum MediaFormat {
+  @JsonValue('TV')
+  tv,
+  @JsonValue('TV_SHORT')
+  tvShort,
+  @JsonValue('MOVIE')
+  movie,
+  @JsonValue('SPECIAL')
+  special,
+  @JsonValue('OVA')
+  ova,
+  @JsonValue('ONA')
+  ona,
+  @JsonValue('MUSIC')
+  music,
+  @JsonValue('MANGA')
+  manga,
+  @JsonValue('NOVEL')
+  novel,
+  @JsonValue('ONE_SHOT')
+  oneShot,
   @JsonValue('ARTEMIS_UNKNOWN')
   artemisUnknown,
 }
@@ -1106,7 +1151,37 @@ class SearchDataQuery
                                 arguments: [],
                                 directives: [],
                                 selectionSet: null)
-                          ]))
+                          ])),
+                      FieldNode(
+                          name: NameNode(value: 'format'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'averageScore'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'season'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'seasonYear'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'episodes'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null)
                     ]))
               ]))
         ]))

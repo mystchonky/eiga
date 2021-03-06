@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:expandable_text/expandable_text.dart';
 import '../../models/sources/4anime.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -14,7 +17,7 @@ class AnimeInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Query(
       options: QueryOptions(
-          documentNode: AnimeInfoQuery().document, variables: {'id': id}),
+          document: AnimeInfoQuery().document, variables: {'id': id}),
       builder: (
         QueryResult result, {
         Future<QueryResult> Function() refetch,
@@ -24,7 +27,7 @@ class AnimeInfo extends StatelessWidget {
           return Text(result.exception.toString());
         }
 
-        if (result.data == null && result.loading) {
+        if (result.data == null && result.isLoading) {
           return Center(child: CircularProgressIndicator());
         }
 
@@ -43,6 +46,8 @@ class AnimeInfo extends StatelessWidget {
               children: [
                 Container(
                   height: 300,
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(),
                   child: Stack(children: [
                     Container(
                       width: double.infinity,
@@ -51,22 +56,30 @@ class AnimeInfo extends StatelessWidget {
                         fit: BoxFit.fitWidth,
                       ),
                     ),
+                    BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                        child: Container(
+                          decoration: new BoxDecoration(
+                              color: Colors.black.withOpacity(0.001)),
+                        )),
                     Container(
+                      height: double.infinity,
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: <Color>[
-                            Color(int.parse(animeColor.substring(1, 7),
-                                    radix: 16) +
-                                0xFF000000),
-                            Color(int.parse(animeColor.substring(1, 7),
-                                    radix: 16) +
-                                0x99000000),
-                            Colors.black26,
-                            Colors.black87,
-                            Colors.black,
-                          ])),
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: <Color>[
+                              Color(int.parse(animeColor.substring(1, 7),
+                                      radix: 16) +
+                                  0xFF000000),
+                              Color(int.parse(animeColor.substring(1, 7),
+                                      radix: 16) +
+                                  0x99000000),
+                              Colors.black26,
+                              Colors.black87,
+                              Colors.black,
+                            ]),
+                      ),
                     ),
                     SafeArea(
                       child: Container(
@@ -124,56 +137,55 @@ class AnimeInfo extends StatelessWidget {
                     ),
                   ]),
                 ),
-                Container(
-                    padding: EdgeInsets.all(5),
-                    width: double.infinity,
-                    child: Wrap(
-                      spacing: 5,
-                      runSpacing: 5,
-                      alignment: WrapAlignment.start,
-                      children: anime.genres.map((gen) {
-                        return Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Theme.of(context).primaryColor),
-                            padding: EdgeInsets.all(5),
-                            child: Text(
-                              gen,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ));
-                      }).toList(),
-                    )),
-                SizedBox(height: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Description",
-                      style: Theme.of(context).textTheme.headline6,
+                      "Synopsis",
+                      style: TextStyle(
+                          fontFamily: "Rubik",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
                     ),
-                    SizedBox(height: 10),
                     Container(
-                      constraints: BoxConstraints(maxHeight: 250),
-                      // child: Expanded(
-                      //   flex: 1,
-                      child: SingleChildScrollView(
-                        child: Text(
-                          cleanText(anime.description),
-                          style: Theme.of(context).textTheme.bodyText2,
+                      child: ExpandableText(
+                        cleanText(anime.description),
+                        style: TextStyle(
+                          color: Colors.white60,
                         ),
+                        expandText: 'show more',
+                        collapseText: 'show less',
+                        maxLines: 3,
                       ),
-                      //                  ),
                     ),
+                    Container(
+                        padding: EdgeInsets.fromLTRB(5, 10, 5, 5),
+                        width: double.infinity,
+                        child: Wrap(
+                          spacing: 5,
+                          runSpacing: 5,
+                          alignment: WrapAlignment.start,
+                          children: anime.genres.map((gen) {
+                            return Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Theme.of(context).primaryColor),
+                                padding: EdgeInsets.all(5),
+                                child: Text(
+                                  gen,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ));
+                          }).toList(),
+                        )),
                   ],
                 ),
-                SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    RaisedButton.icon(
+                    ElevatedButton.icon(
                         label: Text("Watch Now"),
                         icon: Icon(Icons.play_arrow),
                         onPressed: () {

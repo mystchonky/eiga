@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../widgets/search_pane.dart';
 
 class SearchPage extends StatefulWidget {
@@ -11,6 +12,50 @@ class _SearchPageState extends State<SearchPage> {
   int currentPage = 1;
   int perPage = 5;
   final searchController = TextEditingController();
+  bool shouldShowClear = false;
+
+  @override
+  void initState() {
+    super.initState();
+    searchController.addListener(() {
+      if (shouldShowClear != searchController.text.isNotEmpty) {
+        setState(() {
+          shouldShowClear = searchController.text.isNotEmpty;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: TextField(
+          decoration: InputDecoration(
+              hintText: "Search",
+              border: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              suffixIcon: shouldShowClear
+                  ? IconButton(
+                      icon: Icon(Icons.cancel),
+                      color: Colors.white70,
+                      onPressed: () {
+                        searchController.clear();
+                      })
+                  : null),
+          controller: searchController,
+          onSubmitted: updateSearch,
+          //onChanged: changeListener,
+          style: TextStyle(fontFamily: "Rubik", fontSize: 20),
+          textInputAction: TextInputAction.search,
+        ),
+      ),
+      body: searchView(),
+    );
+  }
 
   void updateSearch(String str) {
     if (str != "" && str.length > 1) {
@@ -21,32 +66,9 @@ class _SearchPageState extends State<SearchPage> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: TextField(
-          decoration: new InputDecoration(
-            hintText: "Search",
-          ),
-          controller: searchController,
-          onSubmitted: updateSearch,
-        ),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                updateSearch(searchController.text);
-              }),
-        ],
-      ),
-      body: checkEmptyString(),
-    );
-  }
-
-  Widget checkEmptyString() {
+  Widget searchView() {
     if (searchStr == "") {
-      return Container(child: Center(child: Text("Enter some text to search")));
+      return Container(child: Center(child: Text("Enter ")));
     } else {
       return SearchPane(
         searchStr: searchStr,

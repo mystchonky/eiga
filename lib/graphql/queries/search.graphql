@@ -17,6 +17,11 @@ query SearchData($page: Int, $perPage: Int, $search: String) {
       coverImage {
         large
       }
+      format
+      averageScore
+      season
+      seasonYear
+      episodes
     }
   }
 }

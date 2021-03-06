@@ -397,7 +397,14 @@ SearchData$Query$Page$Media _$SearchData$Query$Page$MediaFromJson(
     ..coverImage = json['coverImage'] == null
         ? null
         : SearchData$Query$Page$Media$MediaCoverImage.fromJson(
-            json['coverImage'] as Map<String, dynamic>);
+            json['coverImage'] as Map<String, dynamic>)
+    ..format = _$enumDecodeNullable(_$MediaFormatEnumMap, json['format'],
+        unknownValue: MediaFormat.artemisUnknown)
+    ..averageScore = json['averageScore'] as int
+    ..season = _$enumDecodeNullable(_$MediaSeasonEnumMap, json['season'],
+        unknownValue: MediaSeason.artemisUnknown)
+    ..seasonYear = json['seasonYear'] as int
+    ..episodes = json['episodes'] as int;
 }
 
 Map<String, dynamic> _$SearchData$Query$Page$MediaToJson(
@@ -406,7 +413,34 @@ Map<String, dynamic> _$SearchData$Query$Page$MediaToJson(
       'id': instance.id,
       'title': instance.title?.toJson(),
       'coverImage': instance.coverImage?.toJson(),
+      'format': _$MediaFormatEnumMap[instance.format],
+      'averageScore': instance.averageScore,
+      'season': _$MediaSeasonEnumMap[instance.season],
+      'seasonYear': instance.seasonYear,
+      'episodes': instance.episodes,
     };
+
+const _$MediaFormatEnumMap = {
+  MediaFormat.tv: 'TV',
+  MediaFormat.tvShort: 'TV_SHORT',
+  MediaFormat.movie: 'MOVIE',
+  MediaFormat.special: 'SPECIAL',
+  MediaFormat.ova: 'OVA',
+  MediaFormat.ona: 'ONA',
+  MediaFormat.music: 'MUSIC',
+  MediaFormat.manga: 'MANGA',
+  MediaFormat.novel: 'NOVEL',
+  MediaFormat.oneShot: 'ONE_SHOT',
+  MediaFormat.artemisUnknown: 'ARTEMIS_UNKNOWN',
+};
+
+const _$MediaSeasonEnumMap = {
+  MediaSeason.winter: 'WINTER',
+  MediaSeason.spring: 'SPRING',
+  MediaSeason.summer: 'SUMMER',
+  MediaSeason.fall: 'FALL',
+  MediaSeason.artemisUnknown: 'ARTEMIS_UNKNOWN',
+};
 
 SearchData$Query$Page _$SearchData$Query$PageFromJson(
     Map<String, dynamic> json) {
@@ -546,14 +580,6 @@ Map<String, dynamic> _$PopularCustomArgumentsToJson(
       'season': _$MediaSeasonEnumMap[instance.season],
       'seasonYear': instance.seasonYear,
     };
-
-const _$MediaSeasonEnumMap = {
-  MediaSeason.winter: 'WINTER',
-  MediaSeason.spring: 'SPRING',
-  MediaSeason.summer: 'SUMMER',
-  MediaSeason.fall: 'FALL',
-  MediaSeason.artemisUnknown: 'ARTEMIS_UNKNOWN',
-};
 
 SearchDataArguments _$SearchDataArgumentsFromJson(Map<String, dynamic> json) {
   return SearchDataArguments(

@@ -13,13 +13,13 @@ class App extends StatefulWidget {
   OAuth2Helper oauth2_helper;
 
   final HttpLink httpLink = HttpLink(
-    uri: 'https://graphql.anilist.co/',
+     'https://graphql.anilist.co/',
   );
   AuthLink authLink;
   Link link;
 
   ValueNotifier<GraphQLClient> client;
-  final memCache = InMemoryCache();
+  final memCache = GraphQLCache();
 
   init() async {
     oauth2_helper = OAuth2Helper(
@@ -42,7 +42,7 @@ class App extends StatefulWidget {
       ),
     );
 
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    //SystemChrome.setEnabledSystemUIOverlays([]);
   }
 
   App() {
@@ -80,7 +80,9 @@ class _AppState extends State<App> {
               primaryColor: Colors.blue,
               scaffoldBackgroundColor: Colors.black,
               accentColor: Colors.blue,
-              canvasColor: Colors.black),
+              canvasColor: Colors.black,
+              dividerColor: Colors.white38,
+              appBarTheme: AppBarTheme(color: Colors.transparent)),
           themeMode: ThemeMode.dark,
           debugShowCheckedModeBanner: false,
           home: Scaffold(

@@ -7,9 +7,12 @@ class DiscoverAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text("Discover", style: TextStyle(fontFamily: "Rubik")),
-      //backgroundColor: Colors.white,
-      //actionsIconTheme: IconThemeData(color: Colors.black),
+      title: Text("Discover",
+          style: TextStyle(
+            fontFamily: "Rubik",
+            fontSize: 24,
+          )),
+      centerTitle: true,
       elevation: 0,
       actions: [
         IconButton(

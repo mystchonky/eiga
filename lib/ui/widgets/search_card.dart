@@ -18,53 +18,54 @@ class _SearchCardState extends State<SearchCard>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Card(
-      child: Container(
-        height: 150,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 3,
+    return Container(
+      height: 150,
+      child: Row(
+        children: [
+          Expanded(
+            flex: 3,
+            child: Container(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5.0),
-                    child: CachedNetworkImage(
-                      imageUrl: widget.data.coverImage.large,
-                      placeholder: (context, url) =>
-                          Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                      fit: BoxFit.cover,
-                    )),
+                  borderRadius: BorderRadius.circular(4),
+                  child: CachedNetworkImage(
+                    imageUrl: widget.data.coverImage.large,
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
-            SizedBox(width: 10),
-            Expanded(
-              flex: 7,
+          ),
+          Expanded(
+            flex: 7,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     widget.data.title.romaji ?? "",
-                    maxLines: 2,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  Text(
-                    widget.data.title.english ?? "",
-                    maxLines: 2,
-                    style: Theme.of(context).textTheme.subtitle1,
+                    maxLines: 1,
+                    style: TextStyle(fontFamily: "Rubik", fontSize: 20),
                   ),
                   Text(
                     widget.data.title.native ?? "",
-                    maxLines: 2,
-                    style: Theme.of(context).textTheme.subtitle2,
-                  )
+                    maxLines: 1,
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                      "Score: ${widget.data.averageScore}% | ${widget.data.format} ${widget.data.episodes}"),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -23,7 +23,7 @@ class DiscoverPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: "Rubik",
-                        color: Colors.white70,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -34,6 +34,10 @@ class DiscoverPage extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Divider(),
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
@@ -48,7 +52,7 @@ class DiscoverPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: "Rubik",
-                        color: Colors.white70,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -59,6 +63,10 @@ class DiscoverPage extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Divider(),
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
@@ -73,7 +81,7 @@ class DiscoverPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: "Rubik",
-                        color: Colors.white70,
+                        color: Colors.white,
                       ),
                     ),
                   ),

@@ -26,7 +26,7 @@ class _SearchPaneState extends State<SearchPane> {
     return Container(
       child: Query(
         options: QueryOptions(
-            documentNode: SearchDataQuery().document,
+            document: SearchDataQuery().document,
             variables: {'search': widget.searchStr, 'page': 1, 'perPage': 5}),
         builder: (
           QueryResult result, {
@@ -37,7 +37,7 @@ class _SearchPaneState extends State<SearchPane> {
             return Text(result.exception.toString());
           }
 
-          if (result.data == null && result.loading) {
+          if (result.data == null && result.isLoading) {
             return Center(child: CircularProgressIndicator());
           }
 
@@ -62,7 +62,7 @@ class _SearchPaneState extends State<SearchPane> {
                 return fetchMoreResultData;
               });
 
-          if (data.isEmpty){
+          if (data.isEmpty) {
             return Center(child: Text("No result found"));
           }
 
@@ -71,32 +71,34 @@ class _SearchPaneState extends State<SearchPane> {
               children: [
                 Expanded(
                   child: NotificationListener(
-                    child: ListView(
+                    child: ListView.separated(
                       controller: _scrollController,
-                      children: <Widget>[
-                        for (var d in data)
-                          InkWell(
-                            child: SearchCard(
-                              data: d,
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  new MaterialPageRoute(
-                                      builder: (context) => AnimeInfo(
-                                            id: d.id,
-                                          )));
-                            },
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          child: SearchCard(
+                            data: data[index],
                           ),
-                        if (result.loading)
-                          Center(
-                            child: CircularProgressIndicator(),
-                          )
-                      ],
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                new MaterialPageRoute(
+                                    builder: (context) => AnimeInfo(
+                                          id: data[index].id,
+                                        )));
+                          },
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Divider(),
+                        );
+                      },
                     ),
                     onNotification: (sn) {
                       if (sn is OverscrollNotification &&
-                          !result.loading &&
+                          !result.isLoading &&
                           pageInfo.hasNextPage &&
                           !updating) {
                         fetchMore(opts);
