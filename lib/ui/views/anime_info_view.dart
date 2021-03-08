@@ -137,6 +137,52 @@ class AnimeInfo extends StatelessWidget {
                     ),
                   ]),
                 ),
+                Container(
+                    padding: EdgeInsets.fromLTRB(5, 10, 5, 5),
+                    width: double.infinity,
+                    child: Wrap(
+                      spacing: 5,
+                      runSpacing: 5,
+                      alignment: WrapAlignment.start,
+                      children: anime.genres.map((gen) {
+                        return Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              //color: Theme.of(context).primaryColor
+                            ),
+                            padding: EdgeInsets.all(5),
+                            child: Text(
+                              gen,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                              ),
+                            ));
+                      }).toList(),
+                    )),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton.icon(
+                        onPressed: () {},
+                        icon: Icon(Icons.favorite),
+                        label: Text("Favorite")),
+                    ElevatedButton.icon(
+                        label: Text("Watch Now"),
+                        icon: Icon(Icons.play_arrow),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (context) =>
+                                      FourAnime(search: animeName)));
+                        }),
+                  ],
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -158,45 +204,8 @@ class AnimeInfo extends StatelessWidget {
                         maxLines: 3,
                       ),
                     ),
-                    Container(
-                        padding: EdgeInsets.fromLTRB(5, 10, 5, 5),
-                        width: double.infinity,
-                        child: Wrap(
-                          spacing: 5,
-                          runSpacing: 5,
-                          alignment: WrapAlignment.start,
-                          children: anime.genres.map((gen) {
-                            return Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Theme.of(context).primaryColor),
-                                padding: EdgeInsets.all(5),
-                                child: Text(
-                                  gen,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ));
-                          }).toList(),
-                        )),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton.icon(
-                        label: Text("Watch Now"),
-                        icon: Icon(Icons.play_arrow),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              new MaterialPageRoute(
-                                  builder: (context) =>
-                                      FourAnime(search: animeName)));
-                        }),
-                  ],
-                )
               ],
             ),
           ),

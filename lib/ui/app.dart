@@ -1,155 +1,65 @@
-import 'package:eiga/models/oauth2Client.dart';
-import 'package:eiga/ui/pages/discover.dart';
-import 'package:eiga/ui/pages/profile.dart';
+import 'package:eiga/models/e_graphql_client.dart';
+import 'package:eiga/models/e_oauth2_client.dart';
+import 'package:eiga/ui/e_scaffold.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:oauth2_client/oauth2_helper.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 
-import 'widgets/appbars/discover.dart';
-
-class App extends StatefulWidget {
-  EigaOAuth2Client oauth2_client = EigaOAuth2Client();
-  OAuth2Helper oauth2_helper;
-
-  final HttpLink httpLink = HttpLink(
-     'https://graphql.anilist.co/',
-  );
-  AuthLink authLink;
-  Link link;
-
-  ValueNotifier<GraphQLClient> client;
-  final memCache = GraphQLCache();
-
-  init() async {
-    oauth2_helper = OAuth2Helper(
-      oauth2_client,
-      clientId: '4721',
-      grantType: OAuth2Helper.IMPLICIT_GRANT,
-    );
-
-    authLink = AuthLink(
-      getToken: () async =>
-          'Bearer ' + (await oauth2_helper.getToken()).accessToken,
-    );
-
-    link = authLink.concat(httpLink);
-
-    client = ValueNotifier(
-      GraphQLClient(
-        cache: memCache,
-        link: link,
-      ),
-    );
-
-    //SystemChrome.setEnabledSystemUIOverlays([]);
-  }
+class App extends StatelessWidget {
+  EigaOAuth2Client e_oauth2_client = EigaOAuth2Client();
+  EigaGraphQLClient e_gql_client;
 
   App() {
-    init();
+    e_gql_client = EigaGraphQLClient(e_oauth2_client);
   }
-
-  @override
-  _AppState createState() => _AppState();
-
-  void updateClient() {
-    authLink = AuthLink(
-      getToken: () async =>
-          'Bearer ' + (await oauth2_helper.getToken()).accessToken,
-    );
-
-    link = authLink.concat(httpLink);
-    client.value = GraphQLClient(link: link, cache: memCache);
-  }
-}
-
-class _AppState extends State<App> {
-  int _selectedIndex = 0;
-  final _pageViewController = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
-    return GraphQLProvider(
-      client: widget.client,
-      child: CacheProvider(
-        child: MaterialApp(
-          theme: ThemeData(fontFamily: "Inter"),
-          darkTheme: ThemeData(
-              fontFamily: "Inter",
-              brightness: Brightness.dark,
-              primaryColor: Colors.blue,
-              scaffoldBackgroundColor: Colors.black,
-              accentColor: Colors.blue,
-              canvasColor: Colors.black,
-              dividerColor: Colors.white38,
-              appBarTheme: AppBarTheme(color: Colors.transparent)),
-          themeMode: ThemeMode.dark,
-          debugShowCheckedModeBanner: false,
-          home: Scaffold(
-            appBar: loadAppBar(),
-            body: SafeArea(
-              child: PageView(
-                physics: NeverScrollableScrollPhysics(),
-                controller: _pageViewController,
-                children: [
-                  Column(
-                    children: [
-                      Center(child: Text("Profile")),
-                      Center(child: Profile(
-                        logout: () {
-                          widget.oauth2_helper.disconnect();
-                          widget.updateClient();
-                        },
-                      ))
-                    ],
-                  ),
-                  Center(child: Text("Library")),
-                  DiscoverPage()
-                ],
-              ),
+    return MaterialApp(
+      initialRoute: '_app',
+      routes: {
+        '_app': (context) => _app(e_oauth2_client),
+        'scaffold': (context) => EigaScaffold(
+              gql_client: e_gql_client,
+              oauth2_client: e_oauth2_client,
             ),
-            resizeToAvoidBottomInset: false,
-            bottomNavigationBar: BottomNavigationBar(
-              items: [
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.account_circle_outlined),
-                    activeIcon: Icon(Icons.account_circle),
-                    label: ""),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.collections_bookmark_outlined),
-                    activeIcon: Icon(Icons.collections_bookmark),
-                    label: ""),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.explore_outlined),
-                    activeIcon: Icon(Icons.explore),
-                    label: "")
-              ],
-              currentIndex: _selectedIndex,
-              onTap: _onBottomNavTapped,
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-            ),
-          ),
-        ),
-      ),
+        'login': (context) =>
+            MaterialApp(home: Container(child: Center(child: Text("Login"))))
+      },
     );
   }
+}
 
-  void _onBottomNavTapped(int index) {
-    setState(() {
-      _pageViewController.animateToPage(index,
-          duration: Duration(milliseconds: 500), curve: Curves.linearToEaseOut);
-      _selectedIndex = index;
-      //print(await widget.oauth2Helper.getToken());
-    });
+class _app extends StatelessWidget {
+  final EigaOAuth2Client client;
+  bool tokenValid;
+
+  _app(this.client) {
+    checkTokenValid();
   }
 
-  Widget loadAppBar() {
-    switch (_selectedIndex) {
-      case (2):
-        return DiscoverAppBar();
-      default:
-        return null;
-    }
+  checkTokenValid() async {
+    tokenValid = await client.getTokenFromStorage() != null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: client.getTokenFromStorage(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.data != null) {
+              Future.delayed(Duration.zero, () {
+                Navigator.popAndPushNamed(context, 'scaffold');
+              });
+            } else {
+              Future.delayed(Duration.zero, () {
+                Navigator.popAndPushNamed(context, 'login');
+              });
+            }
+
+            return Container();
+          } else {
+            return CircularProgressIndicator();
+          }
+        });
   }
 }
