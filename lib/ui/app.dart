@@ -1,6 +1,7 @@
 import 'package:eiga/models/e_graphql_client.dart';
 import 'package:eiga/models/e_oauth2_client.dart';
 import 'package:eiga/ui/e_scaffold.dart';
+import 'package:eiga/ui/login.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -21,8 +22,9 @@ class App extends StatelessWidget {
               gql_client: e_gql_client,
               oauth2_client: e_oauth2_client,
             ),
-        'login': (context) =>
-            MaterialApp(home: Container(child: Center(child: Text("Login"))))
+        'login': (context) => LoginPrompt(
+              eigaOAuth2Client: e_oauth2_client,
+            )
       },
     );
   }
