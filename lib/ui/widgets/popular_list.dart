@@ -14,7 +14,7 @@ class PopularList extends StatelessWidget {
       height: 180,
       child: Query(
           options: QueryOptions(
-            documentNode: PopularQuery().document,
+            document: PopularQuery().document,
           ),
           builder: (
             QueryResult result, {
@@ -25,12 +25,11 @@ class PopularList extends StatelessWidget {
               return Center(child: Text(result.exception.toString()));
             }
 
-            if (result.data == null && result.loading) {
+            if (result.data == null && result.isLoading) {
               return Center(child: CircularProgressIndicator());
             }
 
-            final data =
-                Popular$Query.fromJson(result.data).page.media;
+            final data = Popular$Query.fromJson(result.data).page.media;
 
             return ListView.builder(
                 itemCount: data.length,

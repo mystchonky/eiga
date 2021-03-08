@@ -14,7 +14,7 @@ class TrendingList extends StatelessWidget {
       height: 180,
       child: Query(
           options: QueryOptions(
-            documentNode: TrendingQuery().document,
+            document: TrendingQuery().document,
           ),
           builder: (
             QueryResult result, {
@@ -25,7 +25,7 @@ class TrendingList extends StatelessWidget {
               return Center(child: Text(result.exception.toString()));
             }
 
-            if (result.data == null && result.loading) {
+            if (result.data == null && result.isLoading) {
               return Center(child: CircularProgressIndicator());
             }
 

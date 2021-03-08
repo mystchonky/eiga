@@ -14,28 +14,25 @@ class PopularListCustom extends StatelessWidget {
     return Container(
       height: 180,
       child: Query(
-          options: QueryOptions(
-            documentNode: PopularCustomQuery().document,
-            variables: {
-              'season' : PopularCustom.upcomingSeason(),
-              'seasonYear' : PopularCustom.upcomingYear()
-            }
-          ),
+          options:
+              QueryOptions(document: PopularCustomQuery().document, variables: {
+            'season': PopularCustom.upcomingSeason(),
+            'seasonYear': PopularCustom.upcomingYear()
+          }),
           builder: (
-              QueryResult result, {
-                Future<QueryResult> Function() refetch,
-                FetchMore fetchMore,
-              }) {
+            QueryResult result, {
+            Future<QueryResult> Function() refetch,
+            FetchMore fetchMore,
+          }) {
             if (result.hasException) {
               return Center(child: Text(result.exception.toString()));
             }
 
-            if (result.data == null && result.loading) {
+            if (result.data == null && result.isLoading) {
               return Center(child: CircularProgressIndicator());
             }
 
-            final data =
-                Popular$Query.fromJson(result.data).page.media;
+            final data = Popular$Query.fromJson(result.data).page.media;
 
             return ListView.builder(
                 itemCount: data.length,
