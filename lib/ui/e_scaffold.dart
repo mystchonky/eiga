@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class EigaScaffold extends StatefulWidget {
-  final EigaGraphQLClient gql_client;
-  final EigaOAuth2Client oauth2_client;
+  final EigaGraphQLClient gqlClient;
+  final EigaOAuth2Client oauth2Client;
 
   const EigaScaffold(
-      {Key key, @required this.gql_client, @required this.oauth2_client})
+      {Key key, @required this.gqlClient, @required this.oauth2Client})
       : super(key: key);
 
   @override
@@ -20,12 +20,12 @@ class EigaScaffold extends StatefulWidget {
 
 class _EigaScaffoldState extends State<EigaScaffold> {
   int _selectedIndex = 0;
-  final _pageViewController = PageController(initialPage: 0);
+  final _pageViewController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return GraphQLProvider(
-      client: widget.gql_client.client,
+      client: widget.gqlClient.client,
       child: CacheProvider(
         child: MaterialApp(
           theme: ThemeData(fontFamily: "Inter"),
@@ -52,7 +52,7 @@ class _EigaScaffoldState extends State<EigaScaffold> {
                       Center(child: Text("Profile")),
                       Center(child: Profile(
                         logout: () {
-                          widget.oauth2_client.deleteToken();
+                          widget.oauth2Client.deleteToken();
                           Future.delayed(Duration.zero,
                               () => Navigator.popAndPushNamed(context, '_app'));
                         },
@@ -99,9 +99,9 @@ class _EigaScaffoldState extends State<EigaScaffold> {
     });
   }
 
-  Widget loadAppBar() {
+  PreferredSizeWidget loadAppBar() {
     switch (_selectedIndex) {
-      case (2):
+      case 2:
         return DiscoverAppBar();
       default:
         return null;

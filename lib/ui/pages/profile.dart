@@ -8,7 +8,10 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: ElevatedButton(child: Text("Logout"), onPressed: logout),
+      child: ElevatedButton(
+        onPressed: logout,
+        child: Text("Logout"),
+      ),
     );
   }
 }

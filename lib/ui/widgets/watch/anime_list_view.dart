@@ -8,7 +8,7 @@ class AnimeListView extends StatelessWidget {
   final String search;
   final Function(String) onAnimeSelected;
 
-  final body;
+  final Map body;
 
   AnimeListView({Key key, this.search, this.onAnimeSelected})
       : body = {
@@ -23,18 +23,19 @@ class AnimeListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: loadAnimeList(),
-        builder: (context, snapshot) {
+        builder: (context, AsyncSnapshot<List<AnimeEntry>> snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
               return Center(child: CircularProgressIndicator());
             default:
-              if (snapshot.hasError)
+              if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
-              else
+              } else {
                 return ListView.builder(
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
                       return InkWell(
+                        onTap: () => onAnimeSelected(snapshot.data[index].link),
                         child: Card(
                             child: Container(
                                 alignment: Alignment.centerLeft,
@@ -43,18 +44,18 @@ class AnimeListView extends StatelessWidget {
                                   snapshot.data[index].title,
                                   style: TextStyle(fontSize: 16),
                                 ))),
-                        onTap: () => onAnimeSelected(snapshot.data[index].link),
                       );
                     });
+              }
           }
         });
   }
 
-  Future<List> loadAnimeList() async {
-    var response = await http.post(postUrl, body: body);
-    var soup = Beautifulsoup(response.body);
+  Future<List<AnimeEntry>> loadAnimeList() async {
+    final response = await http.post(postUrl, body: body);
+    final soup = Scraper(response.body);
     return soup
-        .find_all('div.info > a')
+        .findAll('div.info > a')
         .map((e) => AnimeEntry(e.text, soup.attr(e, 'href')))
         .toList();
   }

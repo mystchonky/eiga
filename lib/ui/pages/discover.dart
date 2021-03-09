@@ -11,28 +11,25 @@ class DiscoverPage extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(4.0),
-            child: Container(
-              // ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Popular",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: "Rubik",
-                        color: Colors.white,
-                      ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Popular",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: "Rubik",
+                      color: Colors.white,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: PopularList(),
-                  )
-                ],
-              ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: PopularList(),
+                )
+              ],
             ),
           ),
           Padding(
@@ -41,27 +38,25 @@ class DiscoverPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Trending",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: "Rubik",
-                        color: Colors.white,
-                      ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Trending",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: "Rubik",
+                      color: Colors.white,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: TrendingList(),
-                  )
-                ],
-              ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: TrendingList(),
+                )
+              ],
             ),
           ),
           Padding(
@@ -70,27 +65,25 @@ class DiscoverPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Popular upcoming",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: "Rubik",
-                        color: Colors.white,
-                      ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Popular upcoming",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: "Rubik",
+                      color: Colors.white,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: PopularListCustom(),
-                  )
-                ],
-              ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: PopularListCustom(),
+                )
+              ],
             ),
           ),
         ],

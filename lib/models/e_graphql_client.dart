@@ -11,10 +11,10 @@ class EigaGraphQLClient {
   ValueNotifier<GraphQLClient> client;
   final memCache = GraphQLCache();
 
-  EigaGraphQLClient(EigaOAuth2Client e_client) {
+  EigaGraphQLClient(EigaOAuth2Client eClient) {
     authLink = AuthLink(
       getToken: () async =>
-          'Bearer ' + (await e_client.getTokenFromStorage()).accessToken,
+          'Bearer ${(await eClient.getTokenFromStorage()).accessToken}',
     );
 
     link = authLink.concat(httpLink);

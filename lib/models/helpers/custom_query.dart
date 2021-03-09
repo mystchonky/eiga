@@ -1,9 +1,8 @@
 class PopularCustom {
   static String upcomingSeason() {
-    var currentDate = DateTime.now();
-    var nextMonth =
-        DateTime(currentDate.year, currentDate.month + 1, 0)
-            .month;
+    final currentDate = DateTime.now();
+    final nextMonth =
+        DateTime(currentDate.year, currentDate.month + 1, 0).month;
     switch (nextMonth) {
       case 12:
       case 1:
@@ -22,16 +21,16 @@ class PopularCustom {
       case 11:
         return "WINTER";
     }
+    return "SPRING";
   }
 
   static int upcomingYear() {
-    var currentDate = DateTime.now();
-    var nextMonth =
-        DateTime(currentDate.year, currentDate.month + 1, 0)
-            .month;
+    final currentDate = DateTime.now();
+    final nextMonth =
+        DateTime(currentDate.year, currentDate.month + 1, 0).month;
     if (nextMonth == 12) {
       return currentDate.year + 1;
-    }else {
+    } else {
       return currentDate.year;
     }
   }

@@ -11,20 +11,18 @@ class LoginPrompt extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Container(
-          child: Center(
-            child: ElevatedButton(
-                onPressed: () async {
-                  var tknResp = await eigaOAuth2Client.generateToken();
-                  if (tknResp != null) {
-                    Navigator.popAndPushNamed(context, '_app');
-                  }
-                },
-                child: Text(
-                  "LOGIN",
-                  style: TextStyle(fontSize: 36, fontFamily: 'Rubik'),
-                )),
-          ),
+        body: Center(
+          child: ElevatedButton(
+              onPressed: () async {
+                final tknResp = await eigaOAuth2Client.generateToken();
+                if (tknResp != null) {
+                  Navigator.popAndPushNamed(context, '_app');
+                }
+              },
+              child: Text(
+                "LOGIN",
+                style: TextStyle(fontSize: 36, fontFamily: 'Rubik'),
+              )),
         ),
       ),
     );

@@ -27,7 +27,7 @@ dev_dependencies:
   artemis: '>=6.0.0 <7.0.0'
   build_runner: '>=1.10.4'
   json_serializable: '>=3.5.0'
-
+  lint: ^1.0.0
 
 flutter:
 

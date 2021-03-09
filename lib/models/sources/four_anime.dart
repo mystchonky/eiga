@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:eiga/ui/widgets/watch/anime_list_view.dart';
 import 'package:eiga/ui/widgets/watch/episode_list_view.dart';
@@ -8,7 +7,7 @@ enum currentView { animeList, episodeList }
 class FourAnime extends StatefulWidget {
   final String search;
 
-  FourAnime({this.search});
+  const FourAnime({this.search});
 
   @override
   _FourAnimeState createState() => _FourAnimeState();
@@ -47,12 +46,6 @@ class _FourAnimeState extends State<FourAnime> {
           animeLink: animeLink,
         );
     }
+    return Container();
   }
 }
-
-
-
-
-
-
-

@@ -1,13 +1,13 @@
+import 'dart:io';
+
 import 'package:android_intent/android_intent.dart';
 import 'package:android_intent/flag.dart';
+import 'package:eiga/models/episode_entry.dart';
 import 'package:eiga/models/scraper.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:io';
-import 'package:eiga/models/episode_entry.dart';
-
-import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart' as dom;
+import 'package:html/parser.dart' as parser;
+import 'package:http/http.dart' as http;
 
 class EpisodeListView extends StatelessWidget {
   final String animeLink;
@@ -18,14 +18,14 @@ class EpisodeListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: loadEpisodeList(),
-        builder: (context, snapshot) {
+        builder: (context, AsyncSnapshot<List<EpisodeEntry>> snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
               return Center(child: CircularProgressIndicator());
             default:
-              if (snapshot.hasError)
+              if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
-              else
+              } else {
                 return GridView.count(
                     padding: EdgeInsets.all(20),
                     crossAxisCount: 6,
@@ -33,42 +33,44 @@ class EpisodeListView extends StatelessWidget {
                     crossAxisSpacing: 10,
                     children: List.generate(snapshot.data.length, (index) {
                       return ElevatedButton(
-                        child: Text(snapshot.data[index].title),
                         onPressed: () =>
-                            OpenEpisode(snapshot.data[index].link, context),
+                            openEpisode(snapshot.data[index].link, context),
+                        child: Text(snapshot.data[index].title),
                       );
                     }));
+              }
           }
         });
   }
 
-  Future<List> loadEpisodeList() async {
-    var response = await http.get(animeLink);
-    var soup = Beautifulsoup(response.body);
+  Future<List<EpisodeEntry>> loadEpisodeList() async {
+    final response = await http.get(animeLink);
+    final soup = Scraper(response.body);
     return soup
-        .find_all('ul.episodes.range.active > li > a')
+        .findAll('ul.episodes.range.active > li > a')
         .map((e) => EpisodeEntry(e.text, soup.attr(e, 'href')))
         .toList();
   }
 
-  void OpenEpisode(String link, BuildContext con) async {
+  Future<void> openEpisode(String link, BuildContext con) async {
     showDialog(
         context: con,
         builder: (context) {
           return SimpleDialog(
             contentPadding: EdgeInsets.all(10),
             children: [
+              // ignore: avoid_unnecessary_containers
               Container(child: Center(child: CircularProgressIndicator())),
             ],
           );
         });
-    var response = await http.get(link);
-    dom.Document d = parser.parse(response.body);
-    List<dom.Element> a = d.querySelectorAll('script');
-    var vidLink;
-    for (dom.Element i in a) {
+    final response = await http.get(link);
+    final dom.Document d = parser.parse(response.body);
+    final List<dom.Element> a = d.querySelectorAll('script');
+    String vidLink;
+    for (final dom.Element i in a) {
       if (i.innerHtml.contains("document.write( '<a ")) {
-        String str = i.innerHtml;
+        final String str = i.innerHtml;
         const start = 'href=\\"';
         const end = '\\">';
 
@@ -79,10 +81,9 @@ class EpisodeListView extends StatelessWidget {
         break;
       }
     }
-    print('done');
 
     if (Platform.isAndroid) {
-      AndroidIntent intent = AndroidIntent(
+      final AndroidIntent intent = AndroidIntent(
         action: 'action_view',
         data: vidLink,
         type: 'video/**',

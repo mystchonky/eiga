@@ -1,5 +1,5 @@
 import 'package:eiga/graphql/graphql_api.dart';
-import 'package:eiga/models/helpers/CustomQuery.dart';
+import 'package:eiga/models/helpers/custom_query.dart';
 import 'package:eiga/ui/widgets/anime_card.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -11,6 +11,7 @@ class PopularListCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: sized_box_for_whitespace
     return Container(
       height: 180,
       child: Query(
@@ -37,7 +38,6 @@ class PopularListCustom extends StatelessWidget {
             return ListView.builder(
                 itemCount: data.length,
                 scrollDirection: Axis.horizontal,
-                addAutomaticKeepAlives: true,
                 itemBuilder: (context, index) {
                   return AnimeCard(media: data[index]);
                 });

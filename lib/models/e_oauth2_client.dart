@@ -19,20 +19,19 @@ class EigaOAuth2Client {
   }
 
   Future<AccessTokenResponse> tokenValid() async {
-    var tknResp = await getTokenFromStorage();
-    //print(tknResp);
+    final tknResp = await getTokenFromStorage();
     return tknResp;
   }
 
   Future<AccessTokenResponse> getTokenFromStorage() async {
-    return await helper.getTokenFromStorage();
+    return helper.getTokenFromStorage();
   }
 
   Future<AccessTokenResponse> generateToken() async {
-    return await helper.fetchToken();
+    return helper.fetchToken();
   }
 
-  deleteToken() async {
+  Future<void> deleteToken() async {
     await helper.disconnect();
   }
 }

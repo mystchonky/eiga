@@ -68,6 +68,7 @@ class _SearchPageState extends State<SearchPage> {
 
   Widget searchView() {
     if (searchStr == "") {
+      // ignore: avoid_unnecessary_containers
       return Container(child: Center(child: Text("Enter ")));
     } else {
       return SearchPane(

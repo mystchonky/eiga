@@ -1,12 +1,12 @@
 import 'package:html/parser.dart' show parse;
 import 'package:html/dom.dart';
 
-class Beautifulsoup {
-  String html_doc;
+class Scraper {
+  String htmlDoc;
   Document doc;
 
-  Beautifulsoup(this.html_doc) {
-    doc = parse(html_doc);
+  Scraper(this.htmlDoc) {
+    doc = parse(htmlDoc);
   }
 
   Element find({String id}) {
@@ -15,11 +15,11 @@ class Beautifulsoup {
 
   Element call(String selector) => doc.querySelector(selector);
 
-  List<Element> find_all(String selector) {
+  List<Element> findAll(String selector) {
     return doc.querySelectorAll(selector);
   }
 
-  String get_text() {
+  String getText() {
     return doc.querySelector("html").text;
   }
 

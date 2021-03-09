@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class AnimeCard extends StatefulWidget {
   final Popular$Query$Page$Media media;
 
-  AnimeCard({
+  const AnimeCard({
     Key key,
     this.media,
   }) : super(key: key);
@@ -23,6 +23,12 @@ class _AnimeCardState extends State<AnimeCard>
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: InkWell(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AnimeInfo(id: widget.media.id)));
+        },
         child: Container(
           width: 120,
           decoration:
@@ -66,12 +72,6 @@ class _AnimeCardState extends State<AnimeCard>
             ],
           ),
         ),
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => AnimeInfo(id: widget.media.id)));
-        },
       ),
     );
   }

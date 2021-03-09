@@ -4,12 +4,13 @@ import 'package:eiga/ui/e_scaffold.dart';
 import 'package:eiga/ui/login.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class App extends StatelessWidget {
-  EigaOAuth2Client e_oauth2_client = EigaOAuth2Client();
-  EigaGraphQLClient e_gql_client;
+  final EigaOAuth2Client eOAuth2Client = EigaOAuth2Client();
+  EigaGraphQLClient eGQLClient;
 
   App() {
-    e_gql_client = EigaGraphQLClient(e_oauth2_client);
+    eGQLClient = EigaGraphQLClient(eOAuth2Client);
   }
 
   @override
@@ -17,28 +18,29 @@ class App extends StatelessWidget {
     return MaterialApp(
       initialRoute: '_app',
       routes: {
-        '_app': (context) => _app(e_oauth2_client),
+        '_app': (context) => _App(eOAuth2Client),
         'scaffold': (context) => EigaScaffold(
-              gql_client: e_gql_client,
-              oauth2_client: e_oauth2_client,
+              gqlClient: eGQLClient,
+              oauth2Client: eOAuth2Client,
             ),
         'login': (context) => LoginPrompt(
-              eigaOAuth2Client: e_oauth2_client,
+              eigaOAuth2Client: eOAuth2Client,
             )
       },
     );
   }
 }
 
-class _app extends StatelessWidget {
+// ignore: must_be_immutable
+class _App extends StatelessWidget {
   final EigaOAuth2Client client;
   bool tokenValid;
 
-  _app(this.client) {
+  _App(this.client) {
     checkTokenValid();
   }
 
-  checkTokenValid() async {
+  Future<void> checkTokenValid() async {
     tokenValid = await client.getTokenFromStorage() != null;
   }
 

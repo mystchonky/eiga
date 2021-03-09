@@ -2,16 +2,17 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:expandable_text/expandable_text.dart';
-import '../../models/sources/4anime.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import '../../graphql/graphql_api.dart';
 import 'package:html/parser.dart';
+
+import '../../graphql/graphql_api.dart';
+import '../../models/sources/four_anime.dart';
 
 class AnimeInfo extends StatelessWidget {
   final int id;
 
-  AnimeInfo({@required this.id});
+  const AnimeInfo({@required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +50,7 @@ class AnimeInfo extends StatelessWidget {
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(),
                   child: Stack(children: [
+                    // ignore: sized_box_for_whitespace
                     Container(
                       width: double.infinity,
                       child: CachedNetworkImage(
@@ -59,7 +61,7 @@ class AnimeInfo extends StatelessWidget {
                     BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
                         child: Container(
-                          decoration: new BoxDecoration(
+                          decoration: BoxDecoration(
                               color: Colors.black.withOpacity(0.001)),
                         )),
                     Container(
@@ -143,7 +145,6 @@ class AnimeInfo extends StatelessWidget {
                     child: Wrap(
                       spacing: 5,
                       runSpacing: 5,
-                      alignment: WrapAlignment.start,
                       children: anime.genres.map((gen) {
                         return Container(
                             decoration: BoxDecoration(
@@ -177,7 +178,7 @@ class AnimeInfo extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(
                               context,
-                              new MaterialPageRoute(
+                              MaterialPageRoute(
                                   builder: (context) =>
                                       FourAnime(search: animeName)));
                         }),
@@ -193,16 +194,14 @@ class AnimeInfo extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontSize: 18),
                     ),
-                    Container(
-                      child: ExpandableText(
-                        cleanText(anime.description),
-                        style: TextStyle(
-                          color: Colors.white60,
-                        ),
-                        expandText: 'show more',
-                        collapseText: 'show less',
-                        maxLines: 3,
+                    ExpandableText(
+                      cleanText(anime.description),
+                      style: TextStyle(
+                        color: Colors.white60,
                       ),
+                      expandText: 'show more',
+                      collapseText: 'show less',
+                      maxLines: 3,
                     ),
                   ],
                 ),

@@ -34,7 +34,6 @@ class TrendingList extends StatelessWidget {
             return ListView.builder(
                 itemCount: data.length,
                 scrollDirection: Axis.horizontal,
-                addAutomaticKeepAlives: true,
                 itemBuilder: (context, index) {
                   return AnimeCard(media: data[index]);
                 });
