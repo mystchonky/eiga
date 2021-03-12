@@ -45,36 +45,19 @@ class AnimeInfo$Query$Media$MediaCoverImage with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class AnimeInfo$Query$Media$StudioConnection$StudioEdge$Studio
-    with EquatableMixin {
-  AnimeInfo$Query$Media$StudioConnection$StudioEdge$Studio();
+class AnimeInfo$Query$Media$StudioConnection$Studio with EquatableMixin {
+  AnimeInfo$Query$Media$StudioConnection$Studio();
 
-  factory AnimeInfo$Query$Media$StudioConnection$StudioEdge$Studio.fromJson(
+  factory AnimeInfo$Query$Media$StudioConnection$Studio.fromJson(
           Map<String, dynamic> json) =>
-      _$AnimeInfo$Query$Media$StudioConnection$StudioEdge$StudioFromJson(json);
+      _$AnimeInfo$Query$Media$StudioConnection$StudioFromJson(json);
 
   String name;
 
   @override
   List<Object> get props => [name];
   Map<String, dynamic> toJson() =>
-      _$AnimeInfo$Query$Media$StudioConnection$StudioEdge$StudioToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class AnimeInfo$Query$Media$StudioConnection$StudioEdge with EquatableMixin {
-  AnimeInfo$Query$Media$StudioConnection$StudioEdge();
-
-  factory AnimeInfo$Query$Media$StudioConnection$StudioEdge.fromJson(
-          Map<String, dynamic> json) =>
-      _$AnimeInfo$Query$Media$StudioConnection$StudioEdgeFromJson(json);
-
-  AnimeInfo$Query$Media$StudioConnection$StudioEdge$Studio node;
-
-  @override
-  List<Object> get props => [node];
-  Map<String, dynamic> toJson() =>
-      _$AnimeInfo$Query$Media$StudioConnection$StudioEdgeToJson(this);
+      _$AnimeInfo$Query$Media$StudioConnection$StudioToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -85,12 +68,126 @@ class AnimeInfo$Query$Media$StudioConnection with EquatableMixin {
           Map<String, dynamic> json) =>
       _$AnimeInfo$Query$Media$StudioConnectionFromJson(json);
 
-  List<AnimeInfo$Query$Media$StudioConnection$StudioEdge> edges;
+  List<AnimeInfo$Query$Media$StudioConnection$Studio> nodes;
+
+  @override
+  List<Object> get props => [nodes];
+  Map<String, dynamic> toJson() =>
+      _$AnimeInfo$Query$Media$StudioConnectionToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AnimeInfo$Query$Media$FuzzyDate with EquatableMixin {
+  AnimeInfo$Query$Media$FuzzyDate();
+
+  factory AnimeInfo$Query$Media$FuzzyDate.fromJson(Map<String, dynamic> json) =>
+      _$AnimeInfo$Query$Media$FuzzyDateFromJson(json);
+
+  int year;
+
+  int month;
+
+  int day;
+
+  @override
+  List<Object> get props => [year, month, day];
+  Map<String, dynamic> toJson() =>
+      _$AnimeInfo$Query$Media$FuzzyDateToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle
+    with EquatableMixin {
+  AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle();
+
+  factory AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle.fromJson(
+          Map<String, dynamic> json) =>
+      _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitleFromJson(
+          json);
+
+  String english;
+
+  @override
+  List<Object> get props => [english];
+  Map<String, dynamic> toJson() =>
+      _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitleToJson(
+          this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImage
+    with EquatableMixin {
+  AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImage();
+
+  factory AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImage.fromJson(
+          Map<String, dynamic> json) =>
+      _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImageFromJson(
+          json);
+
+  String medium;
+
+  @override
+  List<Object> get props => [medium];
+  Map<String, dynamic> toJson() =>
+      _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImageToJson(
+          this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media
+    with EquatableMixin {
+  AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media();
+
+  factory AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media.fromJson(
+          Map<String, dynamic> json) =>
+      _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$MediaFromJson(json);
+
+  int id;
+
+  AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle title;
+
+  AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImage
+      coverImage;
+
+  @override
+  List<Object> get props => [id, title, coverImage];
+  Map<String, dynamic> toJson() =>
+      _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$MediaToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AnimeInfo$Query$Media$MediaConnection$MediaEdge with EquatableMixin {
+  AnimeInfo$Query$Media$MediaConnection$MediaEdge();
+
+  factory AnimeInfo$Query$Media$MediaConnection$MediaEdge.fromJson(
+          Map<String, dynamic> json) =>
+      _$AnimeInfo$Query$Media$MediaConnection$MediaEdgeFromJson(json);
+
+  @JsonKey(unknownEnumValue: MediaRelation.artemisUnknown)
+  MediaRelation relationType;
+
+  AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media node;
+
+  @override
+  List<Object> get props => [relationType, node];
+  Map<String, dynamic> toJson() =>
+      _$AnimeInfo$Query$Media$MediaConnection$MediaEdgeToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AnimeInfo$Query$Media$MediaConnection with EquatableMixin {
+  AnimeInfo$Query$Media$MediaConnection();
+
+  factory AnimeInfo$Query$Media$MediaConnection.fromJson(
+          Map<String, dynamic> json) =>
+      _$AnimeInfo$Query$Media$MediaConnectionFromJson(json);
+
+  List<AnimeInfo$Query$Media$MediaConnection$MediaEdge> edges;
 
   @override
   List<Object> get props => [edges];
   Map<String, dynamic> toJson() =>
-      _$AnimeInfo$Query$Media$StudioConnectionToJson(this);
+      _$AnimeInfo$Query$Media$MediaConnectionToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -116,7 +213,28 @@ class AnimeInfo$Query$Media with EquatableMixin {
 
   int episodes;
 
+  int popularity;
+
+  int favourites;
+
   int averageScore;
+
+  @JsonKey(unknownEnumValue: MediaFormat.artemisUnknown)
+  MediaFormat format;
+
+  @JsonKey(unknownEnumValue: MediaStatus.artemisUnknown)
+  MediaStatus status;
+
+  int duration;
+
+  AnimeInfo$Query$Media$FuzzyDate startDate;
+
+  @JsonKey(unknownEnumValue: MediaSeason.artemisUnknown)
+  MediaSeason season;
+
+  int seasonYear;
+
+  AnimeInfo$Query$Media$MediaConnection relations;
 
   @override
   List<Object> get props => [
@@ -128,7 +246,16 @@ class AnimeInfo$Query$Media with EquatableMixin {
         genres,
         studios,
         episodes,
-        averageScore
+        popularity,
+        favourites,
+        averageScore,
+        format,
+        status,
+        duration,
+        startDate,
+        season,
+        seasonYear,
+        relations
       ];
   Map<String, dynamic> toJson() => _$AnimeInfo$Query$MediaToJson(this);
 }
@@ -529,32 +656,6 @@ class Trending$Query with EquatableMixin {
   Map<String, dynamic> toJson() => _$Trending$QueryToJson(this);
 }
 
-enum MediaStatus {
-  @JsonValue('FINISHED')
-  finished,
-  @JsonValue('RELEASING')
-  releasing,
-  @JsonValue('NOT_YET_RELEASED')
-  notYetReleased,
-  @JsonValue('CANCELLED')
-  cancelled,
-  @JsonValue('HIATUS')
-  hiatus,
-  @JsonValue('ARTEMIS_UNKNOWN')
-  artemisUnknown,
-}
-enum MediaSeason {
-  @JsonValue('WINTER')
-  winter,
-  @JsonValue('SPRING')
-  spring,
-  @JsonValue('SUMMER')
-  summer,
-  @JsonValue('FALL')
-  fall,
-  @JsonValue('ARTEMIS_UNKNOWN')
-  artemisUnknown,
-}
 enum MediaFormat {
   @JsonValue('TV')
   tv,
@@ -576,6 +677,62 @@ enum MediaFormat {
   novel,
   @JsonValue('ONE_SHOT')
   oneShot,
+  @JsonValue('ARTEMIS_UNKNOWN')
+  artemisUnknown,
+}
+enum MediaRelation {
+  @JsonValue('ADAPTATION')
+  adaptation,
+  @JsonValue('PREQUEL')
+  prequel,
+  @JsonValue('SEQUEL')
+  sequel,
+  @JsonValue('PARENT')
+  parent,
+  @JsonValue('SIDE_STORY')
+  sideStory,
+  @JsonValue('CHARACTER')
+  character,
+  @JsonValue('SUMMARY')
+  summary,
+  @JsonValue('ALTERNATIVE')
+  alternative,
+  @JsonValue('SPIN_OFF')
+  spinOff,
+  @JsonValue('OTHER')
+  other,
+  @JsonValue('SOURCE')
+  source,
+  @JsonValue('COMPILATION')
+  compilation,
+  @JsonValue('CONTAINS')
+  contains,
+  @JsonValue('ARTEMIS_UNKNOWN')
+  artemisUnknown,
+}
+enum MediaSeason {
+  @JsonValue('WINTER')
+  winter,
+  @JsonValue('SPRING')
+  spring,
+  @JsonValue('SUMMER')
+  summer,
+  @JsonValue('FALL')
+  fall,
+  @JsonValue('ARTEMIS_UNKNOWN')
+  artemisUnknown,
+}
+enum MediaStatus {
+  @JsonValue('FINISHED')
+  finished,
+  @JsonValue('RELEASING')
+  releasing,
+  @JsonValue('NOT_YET_RELEASED')
+  notYetReleased,
+  @JsonValue('CANCELLED')
+  cancelled,
+  @JsonValue('HIATUS')
+  hiatus,
   @JsonValue('ARTEMIS_UNKNOWN')
   artemisUnknown,
 }
@@ -701,6 +858,109 @@ class AnimeInfoQuery extends GraphQLQuery<AnimeInfo$Query, AnimeInfoArguments> {
                 FieldNode(
                     name: NameNode(value: 'studios'),
                     alias: null,
+                    arguments: [
+                      ArgumentNode(
+                          name: NameNode(value: 'isMain'),
+                          value: BooleanValueNode(value: true))
+                    ],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                          name: NameNode(value: 'nodes'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                                name: NameNode(value: 'name'),
+                                alias: null,
+                                arguments: [],
+                                directives: [],
+                                selectionSet: null)
+                          ]))
+                    ])),
+                FieldNode(
+                    name: NameNode(value: 'episodes'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: 'popularity'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: 'favourites'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: 'averageScore'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: 'format'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: 'status'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: 'duration'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: 'startDate'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                          name: NameNode(value: 'year'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'month'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'day'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null)
+                    ])),
+                FieldNode(
+                    name: NameNode(value: 'season'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: 'seasonYear'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: 'relations'),
+                    alias: null,
                     arguments: [],
                     directives: [],
                     selectionSet: SelectionSetNode(selections: [
@@ -711,32 +971,54 @@ class AnimeInfoQuery extends GraphQLQuery<AnimeInfo$Query, AnimeInfoArguments> {
                           directives: [],
                           selectionSet: SelectionSetNode(selections: [
                             FieldNode(
+                                name: NameNode(value: 'relationType'),
+                                alias: null,
+                                arguments: [],
+                                directives: [],
+                                selectionSet: null),
+                            FieldNode(
                                 name: NameNode(value: 'node'),
                                 alias: null,
                                 arguments: [],
                                 directives: [],
                                 selectionSet: SelectionSetNode(selections: [
                                   FieldNode(
-                                      name: NameNode(value: 'name'),
+                                      name: NameNode(value: 'id'),
                                       alias: null,
                                       arguments: [],
                                       directives: [],
-                                      selectionSet: null)
+                                      selectionSet: null),
+                                  FieldNode(
+                                      name: NameNode(value: 'title'),
+                                      alias: null,
+                                      arguments: [],
+                                      directives: [],
+                                      selectionSet:
+                                          SelectionSetNode(selections: [
+                                        FieldNode(
+                                            name: NameNode(value: 'english'),
+                                            alias: null,
+                                            arguments: [],
+                                            directives: [],
+                                            selectionSet: null)
+                                      ])),
+                                  FieldNode(
+                                      name: NameNode(value: 'coverImage'),
+                                      alias: null,
+                                      arguments: [],
+                                      directives: [],
+                                      selectionSet:
+                                          SelectionSetNode(selections: [
+                                        FieldNode(
+                                            name: NameNode(value: 'medium'),
+                                            alias: null,
+                                            arguments: [],
+                                            directives: [],
+                                            selectionSet: null)
+                                      ]))
                                 ]))
                           ]))
-                    ])),
-                FieldNode(
-                    name: NameNode(value: 'episodes'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'averageScore'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null)
+                    ]))
               ]))
         ]))
   ]);

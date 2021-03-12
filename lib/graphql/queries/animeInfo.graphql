@@ -1,5 +1,5 @@
 query AnimeInfo($id: Int) {
-  Media(id: $id, type: ANIME, isAdult:false) {
+  Media(id: $id, type: ANIME, isAdult: false) {
     id
     title {
       english
@@ -13,15 +13,38 @@ query AnimeInfo($id: Int) {
     bannerImage
     description
     genres
-    studios {
-      edges {
-        node{
-          name
-        }
+    studios(isMain: true) {
+      nodes {
+        name
       }
     }
     episodes
+    popularity
+    favourites
     averageScore
-    
+    format
+    status
+    duration
+    startDate {
+      year
+      month
+      day
+    }
+    season
+    seasonYear
+    relations {
+      edges {
+        relationType
+        node {
+          id
+          title {
+            english
+          }
+          coverImage {
+            medium
+          }
+        }
+      }
+    }
   }
 }
