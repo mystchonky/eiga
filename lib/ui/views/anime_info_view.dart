@@ -76,7 +76,7 @@ class AnimeInfo extends StatelessWidget {
                                   0xFF000000),
                               Color(int.parse(animeColor.substring(1, 7),
                                       radix: 16) +
-                                  0x99000000),
+                                  0x66000000),
                               Colors.black26,
                               Colors.black87,
                               Colors.black,
@@ -139,72 +139,89 @@ class AnimeInfo extends StatelessWidget {
                     ),
                   ]),
                 ),
-                Container(
-                    padding: EdgeInsets.fromLTRB(5, 10, 5, 5),
-                    width: double.infinity,
-                    child: Wrap(
-                      spacing: 5,
-                      runSpacing: 5,
-                      children: anime.genres.map((gen) {
-                        return Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(
-                                color: Theme.of(context).primaryColor,
-                              ),
-                              //color: Theme.of(context).primaryColor
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5),
+                    child: Column(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.fromLTRB(5, 10, 5, 5),
+                            width: double.infinity,
+                            child: Wrap(
+                              spacing: 5,
+                              runSpacing: 5,
+                              children: anime.genres.map((gen) {
+                                return Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                      //color: Theme.of(context).primaryColor
+                                    ),
+                                    padding: EdgeInsets.all(5),
+                                    child: Text(
+                                      gen,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12,
+                                      ),
+                                    ));
+                              }).toList(),
+                            )),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              child: ElevatedButton.icon(
+                                  onPressed: () {
+                                    //TODO: Add favorite functionality
+                                  },
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.redAccent[400])),
+                                  icon: Icon(Icons.favorite),
+                                  label: Text("")),
                             ),
-                            padding: EdgeInsets.all(5),
-                            child: Text(
-                              gen,
+                            SizedBox(width: 5),
+                            Expanded(
+                              child: ElevatedButton.icon(
+                                  label: Text("Watch Now"),
+                                  icon: Icon(Icons.play_arrow),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                FourAnime(search: animeName)));
+                                  }),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Synopsis",
                               style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
+                                  fontFamily: "Rubik",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
+                            ExpandableText(
+                              cleanText(anime.description),
+                              style: TextStyle(
+                                color: Colors.white60,
                               ),
-                            ));
-                      }).toList(),
+                              expandText: 'show more',
+                              collapseText: 'show less',
+                              maxLines: 3,
+                            ),
+                          ],
+                        ),
+                      ],
                     )),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.favorite),
-                        label: Text("Favorite")),
-                    ElevatedButton.icon(
-                        label: Text("Watch Now"),
-                        icon: Icon(Icons.play_arrow),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      FourAnime(search: animeName)));
-                        }),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Synopsis",
-                      style: TextStyle(
-                          fontFamily: "Rubik",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                    ExpandableText(
-                      cleanText(anime.description),
-                      style: TextStyle(
-                        color: Colors.white60,
-                      ),
-                      expandText: 'show more',
-                      collapseText: 'show less',
-                      maxLines: 3,
-                    ),
-                  ],
-                ),
               ],
             ),
           ),
