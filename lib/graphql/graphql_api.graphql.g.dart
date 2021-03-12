@@ -36,50 +36,189 @@ Map<String, dynamic> _$AnimeInfo$Query$Media$MediaCoverImageToJson(
       'color': instance.color,
     };
 
-AnimeInfo$Query$Media$StudioConnection$StudioEdge$Studio
-    _$AnimeInfo$Query$Media$StudioConnection$StudioEdge$StudioFromJson(
+AnimeInfo$Query$Media$StudioConnection$Studio
+    _$AnimeInfo$Query$Media$StudioConnection$StudioFromJson(
         Map<String, dynamic> json) {
-  return AnimeInfo$Query$Media$StudioConnection$StudioEdge$Studio()
+  return AnimeInfo$Query$Media$StudioConnection$Studio()
     ..name = json['name'] as String;
 }
 
-Map<String,
-    dynamic> _$AnimeInfo$Query$Media$StudioConnection$StudioEdge$StudioToJson(
-        AnimeInfo$Query$Media$StudioConnection$StudioEdge$Studio instance) =>
+Map<String, dynamic> _$AnimeInfo$Query$Media$StudioConnection$StudioToJson(
+        AnimeInfo$Query$Media$StudioConnection$Studio instance) =>
     <String, dynamic>{
       'name': instance.name,
-    };
-
-AnimeInfo$Query$Media$StudioConnection$StudioEdge
-    _$AnimeInfo$Query$Media$StudioConnection$StudioEdgeFromJson(
-        Map<String, dynamic> json) {
-  return AnimeInfo$Query$Media$StudioConnection$StudioEdge()
-    ..node = json['node'] == null
-        ? null
-        : AnimeInfo$Query$Media$StudioConnection$StudioEdge$Studio.fromJson(
-            json['node'] as Map<String, dynamic>);
-}
-
-Map<String, dynamic> _$AnimeInfo$Query$Media$StudioConnection$StudioEdgeToJson(
-        AnimeInfo$Query$Media$StudioConnection$StudioEdge instance) =>
-    <String, dynamic>{
-      'node': instance.node?.toJson(),
     };
 
 AnimeInfo$Query$Media$StudioConnection
     _$AnimeInfo$Query$Media$StudioConnectionFromJson(
         Map<String, dynamic> json) {
   return AnimeInfo$Query$Media$StudioConnection()
-    ..edges = (json['edges'] as List)
+    ..nodes = (json['nodes'] as List)
         ?.map((e) => e == null
             ? null
-            : AnimeInfo$Query$Media$StudioConnection$StudioEdge.fromJson(
+            : AnimeInfo$Query$Media$StudioConnection$Studio.fromJson(
                 e as Map<String, dynamic>))
         ?.toList();
 }
 
 Map<String, dynamic> _$AnimeInfo$Query$Media$StudioConnectionToJson(
         AnimeInfo$Query$Media$StudioConnection instance) =>
+    <String, dynamic>{
+      'nodes': instance.nodes?.map((e) => e?.toJson())?.toList(),
+    };
+
+AnimeInfo$Query$Media$FuzzyDate _$AnimeInfo$Query$Media$FuzzyDateFromJson(
+    Map<String, dynamic> json) {
+  return AnimeInfo$Query$Media$FuzzyDate()
+    ..year = json['year'] as int
+    ..month = json['month'] as int
+    ..day = json['day'] as int;
+}
+
+Map<String, dynamic> _$AnimeInfo$Query$Media$FuzzyDateToJson(
+        AnimeInfo$Query$Media$FuzzyDate instance) =>
+    <String, dynamic>{
+      'year': instance.year,
+      'month': instance.month,
+      'day': instance.day,
+    };
+
+AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle
+    _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitleFromJson(
+        Map<String, dynamic> json) {
+  return AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle()
+    ..english = json['english'] as String;
+}
+
+Map<String, dynamic>
+    _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitleToJson(
+            AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle
+                instance) =>
+        <String, dynamic>{
+          'english': instance.english,
+        };
+
+AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImage
+    _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImageFromJson(
+        Map<String, dynamic> json) {
+  return AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImage()
+    ..medium = json['medium'] as String;
+}
+
+Map<String, dynamic>
+    _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImageToJson(
+            AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImage
+                instance) =>
+        <String, dynamic>{
+          'medium': instance.medium,
+        };
+
+AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media
+    _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$MediaFromJson(
+        Map<String, dynamic> json) {
+  return AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media()
+    ..id = json['id'] as int
+    ..title = json['title'] == null
+        ? null
+        : AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle
+            .fromJson(json['title'] as Map<String, dynamic>)
+    ..coverImage = json['coverImage'] == null
+        ? null
+        : AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImage
+            .fromJson(json['coverImage'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic>
+    _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$MediaToJson(
+            AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'title': instance.title?.toJson(),
+          'coverImage': instance.coverImage?.toJson(),
+        };
+
+AnimeInfo$Query$Media$MediaConnection$MediaEdge
+    _$AnimeInfo$Query$Media$MediaConnection$MediaEdgeFromJson(
+        Map<String, dynamic> json) {
+  return AnimeInfo$Query$Media$MediaConnection$MediaEdge()
+    ..relationType = _$enumDecodeNullable(
+        _$MediaRelationEnumMap, json['relationType'],
+        unknownValue: MediaRelation.artemisUnknown)
+    ..node = json['node'] == null
+        ? null
+        : AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media.fromJson(
+            json['node'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$AnimeInfo$Query$Media$MediaConnection$MediaEdgeToJson(
+        AnimeInfo$Query$Media$MediaConnection$MediaEdge instance) =>
+    <String, dynamic>{
+      'relationType': _$MediaRelationEnumMap[instance.relationType],
+      'node': instance.node?.toJson(),
+    };
+
+T _$enumDecode<T>(
+  Map<T, dynamic> enumValues,
+  dynamic source, {
+  T unknownValue,
+}) {
+  if (source == null) {
+    throw ArgumentError('A value must be provided. Supported values: '
+        '${enumValues.values.join(', ')}');
+  }
+
+  final value = enumValues.entries
+      .singleWhere((e) => e.value == source, orElse: () => null)
+      ?.key;
+
+  if (value == null && unknownValue == null) {
+    throw ArgumentError('`$source` is not one of the supported values: '
+        '${enumValues.values.join(', ')}');
+  }
+  return value ?? unknownValue;
+}
+
+T _$enumDecodeNullable<T>(
+  Map<T, dynamic> enumValues,
+  dynamic source, {
+  T unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
+}
+
+const _$MediaRelationEnumMap = {
+  MediaRelation.adaptation: 'ADAPTATION',
+  MediaRelation.prequel: 'PREQUEL',
+  MediaRelation.sequel: 'SEQUEL',
+  MediaRelation.parent: 'PARENT',
+  MediaRelation.sideStory: 'SIDE_STORY',
+  MediaRelation.character: 'CHARACTER',
+  MediaRelation.summary: 'SUMMARY',
+  MediaRelation.alternative: 'ALTERNATIVE',
+  MediaRelation.spinOff: 'SPIN_OFF',
+  MediaRelation.other: 'OTHER',
+  MediaRelation.source: 'SOURCE',
+  MediaRelation.compilation: 'COMPILATION',
+  MediaRelation.contains: 'CONTAINS',
+  MediaRelation.artemisUnknown: 'ARTEMIS_UNKNOWN',
+};
+
+AnimeInfo$Query$Media$MediaConnection
+    _$AnimeInfo$Query$Media$MediaConnectionFromJson(Map<String, dynamic> json) {
+  return AnimeInfo$Query$Media$MediaConnection()
+    ..edges = (json['edges'] as List)
+        ?.map((e) => e == null
+            ? null
+            : AnimeInfo$Query$Media$MediaConnection$MediaEdge.fromJson(
+                e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$AnimeInfo$Query$Media$MediaConnectionToJson(
+        AnimeInfo$Query$Media$MediaConnection instance) =>
     <String, dynamic>{
       'edges': instance.edges?.map((e) => e?.toJson())?.toList(),
     };
@@ -104,7 +243,25 @@ AnimeInfo$Query$Media _$AnimeInfo$Query$MediaFromJson(
         : AnimeInfo$Query$Media$StudioConnection.fromJson(
             json['studios'] as Map<String, dynamic>)
     ..episodes = json['episodes'] as int
-    ..averageScore = json['averageScore'] as int;
+    ..popularity = json['popularity'] as int
+    ..favourites = json['favourites'] as int
+    ..averageScore = json['averageScore'] as int
+    ..format = _$enumDecodeNullable(_$MediaFormatEnumMap, json['format'],
+        unknownValue: MediaFormat.artemisUnknown)
+    ..status = _$enumDecodeNullable(_$MediaStatusEnumMap, json['status'],
+        unknownValue: MediaStatus.artemisUnknown)
+    ..duration = json['duration'] as int
+    ..startDate = json['startDate'] == null
+        ? null
+        : AnimeInfo$Query$Media$FuzzyDate.fromJson(
+            json['startDate'] as Map<String, dynamic>)
+    ..season = _$enumDecodeNullable(_$MediaSeasonEnumMap, json['season'],
+        unknownValue: MediaSeason.artemisUnknown)
+    ..seasonYear = json['seasonYear'] as int
+    ..relations = json['relations'] == null
+        ? null
+        : AnimeInfo$Query$Media$MediaConnection.fromJson(
+            json['relations'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$AnimeInfo$Query$MediaToJson(
@@ -118,8 +275,48 @@ Map<String, dynamic> _$AnimeInfo$Query$MediaToJson(
       'genres': instance.genres,
       'studios': instance.studios?.toJson(),
       'episodes': instance.episodes,
+      'popularity': instance.popularity,
+      'favourites': instance.favourites,
       'averageScore': instance.averageScore,
+      'format': _$MediaFormatEnumMap[instance.format],
+      'status': _$MediaStatusEnumMap[instance.status],
+      'duration': instance.duration,
+      'startDate': instance.startDate?.toJson(),
+      'season': _$MediaSeasonEnumMap[instance.season],
+      'seasonYear': instance.seasonYear,
+      'relations': instance.relations?.toJson(),
     };
+
+const _$MediaFormatEnumMap = {
+  MediaFormat.tv: 'TV',
+  MediaFormat.tvShort: 'TV_SHORT',
+  MediaFormat.movie: 'MOVIE',
+  MediaFormat.special: 'SPECIAL',
+  MediaFormat.ova: 'OVA',
+  MediaFormat.ona: 'ONA',
+  MediaFormat.music: 'MUSIC',
+  MediaFormat.manga: 'MANGA',
+  MediaFormat.novel: 'NOVEL',
+  MediaFormat.oneShot: 'ONE_SHOT',
+  MediaFormat.artemisUnknown: 'ARTEMIS_UNKNOWN',
+};
+
+const _$MediaStatusEnumMap = {
+  MediaStatus.finished: 'FINISHED',
+  MediaStatus.releasing: 'RELEASING',
+  MediaStatus.notYetReleased: 'NOT_YET_RELEASED',
+  MediaStatus.cancelled: 'CANCELLED',
+  MediaStatus.hiatus: 'HIATUS',
+  MediaStatus.artemisUnknown: 'ARTEMIS_UNKNOWN',
+};
+
+const _$MediaSeasonEnumMap = {
+  MediaSeason.winter: 'WINTER',
+  MediaSeason.spring: 'SPRING',
+  MediaSeason.summer: 'SUMMER',
+  MediaSeason.fall: 'FALL',
+  MediaSeason.artemisUnknown: 'ARTEMIS_UNKNOWN',
+};
 
 AnimeInfo$Query _$AnimeInfo$QueryFromJson(Map<String, dynamic> json) {
   return AnimeInfo$Query()
@@ -184,47 +381,6 @@ Map<String, dynamic> _$Popular$Query$Page$MediaToJson(
       'status': _$MediaStatusEnumMap[instance.status],
       'coverImage': instance.coverImage?.toJson(),
     };
-
-T _$enumDecode<T>(
-  Map<T, dynamic> enumValues,
-  dynamic source, {
-  T unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError('A value must be provided. Supported values: '
-        '${enumValues.values.join(', ')}');
-  }
-
-  final value = enumValues.entries
-      .singleWhere((e) => e.value == source, orElse: () => null)
-      ?.key;
-
-  if (value == null && unknownValue == null) {
-    throw ArgumentError('`$source` is not one of the supported values: '
-        '${enumValues.values.join(', ')}');
-  }
-  return value ?? unknownValue;
-}
-
-T _$enumDecodeNullable<T>(
-  Map<T, dynamic> enumValues,
-  dynamic source, {
-  T unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
-  return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
-}
-
-const _$MediaStatusEnumMap = {
-  MediaStatus.finished: 'FINISHED',
-  MediaStatus.releasing: 'RELEASING',
-  MediaStatus.notYetReleased: 'NOT_YET_RELEASED',
-  MediaStatus.cancelled: 'CANCELLED',
-  MediaStatus.hiatus: 'HIATUS',
-  MediaStatus.artemisUnknown: 'ARTEMIS_UNKNOWN',
-};
 
 Popular$Query$Page _$Popular$Query$PageFromJson(Map<String, dynamic> json) {
   return Popular$Query$Page()
@@ -419,28 +575,6 @@ Map<String, dynamic> _$SearchData$Query$Page$MediaToJson(
       'seasonYear': instance.seasonYear,
       'episodes': instance.episodes,
     };
-
-const _$MediaFormatEnumMap = {
-  MediaFormat.tv: 'TV',
-  MediaFormat.tvShort: 'TV_SHORT',
-  MediaFormat.movie: 'MOVIE',
-  MediaFormat.special: 'SPECIAL',
-  MediaFormat.ova: 'OVA',
-  MediaFormat.ona: 'ONA',
-  MediaFormat.music: 'MUSIC',
-  MediaFormat.manga: 'MANGA',
-  MediaFormat.novel: 'NOVEL',
-  MediaFormat.oneShot: 'ONE_SHOT',
-  MediaFormat.artemisUnknown: 'ARTEMIS_UNKNOWN',
-};
-
-const _$MediaSeasonEnumMap = {
-  MediaSeason.winter: 'WINTER',
-  MediaSeason.spring: 'SPRING',
-  MediaSeason.summer: 'SUMMER',
-  MediaSeason.fall: 'FALL',
-  MediaSeason.artemisUnknown: 'ARTEMIS_UNKNOWN',
-};
 
 SearchData$Query$Page _$SearchData$Query$PageFromJson(
     Map<String, dynamic> json) {

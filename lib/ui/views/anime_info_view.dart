@@ -5,8 +5,11 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:html/parser.dart';
+import 'package:intl/intl.dart';
 
 import '../../graphql/graphql_api.dart';
+import '../../models/helpers/media_format.dart';
+import '../../models/helpers/media_status.dart';
 import '../../models/sources/four_anime.dart';
 
 class AnimeInfo extends StatelessWidget {
@@ -45,6 +48,9 @@ class AnimeInfo extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
+                /*
+                * ImageCover
+                * */
                 Container(
                   height: 300,
                   clipBehavior: Clip.hardEdge,
@@ -142,33 +148,11 @@ class AnimeInfo extends StatelessWidget {
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                            padding: EdgeInsets.fromLTRB(5, 10, 5, 5),
-                            width: double.infinity,
-                            child: Wrap(
-                              spacing: 5,
-                              runSpacing: 5,
-                              children: anime.genres.map((gen) {
-                                return Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                      //color: Theme.of(context).primaryColor
-                                    ),
-                                    padding: EdgeInsets.all(5),
-                                    child: Text(
-                                      gen,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12,
-                                      ),
-                                    ));
-                              }).toList(),
-                            )),
+                        /*
+                        * BUTTONS
+                        * */
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -199,26 +183,159 @@ class AnimeInfo extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Synopsis",
-                              style: TextStyle(
-                                  fontFamily: "Rubik",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            ),
-                            ExpandableText(
-                              cleanText(anime.description),
-                              style: TextStyle(
-                                color: Colors.white60,
+
+                        /*
+                        * SYNOPSIS
+                        * */
+                        Text(
+                          "Synopsis",
+                          style: TextStyle(
+                              fontFamily: "Rubik",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                        ExpandableText(
+                          cleanText(anime.description),
+                          style: TextStyle(
+                            color: Colors.white60,
+                          ),
+                          expandText: 'show more',
+                          collapseText: 'show less',
+                          maxLines: 3,
+                        ),
+                        SizedBox(height: 10),
+
+                        /*
+                        * INFORMATION
+                        * */
+                        Text(
+                          "Information",
+                          style: TextStyle(
+                              fontFamily: "Rubik",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                          textAlign: TextAlign.start,
+                        ),
+                        Theme(
+                          data: Theme.of(context).copyWith(
+                            textTheme: TextTheme(
+                              bodyText1: TextStyle(
+                                fontFamily: "Rubik",
                               ),
-                              expandText: 'show more',
-                              collapseText: 'show less',
-                              maxLines: 3,
                             ),
-                          ],
+                          ),
+                          child: Builder(builder: (BuildContext context) {
+                            final theme = Theme.of(context).textTheme.bodyText1;
+
+                            Widget infoTitle(String text) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 2.0),
+                                child: Text(text, style: theme),
+                              );
+                            }
+
+                            Widget infoValue(String text) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 2.0),
+                                child: Text(
+                                  text,
+                                  style: theme,
+                                  textAlign: TextAlign.end,
+                                ),
+                              );
+                            }
+
+                            return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Table(
+                                  border: TableBorder(
+                                      horizontalInside: BorderSide(
+                                          width: 0.4, color: Colors.white38)),
+                                  children: [
+                                    TableRow(children: [
+                                      infoTitle(
+                                        "Episodes",
+                                      ),
+                                      infoValue(
+                                        anime.episodes.toString(),
+                                      ),
+                                    ]),
+                                    TableRow(children: [
+                                      infoTitle("Popularity"),
+                                      infoValue(
+                                        "#${anime.popularity}",
+                                      )
+                                    ]),
+                                    TableRow(children: [
+                                      infoTitle("Score"),
+                                      infoValue(
+                                        "${anime.averageScore / 10}",
+                                      )
+                                    ]),
+                                    TableRow(children: [
+                                      infoTitle("Type"),
+                                      infoValue(
+                                        anime.format.name,
+                                      )
+                                    ]),
+                                    TableRow(children: [
+                                      infoTitle("Studio"),
+                                      infoValue(
+                                        anime.studios.nodes[0].name,
+                                      )
+                                    ]),
+                                    TableRow(children: [
+                                      infoTitle("Status"),
+                                      infoValue(
+                                        anime.status.name,
+                                      )
+                                    ]),
+                                    TableRow(children: [
+                                      infoTitle("Duration"),
+                                      infoValue(
+                                        "${anime.duration} Min",
+                                      )
+                                    ]),
+                                    TableRow(children: [
+                                      infoTitle("Aired"),
+                                      infoValue(
+                                        cleanDate(anime.startDate),
+                                      )
+                                    ])
+                                  ],
+                                ));
+                          }),
+                        ),
+                        SizedBox(height: 10),
+
+                        /*
+                        * GENRES
+                        * */
+                        Wrap(
+                          spacing: 5,
+                          runSpacing: 5,
+                          children: anime.genres.map((gen) {
+                            return Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  //color: Theme.of(context).primaryColor
+                                ),
+                                padding: EdgeInsets.all(5),
+                                child: Text(
+                                  gen,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
+                                ));
+                          }).toList(),
                         ),
                       ],
                     )),
@@ -235,5 +352,11 @@ class AnimeInfo extends StatelessWidget {
     final String parsedString = parse(document.body.text).documentElement.text;
 
     return parsedString;
+  }
+
+  String cleanDate(AnimeInfo$Query$Media$FuzzyDate dateIn) {
+    final date = DateTime(dateIn.year, dateIn.month, dateIn.day);
+    final DateFormat formatter = DateFormat('dd MMMM, y');
+    return formatter.format(date);
   }
 }
