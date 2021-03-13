@@ -87,7 +87,7 @@ AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle
     _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitleFromJson(
         Map<String, dynamic> json) {
   return AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle()
-    ..english = json['english'] as String;
+    ..userPreferred = json['userPreferred'] as String;
 }
 
 Map<String, dynamic>
@@ -95,14 +95,14 @@ Map<String, dynamic>
             AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle
                 instance) =>
         <String, dynamic>{
-          'english': instance.english,
+          'userPreferred': instance.userPreferred,
         };
 
 AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImage
     _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImageFromJson(
         Map<String, dynamic> json) {
   return AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImage()
-    ..medium = json['medium'] as String;
+    ..large = json['large'] as String;
 }
 
 Map<String, dynamic>
@@ -110,7 +110,7 @@ Map<String, dynamic>
             AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImage
                 instance) =>
         <String, dynamic>{
-          'medium': instance.medium,
+          'large': instance.large,
         };
 
 AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media

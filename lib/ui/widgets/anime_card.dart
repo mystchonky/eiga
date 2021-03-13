@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:eiga/graphql/graphql_api.dart';
+import 'package:eiga/models/anime_card_entry.dart';
 import 'package:eiga/ui/views/anime_info_view.dart';
 import 'package:flutter/material.dart';
 
 class AnimeCard extends StatefulWidget {
-  final Popular$Query$Page$Media media;
+  final AnimeCardEntry anime;
 
   const AnimeCard({
     Key key,
-    this.media,
+    this.anime,
   }) : super(key: key);
 
   @override
@@ -27,7 +27,7 @@ class _AnimeCardState extends State<AnimeCard>
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => AnimeInfo(id: widget.media.id)));
+                  builder: (context) => AnimeInfo(id: widget.anime.id)));
         },
         child: Container(
           width: 120,
@@ -39,7 +39,7 @@ class _AnimeCardState extends State<AnimeCard>
               CachedNetworkImage(
                 width: double.infinity,
                 height: double.infinity,
-                imageUrl: widget.media.coverImage.large,
+                imageUrl: widget.anime.coverUrl,
                 placeholder: (context, url) =>
                     Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) => Icon(Icons.error),
@@ -60,7 +60,7 @@ class _AnimeCardState extends State<AnimeCard>
                   ),
                 ),
                 child: Text(
-                  widget.media.title.userPreferred,
+                  widget.anime.name,
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16.0,
@@ -69,6 +69,18 @@ class _AnimeCardState extends State<AnimeCard>
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
+              if (widget.anime.relation != null)
+                Container(
+                  color: Colors.black,
+                  child: Text(
+                    widget.anime.relation,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                )
             ],
           ),
         ),

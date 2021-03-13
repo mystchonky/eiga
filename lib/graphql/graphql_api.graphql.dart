@@ -105,10 +105,10 @@ class AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle
       _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitleFromJson(
           json);
 
-  String english;
+  String userPreferred;
 
   @override
-  List<Object> get props => [english];
+  List<Object> get props => [userPreferred];
   Map<String, dynamic> toJson() =>
       _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitleToJson(
           this);
@@ -124,10 +124,10 @@ class AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImage
       _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImageFromJson(
           json);
 
-  String medium;
+  String large;
 
   @override
-  List<Object> get props => [medium];
+  List<Object> get props => [large];
   Map<String, dynamic> toJson() =>
       _$AnimeInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImageToJson(
           this);
@@ -996,7 +996,8 @@ class AnimeInfoQuery extends GraphQLQuery<AnimeInfo$Query, AnimeInfoArguments> {
                                       selectionSet:
                                           SelectionSetNode(selections: [
                                         FieldNode(
-                                            name: NameNode(value: 'english'),
+                                            name: NameNode(
+                                                value: 'userPreferred'),
                                             alias: null,
                                             arguments: [],
                                             directives: [],
@@ -1010,7 +1011,7 @@ class AnimeInfoQuery extends GraphQLQuery<AnimeInfo$Query, AnimeInfoArguments> {
                                       selectionSet:
                                           SelectionSetNode(selections: [
                                         FieldNode(
-                                            name: NameNode(value: 'medium'),
+                                            name: NameNode(value: 'large'),
                                             alias: null,
                                             arguments: [],
                                             directives: [],

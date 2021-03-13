@@ -1,4 +1,5 @@
 import 'package:eiga/graphql/graphql_api.dart';
+import 'package:eiga/models/anime_card_entry.dart';
 import 'package:eiga/ui/widgets/anime_card.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -29,13 +30,18 @@ class TrendingList extends StatelessWidget {
               return Center(child: CircularProgressIndicator());
             }
 
-            final data = Popular$Query.fromJson(result.data).page.media;
+            final List<Popular$Query$Page$Media> data =
+                Popular$Query.fromJson(result.data).page.media;
 
             return ListView.builder(
                 itemCount: data.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return AnimeCard(media: data[index]);
+                  return AnimeCard(
+                      anime: AnimeCardEntry(
+                          data[index].id,
+                          data[index].title.userPreferred.toString(),
+                          data[index].coverImage.large));
                 });
           }),
     );

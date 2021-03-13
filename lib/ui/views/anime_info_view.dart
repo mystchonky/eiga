@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eiga/models/anime_card_entry.dart';
+import 'package:eiga/ui/widgets/anime_card.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +12,7 @@ import 'package:intl/intl.dart';
 
 import '../../graphql/graphql_api.dart';
 import '../../models/helpers/media_format.dart';
+import '../../models/helpers/media_relation.dart';
 import '../../models/helpers/media_status.dart';
 import '../../models/sources/four_anime.dart';
 
@@ -54,7 +57,8 @@ class _AnimeInfoState extends State<AnimeInfo> {
           return Center(child: CircularProgressIndicator());
         }
 
-        final anime = AnimeInfo$Query.fromJson(result.data).media;
+        final AnimeInfo$Query$Media anime =
+            AnimeInfo$Query.fromJson(result.data).media;
         final animeName = anime.title.romaji;
         final animeColor = anime.coverImage.color ?? "#000000";
 
@@ -233,7 +237,6 @@ class _AnimeInfoState extends State<AnimeInfo> {
                               fontFamily: "Rubik",
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
-                          textAlign: TextAlign.start,
                         ),
                         Theme(
                           data: Theme.of(context).copyWith(
@@ -356,6 +359,39 @@ class _AnimeInfoState extends State<AnimeInfo> {
                                 ));
                           }).toList(),
                         ),
+                        SizedBox(height: 10),
+
+                        /*
+                        * Relations
+                        * */
+                        Text(
+                          "Relations",
+                          style: TextStyle(
+                              fontFamily: "Rubik",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                        SizedBox(height: 10),
+                        // fixme: broken connections!
+                        Container(
+                          height: 140,
+                          child: ListView.builder(
+                            itemCount: anime.relations.edges.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              final relation =
+                                  anime.relations.edges[index].node;
+                              final relationType = anime
+                                  .relations.edges[index].relationType.name;
+                              return AnimeCard(
+                                  anime: AnimeCardEntry(
+                                      relation.id,
+                                      relation.title.userPreferred,
+                                      relation.coverImage.large,
+                                      relation: relationType));
+                            },
+                          ),
+                        )
                       ],
                     )),
               ],

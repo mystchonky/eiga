@@ -38,10 +38,10 @@ query AnimeInfo($id: Int) {
         node {
           id
           title {
-            english
+            userPreferred
           }
           coverImage {
-            medium
+            large
           }
         }
       }
