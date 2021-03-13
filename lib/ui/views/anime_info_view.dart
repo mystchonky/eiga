@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:html/parser.dart';
 import 'package:intl/intl.dart';
@@ -12,16 +13,34 @@ import '../../models/helpers/media_format.dart';
 import '../../models/helpers/media_status.dart';
 import '../../models/sources/four_anime.dart';
 
-class AnimeInfo extends StatelessWidget {
+class AnimeInfo extends StatefulWidget {
   final int id;
 
   const AnimeInfo({@required this.id});
 
   @override
+  _AnimeInfoState createState() => _AnimeInfoState();
+}
+
+class _AnimeInfoState extends State<AnimeInfo> {
+  @override
+  void initState() {
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIOverlays(
+        [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Query(
       options: QueryOptions(
-          document: AnimeInfoQuery().document, variables: {'id': id}),
+          document: AnimeInfoQuery().document, variables: {'id': widget.id}),
       builder: (
         QueryResult result, {
         Future<QueryResult> Function() refetch,
@@ -201,7 +220,7 @@ class AnimeInfo extends StatelessWidget {
                           ),
                           expandText: 'show more',
                           collapseText: 'show less',
-                          maxLines: 3,
+                          maxLines: 5,
                         ),
                         SizedBox(height: 10),
 
@@ -360,3 +379,5 @@ class AnimeInfo extends StatelessWidget {
     return formatter.format(date);
   }
 }
+// TODO : FIX POPULAR UPCOMING
+// TODO: fix ongoing huge anime episodes

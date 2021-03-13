@@ -5,6 +5,7 @@ import 'package:android_intent/flag.dart';
 import 'package:eiga/models/episode_entry.dart';
 import 'package:eiga/models/scraper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
@@ -52,12 +53,12 @@ class EpisodeListView extends StatelessWidget {
         .toList();
   }
 
-  Future<void> openEpisode(String link, BuildContext con) async {
+  Future<void> openEpisode(String link, BuildContext context) async {
     showDialog(
-        context: con,
+        context: context,
         builder: (context) {
           return SimpleDialog(
-            contentPadding: EdgeInsets.all(10),
+            //contentPadding: EdgeInsets.all(10),
             children: [
               // ignore: avoid_unnecessary_containers
               Container(child: Center(child: CircularProgressIndicator())),
@@ -89,7 +90,28 @@ class EpisodeListView extends StatelessWidget {
         type: 'video/**',
         flags: [Flag.FLAG_GRANT_READ_URI_PERMISSION],
       );
-      await intent.launch();
+      try {
+        await intent.launch();
+      } on PlatformException {
+        Navigator.of(context, rootNavigator: true).pop();
+        showDialog(
+            context: context,
+            builder: (context) {
+              return SimpleDialog(
+                contentPadding: EdgeInsets.all(10),
+                title: Text(
+                  "Unable to Launch",
+                  textAlign: TextAlign.center,
+                ),
+                children: const [
+                  Text(
+                    "Can't find any compatible video player. Install suitable video player for it to work.",
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              );
+            });
+      }
     }
   }
 }
