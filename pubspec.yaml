@@ -20,6 +20,7 @@ dependencies:
   cached_network_image: '>=2.5.0'
   expandable_text: ^2.0.0-nullsafety.1
   intl: ^0.17.0
+  carousel_slider: ^3.0.0
 
 
 dev_dependencies:

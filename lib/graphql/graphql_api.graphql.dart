@@ -622,8 +622,11 @@ class Trending$Query$Page$Media with EquatableMixin {
 
   Trending$Query$Page$Media$MediaCoverImage coverImage;
 
+  String bannerImage;
+
   @override
-  List<Object> get props => [id, title, episodes, status, coverImage];
+  List<Object> get props =>
+      [id, title, episodes, status, coverImage, bannerImage];
   Map<String, dynamic> toJson() => _$Trending$Query$Page$MediaToJson(this);
 }
 
@@ -1564,7 +1567,13 @@ class TrendingQuery extends GraphQLQuery<Trending$Query, JsonSerializable> {
                                 arguments: [],
                                 directives: [],
                                 selectionSet: null)
-                          ]))
+                          ])),
+                      FieldNode(
+                          name: NameNode(value: 'bannerImage'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null)
                     ]))
               ]))
         ]))

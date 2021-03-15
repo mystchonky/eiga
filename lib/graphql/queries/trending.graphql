@@ -10,6 +10,7 @@ query Trending{
         coverImage {
           large
         }
+        bannerImage
       }
     }
   }

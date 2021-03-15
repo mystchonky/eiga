@@ -648,7 +648,8 @@ Trending$Query$Page$Media _$Trending$Query$Page$MediaFromJson(
     ..coverImage = json['coverImage'] == null
         ? null
         : Trending$Query$Page$Media$MediaCoverImage.fromJson(
-            json['coverImage'] as Map<String, dynamic>);
+            json['coverImage'] as Map<String, dynamic>)
+    ..bannerImage = json['bannerImage'] as String;
 }
 
 Map<String, dynamic> _$Trending$Query$Page$MediaToJson(
@@ -659,6 +660,7 @@ Map<String, dynamic> _$Trending$Query$Page$MediaToJson(
       'episodes': instance.episodes,
       'status': _$MediaStatusEnumMap[instance.status],
       'coverImage': instance.coverImage?.toJson(),
+      'bannerImage': instance.bannerImage,
     };
 
 Trending$Query$Page _$Trending$Query$PageFromJson(Map<String, dynamic> json) {

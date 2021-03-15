@@ -60,7 +60,6 @@ class _AnimeInfoState extends State<AnimeInfo> {
         final AnimeInfo$Query$Media anime =
             AnimeInfo$Query.fromJson(result.data).media;
         final animeName = anime.title.romaji;
-        final animeColor = anime.coverImage.color ?? "#000000";
 
         return Scaffold(
           extendBodyBehindAppBar: true,
@@ -82,17 +81,12 @@ class _AnimeInfoState extends State<AnimeInfo> {
                     // ignore: sized_box_for_whitespace
                     Container(
                       width: double.infinity,
+                      height: double.infinity,
                       child: CachedNetworkImage(
-                        imageUrl: anime.coverImage.large,
-                        fit: BoxFit.fitWidth,
+                        imageUrl: anime.bannerImage,
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.001)),
-                        )),
                     Container(
                       height: double.infinity,
                       decoration: BoxDecoration(
@@ -100,12 +94,7 @@ class _AnimeInfoState extends State<AnimeInfo> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: <Color>[
-                              Color(int.parse(animeColor.substring(1, 7),
-                                      radix: 16) +
-                                  0xFF000000),
-                              Color(int.parse(animeColor.substring(1, 7),
-                                      radix: 16) +
-                                  0x66000000),
+                              Colors.black.withAlpha(0),
                               Colors.black26,
                               Colors.black87,
                               Colors.black,

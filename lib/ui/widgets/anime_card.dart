@@ -32,18 +32,21 @@ class _AnimeCardState extends State<AnimeCard>
         child: Container(
           width: 120,
           decoration:
-              BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(4))),
+              BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8))),
           clipBehavior: Clip.hardEdge,
           child: Stack(
             children: [
-              CachedNetworkImage(
-                width: double.infinity,
-                height: double.infinity,
-                imageUrl: widget.anime.coverUrl,
-                placeholder: (context, url) =>
-                    Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-                fit: BoxFit.cover,
+              Padding(
+                padding: const EdgeInsets.all(1.0),
+                child: CachedNetworkImage(
+                  width: double.infinity,
+                  height: double.infinity,
+                  imageUrl: widget.anime.coverUrl,
+                  placeholder: (context, url) =>
+                      Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  fit: BoxFit.cover,
+                ),
               ),
               Container(
                 padding: EdgeInsets.all(5.0),

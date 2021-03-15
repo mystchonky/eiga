@@ -1,6 +1,6 @@
 import 'package:eiga/ui/widgets/popular_custom.dart';
 import 'package:eiga/ui/widgets/popular_list.dart';
-import 'package:eiga/ui/widgets/trending_list.dart';
+import 'package:eiga/ui/widgets/trending_carousel.dart';
 import 'package:flutter/material.dart';
 
 class DiscoverPage extends StatelessWidget {
@@ -9,6 +9,7 @@ class DiscoverPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
+          TrendingCarousel(),
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Column(
@@ -28,33 +29,6 @@ class DiscoverPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: PopularList(),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Divider(),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Trending",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: "Rubik",
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: TrendingList(),
                 )
               ],
             ),
