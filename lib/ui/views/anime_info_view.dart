@@ -206,6 +206,7 @@ class _AnimeInfoState extends State<AnimeInfo> {
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
                         ),
+                        SizedBox(height: 5),
                         ExpandableText(
                           cleanText(anime.description),
                           style: TextStyle(
@@ -227,6 +228,7 @@ class _AnimeInfoState extends State<AnimeInfo> {
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
                         ),
+                        SizedBox(height: 5),
                         Theme(
                           data: Theme.of(context).copyWith(
                             textTheme: TextTheme(

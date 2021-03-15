@@ -1,4 +1,4 @@
-query Popular{
+query AllTimePopular{
     Page (page: 1, perPage: 10) {
       media (type: ANIME, sort: POPULARITY_DESC) {
         id
