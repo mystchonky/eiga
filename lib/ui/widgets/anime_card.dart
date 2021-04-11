@@ -5,10 +5,10 @@ import '../../models/anime_card_entry.dart';
 import '../views/anime_info_view.dart';
 
 class AnimeCard extends StatefulWidget {
-  final AnimeCardEntry anime;
+  final AnimeCardEntry? anime;
 
   const AnimeCard({
-    Key key,
+    Key? key,
     this.anime,
   }) : super(key: key);
 
@@ -28,7 +28,7 @@ class _AnimeCardState extends State<AnimeCard>
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => AnimeInfo(id: widget.anime.id)));
+                  builder: (context) => AnimeInfo(id: widget.anime!.id)));
         },
         child: Container(
           width: 120,
@@ -42,7 +42,7 @@ class _AnimeCardState extends State<AnimeCard>
                 child: CachedNetworkImage(
                   width: double.infinity,
                   height: double.infinity,
-                  imageUrl: widget.anime.coverUrl,
+                  imageUrl: widget.anime!.coverUrl,
                   placeholder: (context, url) =>
                       Center(child: CircularProgressIndicator()),
                   errorWidget: (context, url, error) => Icon(Icons.error),
@@ -64,7 +64,7 @@ class _AnimeCardState extends State<AnimeCard>
                   ),
                 ),
                 child: Text(
-                  widget.anime.name,
+                  widget.anime!.name,
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16.0,
@@ -73,11 +73,11 @@ class _AnimeCardState extends State<AnimeCard>
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              if (widget.anime.relation != null)
+              if (widget.anime!.relation != null)
                 Container(
                   color: Colors.black,
                   child: Text(
-                    widget.anime.relation,
+                    widget.anime!.relation!,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 12.0,

@@ -8,7 +8,7 @@ import 'login.dart';
 // ignore: must_be_immutable
 class App extends StatelessWidget {
   final EigaOAuth2Client eOAuth2Client = EigaOAuth2Client();
-  EigaGraphQLClient eGQLClient;
+  EigaGraphQLClient? eGQLClient;
 
   App() {
     eGQLClient = EigaGraphQLClient(eOAuth2Client);
@@ -35,7 +35,7 @@ class App extends StatelessWidget {
 // ignore: must_be_immutable
 class _App extends StatelessWidget {
   final EigaOAuth2Client client;
-  bool tokenValid;
+  bool? tokenValid;
 
   _App(this.client) {
     checkTokenValid();

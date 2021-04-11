@@ -14,7 +14,7 @@ import '../../../models/scraper.dart';
 class EpisodeListView extends StatelessWidget {
   final String animeLink;
 
-  const EpisodeListView({Key key, @required this.animeLink}) : super(key: key);
+  const EpisodeListView({Key? key, required this.animeLink}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +33,11 @@ class EpisodeListView extends StatelessWidget {
                     crossAxisCount: 6,
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
-                    children: List.generate(snapshot.data.length, (index) {
+                    children: List.generate(snapshot.data!.length, (index) {
                       return ElevatedButton(
                         onPressed: () =>
-                            openEpisode(snapshot.data[index].link, context),
-                        child: Text(snapshot.data[index].title),
+                            openEpisode(snapshot.data![index].link, context),
+                        child: Text(snapshot.data![index].title),
                       );
                     }));
               }
@@ -50,7 +50,7 @@ class EpisodeListView extends StatelessWidget {
     final soup = Scraper(response.body);
     return soup
         .findAll('ul.episodes.range.active > li > a')
-        .map((e) => EpisodeEntry(e.text, soup.attr(e, 'href')))
+        .map((e) => EpisodeEntry(e.text, soup.attr(e, 'href')!))
         .toList();
   }
 
@@ -69,7 +69,7 @@ class EpisodeListView extends StatelessWidget {
     final response = await http.get(Uri.parse(link));
     final dom.Document d = parser.parse(response.body);
     final List<dom.Element> a = d.querySelectorAll('script');
-    String vidLink;
+    String? vidLink;
     for (final dom.Element i in a) {
       if (i.innerHtml.contains("document.write( '<a ")) {
         final String str = i.innerHtml;

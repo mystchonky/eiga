@@ -8,11 +8,11 @@ import 'pages/discover.dart';
 import 'pages/profile.dart';
 
 class EigaScaffold extends StatefulWidget {
-  final EigaGraphQLClient gqlClient;
+  final EigaGraphQLClient? gqlClient;
   final EigaOAuth2Client oauth2Client;
 
   const EigaScaffold(
-      {Key key, @required this.gqlClient, @required this.oauth2Client})
+      {Key? key, required this.gqlClient, required this.oauth2Client})
       : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class _EigaScaffoldState extends State<EigaScaffold> {
   @override
   Widget build(BuildContext context) {
     return GraphQLProvider(
-      client: widget.gqlClient.client,
+      client: widget.gqlClient!.client,
       child: CacheProvider(
         child: MaterialApp(
           theme: ThemeData(fontFamily: "Inter"),

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:oauth2_client/access_token_response.dart';
 import 'package:oauth2_client/oauth2_client.dart';
 import 'package:oauth2_client/oauth2_helper.dart';
@@ -6,8 +5,8 @@ import 'package:oauth2_client/oauth2_helper.dart';
 import 'package:oauth2_client/src/oauth2_utils.dart';
 
 class EigaOAuth2Client {
-  _OAuth2Client client;
-  OAuth2Helper helper;
+  late _OAuth2Client client;
+  late OAuth2Helper helper;
 
   EigaOAuth2Client() {
     client = _OAuth2Client();
@@ -18,12 +17,12 @@ class EigaOAuth2Client {
     );
   }
 
-  Future<AccessTokenResponse> tokenValid() async {
+  Future<AccessTokenResponse?> tokenValid() async {
     final tknResp = await getTokenFromStorage();
     return tknResp;
   }
 
-  Future<AccessTokenResponse> getTokenFromStorage() async {
+  Future<AccessTokenResponse?> getTokenFromStorage() async {
     return helper.getTokenFromStorage();
   }
 
@@ -46,14 +45,14 @@ class _OAuth2Client extends OAuth2Client {
 
   @override
   String getAuthorizeUrl(
-      {@required String clientId,
+      {required String clientId,
       String responseType = 'code',
-      String redirectUri,
-      List<String> scopes,
+      String? redirectUri,
+      List<String>? scopes,
       bool enableState = true,
-      String state,
-      String codeChallenge,
-      Map<String, dynamic> customParams}) {
+      String? state,
+      String? codeChallenge,
+      Map<String, dynamic>? customParams}) {
     final params = <String, dynamic>{
       'response_type': responseType,
       'client_id': clientId

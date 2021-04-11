@@ -7,8 +7,8 @@ import '../../../models/anime_card_entry.dart';
 import '../anime_card.dart';
 
 class MediaList {
-  final DocumentNode mediaQuery;
-  final Map<String, dynamic> queryVariables;
+  final DocumentNode? mediaQuery;
+  final Map<String, dynamic>? queryVariables;
 
   const MediaList({
     this.mediaQuery,
@@ -21,12 +21,12 @@ class MediaList {
       height: 180,
       child: Query(
           options: QueryOptions(
-            document: mediaQuery,
+            document: mediaQuery!,
           ),
           builder: (
             QueryResult result, {
-            Future<QueryResult> Function() refetch,
-            FetchMore fetchMore,
+            Future<QueryResult?> Function()? refetch,
+            FetchMore? fetchMore,
           }) =>
               _generateDefault(result)),
     );
@@ -38,11 +38,11 @@ class MediaList {
       height: 180,
       child: Query(
           options:
-              QueryOptions(document: mediaQuery, variables: queryVariables),
+              QueryOptions(document: mediaQuery!, variables: queryVariables!),
           builder: (
             QueryResult result, {
-            Future<QueryResult> Function() refetch,
-            FetchMore fetchMore,
+            Future<QueryResult?> Function()? refetch,
+            FetchMore? fetchMore,
           }) =>
               _generateDefault(result)),
     );
@@ -57,18 +57,18 @@ class MediaList {
       return Center(child: CircularProgressIndicator());
     }
 
-    final List<AllTimePopular$Query$Page$Media> data =
-        AllTimePopular$Query.fromJson(result.data).page.media;
+    final List<AllTimePopular$Query$Page$Media?>? data =
+        AllTimePopular$Query.fromJson(result.data!).page?.media;
 
     return ListView.builder(
-        itemCount: data.length,
+        itemCount: data?.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return AnimeCard(
               anime: AnimeCardEntry(
-                  data[index].id,
-                  data[index].title.userPreferred.toString(),
-                  data[index].coverImage.large));
+                  data?[index]?.id ?? 00,
+                  data?[index]?.title?.userPreferred.toString() ?? "N/A",
+                  data?[index]?.coverImage?.large ?? "N/A"));
         });
   }
 }

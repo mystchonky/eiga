@@ -5,8 +5,8 @@ import '../views/anime_info_view.dart';
 import 'search_card.dart';
 
 class SearchPane extends StatefulWidget {
-  final String searchStr;
-  final int currentPage;
+  final String? searchStr;
+  final int? currentPage;
 
   const SearchPane({
     this.searchStr,
@@ -25,12 +25,12 @@ class _SearchPaneState extends State<SearchPane> {
   Widget build(BuildContext context) {
     return Query(
       options: QueryOptions(
-          document: SearchDataQuery().document,
+          document: SearchDataQuery(variables: SearchDataArguments()).document,
           variables: {'search': widget.searchStr, 'page': 1, 'perPage': 5}),
       builder: (
         QueryResult result, {
-        Future<QueryResult> Function() refetch,
-        FetchMore fetchMore,
+        Future<QueryResult?> Function()? refetch,
+        FetchMore? fetchMore,
       }) {
         if (result.hasException) {
           return Text(result.exception.toString());
@@ -40,15 +40,15 @@ class _SearchPaneState extends State<SearchPane> {
           return Center(child: CircularProgressIndicator());
         }
 
-        final pageInfo = SearchData$Query.fromJson(result.data).page.pageInfo;
-        final data = SearchData$Query.fromJson(result.data).page.media;
-        final nextPage = pageInfo.currentPage + 1;
+        final pageInfo = SearchData$Query.fromJson(result.data!).page?.pageInfo;
+        final data = SearchData$Query.fromJson(result.data!).page?.media;
+        final nextPage = pageInfo?.currentPage ?? 0 + 1;
 
         final FetchMoreOptions opts = FetchMoreOptions(
             variables: {'page': nextPage},
             updateQuery: (previousResultData, fetchMoreResultData) {
-              final oldData = previousResultData['Page']['media'];
-              final newData = fetchMoreResultData['Page']['media'];
+              final oldData = previousResultData!['Page']['media'];
+              final newData = fetchMoreResultData!['Page']['media'];
 
               final List<dynamic> combined = [
                 ...oldData as List<dynamic>,
@@ -61,7 +61,7 @@ class _SearchPaneState extends State<SearchPane> {
               return fetchMoreResultData;
             });
 
-        if (data.isEmpty) {
+        if (data?.isEmpty ?? false) {
           return Center(child: Text("No result found"));
         }
 
@@ -69,12 +69,12 @@ class _SearchPaneState extends State<SearchPane> {
           children: [
             Expanded(
               child: NotificationListener(
-                onNotification: (sn) {
+                onNotification: (dynamic sn) {
                   if (sn is OverscrollNotification &&
                       !result.isLoading &&
-                      pageInfo.hasNextPage &&
+                      (pageInfo?.hasNextPage ?? false) &&
                       !updating) {
-                    fetchMore(opts);
+                    fetchMore!(opts);
                     updating = true;
                     return true;
                   } else {
@@ -83,7 +83,7 @@ class _SearchPaneState extends State<SearchPane> {
                 },
                 child: ListView.separated(
                   controller: _scrollController,
-                  itemCount: data.length,
+                  itemCount: data?.length ?? 0,
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
@@ -91,11 +91,11 @@ class _SearchPaneState extends State<SearchPane> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => AnimeInfo(
-                                      id: data[index].id,
+                                      id: data?[index]?.id ?? 0,
                                     )));
                       },
                       child: SearchCard(
-                        data: data[index],
+                        data: data?[index],
                       ),
                     );
                   },

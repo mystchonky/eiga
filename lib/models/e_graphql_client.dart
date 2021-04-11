@@ -7,15 +7,15 @@ class EigaGraphQLClient {
   final HttpLink httpLink = HttpLink(
     'https://graphql.anilist.co/',
   );
-  AuthLink authLink;
-  Link link;
-  ValueNotifier<GraphQLClient> client;
+  late AuthLink authLink;
+  late Link link;
+  ValueNotifier<GraphQLClient>? client;
   final memCache = GraphQLCache();
 
   EigaGraphQLClient(EigaOAuth2Client eClient) {
     authLink = AuthLink(
       getToken: () async =>
-          'Bearer ${(await eClient.getTokenFromStorage()).accessToken}',
+          'Bearer ${(await eClient.getTokenFromStorage())!.accessToken}',
     );
 
     link = authLink.concat(httpLink);

@@ -7,7 +7,7 @@ import '../../views/anime_info_view.dart';
 class AnimeCarouselCard extends StatelessWidget {
   final AnimeCarouselEntry anime;
 
-  const AnimeCarouselCard({Key key, @required this.anime}) : super(key: key);
+  const AnimeCarouselCard({Key? key, required this.anime}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

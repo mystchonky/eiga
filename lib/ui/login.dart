@@ -5,7 +5,7 @@ import '../models/e_oauth2_client.dart';
 class LoginPrompt extends StatelessWidget {
   final EigaOAuth2Client eigaOAuth2Client;
 
-  const LoginPrompt({Key key, @required this.eigaOAuth2Client})
+  const LoginPrompt({Key? key, required this.eigaOAuth2Client})
       : super(key: key);
 
   @override
@@ -15,10 +15,8 @@ class LoginPrompt extends StatelessWidget {
         body: Center(
           child: ElevatedButton(
               onPressed: () async {
-                final tknResp = await eigaOAuth2Client.generateToken();
-                if (tknResp != null) {
-                  Navigator.popAndPushNamed(context, '_app');
-                }
+                await eigaOAuth2Client.generateToken();
+                Navigator.popAndPushNamed(context, '_app');
               },
               child: Text(
                 "LOGIN",

@@ -13,7 +13,8 @@ class PopularThisSeason extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MediaList(
-            mediaQuery: PopularCustomQuery().document,
+            mediaQuery: PopularCustomQuery(variables: PopularCustomArguments())
+                .document,
             queryVariables: queryVariables)
         .generateWithVariables(context);
   }
@@ -28,7 +29,8 @@ class UpcomingNextSeason extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MediaList(
-            mediaQuery: PopularCustomQuery().document,
+            mediaQuery: PopularCustomQuery(variables: PopularCustomArguments())
+                .document,
             queryVariables: queryVariables)
         .generateWithVariables(context);
   }

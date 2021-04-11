@@ -6,10 +6,10 @@ import '../../models/helpers/media_format.dart';
 
 class SearchCard extends StatefulWidget {
   const SearchCard({
-    @required this.data,
+    required this.data,
   });
 
-  final SearchData$Query$Page$Media data;
+  final SearchData$Query$Page$Media? data;
 
   @override
   _SearchCardState createState() => _SearchCardState();
@@ -31,7 +31,7 @@ class _SearchCardState extends State<SearchCard>
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: CachedNetworkImage(
-                  imageUrl: widget.data.coverImage.large,
+                  imageUrl: widget.data?.coverImage?.large ?? "",
                   placeholder: (context, url) =>
                       Center(child: CircularProgressIndicator()),
                   errorWidget: (context, url, error) => Icon(Icons.error),
@@ -48,18 +48,18 @@ class _SearchCardState extends State<SearchCard>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.data.title.romaji ?? "",
+                    widget.data?.title?.romaji ?? "",
                     maxLines: 1,
                     style: TextStyle(fontFamily: "Rubik", fontSize: 20),
                   ),
                   Text(
-                    widget.data.title.native ?? "",
+                    widget.data?.title?.native ?? "",
                     maxLines: 1,
                     style: TextStyle(fontSize: 12),
                   ),
                   SizedBox(height: 10),
                   Text(
-                      "Score: ${widget.data.averageScore}% | ${widget.data.format.name} ${widget.data.episodes} Eps"),
+                      "Score: ${widget.data?.averageScore}% | ${widget.data?.format?.name} ${widget.data?.episodes} Eps"),
                 ],
               ),
             ),

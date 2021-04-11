@@ -8,7 +8,7 @@ enum currentView { animeList, episodeList }
 class FourAnime extends StatefulWidget {
   final String search;
 
-  const FourAnime({/*required*/ @required this.search});
+  const FourAnime({required this.search});
 
   @override
   _FourAnimeState createState() => _FourAnimeState();
@@ -47,6 +47,5 @@ class _FourAnimeState extends State<FourAnime> {
           animeLink: animeLink,
         );
     }
-    return Container();
   }
 }

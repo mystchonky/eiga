@@ -18,7 +18,7 @@ import '../widgets/anime_card.dart';
 class AnimeInfo extends StatefulWidget {
   final int id;
 
-  const AnimeInfo({@required this.id});
+  const AnimeInfo({required this.id});
 
   @override
   _AnimeInfoState createState() => _AnimeInfoState();
@@ -29,11 +29,12 @@ class _AnimeInfoState extends State<AnimeInfo> {
   Widget build(BuildContext context) {
     return Query(
       options: QueryOptions(
-          document: AnimeInfoQuery().document, variables: {'id': widget.id}),
+          document: AnimeInfoQuery(variables: AnimeInfoArguments()).document,
+          variables: {'id': widget.id}),
       builder: (
         QueryResult result, {
-        Future<QueryResult> Function() refetch,
-        FetchMore fetchMore,
+        Future<QueryResult?> Function()? refetch,
+        FetchMore? fetchMore,
       }) {
         if (result.hasException) {
           return Text(result.exception.toString());
@@ -43,9 +44,9 @@ class _AnimeInfoState extends State<AnimeInfo> {
           return Center(child: CircularProgressIndicator());
         }
 
-        final AnimeInfo$Query$Media anime =
-            AnimeInfo$Query.fromJson(result.data).media;
-        final animeName = anime.title.romaji;
+        final AnimeInfo$Query$Media? anime =
+            AnimeInfo$Query.fromJson(result.data!).media;
+        final animeName = anime?.title?.romaji;
 
         return Scaffold(
           extendBodyBehindAppBar: true,
@@ -65,14 +66,14 @@ class _AnimeInfoState extends State<AnimeInfo> {
                   decoration: BoxDecoration(),
                   child: Stack(children: [
                     // ignore: sized_box_for_whitespace
-                    if (anime.bannerImage != null)
+                    if (anime?.bannerImage != null)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 2),
                         child: Container(
                           width: double.infinity,
                           height: double.infinity,
                           child: CachedNetworkImage(
-                            imageUrl: anime.bannerImage,
+                            imageUrl: anime?.bannerImage ?? "",
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -104,7 +105,7 @@ class _AnimeInfoState extends State<AnimeInfo> {
                                 child: ClipRRect(
                                     borderRadius: BorderRadius.circular(5.0),
                                     child: CachedNetworkImage(
-                                      imageUrl: anime.coverImage.large,
+                                      imageUrl: anime?.coverImage?.large ?? "",
                                       fit: BoxFit.contain,
                                       placeholder: (context, url) => Center(
                                           child: CircularProgressIndicator()),
@@ -122,19 +123,19 @@ class _AnimeInfoState extends State<AnimeInfo> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      animeName,
+                                      animeName ?? "N/A",
                                       maxLines: 2,
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 18),
                                     ),
-                                    if (anime.title.english != null)
+                                    if (anime?.title?.english != null)
                                       Text(
-                                        anime.title.english,
+                                        anime?.title?.english ?? "N/A",
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 12),
                                       ),
                                     Text(
-                                      anime.title.native,
+                                      anime?.title?.native ?? "N/A",
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 12),
                                     )
@@ -180,8 +181,8 @@ class _AnimeInfoState extends State<AnimeInfo> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                FourAnime(search: animeName)));
+                                            builder: (context) => FourAnime(
+                                                search: animeName ?? "")));
                                   }),
                             ),
                           ],
@@ -199,7 +200,7 @@ class _AnimeInfoState extends State<AnimeInfo> {
                         ),
                         SizedBox(height: 5),
                         ExpandableText(
-                          cleanText(anime.description),
+                          cleanText(anime?.description ?? ""),
                           style: TextStyle(
                             color: Colors.white60,
                           ),
@@ -264,50 +265,51 @@ class _AnimeInfoState extends State<AnimeInfo> {
                                         "Episodes",
                                       ),
                                       infoValue(
-                                        anime.episodes?.toString() ?? "0",
+                                        anime?.episodes?.toString() ?? "0",
                                       ),
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Popularity"),
                                       infoValue(
-                                        "#${anime.popularity ?? 0}",
+                                        "#${anime?.popularity ?? 0}",
                                       )
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Score"),
                                       infoValue(
-                                        "${(anime.averageScore ?? 0) / 10}",
+                                        "${(anime?.averageScore ?? 0) / 10}",
                                       )
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Type"),
                                       infoValue(
-                                        anime.format.name ?? "N/A",
+                                        anime?.format?.name ?? "N/A",
                                       )
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Studio"),
                                       infoValue(
-                                        anime.studios.nodes[0].name ?? "N/A",
+                                        anime?.studios?.nodes?[0]?.name ??
+                                            "N/A",
                                       )
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Status"),
                                       infoValue(
-                                        anime.status.name ?? "N/A",
+                                        anime?.status?.name ?? "N/A",
                                       )
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Duration"),
                                       infoValue(
-                                        "${anime.duration ?? 0} Min",
+                                        "${anime?.duration ?? 0} Min",
                                       )
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Aired"),
-                                      infoValue(anime.startDate != null
+                                      infoValue(anime?.startDate != null
                                           ? "N/A"
-                                          : cleanDate(anime.startDate))
+                                          : cleanDate(anime?.startDate))
                                     ])
                                   ],
                                 ));
@@ -321,25 +323,26 @@ class _AnimeInfoState extends State<AnimeInfo> {
                         Wrap(
                           spacing: 5,
                           runSpacing: 5,
-                          children: anime.genres.map((gen) {
-                            return Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                  //color: Theme.of(context).primaryColor
-                                ),
-                                padding: EdgeInsets.all(5),
-                                child: Text(
-                                  gen,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12,
-                                  ),
-                                ));
-                          }).toList(),
+                          children: anime?.genres?.map((gen) {
+                                return Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                      //color: Theme.of(context).primaryColor
+                                    ),
+                                    padding: EdgeInsets.all(5),
+                                    child: Text(
+                                      gen ?? "N/A",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12,
+                                      ),
+                                    ));
+                              }).toList() ??
+                              [],
                         ),
                         SizedBox(height: 10),
 
@@ -358,21 +361,21 @@ class _AnimeInfoState extends State<AnimeInfo> {
                         Container(
                           height: 160,
                           child: ListView.builder(
-                            itemCount: anime.relations.edges.length,
+                            itemCount: anime?.relations?.edges?.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               final relation =
-                                  anime.relations.edges[index].node;
-                              final relationType = anime
-                                  .relations.edges[index].relationType.name;
+                                  anime?.relations?.edges?[index]?.node;
+                              final relationType = anime?.relations
+                                  ?.edges?[index]?.relationType?.name;
                               return Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 2),
                                 child: AnimeCard(
                                     anime: AnimeCardEntry(
-                                        relation.id,
-                                        relation.title.userPreferred,
-                                        relation.coverImage.large,
+                                        relation?.id ?? 00,
+                                        relation?.title?.userPreferred ?? "",
+                                        relation?.coverImage?.large ?? "",
                                         relation: relationType)),
                               );
                             },
@@ -393,13 +396,15 @@ class _AnimeInfoState extends State<AnimeInfo> {
 
   String cleanText(String htmlString) {
     final document = parse(htmlString);
-    final String parsedString = parse(document.body.text).documentElement.text;
+    final String parsedString =
+        parse(document.body!.text).documentElement!.text;
 
     return parsedString;
   }
 
-  String cleanDate(AnimeInfo$Query$Media$FuzzyDate dateIn) {
-    final date = DateTime(dateIn.year, dateIn.month, dateIn.day);
+  String cleanDate(AnimeInfo$Query$Media$FuzzyDate? dateIn) {
+    final date =
+        DateTime(dateIn?.year ?? 0, dateIn?.month ?? 0, dateIn?.day ?? 0);
     final DateFormat formatter = DateFormat('dd MMMM, y');
     return formatter.format(date);
   }
