@@ -1,6 +1,6 @@
 class AnimeEntry {
   final String title;
-  final String link;
+  final String/*!*/ link;
 
   AnimeEntry(this.title, this.link);
 }

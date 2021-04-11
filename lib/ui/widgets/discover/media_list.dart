@@ -1,9 +1,10 @@
-import 'package:eiga/graphql/graphql_api.dart';
-import 'package:eiga/models/anime_card_entry.dart';
-import 'package:eiga/ui/widgets/anime_card.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:gql/ast.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+
+import '../../../graphql/graphql_api.dart';
+import '../../../models/anime_card_entry.dart';
+import '../anime_card.dart';
 
 class MediaList {
   final DocumentNode mediaQuery;

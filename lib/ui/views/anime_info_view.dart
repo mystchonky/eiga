@@ -1,20 +1,19 @@
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:eiga/models/anime_card_entry.dart';
-import 'package:eiga/ui/widgets/anime_card.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:html/parser.dart';
 import 'package:intl/intl.dart';
 
 import '../../graphql/graphql_api.dart';
+import '../../models/anime_card_entry.dart';
 import '../../models/helpers/media_format.dart';
 import '../../models/helpers/media_relation.dart';
 import '../../models/helpers/media_status.dart';
 import '../../models/sources/four_anime.dart';
+import '../widgets/anime_card.dart';
 
 class AnimeInfo extends StatefulWidget {
   final int id;
@@ -26,19 +25,6 @@ class AnimeInfo extends StatefulWidget {
 }
 
 class _AnimeInfoState extends State<AnimeInfo> {
-  @override
-  void initState() {
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    SystemChrome.setEnabledSystemUIOverlays(
-        [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Query(
@@ -79,14 +65,18 @@ class _AnimeInfoState extends State<AnimeInfo> {
                   decoration: BoxDecoration(),
                   child: Stack(children: [
                     // ignore: sized_box_for_whitespace
-                    Container(
-                      width: double.infinity,
-                      height: double.infinity,
-                      child: CachedNetworkImage(
-                        imageUrl: anime.bannerImage,
-                        fit: BoxFit.cover,
+                    if (anime.bannerImage != null)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 2),
+                        child: Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: CachedNetworkImage(
+                            imageUrl: anime.bannerImage,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
-                    ),
                     Container(
                       height: double.infinity,
                       decoration: BoxDecoration(
@@ -103,7 +93,8 @@ class _AnimeInfoState extends State<AnimeInfo> {
                     ),
                     SafeArea(
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                         //color: Colors.purple,
                         // height: 200,
                         child: Row(
@@ -273,50 +264,50 @@ class _AnimeInfoState extends State<AnimeInfo> {
                                         "Episodes",
                                       ),
                                       infoValue(
-                                        anime.episodes.toString(),
+                                        anime.episodes?.toString() ?? "0",
                                       ),
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Popularity"),
                                       infoValue(
-                                        "#${anime.popularity}",
+                                        "#${anime.popularity ?? 0}",
                                       )
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Score"),
                                       infoValue(
-                                        "${anime.averageScore / 10}",
+                                        "${(anime.averageScore ?? 0) / 10}",
                                       )
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Type"),
                                       infoValue(
-                                        anime.format.name,
+                                        anime.format.name ?? "N/A",
                                       )
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Studio"),
                                       infoValue(
-                                        anime.studios.nodes[0].name,
+                                        anime.studios.nodes[0].name ?? "N/A",
                                       )
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Status"),
                                       infoValue(
-                                        anime.status.name,
+                                        anime.status.name ?? "N/A",
                                       )
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Duration"),
                                       infoValue(
-                                        "${anime.duration} Min",
+                                        "${anime.duration ?? 0} Min",
                                       )
                                     ]),
                                     TableRow(children: [
                                       infoTitle("Aired"),
-                                      infoValue(
-                                        cleanDate(anime.startDate),
-                                      )
+                                      infoValue(anime.startDate != null
+                                          ? "N/A"
+                                          : cleanDate(anime.startDate))
                                     ])
                                   ],
                                 ));
@@ -365,7 +356,7 @@ class _AnimeInfoState extends State<AnimeInfo> {
                         SizedBox(height: 10),
                         // fixme: broken connections!
                         Container(
-                          height: 140,
+                          height: 160,
                           child: ListView.builder(
                             itemCount: anime.relations.edges.length,
                             scrollDirection: Axis.horizontal,
@@ -374,14 +365,21 @@ class _AnimeInfoState extends State<AnimeInfo> {
                                   anime.relations.edges[index].node;
                               final relationType = anime
                                   .relations.edges[index].relationType.name;
-                              return AnimeCard(
-                                  anime: AnimeCardEntry(
-                                      relation.id,
-                                      relation.title.userPreferred,
-                                      relation.coverImage.large,
-                                      relation: relationType));
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 2),
+                                child: AnimeCard(
+                                    anime: AnimeCardEntry(
+                                        relation.id,
+                                        relation.title.userPreferred,
+                                        relation.coverImage.large,
+                                        relation: relationType)),
+                              );
                             },
                           ),
+                        ),
+                        SizedBox(
+                          height: 50,
                         )
                       ],
                     )),

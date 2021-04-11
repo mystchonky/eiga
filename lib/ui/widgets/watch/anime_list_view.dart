@@ -1,7 +1,8 @@
-import 'package:eiga/models/scraper.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:eiga/models/anime_entry.dart';
+
+import '../../../models/anime_entry.dart';
+import '../../../models/scraper.dart';
 
 class AnimeListView extends StatelessWidget {
   final String postUrl = "https://4anime.to/wp-admin/admin-ajax.php";
@@ -52,7 +53,7 @@ class AnimeListView extends StatelessWidget {
   }
 
   Future<List<AnimeEntry>> loadAnimeList() async {
-    final response = await http.post(postUrl, body: body);
+    final response = await http.post(Uri.parse(postUrl), body: body);
     final soup = Scraper(response.body);
     return soup
         .findAll('div.info > a')

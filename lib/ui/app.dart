@@ -1,8 +1,9 @@
-import 'package:eiga/models/e_graphql_client.dart';
-import 'package:eiga/models/e_oauth2_client.dart';
-import 'package:eiga/ui/e_scaffold.dart';
-import 'package:eiga/ui/login.dart';
 import 'package:flutter/material.dart';
+
+import '../models/e_graphql_client.dart';
+import '../models/e_oauth2_client.dart';
+import 'e_scaffold.dart';
+import 'login.dart';
 
 // ignore: must_be_immutable
 class App extends StatelessWidget {

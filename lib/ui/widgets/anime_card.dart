@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:eiga/models/anime_card_entry.dart';
-import 'package:eiga/ui/views/anime_info_view.dart';
 import 'package:flutter/material.dart';
+
+import '../../models/anime_card_entry.dart';
+import '../views/anime_info_view.dart';
 
 class AnimeCard extends StatefulWidget {
   final AnimeCardEntry anime;

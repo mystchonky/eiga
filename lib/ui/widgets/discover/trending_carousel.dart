@@ -1,9 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:eiga/models/anime_carousel_entry.dart';
-import 'file:///D:/libDev/flutter/eiga/lib/ui/widgets/discover/carousel_card.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:eiga/graphql/graphql_api.dart';
+
+import '../../../graphql/graphql_api.dart';
+import '../../../models/anime_carousel_entry.dart';
+import 'carousel_card.dart';
 
 class TrendingCarousel extends StatelessWidget {
   @override
@@ -40,7 +41,8 @@ class TrendingCarousel extends StatelessWidget {
                         anime: AnimeCarouselEntry(
                           data[itemIndex].id,
                           data[itemIndex].title.userPreferred,
-                          data[itemIndex].bannerImage,
+                          data[itemIndex].bannerImage ??
+                              data[itemIndex].coverImage.large,
                         ),
                       ),
               options: CarouselOptions(

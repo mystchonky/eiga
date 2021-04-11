@@ -2,13 +2,14 @@ import 'dart:io';
 
 import 'package:android_intent/android_intent.dart';
 import 'package:android_intent/flag.dart';
-import 'package:eiga/models/episode_entry.dart';
-import 'package:eiga/models/scraper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
+
+import '../../../models/episode_entry.dart';
+import '../../../models/scraper.dart';
 
 class EpisodeListView extends StatelessWidget {
   final String animeLink;
@@ -45,7 +46,7 @@ class EpisodeListView extends StatelessWidget {
   }
 
   Future<List<EpisodeEntry>> loadEpisodeList() async {
-    final response = await http.get(animeLink);
+    final response = await http.get(Uri.parse(animeLink));
     final soup = Scraper(response.body);
     return soup
         .findAll('ul.episodes.range.active > li > a')
@@ -65,7 +66,7 @@ class EpisodeListView extends StatelessWidget {
             ],
           );
         });
-    final response = await http.get(link);
+    final response = await http.get(Uri.parse(link));
     final dom.Document d = parser.parse(response.body);
     final List<dom.Element> a = d.querySelectorAll('script');
     String vidLink;
@@ -77,7 +78,6 @@ class EpisodeListView extends StatelessWidget {
 
         final startIndex = str.indexOf(start);
         final endIndex = str.indexOf(end, startIndex + start.length);
-
         vidLink = str.substring(startIndex + start.length, endIndex);
         break;
       }

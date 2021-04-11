@@ -1,16 +1,41 @@
-import 'file:///D:/libDev/flutter/eiga/lib/ui/widgets/discover/custom_lists.dart';
-import 'file:///D:/libDev/flutter/eiga/lib/ui/widgets/discover/trending_carousel.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/discover/custom_lists.dart';
+import '../widgets/discover/trending_carousel.dart';
+import 'search_page.dart';
 
 class DiscoverPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TrendingCarousel(),
-          Padding(
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          floating: true,
+          expandedHeight: 60.0,
+          flexibleSpace: FlexibleSpaceBar(
+            titlePadding: EdgeInsets.only(left: 10),
+            title: Row(
+              children: [
+                Expanded(
+                    child: Text(
+                  'Discover',
+                  style: TextStyle(fontFamily: "Rubik"),
+                )),
+                IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SearchPage()));
+                    }),
+              ],
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(child: TrendingCarousel()),
+        SliverToBoxAdapter(
+          child: Padding(
             padding: const EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,8 +55,8 @@ class DiscoverPage extends StatelessWidget {
               ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
