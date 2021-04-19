@@ -11,9 +11,7 @@ class EigaScaffold extends StatefulWidget {
   final EigaGraphQLClient? gqlClient;
   final EigaOAuth2Client oauth2Client;
 
-  const EigaScaffold(
-      {Key? key, required this.gqlClient, required this.oauth2Client})
-      : super(key: key);
+  const EigaScaffold({required this.gqlClient, required this.oauth2Client});
 
   @override
   _EigaScaffoldState createState() => _EigaScaffoldState();
@@ -25,6 +23,11 @@ class _EigaScaffoldState extends State<EigaScaffold> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     return GraphQLProvider(
       client: widget.gqlClient!.client,
       child: CacheProvider(
@@ -33,9 +36,9 @@ class _EigaScaffoldState extends State<EigaScaffold> {
           darkTheme: ThemeData(
             fontFamily: "Inter",
             brightness: Brightness.dark,
-            primaryColor: Colors.blue,
+            primaryColor: Colors.deepPurpleAccent,
             scaffoldBackgroundColor: Colors.black,
-            accentColor: Colors.blue,
+            accentColor: Colors.deepPurpleAccent,
             canvasColor: Colors.black,
             dividerColor: Colors.white38,
             appBarTheme: AppBarTheme(color: Colors.black),
@@ -52,19 +55,8 @@ class _EigaScaffoldState extends State<EigaScaffold> {
                   physics: NeverScrollableScrollPhysics(),
                   controller: _pageViewController,
                   children: [
-                    Column(
-                      children: [
-                        Center(child: Text("Profile")),
-                        Center(child: Profile(
-                          logout: () {
-                            widget.oauth2Client.deleteToken();
-                            Future.delayed(
-                                Duration.zero,
-                                () =>
-                                    Navigator.popAndPushNamed(context, '_app'));
-                          },
-                        ))
-                      ],
+                    Profile(
+                      client: widget.oauth2Client,
                     ),
                     Center(child: Text("Library")),
                     DiscoverPage()
@@ -75,22 +67,22 @@ class _EigaScaffoldState extends State<EigaScaffold> {
               bottomNavigationBar: BottomNavigationBar(
                 items: [
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.account_circle_outlined),
-                      activeIcon: Icon(Icons.account_circle),
-                      label: ""),
+                    icon: Icon(Icons.account_circle),
+                    label: "Profile",
+                  ),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.collections_bookmark_outlined),
-                      activeIcon: Icon(Icons.collections_bookmark),
-                      label: ""),
+                    icon: Icon(Icons.collections_bookmark),
+                    label: "Library",
+                  ),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.explore_outlined),
-                      activeIcon: Icon(Icons.explore),
-                      label: "")
+                    icon: Icon(Icons.explore),
+                    label: "Discover",
+                  )
                 ],
-                currentIndex: _selectedIndex,
-                onTap: _onBottomNavTapped,
                 showSelectedLabels: false,
                 showUnselectedLabels: false,
+                currentIndex: _selectedIndex,
+                onTap: _onBottomNavTapped,
               ),
             ),
           ),

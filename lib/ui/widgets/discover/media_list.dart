@@ -64,11 +64,14 @@ class MediaList {
         itemCount: data?.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return AnimeCard(
-              anime: AnimeCardEntry(
-                  data?[index]?.id ?? 00,
-                  data?[index]?.title?.userPreferred.toString() ?? "N/A",
-                  data?[index]?.coverImage?.large ?? "N/A"));
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            child: AnimeCard(
+                anime: AnimeCardEntry(
+                    data?[index]?.id ?? 00,
+                    data?[index]?.title?.userPreferred.toString() ?? "N/A",
+                    data?[index]?.coverImage?.large ?? "N/A")),
+          );
         });
   }
 }

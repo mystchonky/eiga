@@ -783,6 +783,176 @@ Map<String, dynamic> _$Trending$QueryToJson(Trending$Query instance) =>
       'Page': instance.page?.toJson(),
     };
 
+UserInfo$Query$User$UserAvatar _$UserInfo$Query$User$UserAvatarFromJson(
+    Map<String, dynamic> json) {
+  return UserInfo$Query$User$UserAvatar()..medium = json['medium'] as String?;
+}
+
+Map<String, dynamic> _$UserInfo$Query$User$UserAvatarToJson(
+        UserInfo$Query$User$UserAvatar instance) =>
+    <String, dynamic>{
+      'medium': instance.medium,
+    };
+
+UserInfo$Query$User$UserStatisticTypes$UserStatistics
+    _$UserInfo$Query$User$UserStatisticTypes$UserStatisticsFromJson(
+        Map<String, dynamic> json) {
+  return UserInfo$Query$User$UserStatisticTypes$UserStatistics()
+    ..count = json['count'] as int
+    ..episodesWatched = json['episodesWatched'] as int
+    ..minutesWatched = json['minutesWatched'] as int
+    ..chaptersRead = json['chaptersRead'] as int
+    ..volumesRead = json['volumesRead'] as int
+    ..scores = (json['scores'] as List<dynamic>?)
+        ?.map((e) => e == null
+            ? null
+            : MediaStatsMixin$UserScoreStatistic.fromJson(
+                e as Map<String, dynamic>))
+        .toList()
+    ..genres = (json['genres'] as List<dynamic>?)
+        ?.map((e) => e == null
+            ? null
+            : MediaStatsMixin$UserGenreStatistic.fromJson(
+                e as Map<String, dynamic>))
+        .toList()
+    ..tags = (json['tags'] as List<dynamic>?)
+        ?.map((e) => e == null
+            ? null
+            : MediaStatsMixin$UserTagStatistic.fromJson(
+                e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic>
+    _$UserInfo$Query$User$UserStatisticTypes$UserStatisticsToJson(
+            UserInfo$Query$User$UserStatisticTypes$UserStatistics instance) =>
+        <String, dynamic>{
+          'count': instance.count,
+          'episodesWatched': instance.episodesWatched,
+          'minutesWatched': instance.minutesWatched,
+          'chaptersRead': instance.chaptersRead,
+          'volumesRead': instance.volumesRead,
+          'scores': instance.scores?.map((e) => e?.toJson()).toList(),
+          'genres': instance.genres?.map((e) => e?.toJson()).toList(),
+          'tags': instance.tags?.map((e) => e?.toJson()).toList(),
+        };
+
+UserInfo$Query$User$UserStatisticTypes
+    _$UserInfo$Query$User$UserStatisticTypesFromJson(
+        Map<String, dynamic> json) {
+  return UserInfo$Query$User$UserStatisticTypes()
+    ..anime = json['anime'] == null
+        ? null
+        : UserInfo$Query$User$UserStatisticTypes$UserStatistics.fromJson(
+            json['anime'] as Map<String, dynamic>)
+    ..manga = json['manga'] == null
+        ? null
+        : UserInfo$Query$User$UserStatisticTypes$UserStatistics.fromJson(
+            json['manga'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$UserInfo$Query$User$UserStatisticTypesToJson(
+        UserInfo$Query$User$UserStatisticTypes instance) =>
+    <String, dynamic>{
+      'anime': instance.anime?.toJson(),
+      'manga': instance.manga?.toJson(),
+    };
+
+UserInfo$Query$User _$UserInfo$Query$UserFromJson(Map<String, dynamic> json) {
+  return UserInfo$Query$User()
+    ..id = json['id'] as int
+    ..name = json['name'] as String
+    ..avatar = json['avatar'] == null
+        ? null
+        : UserInfo$Query$User$UserAvatar.fromJson(
+            json['avatar'] as Map<String, dynamic>)
+    ..bannerImage = json['bannerImage'] as String?
+    ..statistics = json['statistics'] == null
+        ? null
+        : UserInfo$Query$User$UserStatisticTypes.fromJson(
+            json['statistics'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$UserInfo$Query$UserToJson(
+        UserInfo$Query$User instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'avatar': instance.avatar?.toJson(),
+      'bannerImage': instance.bannerImage,
+      'statistics': instance.statistics?.toJson(),
+    };
+
+UserInfo$Query _$UserInfo$QueryFromJson(Map<String, dynamic> json) {
+  return UserInfo$Query()
+    ..viewer = json['Viewer'] == null
+        ? null
+        : UserInfo$Query$User.fromJson(json['Viewer'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$UserInfo$QueryToJson(UserInfo$Query instance) =>
+    <String, dynamic>{
+      'Viewer': instance.viewer?.toJson(),
+    };
+
+MediaStatsMixin$UserScoreStatistic _$MediaStatsMixin$UserScoreStatisticFromJson(
+    Map<String, dynamic> json) {
+  return MediaStatsMixin$UserScoreStatistic()
+    ..score = json['score'] as int?
+    ..count = json['count'] as int;
+}
+
+Map<String, dynamic> _$MediaStatsMixin$UserScoreStatisticToJson(
+        MediaStatsMixin$UserScoreStatistic instance) =>
+    <String, dynamic>{
+      'score': instance.score,
+      'count': instance.count,
+    };
+
+MediaStatsMixin$UserGenreStatistic _$MediaStatsMixin$UserGenreStatisticFromJson(
+    Map<String, dynamic> json) {
+  return MediaStatsMixin$UserGenreStatistic()
+    ..genre = json['genre'] as String?
+    ..count = json['count'] as int;
+}
+
+Map<String, dynamic> _$MediaStatsMixin$UserGenreStatisticToJson(
+        MediaStatsMixin$UserGenreStatistic instance) =>
+    <String, dynamic>{
+      'genre': instance.genre,
+      'count': instance.count,
+    };
+
+MediaStatsMixin$UserTagStatistic$MediaTag
+    _$MediaStatsMixin$UserTagStatistic$MediaTagFromJson(
+        Map<String, dynamic> json) {
+  return MediaStatsMixin$UserTagStatistic$MediaTag()
+    ..name = json['name'] as String;
+}
+
+Map<String, dynamic> _$MediaStatsMixin$UserTagStatistic$MediaTagToJson(
+        MediaStatsMixin$UserTagStatistic$MediaTag instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+    };
+
+MediaStatsMixin$UserTagStatistic _$MediaStatsMixin$UserTagStatisticFromJson(
+    Map<String, dynamic> json) {
+  return MediaStatsMixin$UserTagStatistic()
+    ..tag = json['tag'] == null
+        ? null
+        : MediaStatsMixin$UserTagStatistic$MediaTag.fromJson(
+            json['tag'] as Map<String, dynamic>)
+    ..count = json['count'] as int;
+}
+
+Map<String, dynamic> _$MediaStatsMixin$UserTagStatisticToJson(
+        MediaStatsMixin$UserTagStatistic instance) =>
+    <String, dynamic>{
+      'tag': instance.tag?.toJson(),
+      'count': instance.count,
+    };
+
 AnimeInfoArguments _$AnimeInfoArgumentsFromJson(Map<String, dynamic> json) {
   return AnimeInfoArguments(
     id: json['id'] as int?,

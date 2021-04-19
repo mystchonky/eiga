@@ -7,6 +7,17 @@ import 'package:equatable/equatable.dart';
 import 'package:gql/ast.dart';
 part 'graphql_api.graphql.g.dart';
 
+mixin MediaStatsMixin {
+  late int count;
+  late int episodesWatched;
+  late int minutesWatched;
+  late int chaptersRead;
+  late int volumesRead;
+  List<MediaStatsMixin$UserScoreStatistic?>? scores;
+  List<MediaStatsMixin$UserGenreStatistic?>? genres;
+  List<MediaStatsMixin$UserTagStatistic?>? tags;
+}
+
 @JsonSerializable(explicitToJson: true)
 class AllTimePopular$Query$Page$Media$MediaTitle extends JsonSerializable
     with EquatableMixin {
@@ -766,6 +777,175 @@ class Trending$Query extends JsonSerializable with EquatableMixin {
   @override
   List<Object?> get props => [page];
   Map<String, dynamic> toJson() => _$Trending$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserInfo$Query$User$UserAvatar extends JsonSerializable
+    with EquatableMixin {
+  UserInfo$Query$User$UserAvatar();
+
+  factory UserInfo$Query$User$UserAvatar.fromJson(Map<String, dynamic> json) =>
+      _$UserInfo$Query$User$UserAvatarFromJson(json);
+
+  String? medium;
+
+  @override
+  List<Object?> get props => [medium];
+  Map<String, dynamic> toJson() => _$UserInfo$Query$User$UserAvatarToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserInfo$Query$User$UserStatisticTypes$UserStatistics
+    extends JsonSerializable with EquatableMixin, MediaStatsMixin {
+  UserInfo$Query$User$UserStatisticTypes$UserStatistics();
+
+  factory UserInfo$Query$User$UserStatisticTypes$UserStatistics.fromJson(
+          Map<String, dynamic> json) =>
+      _$UserInfo$Query$User$UserStatisticTypes$UserStatisticsFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        count,
+        episodesWatched,
+        minutesWatched,
+        chaptersRead,
+        volumesRead,
+        scores,
+        genres,
+        tags
+      ];
+  Map<String, dynamic> toJson() =>
+      _$UserInfo$Query$User$UserStatisticTypes$UserStatisticsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserInfo$Query$User$UserStatisticTypes extends JsonSerializable
+    with EquatableMixin {
+  UserInfo$Query$User$UserStatisticTypes();
+
+  factory UserInfo$Query$User$UserStatisticTypes.fromJson(
+          Map<String, dynamic> json) =>
+      _$UserInfo$Query$User$UserStatisticTypesFromJson(json);
+
+  UserInfo$Query$User$UserStatisticTypes$UserStatistics? anime;
+
+  UserInfo$Query$User$UserStatisticTypes$UserStatistics? manga;
+
+  @override
+  List<Object?> get props => [anime, manga];
+  Map<String, dynamic> toJson() =>
+      _$UserInfo$Query$User$UserStatisticTypesToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserInfo$Query$User extends JsonSerializable with EquatableMixin {
+  UserInfo$Query$User();
+
+  factory UserInfo$Query$User.fromJson(Map<String, dynamic> json) =>
+      _$UserInfo$Query$UserFromJson(json);
+
+  late int id;
+
+  late String name;
+
+  UserInfo$Query$User$UserAvatar? avatar;
+
+  String? bannerImage;
+
+  UserInfo$Query$User$UserStatisticTypes? statistics;
+
+  @override
+  List<Object?> get props => [id, name, avatar, bannerImage, statistics];
+  Map<String, dynamic> toJson() => _$UserInfo$Query$UserToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserInfo$Query extends JsonSerializable with EquatableMixin {
+  UserInfo$Query();
+
+  factory UserInfo$Query.fromJson(Map<String, dynamic> json) =>
+      _$UserInfo$QueryFromJson(json);
+
+  @JsonKey(name: 'Viewer')
+  UserInfo$Query$User? viewer;
+
+  @override
+  List<Object?> get props => [viewer];
+  Map<String, dynamic> toJson() => _$UserInfo$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class MediaStatsMixin$UserScoreStatistic extends JsonSerializable
+    with EquatableMixin {
+  MediaStatsMixin$UserScoreStatistic();
+
+  factory MediaStatsMixin$UserScoreStatistic.fromJson(
+          Map<String, dynamic> json) =>
+      _$MediaStatsMixin$UserScoreStatisticFromJson(json);
+
+  int? score;
+
+  late int count;
+
+  @override
+  List<Object?> get props => [score, count];
+  Map<String, dynamic> toJson() =>
+      _$MediaStatsMixin$UserScoreStatisticToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class MediaStatsMixin$UserGenreStatistic extends JsonSerializable
+    with EquatableMixin {
+  MediaStatsMixin$UserGenreStatistic();
+
+  factory MediaStatsMixin$UserGenreStatistic.fromJson(
+          Map<String, dynamic> json) =>
+      _$MediaStatsMixin$UserGenreStatisticFromJson(json);
+
+  String? genre;
+
+  late int count;
+
+  @override
+  List<Object?> get props => [genre, count];
+  Map<String, dynamic> toJson() =>
+      _$MediaStatsMixin$UserGenreStatisticToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class MediaStatsMixin$UserTagStatistic$MediaTag extends JsonSerializable
+    with EquatableMixin {
+  MediaStatsMixin$UserTagStatistic$MediaTag();
+
+  factory MediaStatsMixin$UserTagStatistic$MediaTag.fromJson(
+          Map<String, dynamic> json) =>
+      _$MediaStatsMixin$UserTagStatistic$MediaTagFromJson(json);
+
+  late String name;
+
+  @override
+  List<Object?> get props => [name];
+  Map<String, dynamic> toJson() =>
+      _$MediaStatsMixin$UserTagStatistic$MediaTagToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class MediaStatsMixin$UserTagStatistic extends JsonSerializable
+    with EquatableMixin {
+  MediaStatsMixin$UserTagStatistic();
+
+  factory MediaStatsMixin$UserTagStatistic.fromJson(
+          Map<String, dynamic> json) =>
+      _$MediaStatsMixin$UserTagStatisticFromJson(json);
+
+  MediaStatsMixin$UserTagStatistic$MediaTag? tag;
+
+  late int count;
+
+  @override
+  List<Object?> get props => [tag, count];
+  Map<String, dynamic> toJson() =>
+      _$MediaStatsMixin$UserTagStatisticToJson(this);
 }
 
 enum MediaStatus {
@@ -1801,4 +1981,210 @@ class TrendingQuery extends GraphQLQuery<Trending$Query, JsonSerializable> {
   @override
   Trending$Query parse(Map<String, dynamic> json) =>
       Trending$Query.fromJson(json);
+}
+
+final USER_INFO_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'UserInfo'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'Viewer'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'avatar'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'medium'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'bannerImage'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'statistics'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'anime'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FragmentSpreadNode(
+                              name: NameNode(value: 'mediaStats'),
+                              directives: [])
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: 'manga'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FragmentSpreadNode(
+                              name: NameNode(value: 'mediaStats'),
+                              directives: [])
+                        ]))
+                  ]))
+            ]))
+      ])),
+  FragmentDefinitionNode(
+      name: NameNode(value: 'mediaStats'),
+      typeCondition: TypeConditionNode(
+          on: NamedTypeNode(
+              name: NameNode(value: 'UserStatistics'), isNonNull: false)),
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'count'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
+            name: NameNode(value: 'episodesWatched'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
+            name: NameNode(value: 'minutesWatched'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
+            name: NameNode(value: 'chaptersRead'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
+            name: NameNode(value: 'volumesRead'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
+            name: NameNode(value: 'scores'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'sort'),
+                  value:
+                      EnumValueNode(name: NameNode(value: 'MEAN_SCORE_DESC')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'score'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'count'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ])),
+        FieldNode(
+            name: NameNode(value: 'genres'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'limit'),
+                  value: IntValueNode(value: '5'))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'genre'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'count'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ])),
+        FieldNode(
+            name: NameNode(value: 'tags'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'limit'),
+                  value: IntValueNode(value: '5'))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'tag'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'name'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'count'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ]))
+      ]))
+]);
+
+class UserInfoQuery extends GraphQLQuery<UserInfo$Query, JsonSerializable> {
+  UserInfoQuery();
+
+  @override
+  final DocumentNode document = USER_INFO_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'UserInfo';
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  UserInfo$Query parse(Map<String, dynamic> json) =>
+      UserInfo$Query.fromJson(json);
 }

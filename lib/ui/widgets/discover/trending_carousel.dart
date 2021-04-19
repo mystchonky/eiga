@@ -11,7 +11,7 @@ class TrendingCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        minHeight: 120,
+        minHeight: 130,
       ),
       child: Query(
         options: QueryOptions(
@@ -37,13 +37,16 @@ class TrendingCarousel extends StatelessWidget {
               itemCount: data?.length ?? 0,
               itemBuilder:
                   (BuildContext context, int itemIndex, int realIndex) =>
-                      AnimeCarouselCard(
-                        anime: AnimeCarouselEntry(
-                          data?[itemIndex]?.id ?? 0,
-                          data?[itemIndex]?.title?.userPreferred ?? "",
-                          data?[itemIndex]?.bannerImage ??
-                              data?[itemIndex]?.coverImage?.large ??
-                              "",
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: AnimeCarouselCard(
+                          anime: AnimeCarouselEntry(
+                            data?[itemIndex]?.id ?? 0,
+                            data?[itemIndex]?.title?.userPreferred ?? "",
+                            data?[itemIndex]?.bannerImage ??
+                                data?[itemIndex]?.coverImage?.large ??
+                                "",
+                          ),
                         ),
                       ),
               options: CarouselOptions(

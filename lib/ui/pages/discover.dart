@@ -66,7 +66,7 @@ class DiscoverPage extends StatelessWidget {
       child: Text(
         title,
         style: TextStyle(
-          fontSize: 20,
+          fontSize: 22,
           fontFamily: "Rubik",
           color: Colors.white,
         ),

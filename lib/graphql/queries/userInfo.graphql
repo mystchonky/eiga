@@ -1,0 +1,40 @@
+query UserInfo {
+  Viewer {
+    id
+    name
+    avatar {
+      medium
+    }
+    bannerImage
+    statistics {
+      anime {
+        ...mediaStats
+      }
+      manga {
+        ...mediaStats
+      }
+    }
+  }
+}
+
+fragment mediaStats on UserStatistics {
+  count
+  episodesWatched
+  minutesWatched
+  chaptersRead
+  volumesRead
+  scores(sort: MEAN_SCORE_DESC) {
+    score
+    count
+  }
+  genres(limit: 5) {
+    genre
+    count
+  }
+  tags(limit: 5) {
+    tag {
+      name
+    }
+    count
+  }
+}

@@ -18,8 +18,11 @@ class AnimeCarouselCard extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-          ),
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+              boxShadow: [
+                BoxShadow(
+                    color: Theme.of(context).accentColor, offset: Offset(2, 2))
+              ]),
           clipBehavior: Clip.hardEdge,
           child: Stack(children: [
             Padding(

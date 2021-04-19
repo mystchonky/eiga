@@ -40,9 +40,10 @@ class _SearchPaneState extends State<SearchPane> {
           return Center(child: CircularProgressIndicator());
         }
 
-        final pageInfo = SearchData$Query.fromJson(result.data!).page?.pageInfo;
-        final data = SearchData$Query.fromJson(result.data!).page?.media;
-        final nextPage = pageInfo?.currentPage ?? 0 + 1;
+        final pageInfo =
+            SearchData$Query.fromJson(result.data!).page!.pageInfo!;
+        final data = SearchData$Query.fromJson(result.data!).page!.media!;
+        final nextPage = pageInfo.currentPage! + 1;
 
         final FetchMoreOptions opts = FetchMoreOptions(
             variables: {'page': nextPage},
@@ -61,7 +62,7 @@ class _SearchPaneState extends State<SearchPane> {
               return fetchMoreResultData;
             });
 
-        if (data?.isEmpty ?? false) {
+        if (data.isEmpty) {
           return Center(child: Text("No result found"));
         }
 
@@ -72,7 +73,7 @@ class _SearchPaneState extends State<SearchPane> {
                 onNotification: (dynamic sn) {
                   if (sn is OverscrollNotification &&
                       !result.isLoading &&
-                      (pageInfo?.hasNextPage ?? false) &&
+                      (pageInfo.hasNextPage!) &&
                       !updating) {
                     fetchMore!(opts);
                     updating = true;
@@ -83,7 +84,7 @@ class _SearchPaneState extends State<SearchPane> {
                 },
                 child: ListView.separated(
                   controller: _scrollController,
-                  itemCount: data?.length ?? 0,
+                  itemCount: data.length,
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
@@ -91,11 +92,11 @@ class _SearchPaneState extends State<SearchPane> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => AnimeInfo(
-                                      id: data?[index]?.id ?? 0,
+                                      id: data[index]!.id,
                                     )));
                       },
                       child: SearchCard(
-                        data: data?[index],
+                        data: data[index],
                       ),
                     );
                   },

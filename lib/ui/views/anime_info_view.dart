@@ -175,15 +175,19 @@ class _AnimeInfoState extends State<AnimeInfo> {
                             SizedBox(width: 5),
                             Expanded(
                               child: ElevatedButton.icon(
-                                  label: Text("Watch Now"),
-                                  icon: Icon(Icons.play_arrow),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => FourAnime(
-                                                search: animeName ?? "")));
-                                  }),
+                                label: Text("Watch Now"),
+                                icon: Icon(Icons.play_arrow),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => FourAnime(
+                                              search: animeName ?? "")));
+                                },
+                                style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Theme.of(context).accentColor)),
+                              ),
                             ),
                           ],
                         ),
