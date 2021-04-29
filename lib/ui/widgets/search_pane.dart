@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../../graphql/graphql_api.dart';
-import '../views/anime_info_view.dart';
+import '../views/media/media_info_view.dart';
 import 'search_card.dart';
 
 class SearchPane extends StatefulWidget {
@@ -91,9 +91,8 @@ class _SearchPaneState extends State<SearchPane> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => AnimeInfo(
-                                      id: data[index]!.id,
-                                    )));
+                                builder: (context) =>
+                                    MediaInfo(id: data[index]!.id)));
                       },
                       child: SearchCard(
                         data: data[index],

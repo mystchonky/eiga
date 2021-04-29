@@ -8,8 +8,8 @@ import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
 
-import '../../../models/episode_entry.dart';
-import '../../../models/scraper.dart';
+import 'package:eiga/models/episode_entry.dart';
+import 'package:eiga/models/scraper.dart';
 
 class EpisodeListView extends StatelessWidget {
   final String animeLink;

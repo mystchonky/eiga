@@ -21,8 +21,10 @@ dependencies:
   graphql_flutter: ^5.0.0-nullsafety.2
   html: ^0.15.0
   http: ^0.13.1
+  share: ^2.0.1
   intl: ^0.17.0
   oauth2_client: ^2.0.1
+  url_launcher: ^6.0.3
 
 dev_dependencies:
   flutter_test:

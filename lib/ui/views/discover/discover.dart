@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/discover/custom_lists.dart';
-import '../widgets/discover/trending_carousel.dart';
+import '../../widgets/discover/custom_lists.dart';
+import '../../widgets/discover/trending_carousel.dart';
 import 'search_page.dart';
 
 class DiscoverPage extends StatelessWidget {
@@ -22,7 +22,8 @@ class DiscoverPage extends StatelessWidget {
                   style: TextStyle(fontFamily: "Rubik"),
                 )),
                 IconButton(
-                    icon: Icon(Icons.search),
+                    icon: Icon(Icons.search,
+                        color: Theme.of(context).accentColor),
                     onPressed: () {
                       Navigator.push(
                           context,

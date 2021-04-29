@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/anime_carousel_entry.dart';
-import '../../views/anime_info_view.dart';
+import '../../views/media/media_info_view.dart';
 
 class AnimeCarouselCard extends StatelessWidget {
   final AnimeCarouselEntry anime;
@@ -14,14 +14,14 @@ class AnimeCarouselCard extends StatelessWidget {
     return InkWell(
         onTap: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AnimeInfo(id: anime.id)));
+              MaterialPageRoute(builder: (context) => MediaInfo(id: anime.id)));
         },
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(8)),
               boxShadow: [
                 BoxShadow(
-                    color: Theme.of(context).accentColor, offset: Offset(2, 2))
+                    color: Theme.of(context).accentColor, offset: Offset(4, 4))
               ]),
           clipBehavior: Clip.hardEdge,
           child: Stack(children: [

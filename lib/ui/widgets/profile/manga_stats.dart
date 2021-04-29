@@ -19,9 +19,6 @@ class MangaStats extends StatelessWidget {
     for (final e in user.statistics!.manga!.scores!) {
       scoreData.add(ChartDataEntry(score: e?.score ?? 0, count: e?.count ?? 0));
     }
-    if (scoreData.isEmpty) {
-      scoreData.add(ChartDataEntry(score: 0, count: 0));
-    }
     for (final e in user.statistics!.manga!.genres!) {
       genreData.add(RadarDataEntry(name: e!.genre ?? "", value: e.count));
     }
@@ -51,7 +48,7 @@ class MangaStats extends StatelessWidget {
                   icon: Icons.import_contacts)
             ],
           ),
-          ScoreChart(data: scoreData),
+          if (scoreData.isEmpty) ScoreChart(data: scoreData),
           Container(
             constraints: BoxConstraints(maxHeight: 500),
             child: Column(

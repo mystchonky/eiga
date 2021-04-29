@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../widgets/search_pane.dart';
+import '../../widgets/search_pane.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -30,6 +30,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: TextField(
           decoration: InputDecoration(
@@ -42,14 +43,13 @@ class _SearchPageState extends State<SearchPage> {
               suffixIcon: shouldShowClear
                   ? IconButton(
                       icon: Icon(Icons.cancel),
-                      color: Colors.white70,
+                      color: Theme.of(context).accentColor,
                       onPressed: () {
                         searchController.clear();
                       })
                   : null),
           controller: searchController,
           onSubmitted: updateSearch,
-          //onChanged: changeListener,
           style: TextStyle(fontFamily: "Rubik", fontSize: 20),
           textInputAction: TextInputAction.search,
         ),
@@ -69,8 +69,7 @@ class _SearchPageState extends State<SearchPage> {
 
   Widget searchView() {
     if (searchStr == "") {
-      // ignore: avoid_unnecessary_containers
-      return Container(child: Center(child: Text("Enter ")));
+      return Center(child: Text("Enter search text"));
     } else {
       return SearchPane(
         searchStr: searchStr,

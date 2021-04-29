@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../models/anime_entry.dart';
-import '../../../models/scraper.dart';
+import '../../../../models/anime_entry.dart';
+import '../../../../models/scraper.dart';
 
 class AnimeListView extends StatelessWidget {
   final String postUrl = "https://4anime.to/wp-admin/admin-ajax.php";
@@ -36,7 +36,8 @@ class AnimeListView extends StatelessWidget {
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
                       return InkWell(
-                        onTap: () => onAnimeSelected!(snapshot.data![index].link),
+                        onTap: () =>
+                            onAnimeSelected!(snapshot.data![index].link),
                         child: Card(
                             child: Container(
                                 alignment: Alignment.centerLeft,

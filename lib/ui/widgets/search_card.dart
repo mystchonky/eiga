@@ -48,12 +48,15 @@ class _SearchCardState extends State<SearchCard>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.data?.title?.romaji ?? "",
-                    maxLines: 1,
+                    widget.data?.title?.romaji ?? "N/A",
+                    maxLines: 2,
                     style: TextStyle(fontFamily: "Rubik", fontSize: 20),
                   ),
+                  if (widget.data?.title?.english != null)
+                    Text(widget.data!.title!.english!,
+                        maxLines: 1, style: TextStyle(fontSize: 12)),
                   Text(
-                    widget.data?.title?.native ?? "",
+                    widget.data?.title?.native ?? "N/A",
                     maxLines: 1,
                     style: TextStyle(fontSize: 12),
                   ),

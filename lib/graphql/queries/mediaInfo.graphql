@@ -1,0 +1,90 @@
+query MediaInfo($id: Int) {
+  Media(id: $id) {
+    id
+    type
+    title {
+      english
+      romaji
+      native
+    }
+    coverImage {
+      large
+      color
+    }
+    bannerImage
+    description
+    genres
+    favourites
+    averageScore
+    format
+    status
+    siteUrl
+    startDate {
+      year
+      month
+      day
+    }
+    endDate {
+      year
+      month
+      day
+    }
+    ...animeInfo
+    ...mangaInfo
+    relations {
+      edges {
+        relationType
+        node {
+          id
+          title {
+            userPreferred
+          }
+          coverImage {
+            large
+          }
+        }
+      }
+    }
+    recommendations(perPage:10) {
+      edges {
+        node {
+          mediaRecommendation{
+            id
+            title{
+              userPreferred
+            }
+            coverImage{
+              medium
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
+
+fragment animeInfo on Media {
+  studios(isMain: true) {
+    nodes {
+      name
+    }
+  }
+  episodes
+  duration
+  season
+  seasonYear
+  trailer {
+    site
+  }
+  nextAiringEpisode {
+    id
+    episode
+    airingAt
+  }
+}
+
+fragment mangaInfo on Media {
+  chapters
+  volumes
+}

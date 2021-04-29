@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/anime_card_entry.dart';
-import '../views/anime_info_view.dart';
+import '../views/media/media_info_view.dart';
 
 class AnimeCard extends StatefulWidget {
   final AnimeCardEntry? anime;
@@ -28,7 +28,7 @@ class _AnimeCardState extends State<AnimeCard>
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => AnimeInfo(id: widget.anime!.id)));
+                  builder: (context) => MediaInfo(id: widget.anime!.id)));
         },
         child: Container(
           width: 120,
