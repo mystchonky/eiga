@@ -1,0 +1,16 @@
+query TopTenManga {
+  Page(page: 1, perPage: 10) {
+    media(type: MANGA, sort: SCORE_DESC) {
+      id
+      title {
+        userPreferred
+      }
+      popularity
+      episodes
+      status
+      coverImage {
+        large
+      }
+    }
+  }
+}

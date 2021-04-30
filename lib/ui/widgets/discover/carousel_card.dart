@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/anime_carousel_entry.dart';
+import '../../../models/media_carousel_entry.dart';
 import '../../views/media/media_info_view.dart';
 
-class AnimeCarouselCard extends StatelessWidget {
-  final AnimeCarouselEntry anime;
+class MediaCarouselCard extends StatelessWidget {
+  final MediaCarouselEntry anime;
 
-  const AnimeCarouselCard({Key? key, required this.anime}) : super(key: key);
+  const MediaCarouselCard({Key? key, required this.anime}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

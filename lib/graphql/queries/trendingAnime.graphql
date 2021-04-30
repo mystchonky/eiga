@@ -1,0 +1,16 @@
+query TrendingAnime {
+  Page(page: 1, perPage: 10) {
+    media(type: ANIME, sort: TRENDING_DESC) {
+      id
+      title {
+        userPreferred
+      }
+      episodes
+      status
+      coverImage {
+        large
+      }
+      bannerImage
+    }
+  }
+}

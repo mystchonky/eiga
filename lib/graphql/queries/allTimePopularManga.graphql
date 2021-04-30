@@ -1,0 +1,15 @@
+query AllTimePopularManga {
+  Page(page: 1, perPage: 10) {
+    media(type: MANGA, sort: POPULARITY_DESC) {
+      id
+      title {
+        userPreferred
+      }
+      episodes
+      status
+      coverImage {
+        large
+      }
+    }
+  }
+}

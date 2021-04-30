@@ -7,51 +7,52 @@ part of 'graphql_api.graphql.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AllTimePopular$Query$Page$Media$MediaTitle
-    _$AllTimePopular$Query$Page$Media$MediaTitleFromJson(
+AllTimePopularAnime$Query$Page$Media$MediaTitle
+    _$AllTimePopularAnime$Query$Page$Media$MediaTitleFromJson(
         Map<String, dynamic> json) {
-  return AllTimePopular$Query$Page$Media$MediaTitle()
+  return AllTimePopularAnime$Query$Page$Media$MediaTitle()
     ..userPreferred = json['userPreferred'] as String?;
 }
 
-Map<String, dynamic> _$AllTimePopular$Query$Page$Media$MediaTitleToJson(
-        AllTimePopular$Query$Page$Media$MediaTitle instance) =>
+Map<String, dynamic> _$AllTimePopularAnime$Query$Page$Media$MediaTitleToJson(
+        AllTimePopularAnime$Query$Page$Media$MediaTitle instance) =>
     <String, dynamic>{
       'userPreferred': instance.userPreferred,
     };
 
-AllTimePopular$Query$Page$Media$MediaCoverImage
-    _$AllTimePopular$Query$Page$Media$MediaCoverImageFromJson(
+AllTimePopularAnime$Query$Page$Media$MediaCoverImage
+    _$AllTimePopularAnime$Query$Page$Media$MediaCoverImageFromJson(
         Map<String, dynamic> json) {
-  return AllTimePopular$Query$Page$Media$MediaCoverImage()
+  return AllTimePopularAnime$Query$Page$Media$MediaCoverImage()
     ..large = json['large'] as String?;
 }
 
-Map<String, dynamic> _$AllTimePopular$Query$Page$Media$MediaCoverImageToJson(
-        AllTimePopular$Query$Page$Media$MediaCoverImage instance) =>
-    <String, dynamic>{
-      'large': instance.large,
-    };
+Map<String, dynamic>
+    _$AllTimePopularAnime$Query$Page$Media$MediaCoverImageToJson(
+            AllTimePopularAnime$Query$Page$Media$MediaCoverImage instance) =>
+        <String, dynamic>{
+          'large': instance.large,
+        };
 
-AllTimePopular$Query$Page$Media _$AllTimePopular$Query$Page$MediaFromJson(
-    Map<String, dynamic> json) {
-  return AllTimePopular$Query$Page$Media()
+AllTimePopularAnime$Query$Page$Media
+    _$AllTimePopularAnime$Query$Page$MediaFromJson(Map<String, dynamic> json) {
+  return AllTimePopularAnime$Query$Page$Media()
     ..id = json['id'] as int
     ..title = json['title'] == null
         ? null
-        : AllTimePopular$Query$Page$Media$MediaTitle.fromJson(
+        : AllTimePopularAnime$Query$Page$Media$MediaTitle.fromJson(
             json['title'] as Map<String, dynamic>)
     ..episodes = json['episodes'] as int?
     ..status = _$enumDecodeNullable(_$MediaStatusEnumMap, json['status'],
         unknownValue: MediaStatus.artemisUnknown)
     ..coverImage = json['coverImage'] == null
         ? null
-        : AllTimePopular$Query$Page$Media$MediaCoverImage.fromJson(
+        : AllTimePopularAnime$Query$Page$Media$MediaCoverImage.fromJson(
             json['coverImage'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$AllTimePopular$Query$Page$MediaToJson(
-        AllTimePopular$Query$Page$Media instance) =>
+Map<String, dynamic> _$AllTimePopularAnime$Query$Page$MediaToJson(
+        AllTimePopularAnime$Query$Page$Media instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title?.toJson(),
@@ -106,33 +107,120 @@ const _$MediaStatusEnumMap = {
   MediaStatus.artemisUnknown: 'ARTEMIS_UNKNOWN',
 };
 
-AllTimePopular$Query$Page _$AllTimePopular$Query$PageFromJson(
+AllTimePopularAnime$Query$Page _$AllTimePopularAnime$Query$PageFromJson(
     Map<String, dynamic> json) {
-  return AllTimePopular$Query$Page()
+  return AllTimePopularAnime$Query$Page()
     ..media = (json['media'] as List<dynamic>?)
         ?.map((e) => e == null
             ? null
-            : AllTimePopular$Query$Page$Media.fromJson(
+            : AllTimePopularAnime$Query$Page$Media.fromJson(
                 e as Map<String, dynamic>))
         .toList();
 }
 
-Map<String, dynamic> _$AllTimePopular$Query$PageToJson(
-        AllTimePopular$Query$Page instance) =>
+Map<String, dynamic> _$AllTimePopularAnime$Query$PageToJson(
+        AllTimePopularAnime$Query$Page instance) =>
     <String, dynamic>{
       'media': instance.media?.map((e) => e?.toJson()).toList(),
     };
 
-AllTimePopular$Query _$AllTimePopular$QueryFromJson(Map<String, dynamic> json) {
-  return AllTimePopular$Query()
+AllTimePopularAnime$Query _$AllTimePopularAnime$QueryFromJson(
+    Map<String, dynamic> json) {
+  return AllTimePopularAnime$Query()
     ..page = json['Page'] == null
         ? null
-        : AllTimePopular$Query$Page.fromJson(
+        : AllTimePopularAnime$Query$Page.fromJson(
             json['Page'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$AllTimePopular$QueryToJson(
-        AllTimePopular$Query instance) =>
+Map<String, dynamic> _$AllTimePopularAnime$QueryToJson(
+        AllTimePopularAnime$Query instance) =>
+    <String, dynamic>{
+      'Page': instance.page?.toJson(),
+    };
+
+AllTimePopularManga$Query$Page$Media$MediaTitle
+    _$AllTimePopularManga$Query$Page$Media$MediaTitleFromJson(
+        Map<String, dynamic> json) {
+  return AllTimePopularManga$Query$Page$Media$MediaTitle()
+    ..userPreferred = json['userPreferred'] as String?;
+}
+
+Map<String, dynamic> _$AllTimePopularManga$Query$Page$Media$MediaTitleToJson(
+        AllTimePopularManga$Query$Page$Media$MediaTitle instance) =>
+    <String, dynamic>{
+      'userPreferred': instance.userPreferred,
+    };
+
+AllTimePopularManga$Query$Page$Media$MediaCoverImage
+    _$AllTimePopularManga$Query$Page$Media$MediaCoverImageFromJson(
+        Map<String, dynamic> json) {
+  return AllTimePopularManga$Query$Page$Media$MediaCoverImage()
+    ..large = json['large'] as String?;
+}
+
+Map<String, dynamic>
+    _$AllTimePopularManga$Query$Page$Media$MediaCoverImageToJson(
+            AllTimePopularManga$Query$Page$Media$MediaCoverImage instance) =>
+        <String, dynamic>{
+          'large': instance.large,
+        };
+
+AllTimePopularManga$Query$Page$Media
+    _$AllTimePopularManga$Query$Page$MediaFromJson(Map<String, dynamic> json) {
+  return AllTimePopularManga$Query$Page$Media()
+    ..id = json['id'] as int
+    ..title = json['title'] == null
+        ? null
+        : AllTimePopularManga$Query$Page$Media$MediaTitle.fromJson(
+            json['title'] as Map<String, dynamic>)
+    ..episodes = json['episodes'] as int?
+    ..status = _$enumDecodeNullable(_$MediaStatusEnumMap, json['status'],
+        unknownValue: MediaStatus.artemisUnknown)
+    ..coverImage = json['coverImage'] == null
+        ? null
+        : AllTimePopularManga$Query$Page$Media$MediaCoverImage.fromJson(
+            json['coverImage'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$AllTimePopularManga$Query$Page$MediaToJson(
+        AllTimePopularManga$Query$Page$Media instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title?.toJson(),
+      'episodes': instance.episodes,
+      'status': _$MediaStatusEnumMap[instance.status],
+      'coverImage': instance.coverImage?.toJson(),
+    };
+
+AllTimePopularManga$Query$Page _$AllTimePopularManga$Query$PageFromJson(
+    Map<String, dynamic> json) {
+  return AllTimePopularManga$Query$Page()
+    ..media = (json['media'] as List<dynamic>?)
+        ?.map((e) => e == null
+            ? null
+            : AllTimePopularManga$Query$Page$Media.fromJson(
+                e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic> _$AllTimePopularManga$Query$PageToJson(
+        AllTimePopularManga$Query$Page instance) =>
+    <String, dynamic>{
+      'media': instance.media?.map((e) => e?.toJson()).toList(),
+    };
+
+AllTimePopularManga$Query _$AllTimePopularManga$QueryFromJson(
+    Map<String, dynamic> json) {
+  return AllTimePopularManga$Query()
+    ..page = json['Page'] == null
+        ? null
+        : AllTimePopularManga$Query$Page.fromJson(
+            json['Page'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$AllTimePopularManga$QueryToJson(
+        AllTimePopularManga$Query instance) =>
     <String, dynamic>{
       'Page': instance.page?.toJson(),
     };
@@ -310,7 +398,7 @@ MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommendation
     _$MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommendation$Media$MediaCoverImageFromJson(
         Map<String, dynamic> json) {
   return MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommendation$Media$MediaCoverImage()
-    ..medium = json['medium'] as String?;
+    ..large = json['large'] as String?;
 }
 
 Map<String, dynamic>
@@ -318,7 +406,7 @@ Map<String, dynamic>
             MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommendation$Media$MediaCoverImage
                 instance) =>
         <String, dynamic>{
-          'medium': instance.medium,
+          'large': instance.large,
         };
 
 MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommendation$Media
@@ -780,38 +868,39 @@ Map<String, dynamic> _$SearchData$QueryToJson(SearchData$Query instance) =>
       'Page': instance.page?.toJson(),
     };
 
-TopTen$Query$Page$Media$MediaTitle _$TopTen$Query$Page$Media$MediaTitleFromJson(
-    Map<String, dynamic> json) {
-  return TopTen$Query$Page$Media$MediaTitle()
+TopTenAnime$Query$Page$Media$MediaTitle
+    _$TopTenAnime$Query$Page$Media$MediaTitleFromJson(
+        Map<String, dynamic> json) {
+  return TopTenAnime$Query$Page$Media$MediaTitle()
     ..userPreferred = json['userPreferred'] as String?;
 }
 
-Map<String, dynamic> _$TopTen$Query$Page$Media$MediaTitleToJson(
-        TopTen$Query$Page$Media$MediaTitle instance) =>
+Map<String, dynamic> _$TopTenAnime$Query$Page$Media$MediaTitleToJson(
+        TopTenAnime$Query$Page$Media$MediaTitle instance) =>
     <String, dynamic>{
       'userPreferred': instance.userPreferred,
     };
 
-TopTen$Query$Page$Media$MediaCoverImage
-    _$TopTen$Query$Page$Media$MediaCoverImageFromJson(
+TopTenAnime$Query$Page$Media$MediaCoverImage
+    _$TopTenAnime$Query$Page$Media$MediaCoverImageFromJson(
         Map<String, dynamic> json) {
-  return TopTen$Query$Page$Media$MediaCoverImage()
+  return TopTenAnime$Query$Page$Media$MediaCoverImage()
     ..large = json['large'] as String?;
 }
 
-Map<String, dynamic> _$TopTen$Query$Page$Media$MediaCoverImageToJson(
-        TopTen$Query$Page$Media$MediaCoverImage instance) =>
+Map<String, dynamic> _$TopTenAnime$Query$Page$Media$MediaCoverImageToJson(
+        TopTenAnime$Query$Page$Media$MediaCoverImage instance) =>
     <String, dynamic>{
       'large': instance.large,
     };
 
-TopTen$Query$Page$Media _$TopTen$Query$Page$MediaFromJson(
+TopTenAnime$Query$Page$Media _$TopTenAnime$Query$Page$MediaFromJson(
     Map<String, dynamic> json) {
-  return TopTen$Query$Page$Media()
+  return TopTenAnime$Query$Page$Media()
     ..id = json['id'] as int
     ..title = json['title'] == null
         ? null
-        : TopTen$Query$Page$Media$MediaTitle.fromJson(
+        : TopTenAnime$Query$Page$Media$MediaTitle.fromJson(
             json['title'] as Map<String, dynamic>)
     ..popularity = json['popularity'] as int?
     ..episodes = json['episodes'] as int?
@@ -819,12 +908,12 @@ TopTen$Query$Page$Media _$TopTen$Query$Page$MediaFromJson(
         unknownValue: MediaStatus.artemisUnknown)
     ..coverImage = json['coverImage'] == null
         ? null
-        : TopTen$Query$Page$Media$MediaCoverImage.fromJson(
+        : TopTenAnime$Query$Page$Media$MediaCoverImage.fromJson(
             json['coverImage'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$TopTen$Query$Page$MediaToJson(
-        TopTen$Query$Page$Media instance) =>
+Map<String, dynamic> _$TopTenAnime$Query$Page$MediaToJson(
+        TopTenAnime$Query$Page$Media instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title?.toJson(),
@@ -834,77 +923,163 @@ Map<String, dynamic> _$TopTen$Query$Page$MediaToJson(
       'coverImage': instance.coverImage?.toJson(),
     };
 
-TopTen$Query$Page _$TopTen$Query$PageFromJson(Map<String, dynamic> json) {
-  return TopTen$Query$Page()
+TopTenAnime$Query$Page _$TopTenAnime$Query$PageFromJson(
+    Map<String, dynamic> json) {
+  return TopTenAnime$Query$Page()
     ..media = (json['media'] as List<dynamic>?)
         ?.map((e) => e == null
             ? null
-            : TopTen$Query$Page$Media.fromJson(e as Map<String, dynamic>))
+            : TopTenAnime$Query$Page$Media.fromJson(e as Map<String, dynamic>))
         .toList();
 }
 
-Map<String, dynamic> _$TopTen$Query$PageToJson(TopTen$Query$Page instance) =>
+Map<String, dynamic> _$TopTenAnime$Query$PageToJson(
+        TopTenAnime$Query$Page instance) =>
     <String, dynamic>{
       'media': instance.media?.map((e) => e?.toJson()).toList(),
     };
 
-TopTen$Query _$TopTen$QueryFromJson(Map<String, dynamic> json) {
-  return TopTen$Query()
+TopTenAnime$Query _$TopTenAnime$QueryFromJson(Map<String, dynamic> json) {
+  return TopTenAnime$Query()
     ..page = json['Page'] == null
         ? null
-        : TopTen$Query$Page.fromJson(json['Page'] as Map<String, dynamic>);
+        : TopTenAnime$Query$Page.fromJson(json['Page'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$TopTen$QueryToJson(TopTen$Query instance) =>
+Map<String, dynamic> _$TopTenAnime$QueryToJson(TopTenAnime$Query instance) =>
     <String, dynamic>{
       'Page': instance.page?.toJson(),
     };
 
-Trending$Query$Page$Media$MediaTitle
-    _$Trending$Query$Page$Media$MediaTitleFromJson(Map<String, dynamic> json) {
-  return Trending$Query$Page$Media$MediaTitle()
+TopTenManga$Query$Page$Media$MediaTitle
+    _$TopTenManga$Query$Page$Media$MediaTitleFromJson(
+        Map<String, dynamic> json) {
+  return TopTenManga$Query$Page$Media$MediaTitle()
     ..userPreferred = json['userPreferred'] as String?;
 }
 
-Map<String, dynamic> _$Trending$Query$Page$Media$MediaTitleToJson(
-        Trending$Query$Page$Media$MediaTitle instance) =>
+Map<String, dynamic> _$TopTenManga$Query$Page$Media$MediaTitleToJson(
+        TopTenManga$Query$Page$Media$MediaTitle instance) =>
     <String, dynamic>{
       'userPreferred': instance.userPreferred,
     };
 
-Trending$Query$Page$Media$MediaCoverImage
-    _$Trending$Query$Page$Media$MediaCoverImageFromJson(
+TopTenManga$Query$Page$Media$MediaCoverImage
+    _$TopTenManga$Query$Page$Media$MediaCoverImageFromJson(
         Map<String, dynamic> json) {
-  return Trending$Query$Page$Media$MediaCoverImage()
+  return TopTenManga$Query$Page$Media$MediaCoverImage()
     ..large = json['large'] as String?;
 }
 
-Map<String, dynamic> _$Trending$Query$Page$Media$MediaCoverImageToJson(
-        Trending$Query$Page$Media$MediaCoverImage instance) =>
+Map<String, dynamic> _$TopTenManga$Query$Page$Media$MediaCoverImageToJson(
+        TopTenManga$Query$Page$Media$MediaCoverImage instance) =>
     <String, dynamic>{
       'large': instance.large,
     };
 
-Trending$Query$Page$Media _$Trending$Query$Page$MediaFromJson(
+TopTenManga$Query$Page$Media _$TopTenManga$Query$Page$MediaFromJson(
     Map<String, dynamic> json) {
-  return Trending$Query$Page$Media()
+  return TopTenManga$Query$Page$Media()
     ..id = json['id'] as int
     ..title = json['title'] == null
         ? null
-        : Trending$Query$Page$Media$MediaTitle.fromJson(
+        : TopTenManga$Query$Page$Media$MediaTitle.fromJson(
+            json['title'] as Map<String, dynamic>)
+    ..popularity = json['popularity'] as int?
+    ..episodes = json['episodes'] as int?
+    ..status = _$enumDecodeNullable(_$MediaStatusEnumMap, json['status'],
+        unknownValue: MediaStatus.artemisUnknown)
+    ..coverImage = json['coverImage'] == null
+        ? null
+        : TopTenManga$Query$Page$Media$MediaCoverImage.fromJson(
+            json['coverImage'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$TopTenManga$Query$Page$MediaToJson(
+        TopTenManga$Query$Page$Media instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title?.toJson(),
+      'popularity': instance.popularity,
+      'episodes': instance.episodes,
+      'status': _$MediaStatusEnumMap[instance.status],
+      'coverImage': instance.coverImage?.toJson(),
+    };
+
+TopTenManga$Query$Page _$TopTenManga$Query$PageFromJson(
+    Map<String, dynamic> json) {
+  return TopTenManga$Query$Page()
+    ..media = (json['media'] as List<dynamic>?)
+        ?.map((e) => e == null
+            ? null
+            : TopTenManga$Query$Page$Media.fromJson(e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic> _$TopTenManga$Query$PageToJson(
+        TopTenManga$Query$Page instance) =>
+    <String, dynamic>{
+      'media': instance.media?.map((e) => e?.toJson()).toList(),
+    };
+
+TopTenManga$Query _$TopTenManga$QueryFromJson(Map<String, dynamic> json) {
+  return TopTenManga$Query()
+    ..page = json['Page'] == null
+        ? null
+        : TopTenManga$Query$Page.fromJson(json['Page'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$TopTenManga$QueryToJson(TopTenManga$Query instance) =>
+    <String, dynamic>{
+      'Page': instance.page?.toJson(),
+    };
+
+TrendingAnime$Query$Page$Media$MediaTitle
+    _$TrendingAnime$Query$Page$Media$MediaTitleFromJson(
+        Map<String, dynamic> json) {
+  return TrendingAnime$Query$Page$Media$MediaTitle()
+    ..userPreferred = json['userPreferred'] as String?;
+}
+
+Map<String, dynamic> _$TrendingAnime$Query$Page$Media$MediaTitleToJson(
+        TrendingAnime$Query$Page$Media$MediaTitle instance) =>
+    <String, dynamic>{
+      'userPreferred': instance.userPreferred,
+    };
+
+TrendingAnime$Query$Page$Media$MediaCoverImage
+    _$TrendingAnime$Query$Page$Media$MediaCoverImageFromJson(
+        Map<String, dynamic> json) {
+  return TrendingAnime$Query$Page$Media$MediaCoverImage()
+    ..large = json['large'] as String?;
+}
+
+Map<String, dynamic> _$TrendingAnime$Query$Page$Media$MediaCoverImageToJson(
+        TrendingAnime$Query$Page$Media$MediaCoverImage instance) =>
+    <String, dynamic>{
+      'large': instance.large,
+    };
+
+TrendingAnime$Query$Page$Media _$TrendingAnime$Query$Page$MediaFromJson(
+    Map<String, dynamic> json) {
+  return TrendingAnime$Query$Page$Media()
+    ..id = json['id'] as int
+    ..title = json['title'] == null
+        ? null
+        : TrendingAnime$Query$Page$Media$MediaTitle.fromJson(
             json['title'] as Map<String, dynamic>)
     ..episodes = json['episodes'] as int?
     ..status = _$enumDecodeNullable(_$MediaStatusEnumMap, json['status'],
         unknownValue: MediaStatus.artemisUnknown)
     ..coverImage = json['coverImage'] == null
         ? null
-        : Trending$Query$Page$Media$MediaCoverImage.fromJson(
+        : TrendingAnime$Query$Page$Media$MediaCoverImage.fromJson(
             json['coverImage'] as Map<String, dynamic>)
     ..bannerImage = json['bannerImage'] as String?;
 }
 
-Map<String, dynamic> _$Trending$Query$Page$MediaToJson(
-        Trending$Query$Page$Media instance) =>
+Map<String, dynamic> _$TrendingAnime$Query$Page$MediaToJson(
+        TrendingAnime$Query$Page$Media instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title?.toJson(),
@@ -914,29 +1089,33 @@ Map<String, dynamic> _$Trending$Query$Page$MediaToJson(
       'bannerImage': instance.bannerImage,
     };
 
-Trending$Query$Page _$Trending$Query$PageFromJson(Map<String, dynamic> json) {
-  return Trending$Query$Page()
+TrendingAnime$Query$Page _$TrendingAnime$Query$PageFromJson(
+    Map<String, dynamic> json) {
+  return TrendingAnime$Query$Page()
     ..media = (json['media'] as List<dynamic>?)
         ?.map((e) => e == null
             ? null
-            : Trending$Query$Page$Media.fromJson(e as Map<String, dynamic>))
+            : TrendingAnime$Query$Page$Media.fromJson(
+                e as Map<String, dynamic>))
         .toList();
 }
 
-Map<String, dynamic> _$Trending$Query$PageToJson(
-        Trending$Query$Page instance) =>
+Map<String, dynamic> _$TrendingAnime$Query$PageToJson(
+        TrendingAnime$Query$Page instance) =>
     <String, dynamic>{
       'media': instance.media?.map((e) => e?.toJson()).toList(),
     };
 
-Trending$Query _$Trending$QueryFromJson(Map<String, dynamic> json) {
-  return Trending$Query()
+TrendingAnime$Query _$TrendingAnime$QueryFromJson(Map<String, dynamic> json) {
+  return TrendingAnime$Query()
     ..page = json['Page'] == null
         ? null
-        : Trending$Query$Page.fromJson(json['Page'] as Map<String, dynamic>);
+        : TrendingAnime$Query$Page.fromJson(
+            json['Page'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$Trending$QueryToJson(Trending$Query instance) =>
+Map<String, dynamic> _$TrendingAnime$QueryToJson(
+        TrendingAnime$Query instance) =>
     <String, dynamic>{
       'Page': instance.page?.toJson(),
     };
@@ -1109,6 +1288,178 @@ Map<String, dynamic> _$MediaStatsMixin$UserTagStatisticToJson(
     <String, dynamic>{
       'tag': instance.tag?.toJson(),
       'count': instance.count,
+    };
+
+AllTimePopularManhwa$Query$Page$Media$MediaTitle
+    _$AllTimePopularManhwa$Query$Page$Media$MediaTitleFromJson(
+        Map<String, dynamic> json) {
+  return AllTimePopularManhwa$Query$Page$Media$MediaTitle()
+    ..userPreferred = json['userPreferred'] as String?;
+}
+
+Map<String, dynamic> _$AllTimePopularManhwa$Query$Page$Media$MediaTitleToJson(
+        AllTimePopularManhwa$Query$Page$Media$MediaTitle instance) =>
+    <String, dynamic>{
+      'userPreferred': instance.userPreferred,
+    };
+
+AllTimePopularManhwa$Query$Page$Media$MediaCoverImage
+    _$AllTimePopularManhwa$Query$Page$Media$MediaCoverImageFromJson(
+        Map<String, dynamic> json) {
+  return AllTimePopularManhwa$Query$Page$Media$MediaCoverImage()
+    ..large = json['large'] as String?;
+}
+
+Map<String, dynamic>
+    _$AllTimePopularManhwa$Query$Page$Media$MediaCoverImageToJson(
+            AllTimePopularManhwa$Query$Page$Media$MediaCoverImage instance) =>
+        <String, dynamic>{
+          'large': instance.large,
+        };
+
+AllTimePopularManhwa$Query$Page$Media
+    _$AllTimePopularManhwa$Query$Page$MediaFromJson(Map<String, dynamic> json) {
+  return AllTimePopularManhwa$Query$Page$Media()
+    ..id = json['id'] as int
+    ..title = json['title'] == null
+        ? null
+        : AllTimePopularManhwa$Query$Page$Media$MediaTitle.fromJson(
+            json['title'] as Map<String, dynamic>)
+    ..episodes = json['episodes'] as int?
+    ..status = _$enumDecodeNullable(_$MediaStatusEnumMap, json['status'],
+        unknownValue: MediaStatus.artemisUnknown)
+    ..coverImage = json['coverImage'] == null
+        ? null
+        : AllTimePopularManhwa$Query$Page$Media$MediaCoverImage.fromJson(
+            json['coverImage'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$AllTimePopularManhwa$Query$Page$MediaToJson(
+        AllTimePopularManhwa$Query$Page$Media instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title?.toJson(),
+      'episodes': instance.episodes,
+      'status': _$MediaStatusEnumMap[instance.status],
+      'coverImage': instance.coverImage?.toJson(),
+    };
+
+AllTimePopularManhwa$Query$Page _$AllTimePopularManhwa$Query$PageFromJson(
+    Map<String, dynamic> json) {
+  return AllTimePopularManhwa$Query$Page()
+    ..media = (json['media'] as List<dynamic>?)
+        ?.map((e) => e == null
+            ? null
+            : AllTimePopularManhwa$Query$Page$Media.fromJson(
+                e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic> _$AllTimePopularManhwa$Query$PageToJson(
+        AllTimePopularManhwa$Query$Page instance) =>
+    <String, dynamic>{
+      'media': instance.media?.map((e) => e?.toJson()).toList(),
+    };
+
+AllTimePopularManhwa$Query _$AllTimePopularManhwa$QueryFromJson(
+    Map<String, dynamic> json) {
+  return AllTimePopularManhwa$Query()
+    ..page = json['Page'] == null
+        ? null
+        : AllTimePopularManhwa$Query$Page.fromJson(
+            json['Page'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$AllTimePopularManhwa$QueryToJson(
+        AllTimePopularManhwa$Query instance) =>
+    <String, dynamic>{
+      'Page': instance.page?.toJson(),
+    };
+
+TrendingManga$Query$Page$Media$MediaTitle
+    _$TrendingManga$Query$Page$Media$MediaTitleFromJson(
+        Map<String, dynamic> json) {
+  return TrendingManga$Query$Page$Media$MediaTitle()
+    ..userPreferred = json['userPreferred'] as String?;
+}
+
+Map<String, dynamic> _$TrendingManga$Query$Page$Media$MediaTitleToJson(
+        TrendingManga$Query$Page$Media$MediaTitle instance) =>
+    <String, dynamic>{
+      'userPreferred': instance.userPreferred,
+    };
+
+TrendingManga$Query$Page$Media$MediaCoverImage
+    _$TrendingManga$Query$Page$Media$MediaCoverImageFromJson(
+        Map<String, dynamic> json) {
+  return TrendingManga$Query$Page$Media$MediaCoverImage()
+    ..large = json['large'] as String?;
+}
+
+Map<String, dynamic> _$TrendingManga$Query$Page$Media$MediaCoverImageToJson(
+        TrendingManga$Query$Page$Media$MediaCoverImage instance) =>
+    <String, dynamic>{
+      'large': instance.large,
+    };
+
+TrendingManga$Query$Page$Media _$TrendingManga$Query$Page$MediaFromJson(
+    Map<String, dynamic> json) {
+  return TrendingManga$Query$Page$Media()
+    ..id = json['id'] as int
+    ..title = json['title'] == null
+        ? null
+        : TrendingManga$Query$Page$Media$MediaTitle.fromJson(
+            json['title'] as Map<String, dynamic>)
+    ..episodes = json['episodes'] as int?
+    ..status = _$enumDecodeNullable(_$MediaStatusEnumMap, json['status'],
+        unknownValue: MediaStatus.artemisUnknown)
+    ..coverImage = json['coverImage'] == null
+        ? null
+        : TrendingManga$Query$Page$Media$MediaCoverImage.fromJson(
+            json['coverImage'] as Map<String, dynamic>)
+    ..bannerImage = json['bannerImage'] as String?;
+}
+
+Map<String, dynamic> _$TrendingManga$Query$Page$MediaToJson(
+        TrendingManga$Query$Page$Media instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title?.toJson(),
+      'episodes': instance.episodes,
+      'status': _$MediaStatusEnumMap[instance.status],
+      'coverImage': instance.coverImage?.toJson(),
+      'bannerImage': instance.bannerImage,
+    };
+
+TrendingManga$Query$Page _$TrendingManga$Query$PageFromJson(
+    Map<String, dynamic> json) {
+  return TrendingManga$Query$Page()
+    ..media = (json['media'] as List<dynamic>?)
+        ?.map((e) => e == null
+            ? null
+            : TrendingManga$Query$Page$Media.fromJson(
+                e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic> _$TrendingManga$Query$PageToJson(
+        TrendingManga$Query$Page instance) =>
+    <String, dynamic>{
+      'media': instance.media?.map((e) => e?.toJson()).toList(),
+    };
+
+TrendingManga$Query _$TrendingManga$QueryFromJson(Map<String, dynamic> json) {
+  return TrendingManga$Query()
+    ..page = json['Page'] == null
+        ? null
+        : TrendingManga$Query$Page.fromJson(
+            json['Page'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$TrendingManga$QueryToJson(
+        TrendingManga$Query instance) =>
+    <String, dynamic>{
+      'Page': instance.page?.toJson(),
     };
 
 MediaInfoArguments _$MediaInfoArgumentsFromJson(Map<String, dynamic> json) {

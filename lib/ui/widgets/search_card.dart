@@ -62,7 +62,7 @@ class _SearchCardState extends State<SearchCard>
                   ),
                   SizedBox(height: 10),
                   Text(
-                      "Score: ${widget.data?.averageScore}% | ${widget.data?.format?.name} ${widget.data?.episodes} Eps"),
+                      "Score: ${(widget.data?.averageScore ?? 0) / 10} | ${widget.data?.format?.name} ${widget.data?.episodes} Eps"),
                 ],
               ),
             ),

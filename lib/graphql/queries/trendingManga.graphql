@@ -1,6 +1,6 @@
-query Trending{
+query TrendingManga{
     Page (page: 1, perPage: 10) {
-      media (type: ANIME, sort: TRENDING_DESC) {
+      media (type: MANGA, sort: TRENDING_DESC) {
         id
         title {
           userPreferred

@@ -3,8 +3,8 @@ import 'package:gql/ast.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../../../graphql/graphql_api.dart';
-import '../../../models/anime_card_entry.dart';
-import '../anime_card.dart';
+import '../../../models/media_card_entry.dart';
+import '../media_card.dart';
 
 class MediaList {
   final DocumentNode? mediaQuery;
@@ -57,8 +57,8 @@ class MediaList {
       return Center(child: CircularProgressIndicator());
     }
 
-    final List<AllTimePopular$Query$Page$Media?>? data =
-        AllTimePopular$Query.fromJson(result.data!).page?.media;
+    final List<AllTimePopularAnime$Query$Page$Media?>? data =
+        AllTimePopularAnime$Query.fromJson(result.data!).page?.media;
 
     return ListView.builder(
         itemCount: data?.length,
@@ -66,8 +66,8 @@ class MediaList {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 2),
-            child: AnimeCard(
-                anime: AnimeCardEntry(
+            child: MediaCard(
+                anime: MediaCardEntry(
                     data?[index]?.id ?? 00,
                     data?[index]?.title?.userPreferred.toString() ?? "N/A",
                     data?[index]?.coverImage?.large ?? "N/A")),

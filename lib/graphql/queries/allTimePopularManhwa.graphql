@@ -1,6 +1,6 @@
-query AllTimePopular{
+query AllTimePopularManhwa {
     Page (page: 1, perPage: 10) {
-      media (type: ANIME, sort: POPULARITY_DESC) {
+      media (type: MANGA, countryOfOrigin:KR ,sort: POPULARITY_DESC) {
         id
         title {
           userPreferred

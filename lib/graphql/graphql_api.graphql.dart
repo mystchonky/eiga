@@ -33,91 +33,183 @@ mixin MediaStatsMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class AllTimePopular$Query$Page$Media$MediaTitle extends JsonSerializable
+class AllTimePopularAnime$Query$Page$Media$MediaTitle extends JsonSerializable
     with EquatableMixin {
-  AllTimePopular$Query$Page$Media$MediaTitle();
+  AllTimePopularAnime$Query$Page$Media$MediaTitle();
 
-  factory AllTimePopular$Query$Page$Media$MediaTitle.fromJson(
+  factory AllTimePopularAnime$Query$Page$Media$MediaTitle.fromJson(
           Map<String, dynamic> json) =>
-      _$AllTimePopular$Query$Page$Media$MediaTitleFromJson(json);
+      _$AllTimePopularAnime$Query$Page$Media$MediaTitleFromJson(json);
 
   String? userPreferred;
 
   @override
   List<Object?> get props => [userPreferred];
   Map<String, dynamic> toJson() =>
-      _$AllTimePopular$Query$Page$Media$MediaTitleToJson(this);
+      _$AllTimePopularAnime$Query$Page$Media$MediaTitleToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class AllTimePopular$Query$Page$Media$MediaCoverImage extends JsonSerializable
-    with EquatableMixin {
-  AllTimePopular$Query$Page$Media$MediaCoverImage();
+class AllTimePopularAnime$Query$Page$Media$MediaCoverImage
+    extends JsonSerializable with EquatableMixin {
+  AllTimePopularAnime$Query$Page$Media$MediaCoverImage();
 
-  factory AllTimePopular$Query$Page$Media$MediaCoverImage.fromJson(
+  factory AllTimePopularAnime$Query$Page$Media$MediaCoverImage.fromJson(
           Map<String, dynamic> json) =>
-      _$AllTimePopular$Query$Page$Media$MediaCoverImageFromJson(json);
+      _$AllTimePopularAnime$Query$Page$Media$MediaCoverImageFromJson(json);
 
   String? large;
 
   @override
   List<Object?> get props => [large];
   Map<String, dynamic> toJson() =>
-      _$AllTimePopular$Query$Page$Media$MediaCoverImageToJson(this);
+      _$AllTimePopularAnime$Query$Page$Media$MediaCoverImageToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class AllTimePopular$Query$Page$Media extends JsonSerializable
+class AllTimePopularAnime$Query$Page$Media extends JsonSerializable
     with EquatableMixin {
-  AllTimePopular$Query$Page$Media();
+  AllTimePopularAnime$Query$Page$Media();
 
-  factory AllTimePopular$Query$Page$Media.fromJson(Map<String, dynamic> json) =>
-      _$AllTimePopular$Query$Page$MediaFromJson(json);
+  factory AllTimePopularAnime$Query$Page$Media.fromJson(
+          Map<String, dynamic> json) =>
+      _$AllTimePopularAnime$Query$Page$MediaFromJson(json);
 
   late int id;
 
-  AllTimePopular$Query$Page$Media$MediaTitle? title;
+  AllTimePopularAnime$Query$Page$Media$MediaTitle? title;
 
   int? episodes;
 
   @JsonKey(unknownEnumValue: MediaStatus.artemisUnknown)
   MediaStatus? status;
 
-  AllTimePopular$Query$Page$Media$MediaCoverImage? coverImage;
+  AllTimePopularAnime$Query$Page$Media$MediaCoverImage? coverImage;
 
   @override
   List<Object?> get props => [id, title, episodes, status, coverImage];
   Map<String, dynamic> toJson() =>
-      _$AllTimePopular$Query$Page$MediaToJson(this);
+      _$AllTimePopularAnime$Query$Page$MediaToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class AllTimePopular$Query$Page extends JsonSerializable with EquatableMixin {
-  AllTimePopular$Query$Page();
+class AllTimePopularAnime$Query$Page extends JsonSerializable
+    with EquatableMixin {
+  AllTimePopularAnime$Query$Page();
 
-  factory AllTimePopular$Query$Page.fromJson(Map<String, dynamic> json) =>
-      _$AllTimePopular$Query$PageFromJson(json);
+  factory AllTimePopularAnime$Query$Page.fromJson(Map<String, dynamic> json) =>
+      _$AllTimePopularAnime$Query$PageFromJson(json);
 
-  List<AllTimePopular$Query$Page$Media?>? media;
+  List<AllTimePopularAnime$Query$Page$Media?>? media;
 
   @override
   List<Object?> get props => [media];
-  Map<String, dynamic> toJson() => _$AllTimePopular$Query$PageToJson(this);
+  Map<String, dynamic> toJson() => _$AllTimePopularAnime$Query$PageToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class AllTimePopular$Query extends JsonSerializable with EquatableMixin {
-  AllTimePopular$Query();
+class AllTimePopularAnime$Query extends JsonSerializable with EquatableMixin {
+  AllTimePopularAnime$Query();
 
-  factory AllTimePopular$Query.fromJson(Map<String, dynamic> json) =>
-      _$AllTimePopular$QueryFromJson(json);
+  factory AllTimePopularAnime$Query.fromJson(Map<String, dynamic> json) =>
+      _$AllTimePopularAnime$QueryFromJson(json);
 
   @JsonKey(name: 'Page')
-  AllTimePopular$Query$Page? page;
+  AllTimePopularAnime$Query$Page? page;
 
   @override
   List<Object?> get props => [page];
-  Map<String, dynamic> toJson() => _$AllTimePopular$QueryToJson(this);
+  Map<String, dynamic> toJson() => _$AllTimePopularAnime$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AllTimePopularManga$Query$Page$Media$MediaTitle extends JsonSerializable
+    with EquatableMixin {
+  AllTimePopularManga$Query$Page$Media$MediaTitle();
+
+  factory AllTimePopularManga$Query$Page$Media$MediaTitle.fromJson(
+          Map<String, dynamic> json) =>
+      _$AllTimePopularManga$Query$Page$Media$MediaTitleFromJson(json);
+
+  String? userPreferred;
+
+  @override
+  List<Object?> get props => [userPreferred];
+  Map<String, dynamic> toJson() =>
+      _$AllTimePopularManga$Query$Page$Media$MediaTitleToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AllTimePopularManga$Query$Page$Media$MediaCoverImage
+    extends JsonSerializable with EquatableMixin {
+  AllTimePopularManga$Query$Page$Media$MediaCoverImage();
+
+  factory AllTimePopularManga$Query$Page$Media$MediaCoverImage.fromJson(
+          Map<String, dynamic> json) =>
+      _$AllTimePopularManga$Query$Page$Media$MediaCoverImageFromJson(json);
+
+  String? large;
+
+  @override
+  List<Object?> get props => [large];
+  Map<String, dynamic> toJson() =>
+      _$AllTimePopularManga$Query$Page$Media$MediaCoverImageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AllTimePopularManga$Query$Page$Media extends JsonSerializable
+    with EquatableMixin {
+  AllTimePopularManga$Query$Page$Media();
+
+  factory AllTimePopularManga$Query$Page$Media.fromJson(
+          Map<String, dynamic> json) =>
+      _$AllTimePopularManga$Query$Page$MediaFromJson(json);
+
+  late int id;
+
+  AllTimePopularManga$Query$Page$Media$MediaTitle? title;
+
+  int? episodes;
+
+  @JsonKey(unknownEnumValue: MediaStatus.artemisUnknown)
+  MediaStatus? status;
+
+  AllTimePopularManga$Query$Page$Media$MediaCoverImage? coverImage;
+
+  @override
+  List<Object?> get props => [id, title, episodes, status, coverImage];
+  Map<String, dynamic> toJson() =>
+      _$AllTimePopularManga$Query$Page$MediaToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AllTimePopularManga$Query$Page extends JsonSerializable
+    with EquatableMixin {
+  AllTimePopularManga$Query$Page();
+
+  factory AllTimePopularManga$Query$Page.fromJson(Map<String, dynamic> json) =>
+      _$AllTimePopularManga$Query$PageFromJson(json);
+
+  List<AllTimePopularManga$Query$Page$Media?>? media;
+
+  @override
+  List<Object?> get props => [media];
+  Map<String, dynamic> toJson() => _$AllTimePopularManga$Query$PageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AllTimePopularManga$Query extends JsonSerializable with EquatableMixin {
+  AllTimePopularManga$Query();
+
+  factory AllTimePopularManga$Query.fromJson(Map<String, dynamic> json) =>
+      _$AllTimePopularManga$QueryFromJson(json);
+
+  @JsonKey(name: 'Page')
+  AllTimePopularManga$Query$Page? page;
+
+  @override
+  List<Object?> get props => [page];
+  Map<String, dynamic> toJson() => _$AllTimePopularManga$QueryToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -306,10 +398,10 @@ class MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommen
       _$MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommendation$Media$MediaCoverImageFromJson(
           json);
 
-  String? medium;
+  String? large;
 
   @override
-  List<Object?> get props => [medium];
+  List<Object?> get props => [large];
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommendation$Media$MediaCoverImageToJson(
           this);
@@ -773,49 +865,50 @@ class SearchData$Query extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class TopTen$Query$Page$Media$MediaTitle extends JsonSerializable
+class TopTenAnime$Query$Page$Media$MediaTitle extends JsonSerializable
     with EquatableMixin {
-  TopTen$Query$Page$Media$MediaTitle();
+  TopTenAnime$Query$Page$Media$MediaTitle();
 
-  factory TopTen$Query$Page$Media$MediaTitle.fromJson(
+  factory TopTenAnime$Query$Page$Media$MediaTitle.fromJson(
           Map<String, dynamic> json) =>
-      _$TopTen$Query$Page$Media$MediaTitleFromJson(json);
+      _$TopTenAnime$Query$Page$Media$MediaTitleFromJson(json);
 
   String? userPreferred;
 
   @override
   List<Object?> get props => [userPreferred];
   Map<String, dynamic> toJson() =>
-      _$TopTen$Query$Page$Media$MediaTitleToJson(this);
+      _$TopTenAnime$Query$Page$Media$MediaTitleToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class TopTen$Query$Page$Media$MediaCoverImage extends JsonSerializable
+class TopTenAnime$Query$Page$Media$MediaCoverImage extends JsonSerializable
     with EquatableMixin {
-  TopTen$Query$Page$Media$MediaCoverImage();
+  TopTenAnime$Query$Page$Media$MediaCoverImage();
 
-  factory TopTen$Query$Page$Media$MediaCoverImage.fromJson(
+  factory TopTenAnime$Query$Page$Media$MediaCoverImage.fromJson(
           Map<String, dynamic> json) =>
-      _$TopTen$Query$Page$Media$MediaCoverImageFromJson(json);
+      _$TopTenAnime$Query$Page$Media$MediaCoverImageFromJson(json);
 
   String? large;
 
   @override
   List<Object?> get props => [large];
   Map<String, dynamic> toJson() =>
-      _$TopTen$Query$Page$Media$MediaCoverImageToJson(this);
+      _$TopTenAnime$Query$Page$Media$MediaCoverImageToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class TopTen$Query$Page$Media extends JsonSerializable with EquatableMixin {
-  TopTen$Query$Page$Media();
+class TopTenAnime$Query$Page$Media extends JsonSerializable
+    with EquatableMixin {
+  TopTenAnime$Query$Page$Media();
 
-  factory TopTen$Query$Page$Media.fromJson(Map<String, dynamic> json) =>
-      _$TopTen$Query$Page$MediaFromJson(json);
+  factory TopTenAnime$Query$Page$Media.fromJson(Map<String, dynamic> json) =>
+      _$TopTenAnime$Query$Page$MediaFromJson(json);
 
   late int id;
 
-  TopTen$Query$Page$Media$MediaTitle? title;
+  TopTenAnime$Query$Page$Media$MediaTitle? title;
 
   int? popularity;
 
@@ -824,130 +917,221 @@ class TopTen$Query$Page$Media extends JsonSerializable with EquatableMixin {
   @JsonKey(unknownEnumValue: MediaStatus.artemisUnknown)
   MediaStatus? status;
 
-  TopTen$Query$Page$Media$MediaCoverImage? coverImage;
+  TopTenAnime$Query$Page$Media$MediaCoverImage? coverImage;
 
   @override
   List<Object?> get props =>
       [id, title, popularity, episodes, status, coverImage];
-  Map<String, dynamic> toJson() => _$TopTen$Query$Page$MediaToJson(this);
+  Map<String, dynamic> toJson() => _$TopTenAnime$Query$Page$MediaToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class TopTen$Query$Page extends JsonSerializable with EquatableMixin {
-  TopTen$Query$Page();
+class TopTenAnime$Query$Page extends JsonSerializable with EquatableMixin {
+  TopTenAnime$Query$Page();
 
-  factory TopTen$Query$Page.fromJson(Map<String, dynamic> json) =>
-      _$TopTen$Query$PageFromJson(json);
+  factory TopTenAnime$Query$Page.fromJson(Map<String, dynamic> json) =>
+      _$TopTenAnime$Query$PageFromJson(json);
 
-  List<TopTen$Query$Page$Media?>? media;
+  List<TopTenAnime$Query$Page$Media?>? media;
 
   @override
   List<Object?> get props => [media];
-  Map<String, dynamic> toJson() => _$TopTen$Query$PageToJson(this);
+  Map<String, dynamic> toJson() => _$TopTenAnime$Query$PageToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class TopTen$Query extends JsonSerializable with EquatableMixin {
-  TopTen$Query();
+class TopTenAnime$Query extends JsonSerializable with EquatableMixin {
+  TopTenAnime$Query();
 
-  factory TopTen$Query.fromJson(Map<String, dynamic> json) =>
-      _$TopTen$QueryFromJson(json);
+  factory TopTenAnime$Query.fromJson(Map<String, dynamic> json) =>
+      _$TopTenAnime$QueryFromJson(json);
 
   @JsonKey(name: 'Page')
-  TopTen$Query$Page? page;
+  TopTenAnime$Query$Page? page;
 
   @override
   List<Object?> get props => [page];
-  Map<String, dynamic> toJson() => _$TopTen$QueryToJson(this);
+  Map<String, dynamic> toJson() => _$TopTenAnime$QueryToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class Trending$Query$Page$Media$MediaTitle extends JsonSerializable
+class TopTenManga$Query$Page$Media$MediaTitle extends JsonSerializable
     with EquatableMixin {
-  Trending$Query$Page$Media$MediaTitle();
+  TopTenManga$Query$Page$Media$MediaTitle();
 
-  factory Trending$Query$Page$Media$MediaTitle.fromJson(
+  factory TopTenManga$Query$Page$Media$MediaTitle.fromJson(
           Map<String, dynamic> json) =>
-      _$Trending$Query$Page$Media$MediaTitleFromJson(json);
+      _$TopTenManga$Query$Page$Media$MediaTitleFromJson(json);
 
   String? userPreferred;
 
   @override
   List<Object?> get props => [userPreferred];
   Map<String, dynamic> toJson() =>
-      _$Trending$Query$Page$Media$MediaTitleToJson(this);
+      _$TopTenManga$Query$Page$Media$MediaTitleToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class Trending$Query$Page$Media$MediaCoverImage extends JsonSerializable
+class TopTenManga$Query$Page$Media$MediaCoverImage extends JsonSerializable
     with EquatableMixin {
-  Trending$Query$Page$Media$MediaCoverImage();
+  TopTenManga$Query$Page$Media$MediaCoverImage();
 
-  factory Trending$Query$Page$Media$MediaCoverImage.fromJson(
+  factory TopTenManga$Query$Page$Media$MediaCoverImage.fromJson(
           Map<String, dynamic> json) =>
-      _$Trending$Query$Page$Media$MediaCoverImageFromJson(json);
+      _$TopTenManga$Query$Page$Media$MediaCoverImageFromJson(json);
 
   String? large;
 
   @override
   List<Object?> get props => [large];
   Map<String, dynamic> toJson() =>
-      _$Trending$Query$Page$Media$MediaCoverImageToJson(this);
+      _$TopTenManga$Query$Page$Media$MediaCoverImageToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class Trending$Query$Page$Media extends JsonSerializable with EquatableMixin {
-  Trending$Query$Page$Media();
+class TopTenManga$Query$Page$Media extends JsonSerializable
+    with EquatableMixin {
+  TopTenManga$Query$Page$Media();
 
-  factory Trending$Query$Page$Media.fromJson(Map<String, dynamic> json) =>
-      _$Trending$Query$Page$MediaFromJson(json);
+  factory TopTenManga$Query$Page$Media.fromJson(Map<String, dynamic> json) =>
+      _$TopTenManga$Query$Page$MediaFromJson(json);
 
   late int id;
 
-  Trending$Query$Page$Media$MediaTitle? title;
+  TopTenManga$Query$Page$Media$MediaTitle? title;
+
+  int? popularity;
 
   int? episodes;
 
   @JsonKey(unknownEnumValue: MediaStatus.artemisUnknown)
   MediaStatus? status;
 
-  Trending$Query$Page$Media$MediaCoverImage? coverImage;
+  TopTenManga$Query$Page$Media$MediaCoverImage? coverImage;
+
+  @override
+  List<Object?> get props =>
+      [id, title, popularity, episodes, status, coverImage];
+  Map<String, dynamic> toJson() => _$TopTenManga$Query$Page$MediaToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class TopTenManga$Query$Page extends JsonSerializable with EquatableMixin {
+  TopTenManga$Query$Page();
+
+  factory TopTenManga$Query$Page.fromJson(Map<String, dynamic> json) =>
+      _$TopTenManga$Query$PageFromJson(json);
+
+  List<TopTenManga$Query$Page$Media?>? media;
+
+  @override
+  List<Object?> get props => [media];
+  Map<String, dynamic> toJson() => _$TopTenManga$Query$PageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class TopTenManga$Query extends JsonSerializable with EquatableMixin {
+  TopTenManga$Query();
+
+  factory TopTenManga$Query.fromJson(Map<String, dynamic> json) =>
+      _$TopTenManga$QueryFromJson(json);
+
+  @JsonKey(name: 'Page')
+  TopTenManga$Query$Page? page;
+
+  @override
+  List<Object?> get props => [page];
+  Map<String, dynamic> toJson() => _$TopTenManga$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class TrendingAnime$Query$Page$Media$MediaTitle extends JsonSerializable
+    with EquatableMixin {
+  TrendingAnime$Query$Page$Media$MediaTitle();
+
+  factory TrendingAnime$Query$Page$Media$MediaTitle.fromJson(
+          Map<String, dynamic> json) =>
+      _$TrendingAnime$Query$Page$Media$MediaTitleFromJson(json);
+
+  String? userPreferred;
+
+  @override
+  List<Object?> get props => [userPreferred];
+  Map<String, dynamic> toJson() =>
+      _$TrendingAnime$Query$Page$Media$MediaTitleToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class TrendingAnime$Query$Page$Media$MediaCoverImage extends JsonSerializable
+    with EquatableMixin {
+  TrendingAnime$Query$Page$Media$MediaCoverImage();
+
+  factory TrendingAnime$Query$Page$Media$MediaCoverImage.fromJson(
+          Map<String, dynamic> json) =>
+      _$TrendingAnime$Query$Page$Media$MediaCoverImageFromJson(json);
+
+  String? large;
+
+  @override
+  List<Object?> get props => [large];
+  Map<String, dynamic> toJson() =>
+      _$TrendingAnime$Query$Page$Media$MediaCoverImageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class TrendingAnime$Query$Page$Media extends JsonSerializable
+    with EquatableMixin {
+  TrendingAnime$Query$Page$Media();
+
+  factory TrendingAnime$Query$Page$Media.fromJson(Map<String, dynamic> json) =>
+      _$TrendingAnime$Query$Page$MediaFromJson(json);
+
+  late int id;
+
+  TrendingAnime$Query$Page$Media$MediaTitle? title;
+
+  int? episodes;
+
+  @JsonKey(unknownEnumValue: MediaStatus.artemisUnknown)
+  MediaStatus? status;
+
+  TrendingAnime$Query$Page$Media$MediaCoverImage? coverImage;
 
   String? bannerImage;
 
   @override
   List<Object?> get props =>
       [id, title, episodes, status, coverImage, bannerImage];
-  Map<String, dynamic> toJson() => _$Trending$Query$Page$MediaToJson(this);
+  Map<String, dynamic> toJson() => _$TrendingAnime$Query$Page$MediaToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class Trending$Query$Page extends JsonSerializable with EquatableMixin {
-  Trending$Query$Page();
+class TrendingAnime$Query$Page extends JsonSerializable with EquatableMixin {
+  TrendingAnime$Query$Page();
 
-  factory Trending$Query$Page.fromJson(Map<String, dynamic> json) =>
-      _$Trending$Query$PageFromJson(json);
+  factory TrendingAnime$Query$Page.fromJson(Map<String, dynamic> json) =>
+      _$TrendingAnime$Query$PageFromJson(json);
 
-  List<Trending$Query$Page$Media?>? media;
+  List<TrendingAnime$Query$Page$Media?>? media;
 
   @override
   List<Object?> get props => [media];
-  Map<String, dynamic> toJson() => _$Trending$Query$PageToJson(this);
+  Map<String, dynamic> toJson() => _$TrendingAnime$Query$PageToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class Trending$Query extends JsonSerializable with EquatableMixin {
-  Trending$Query();
+class TrendingAnime$Query extends JsonSerializable with EquatableMixin {
+  TrendingAnime$Query();
 
-  factory Trending$Query.fromJson(Map<String, dynamic> json) =>
-      _$Trending$QueryFromJson(json);
+  factory TrendingAnime$Query.fromJson(Map<String, dynamic> json) =>
+      _$TrendingAnime$QueryFromJson(json);
 
   @JsonKey(name: 'Page')
-  Trending$Query$Page? page;
+  TrendingAnime$Query$Page? page;
 
   @override
   List<Object?> get props => [page];
-  Map<String, dynamic> toJson() => _$Trending$QueryToJson(this);
+  Map<String, dynamic> toJson() => _$TrendingAnime$QueryToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -1119,6 +1303,187 @@ class MediaStatsMixin$UserTagStatistic extends JsonSerializable
       _$MediaStatsMixin$UserTagStatisticToJson(this);
 }
 
+@JsonSerializable(explicitToJson: true)
+class AllTimePopularManhwa$Query$Page$Media$MediaTitle extends JsonSerializable
+    with EquatableMixin {
+  AllTimePopularManhwa$Query$Page$Media$MediaTitle();
+
+  factory AllTimePopularManhwa$Query$Page$Media$MediaTitle.fromJson(
+          Map<String, dynamic> json) =>
+      _$AllTimePopularManhwa$Query$Page$Media$MediaTitleFromJson(json);
+
+  String? userPreferred;
+
+  @override
+  List<Object?> get props => [userPreferred];
+  Map<String, dynamic> toJson() =>
+      _$AllTimePopularManhwa$Query$Page$Media$MediaTitleToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AllTimePopularManhwa$Query$Page$Media$MediaCoverImage
+    extends JsonSerializable with EquatableMixin {
+  AllTimePopularManhwa$Query$Page$Media$MediaCoverImage();
+
+  factory AllTimePopularManhwa$Query$Page$Media$MediaCoverImage.fromJson(
+          Map<String, dynamic> json) =>
+      _$AllTimePopularManhwa$Query$Page$Media$MediaCoverImageFromJson(json);
+
+  String? large;
+
+  @override
+  List<Object?> get props => [large];
+  Map<String, dynamic> toJson() =>
+      _$AllTimePopularManhwa$Query$Page$Media$MediaCoverImageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AllTimePopularManhwa$Query$Page$Media extends JsonSerializable
+    with EquatableMixin {
+  AllTimePopularManhwa$Query$Page$Media();
+
+  factory AllTimePopularManhwa$Query$Page$Media.fromJson(
+          Map<String, dynamic> json) =>
+      _$AllTimePopularManhwa$Query$Page$MediaFromJson(json);
+
+  late int id;
+
+  AllTimePopularManhwa$Query$Page$Media$MediaTitle? title;
+
+  int? episodes;
+
+  @JsonKey(unknownEnumValue: MediaStatus.artemisUnknown)
+  MediaStatus? status;
+
+  AllTimePopularManhwa$Query$Page$Media$MediaCoverImage? coverImage;
+
+  @override
+  List<Object?> get props => [id, title, episodes, status, coverImage];
+  Map<String, dynamic> toJson() =>
+      _$AllTimePopularManhwa$Query$Page$MediaToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AllTimePopularManhwa$Query$Page extends JsonSerializable
+    with EquatableMixin {
+  AllTimePopularManhwa$Query$Page();
+
+  factory AllTimePopularManhwa$Query$Page.fromJson(Map<String, dynamic> json) =>
+      _$AllTimePopularManhwa$Query$PageFromJson(json);
+
+  List<AllTimePopularManhwa$Query$Page$Media?>? media;
+
+  @override
+  List<Object?> get props => [media];
+  Map<String, dynamic> toJson() =>
+      _$AllTimePopularManhwa$Query$PageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class AllTimePopularManhwa$Query extends JsonSerializable with EquatableMixin {
+  AllTimePopularManhwa$Query();
+
+  factory AllTimePopularManhwa$Query.fromJson(Map<String, dynamic> json) =>
+      _$AllTimePopularManhwa$QueryFromJson(json);
+
+  @JsonKey(name: 'Page')
+  AllTimePopularManhwa$Query$Page? page;
+
+  @override
+  List<Object?> get props => [page];
+  Map<String, dynamic> toJson() => _$AllTimePopularManhwa$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class TrendingManga$Query$Page$Media$MediaTitle extends JsonSerializable
+    with EquatableMixin {
+  TrendingManga$Query$Page$Media$MediaTitle();
+
+  factory TrendingManga$Query$Page$Media$MediaTitle.fromJson(
+          Map<String, dynamic> json) =>
+      _$TrendingManga$Query$Page$Media$MediaTitleFromJson(json);
+
+  String? userPreferred;
+
+  @override
+  List<Object?> get props => [userPreferred];
+  Map<String, dynamic> toJson() =>
+      _$TrendingManga$Query$Page$Media$MediaTitleToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class TrendingManga$Query$Page$Media$MediaCoverImage extends JsonSerializable
+    with EquatableMixin {
+  TrendingManga$Query$Page$Media$MediaCoverImage();
+
+  factory TrendingManga$Query$Page$Media$MediaCoverImage.fromJson(
+          Map<String, dynamic> json) =>
+      _$TrendingManga$Query$Page$Media$MediaCoverImageFromJson(json);
+
+  String? large;
+
+  @override
+  List<Object?> get props => [large];
+  Map<String, dynamic> toJson() =>
+      _$TrendingManga$Query$Page$Media$MediaCoverImageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class TrendingManga$Query$Page$Media extends JsonSerializable
+    with EquatableMixin {
+  TrendingManga$Query$Page$Media();
+
+  factory TrendingManga$Query$Page$Media.fromJson(Map<String, dynamic> json) =>
+      _$TrendingManga$Query$Page$MediaFromJson(json);
+
+  late int id;
+
+  TrendingManga$Query$Page$Media$MediaTitle? title;
+
+  int? episodes;
+
+  @JsonKey(unknownEnumValue: MediaStatus.artemisUnknown)
+  MediaStatus? status;
+
+  TrendingManga$Query$Page$Media$MediaCoverImage? coverImage;
+
+  String? bannerImage;
+
+  @override
+  List<Object?> get props =>
+      [id, title, episodes, status, coverImage, bannerImage];
+  Map<String, dynamic> toJson() => _$TrendingManga$Query$Page$MediaToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class TrendingManga$Query$Page extends JsonSerializable with EquatableMixin {
+  TrendingManga$Query$Page();
+
+  factory TrendingManga$Query$Page.fromJson(Map<String, dynamic> json) =>
+      _$TrendingManga$Query$PageFromJson(json);
+
+  List<TrendingManga$Query$Page$Media?>? media;
+
+  @override
+  List<Object?> get props => [media];
+  Map<String, dynamic> toJson() => _$TrendingManga$Query$PageToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class TrendingManga$Query extends JsonSerializable with EquatableMixin {
+  TrendingManga$Query();
+
+  factory TrendingManga$Query.fromJson(Map<String, dynamic> json) =>
+      _$TrendingManga$QueryFromJson(json);
+
+  @JsonKey(name: 'Page')
+  TrendingManga$Query$Page? page;
+
+  @override
+  List<Object?> get props => [page];
+  Map<String, dynamic> toJson() => _$TrendingManga$QueryToJson(this);
+}
+
 enum MediaStatus {
   @JsonValue('FINISHED')
   finished,
@@ -1207,10 +1572,10 @@ enum MediaType {
   @JsonValue('ARTEMIS_UNKNOWN')
   artemisUnknown,
 }
-final ALL_TIME_POPULAR_QUERY_DOCUMENT = DocumentNode(definitions: [
+final ALL_TIME_POPULAR_ANIME_QUERY_DOCUMENT = DocumentNode(definitions: [
   OperationDefinitionNode(
       type: OperationType.query,
-      name: NameNode(value: 'AllTimePopular'),
+      name: NameNode(value: 'AllTimePopularAnime'),
       variableDefinitions: [],
       directives: [],
       selectionSet: SelectionSetNode(selections: [
@@ -1290,21 +1655,121 @@ final ALL_TIME_POPULAR_QUERY_DOCUMENT = DocumentNode(definitions: [
       ]))
 ]);
 
-class AllTimePopularQuery
-    extends GraphQLQuery<AllTimePopular$Query, JsonSerializable> {
-  AllTimePopularQuery();
+class AllTimePopularAnimeQuery
+    extends GraphQLQuery<AllTimePopularAnime$Query, JsonSerializable> {
+  AllTimePopularAnimeQuery();
 
   @override
-  final DocumentNode document = ALL_TIME_POPULAR_QUERY_DOCUMENT;
+  final DocumentNode document = ALL_TIME_POPULAR_ANIME_QUERY_DOCUMENT;
 
   @override
-  final String operationName = 'AllTimePopular';
+  final String operationName = 'AllTimePopularAnime';
 
   @override
   List<Object?> get props => [document, operationName];
   @override
-  AllTimePopular$Query parse(Map<String, dynamic> json) =>
-      AllTimePopular$Query.fromJson(json);
+  AllTimePopularAnime$Query parse(Map<String, dynamic> json) =>
+      AllTimePopularAnime$Query.fromJson(json);
+}
+
+final ALL_TIME_POPULAR_MANGA_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'AllTimePopularManga'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'Page'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'page'),
+                  value: IntValueNode(value: '1')),
+              ArgumentNode(
+                  name: NameNode(value: 'perPage'),
+                  value: IntValueNode(value: '10'))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'media'),
+                  alias: null,
+                  arguments: [
+                    ArgumentNode(
+                        name: NameNode(value: 'type'),
+                        value: EnumValueNode(name: NameNode(value: 'MANGA'))),
+                    ArgumentNode(
+                        name: NameNode(value: 'sort'),
+                        value: EnumValueNode(
+                            name: NameNode(value: 'POPULARITY_DESC')))
+                  ],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'title'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'userPreferred'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: 'episodes'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'status'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'coverImage'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'large'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ]))
+                  ]))
+            ]))
+      ]))
+]);
+
+class AllTimePopularMangaQuery
+    extends GraphQLQuery<AllTimePopularManga$Query, JsonSerializable> {
+  AllTimePopularMangaQuery();
+
+  @override
+  final DocumentNode document = ALL_TIME_POPULAR_MANGA_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'AllTimePopularManga';
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  AllTimePopularManga$Query parse(Map<String, dynamic> json) =>
+      AllTimePopularManga$Query.fromJson(json);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -1622,7 +2087,7 @@ final MEDIA_INFO_QUERY_DOCUMENT = DocumentNode(definitions: [
                                           selectionSet:
                                               SelectionSetNode(selections: [
                                             FieldNode(
-                                                name: NameNode(value: 'medium'),
+                                                name: NameNode(value: 'large'),
                                                 alias: null,
                                                 arguments: [],
                                                 directives: [],
@@ -2117,10 +2582,10 @@ class SearchDataQuery
       SearchData$Query.fromJson(json);
 }
 
-final TOP_TEN_QUERY_DOCUMENT = DocumentNode(definitions: [
+final TOP_TEN_ANIME_QUERY_DOCUMENT = DocumentNode(definitions: [
   OperationDefinitionNode(
       type: OperationType.query,
-      name: NameNode(value: 'TopTen'),
+      name: NameNode(value: 'TopTenAnime'),
       variableDefinitions: [],
       directives: [],
       selectionSet: SelectionSetNode(selections: [
@@ -2206,25 +2671,133 @@ final TOP_TEN_QUERY_DOCUMENT = DocumentNode(definitions: [
       ]))
 ]);
 
-class TopTenQuery extends GraphQLQuery<TopTen$Query, JsonSerializable> {
-  TopTenQuery();
+class TopTenAnimeQuery
+    extends GraphQLQuery<TopTenAnime$Query, JsonSerializable> {
+  TopTenAnimeQuery();
 
   @override
-  final DocumentNode document = TOP_TEN_QUERY_DOCUMENT;
+  final DocumentNode document = TOP_TEN_ANIME_QUERY_DOCUMENT;
 
   @override
-  final String operationName = 'TopTen';
+  final String operationName = 'TopTenAnime';
 
   @override
   List<Object?> get props => [document, operationName];
   @override
-  TopTen$Query parse(Map<String, dynamic> json) => TopTen$Query.fromJson(json);
+  TopTenAnime$Query parse(Map<String, dynamic> json) =>
+      TopTenAnime$Query.fromJson(json);
 }
 
-final TRENDING_QUERY_DOCUMENT = DocumentNode(definitions: [
+final TOP_TEN_MANGA_QUERY_DOCUMENT = DocumentNode(definitions: [
   OperationDefinitionNode(
       type: OperationType.query,
-      name: NameNode(value: 'Trending'),
+      name: NameNode(value: 'TopTenManga'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'Page'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'page'),
+                  value: IntValueNode(value: '1')),
+              ArgumentNode(
+                  name: NameNode(value: 'perPage'),
+                  value: IntValueNode(value: '10'))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'media'),
+                  alias: null,
+                  arguments: [
+                    ArgumentNode(
+                        name: NameNode(value: 'type'),
+                        value: EnumValueNode(name: NameNode(value: 'MANGA'))),
+                    ArgumentNode(
+                        name: NameNode(value: 'sort'),
+                        value:
+                            EnumValueNode(name: NameNode(value: 'SCORE_DESC')))
+                  ],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'title'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'userPreferred'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: 'popularity'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'episodes'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'status'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'coverImage'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'large'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ]))
+                  ]))
+            ]))
+      ]))
+]);
+
+class TopTenMangaQuery
+    extends GraphQLQuery<TopTenManga$Query, JsonSerializable> {
+  TopTenMangaQuery();
+
+  @override
+  final DocumentNode document = TOP_TEN_MANGA_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'TopTenManga';
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  TopTenManga$Query parse(Map<String, dynamic> json) =>
+      TopTenManga$Query.fromJson(json);
+}
+
+final TRENDING_ANIME_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'TrendingAnime'),
       variableDefinitions: [],
       directives: [],
       selectionSet: SelectionSetNode(selections: [
@@ -2310,20 +2883,21 @@ final TRENDING_QUERY_DOCUMENT = DocumentNode(definitions: [
       ]))
 ]);
 
-class TrendingQuery extends GraphQLQuery<Trending$Query, JsonSerializable> {
-  TrendingQuery();
+class TrendingAnimeQuery
+    extends GraphQLQuery<TrendingAnime$Query, JsonSerializable> {
+  TrendingAnimeQuery();
 
   @override
-  final DocumentNode document = TRENDING_QUERY_DOCUMENT;
+  final DocumentNode document = TRENDING_ANIME_QUERY_DOCUMENT;
 
   @override
-  final String operationName = 'Trending';
+  final String operationName = 'TrendingAnime';
 
   @override
   List<Object?> get props => [document, operationName];
   @override
-  Trending$Query parse(Map<String, dynamic> json) =>
-      Trending$Query.fromJson(json);
+  TrendingAnime$Query parse(Map<String, dynamic> json) =>
+      TrendingAnime$Query.fromJson(json);
 }
 
 final USER_INFO_QUERY_DOCUMENT = DocumentNode(definitions: [
@@ -2530,4 +3104,213 @@ class UserInfoQuery extends GraphQLQuery<UserInfo$Query, JsonSerializable> {
   @override
   UserInfo$Query parse(Map<String, dynamic> json) =>
       UserInfo$Query.fromJson(json);
+}
+
+final ALL_TIME_POPULAR_MANHWA_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'AllTimePopularManhwa'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'Page'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'page'),
+                  value: IntValueNode(value: '1')),
+              ArgumentNode(
+                  name: NameNode(value: 'perPage'),
+                  value: IntValueNode(value: '10'))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'media'),
+                  alias: null,
+                  arguments: [
+                    ArgumentNode(
+                        name: NameNode(value: 'type'),
+                        value: EnumValueNode(name: NameNode(value: 'MANGA'))),
+                    ArgumentNode(
+                        name: NameNode(value: 'countryOfOrigin'),
+                        value: EnumValueNode(name: NameNode(value: 'KR'))),
+                    ArgumentNode(
+                        name: NameNode(value: 'sort'),
+                        value: EnumValueNode(
+                            name: NameNode(value: 'POPULARITY_DESC')))
+                  ],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'title'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'userPreferred'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: 'episodes'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'status'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'coverImage'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'large'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ]))
+                  ]))
+            ]))
+      ]))
+]);
+
+class AllTimePopularManhwaQuery
+    extends GraphQLQuery<AllTimePopularManhwa$Query, JsonSerializable> {
+  AllTimePopularManhwaQuery();
+
+  @override
+  final DocumentNode document = ALL_TIME_POPULAR_MANHWA_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'AllTimePopularManhwa';
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  AllTimePopularManhwa$Query parse(Map<String, dynamic> json) =>
+      AllTimePopularManhwa$Query.fromJson(json);
+}
+
+final TRENDING_MANGA_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'TrendingManga'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'Page'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'page'),
+                  value: IntValueNode(value: '1')),
+              ArgumentNode(
+                  name: NameNode(value: 'perPage'),
+                  value: IntValueNode(value: '10'))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'media'),
+                  alias: null,
+                  arguments: [
+                    ArgumentNode(
+                        name: NameNode(value: 'type'),
+                        value: EnumValueNode(name: NameNode(value: 'MANGA'))),
+                    ArgumentNode(
+                        name: NameNode(value: 'sort'),
+                        value: EnumValueNode(
+                            name: NameNode(value: 'TRENDING_DESC')))
+                  ],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'title'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'userPreferred'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: 'episodes'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'status'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'coverImage'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'large'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: 'bannerImage'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
+            ]))
+      ]))
+]);
+
+class TrendingMangaQuery
+    extends GraphQLQuery<TrendingManga$Query, JsonSerializable> {
+  TrendingMangaQuery();
+
+  @override
+  final DocumentNode document = TRENDING_MANGA_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'TrendingManga';
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  TrendingManga$Query parse(Map<String, dynamic> json) =>
+      TrendingManga$Query.fromJson(json);
 }

@@ -10,12 +10,12 @@ import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart' as url;
 
 import '../../../graphql/graphql_api.dart';
-import '../../../models/anime_card_entry.dart';
+import '../../../models/media_card_entry.dart';
 import '../../../models/helpers/media_format.dart';
 import '../../../models/helpers/media_relation.dart';
 import '../../../models/helpers/media_status.dart';
 import '../../../models/sources/four_anime.dart';
-import '../../widgets/anime_card.dart';
+import '../../widgets/media_card.dart';
 
 class MediaInfo extends StatefulWidget {
   final int id;
@@ -322,30 +322,19 @@ class _MediaInfoState extends State<MediaInfo> {
   }
 
   Widget infoBuilder(MediaInfo$Query$Media? anime) {
-    return Theme(
-      data: Theme.of(context).copyWith(
-        textTheme: TextTheme(
-          bodyText1: TextStyle(
-            fontFamily: "Rubik",
-          ),
-        ),
-      ),
-      child: Builder(builder: (BuildContext context) {
-        return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Table(
-                border: TableBorder(
-                    horizontalInside:
-                        BorderSide(width: 0.4, color: Colors.white38)),
-                children: anime!.type == MediaType.anime
-                    ? animeInfoBuilder(anime)
-                    : mangaInfoBuilder(anime)));
-      }),
-    );
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Table(
+            border: TableBorder(
+                horizontalInside:
+                    BorderSide(width: 0.4, color: Colors.white38)),
+            children: anime!.type == MediaType.anime
+                ? animeInfoBuilder(anime)
+                : mangaInfoBuilder(anime)));
   }
 
   Widget infoTitle(String text) {
-    final theme = Theme.of(context).textTheme.bodyText1;
+    final theme = TextStyle(fontFamily: "Rubik", fontWeight: FontWeight.bold);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Text(text, style: theme),
@@ -353,7 +342,7 @@ class _MediaInfoState extends State<MediaInfo> {
   }
 
   Widget infoValue(String text) {
-    final theme = Theme.of(context).textTheme.bodyText1;
+    final theme = TextStyle(fontFamily: "Rubik", fontWeight: FontWeight.bold);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Text(
@@ -470,8 +459,8 @@ class _MediaInfoState extends State<MediaInfo> {
               anime?.relations?.edges?[index]?.relationType?.name;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 2),
-            child: AnimeCard(
-                anime: AnimeCardEntry(
+            child: MediaCard(
+                anime: MediaCardEntry(
                     relation?.id ?? 00,
                     relation?.title?.userPreferred ?? "",
                     relation?.coverImage?.large ?? "",
@@ -493,11 +482,11 @@ class _MediaInfoState extends State<MediaInfo> {
               anime?.recommendations?.edges?[index]?.node?.mediaRecommendation;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 2),
-            child: AnimeCard(
-                anime: AnimeCardEntry(
+            child: MediaCard(
+                anime: MediaCardEntry(
               recommendation?.id ?? 00,
               recommendation?.title?.userPreferred ?? "",
-              recommendation?.coverImage?.medium ?? "",
+              recommendation?.coverImage?.large ?? "",
             )),
           );
         },

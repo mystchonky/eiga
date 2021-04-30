@@ -25,6 +25,7 @@ dependencies:
   intl: ^0.17.0
   oauth2_client: ^2.0.1
   url_launcher: ^6.0.3
+  modal_bottom_sheet: ^2.0.0
 
 dev_dependencies:
   flutter_test:

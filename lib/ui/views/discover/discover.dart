@@ -1,10 +1,18 @@
+import 'package:eiga/ui/widgets/discover/trending_carousel_manga.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/discover/custom_lists.dart';
-import '../../widgets/discover/trending_carousel.dart';
+import '../../widgets/discover/trending_carousel_anime.dart';
 import 'search_page.dart';
 
-class DiscoverPage extends StatelessWidget {
+class DiscoverPage extends StatefulWidget {
+  @override
+  _DiscoverPageState createState() => _DiscoverPageState();
+}
+
+class _DiscoverPageState extends State<DiscoverPage> {
+  bool animeMode = true;
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -22,8 +30,15 @@ class DiscoverPage extends StatelessWidget {
                   style: TextStyle(fontFamily: "Rubik"),
                 )),
                 IconButton(
-                    icon: Icon(Icons.search,
-                        color: Theme.of(context).accentColor),
+                    icon: animeMode
+                        ? Icon(Icons.book)
+                        : Icon(Icons.play_circle_fill),
+                    iconSize: 20,
+                    onPressed: () => setState(() {
+                          animeMode = !animeMode;
+                        })),
+                IconButton(
+                    icon: Icon(Icons.search),
                     onPressed: () {
                       Navigator.push(
                           context,
@@ -34,28 +49,11 @@ class DiscoverPage extends StatelessWidget {
             ),
           ),
         ),
-        SliverToBoxAdapter(child: TrendingCarousel()),
         SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Divider(),
-                header("Popular Past Season"),
-                PopularThisSeason(),
-                Divider(),
-                header("Upcoming Next Season"),
-                UpcomingNextSeason(),
-                Divider(),
-                header("All Time Popular"),
-                AllTimePopular(),
-                Divider(),
-                header("Top Ten Anime"),
-                TopTen()
-              ],
-            ),
-          ),
+            child:
+                animeMode ? TrendingAnimeCarousel() : TrendingMangaCarousel()),
+        SliverToBoxAdapter(
+          child: animeMode ? _animeLists() : _mangaLists(),
         ),
       ],
     );
@@ -71,6 +69,49 @@ class DiscoverPage extends StatelessWidget {
           fontFamily: "Rubik",
           color: Colors.white,
         ),
+      ),
+    );
+  }
+
+  Widget _animeLists() {
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Divider(),
+          header("Popular This Season"),
+          PopularThisSeasonAnime(),
+          Divider(),
+          header("Upcoming Next Season"),
+          UpcomingNextSeasonAnime(),
+          Divider(),
+          header("All Time Popular"),
+          AllTimePopularAnime(),
+          Divider(),
+          header("Top Ten Anime"),
+          TopTenAnime()
+        ],
+      ),
+    );
+  }
+
+  Widget _mangaLists() {
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Divider(),
+          header("Popular Manga"),
+          AllTimePopularManga(),
+          header("Popular Manhwa"),
+          Divider(),
+          AllTimePopularManhwa(),
+          Divider(),
+          header("Top Ten Manga"),
+          TopTenManga()
+        ],
       ),
     );
   }

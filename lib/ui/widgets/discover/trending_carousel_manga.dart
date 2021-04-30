@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../../../graphql/graphql_api.dart';
-import '../../../models/anime_carousel_entry.dart';
+import '../../../models/media_carousel_entry.dart';
 import 'carousel_card.dart';
 
-class TrendingCarousel extends StatelessWidget {
+class TrendingMangaCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +15,7 @@ class TrendingCarousel extends StatelessWidget {
       ),
       child: Query(
         options: QueryOptions(
-          document: TrendingQuery().document,
+          document: TrendingMangaQuery().document,
         ),
         builder: (
           QueryResult result, {
@@ -30,8 +30,8 @@ class TrendingCarousel extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
 
-          final List<Trending$Query$Page$Media?>? data =
-              Trending$Query.fromJson(result.data!).page?.media;
+          final List<TrendingManga$Query$Page$Media?>? data =
+              TrendingManga$Query.fromJson(result.data!).page?.media;
 
           return CarouselSlider.builder(
               itemCount: data?.length ?? 0,
@@ -39,8 +39,8 @@ class TrendingCarousel extends StatelessWidget {
                   (BuildContext context, int itemIndex, int realIndex) =>
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
-                        child: AnimeCarouselCard(
-                          anime: AnimeCarouselEntry(
+                        child: MediaCarouselCard(
+                          anime: MediaCarouselEntry(
                             data?[itemIndex]?.id ?? 0,
                             data?[itemIndex]?.title?.userPreferred ?? "",
                             data?[itemIndex]?.bannerImage ??

@@ -45,19 +45,18 @@ query MediaInfo($id: Int) {
         }
       }
     }
-    recommendations(perPage:10) {
+    recommendations(perPage: 10) {
       edges {
         node {
-          mediaRecommendation{
+          mediaRecommendation {
             id
-            title{
+            title {
               userPreferred
             }
-            coverImage{
-              medium
+            coverImage {
+              large
             }
           }
-
         }
       }
     }

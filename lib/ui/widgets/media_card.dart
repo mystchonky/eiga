@@ -1,22 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/anime_card_entry.dart';
+import '../../models/media_card_entry.dart';
 import '../views/media/media_info_view.dart';
 
-class AnimeCard extends StatefulWidget {
-  final AnimeCardEntry? anime;
+class MediaCard extends StatefulWidget {
+  final MediaCardEntry? anime;
 
-  const AnimeCard({
+  const MediaCard({
     Key? key,
     this.anime,
   }) : super(key: key);
 
   @override
-  _AnimeCardState createState() => _AnimeCardState();
+  _MediaCardState createState() => _MediaCardState();
 }
 
-class _AnimeCardState extends State<AnimeCard>
+class _MediaCardState extends State<MediaCard>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
@@ -57,8 +57,8 @@ class _AnimeCardState extends State<AnimeCard>
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: <Color>[
-                      Colors.black.withAlpha(0),
-                      Colors.black26,
+                      Colors.transparent,
+                      Colors.black45,
                       Colors.black87
                     ],
                   ),
@@ -75,7 +75,11 @@ class _AnimeCardState extends State<AnimeCard>
               ),
               if (widget.anime!.relation != null)
                 Container(
-                  color: Colors.black,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).accentColor,
+                      borderRadius: BorderRadius.all(Radius.circular(4))),
+                  padding: EdgeInsets.all(2),
+                  margin: EdgeInsets.only(left: 2, top: 2),
                   child: Text(
                     widget.anime!.relation!,
                     style: TextStyle(

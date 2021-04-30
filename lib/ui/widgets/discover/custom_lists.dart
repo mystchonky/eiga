@@ -4,7 +4,7 @@ import '../../../graphql/graphql_api.dart';
 import '../../../models/helpers/custom_query_helper.dart';
 import 'media_list.dart';
 
-class PopularThisSeason extends StatelessWidget {
+class PopularThisSeasonAnime extends StatelessWidget {
   final queryVariables = {
     'season': CustomQueryHelper.currentSeason(),
     'seasonYear': CustomQueryHelper.currentYear()
@@ -20,7 +20,7 @@ class PopularThisSeason extends StatelessWidget {
   }
 }
 
-class UpcomingNextSeason extends StatelessWidget {
+class UpcomingNextSeasonAnime extends StatelessWidget {
   final queryVariables = {
     'season': CustomQueryHelper.upcomingSeason(),
     'seasonYear': CustomQueryHelper.upcomingYear()
@@ -36,19 +36,45 @@ class UpcomingNextSeason extends StatelessWidget {
   }
 }
 
-class AllTimePopular extends StatelessWidget {
+class AllTimePopularAnime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: sized_box_for_whitespace
-    return MediaList(mediaQuery: AllTimePopularQuery().document)
+    return MediaList(mediaQuery: AllTimePopularAnimeQuery().document)
         .generate(context);
   }
 }
 
-class TopTen extends StatelessWidget {
+class TopTenAnime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: sized_box_for_whitespace
-    return MediaList(mediaQuery: TopTenQuery().document).generate(context);
+    return MediaList(mediaQuery: TopTenAnimeQuery().document).generate(context);
+  }
+}
+
+class AllTimePopularManga extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // ignore: sized_box_for_whitespace
+    return MediaList(mediaQuery: AllTimePopularMangaQuery().document)
+        .generate(context);
+  }
+}
+
+class AllTimePopularManhwa extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // ignore: sized_box_for_whitespace
+    return MediaList(mediaQuery: AllTimePopularManhwaQuery().document)
+        .generate(context);
+  }
+}
+
+class TopTenManga extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // ignore: sized_box_for_whitespace
+    return MediaList(mediaQuery: TopTenMangaQuery().document).generate(context);
   }
 }
