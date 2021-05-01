@@ -66,6 +66,7 @@ query MediaInfo($id: Int) {
 fragment animeInfo on Media {
   studios(isMain: true) {
     nodes {
+      id
       name
     }
   }

@@ -1,0 +1,20 @@
+query StudioInfo($id: Int, $page: Int) {
+  Studio(id: $id) {
+    name
+    media(page: $page, perPage: 24, sort: POPULARITY_DESC) {
+      pageInfo {
+        hasNextPage
+        currentPage
+      }
+      nodes {
+        id
+        title {
+          userPreferred
+        }
+        coverImage {
+          large
+        }
+      }
+    }
+  }
+}

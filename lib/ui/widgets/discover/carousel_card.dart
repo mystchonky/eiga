@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/media_carousel_entry.dart';
-import '../../views/media/media_info_view.dart';
+import '../../views/media_info_view.dart';
 
 class MediaCarouselCard extends StatelessWidget {
   final MediaCarouselEntry anime;

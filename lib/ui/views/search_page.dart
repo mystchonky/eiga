@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-import '../../widgets/search_pane.dart';
+import '../widgets/search_pane.dart';
 
 class SearchPage extends StatefulWidget {
   @override

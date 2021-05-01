@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../../graphql/graphql_api.dart';
-import '../views/media/media_info_view.dart';
+import '../views/media_info_view.dart';
 import 'search_card.dart';
 
 class SearchPane extends StatefulWidget {
@@ -76,16 +76,15 @@ class _SearchPaneState extends State<SearchPane> {
             Expanded(
               child: NotificationListener(
                 onNotification: (dynamic sn) {
-                  if (sn is OverscrollNotification &&
-                      !result.isLoading &&
+                  if (sn is ScrollEndNotification &&
+                      _scrollController.offset > 0.8 &&
                       (pageInfo.hasNextPage!) &&
                       !updating) {
                     fetchMore!(opts);
                     updating = true;
                     return true;
-                  } else {
-                    return false;
                   }
+                  return false;
                 },
                 child: ListView.separated(
                   controller: _scrollController,

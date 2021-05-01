@@ -1,8 +1,8 @@
 import 'package:eiga/ui/widgets/discover/trending_carousel_manga.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/discover/custom_lists.dart';
-import '../../widgets/discover/trending_carousel_anime.dart';
+import '../widgets/discover/custom_lists.dart';
+import '../widgets/discover/trending_carousel_anime.dart';
 import 'search_page.dart';
 
 class DiscoverPage extends StatefulWidget {

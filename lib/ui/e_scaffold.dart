@@ -4,7 +4,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../models/e_graphql_client.dart';
 import '../models/e_oauth2_client.dart';
-import 'views/discover/discover.dart';
+import 'views/discover.dart';
 import 'views/profile.dart';
 
 class EigaScaffold extends StatefulWidget {

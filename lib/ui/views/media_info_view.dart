@@ -9,13 +9,14 @@ import 'package:intl/intl.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart' as url;
 
-import '../../../graphql/graphql_api.dart';
-import '../../../models/media_card_entry.dart';
-import '../../../models/helpers/media_format.dart';
-import '../../../models/helpers/media_relation.dart';
-import '../../../models/helpers/media_status.dart';
-import '../../../models/sources/four_anime.dart';
-import '../../widgets/media_card.dart';
+import '../../graphql/graphql_api.dart';
+import '../../models/helpers/media_format.dart';
+import '../../models/helpers/media_relation.dart';
+import '../../models/helpers/media_status.dart';
+import '../../models/media_card_entry.dart';
+import '../../models/sources/four_anime.dart';
+import '../widgets/media_card.dart';
+import 'studio_info.dart';
 
 class MediaInfo extends StatefulWidget {
   final int id;
@@ -353,6 +354,25 @@ class _MediaInfoState extends State<MediaInfo> {
     );
   }
 
+  Widget studioWidget(String text, int id) {
+    final theme = TextStyle(
+        fontFamily: "Rubik",
+        fontWeight: FontWeight.bold,
+        color: Theme.of(context).accentColor);
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2.0),
+      child: GestureDetector(
+        onTap: () => Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => StudioInfo(id: id))),
+        child: Text(
+          text,
+          style: theme,
+          textAlign: TextAlign.end,
+        ),
+      ),
+    );
+  }
+
   List<TableRow> animeInfoBuilder(MediaInfo$Query$Media? anime) {
     return [
       if (anime?.status == MediaStatus.releasing)
@@ -381,9 +401,15 @@ class _MediaInfoState extends State<MediaInfo> {
       ]),
       TableRow(children: [
         infoTitle("Studio"),
-        infoValue(
-          anime?.studios?.nodes?[0]?.name ?? "N/A",
-        )
+        if (anime?.studios?.nodes?[0]?.id != null)
+          studioWidget(
+            anime?.studios?.nodes?[0]?.name ?? "N/A",
+            anime!.studios!.nodes![0]!.id,
+          )
+        else
+          infoValue(
+            anime?.studios?.nodes?[0]?.name ?? "N/A",
+          )
       ]),
       TableRow(children: [
         infoTitle("Status"),

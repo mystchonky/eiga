@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../../models/anime_entry.dart';
-import '../../../../models/scraper.dart';
+import '../../../models/anime_entry.dart';
+import '../../../models/scraper.dart';
 
 class AnimeListView extends StatelessWidget {
   final String postUrl = "https://4anime.to/wp-admin/admin-ajax.php";

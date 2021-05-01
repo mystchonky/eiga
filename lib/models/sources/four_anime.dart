@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../ui/views/media/watch/anime_list_view.dart';
-import '../../ui/views/media/watch/episode_list_view.dart';
+import '../../ui/views/watch/anime_list_view.dart';
+import '../../ui/views/watch/episode_list_view.dart';
 
 enum currentView { animeList, episodeList }
 
