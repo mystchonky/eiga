@@ -50,18 +50,16 @@ class _EigaScaffoldState extends State<EigaScaffold> {
                 statusBarColor: Colors.transparent,
                 systemNavigationBarColor: Colors.black),
             child: Scaffold(
-              body: SafeArea(
-                child: PageView(
-                  physics: NeverScrollableScrollPhysics(),
-                  controller: _pageViewController,
-                  children: [
-                    Profile(
-                      client: widget.oauth2Client,
-                    ),
-                    Center(child: Text("Library")),
-                    DiscoverPage()
-                  ],
-                ),
+              body: PageView(
+                physics: NeverScrollableScrollPhysics(),
+                controller: _pageViewController,
+                children: [
+                  Profile(
+                    client: widget.oauth2Client,
+                  ),
+                  Center(child: Text("Library")),
+                  DiscoverPage()
+                ],
               ),
               resizeToAvoidBottomInset: false,
               bottomNavigationBar: BottomNavigationBar(

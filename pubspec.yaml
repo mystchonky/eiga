@@ -21,17 +21,19 @@ dependencies:
   graphql_flutter: ^5.0.0-nullsafety.2
   html: ^0.15.0
   http: ^0.13.1
-  share: ^2.0.1
   intl: ^0.17.0
-  oauth2_client: ^2.0.1
-  url_launcher: ^6.0.3
   modal_bottom_sheet: ^2.0.0
+  oauth2_client: ^2.0.1
+  share: ^2.0.1
+  url_launcher: ^6.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   artemis: ^7.0.0-beta.3
   build_runner: ">=1.10.4"
+  flutter_launcher_icons: ^0.9.0
+  flutter_native_splash: ^1.1.8+4
   json_serializable: ^4.1.0
   lint: ^1.5.3
 
@@ -59,3 +61,15 @@ flutter:
           weight: 600
         - asset: lib/assets/fonts/Rubik-Black.ttf
           weight: 900
+
+flutter_icons:
+  android: true
+  ios: false
+  image_path: "lib/assets/icon.png"
+  adaptive_icon_foreground: "lib/assets/icon.png"
+  adaptive_icon_background: "#000000"
+
+flutter_native_splash:
+  color: "#000000"
+  image: "lib/assets/splash.png"
+  android: true

@@ -1,20 +1,24 @@
-import 'dart:io';
-
-import 'package:android_intent/android_intent.dart';
-import 'package:android_intent/flag.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:html/dom.dart' as dom;
-import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart' as url;
 
 import 'package:eiga/models/episode_entry.dart';
 import 'package:eiga/models/scraper.dart';
 
-class EpisodeListView extends StatelessWidget {
+class EpisodeListView extends StatefulWidget {
   final String animeLink;
 
-  const EpisodeListView({Key? key, required this.animeLink}) : super(key: key);
+  const EpisodeListView({required this.animeLink});
+
+  @override
+  _EpisodeListViewState createState() => _EpisodeListViewState();
+}
+
+class _EpisodeListViewState extends State<EpisodeListView> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +50,7 @@ class EpisodeListView extends StatelessWidget {
   }
 
   Future<List<EpisodeEntry>> loadEpisodeList() async {
-    final response = await http.get(Uri.parse(animeLink));
+    final response = await http.get(Uri.parse(widget.animeLink));
     final soup = Scraper(response.body);
     return soup
         .findAll('ul.episodes.range.active > li > a')
@@ -55,63 +59,44 @@ class EpisodeListView extends StatelessWidget {
   }
 
   Future<void> openEpisode(String link, BuildContext context) async {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return SimpleDialog(
-            //contentPadding: EdgeInsets.all(10),
-            children: [
-              // ignore: avoid_unnecessary_containers
-              Container(child: Center(child: CircularProgressIndicator())),
-            ],
-          );
-        });
-    final response = await http.get(Uri.parse(link));
-    final dom.Document d = parser.parse(response.body);
-    final List<dom.Element> a = d.querySelectorAll('script');
-    String? vidLink;
-    for (final dom.Element i in a) {
-      if (i.innerHtml.contains("document.write( '<a ")) {
-        final String str = i.innerHtml;
-        const start = 'href=\\"';
-        const end = '\\">';
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("Launching episode"),
+    ));
 
-        final startIndex = str.indexOf(start);
-        final endIndex = str.indexOf(end, startIndex + start.length);
-        vidLink = str.substring(startIndex + start.length, endIndex);
-        break;
-      }
-    }
-
-    if (Platform.isAndroid) {
-      final AndroidIntent intent = AndroidIntent(
-        action: 'action_view',
-        data: vidLink,
-        type: 'video/**',
-        flags: [Flag.FLAG_GRANT_READ_URI_PERMISSION],
-      );
-      try {
-        await intent.launch();
-      } on PlatformException {
-        Navigator.of(context, rootNavigator: true).pop();
-        showDialog(
-            context: context,
-            builder: (context) {
-              return SimpleDialog(
-                contentPadding: EdgeInsets.all(10),
-                title: Text(
-                  "Unable to Launch",
-                  textAlign: TextAlign.center,
-                ),
-                children: const [
-                  Text(
-                    "Can't find any compatible video player. Install suitable video player for it to work.",
-                    textAlign: TextAlign.center,
-                  )
-                ],
-              );
-            });
-      }
-    }
+    url.launch(link);
+    // if (Platform.isAndroid) {
+    //   final AndroidIntent intent = AndroidIntent(
+    //     action: 'action_view',
+    //     data: vidLink,
+    //     type: 'video/**',
+    //     flags: [Flag.FLAG_GRANT_READ_URI_PERMISSION],
+    //   );
+    //   try {
+    //     await intent.launch();
+    //   } on PlatformException {
+    //     Navigator.of(context, rootNavigator: true).pop();
+    //     showDialog(
+    //         context: context,
+    //         builder: (context) {
+    //           return AlertDialog(
+    //             contentPadding: EdgeInsets.all(10),
+    //             title: Text(
+    //               "Unable to Launch",
+    //             ),
+    //             content: Text(
+    //               "Can't find any compatible video player. Install suitable video player for it to work.",
+    //             ),
+    //             actions: <Widget>[
+    //               TextButton(
+    //                 onPressed: () {
+    //                   Navigator.of(context).pop();
+    //                 },
+    //                 child: Text('OK'),
+    //               ),
+    //             ],
+    //           );
+    //         });
+    //   }
+    // }
   }
 }

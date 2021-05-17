@@ -17,7 +17,7 @@ class ProfileRadar extends StatelessWidget {
           RadarDataSet(
             fillColor: Theme.of(context).accentColor.withAlpha(200),
             borderColor: Theme.of(context).accentColor,
-            entryRadius: 5,
+            entryRadius: 0,
             borderWidth: 2,
             dataEntries:
                 data.map((e) => RadarEntry(value: e.value.toDouble())).toList(),

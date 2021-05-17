@@ -31,8 +31,8 @@ class _DiscoverPageState extends State<DiscoverPage> {
                 )),
                 IconButton(
                     icon: animeMode
-                        ? Icon(Icons.book)
-                        : Icon(Icons.play_circle_fill),
+                        ? Icon(Icons.movie_creation_outlined)
+                        : Icon(Icons.book_outlined),
                     iconSize: 20,
                     onPressed: () => setState(() {
                           animeMode = !animeMode;
@@ -65,7 +65,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
       child: Text(
         title,
         style: TextStyle(
-          fontSize: 22,
+          fontSize: 20,
           fontFamily: "Rubik",
           color: Colors.white,
         ),
@@ -79,16 +79,12 @@ class _DiscoverPageState extends State<DiscoverPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Divider(),
           header("Popular This Season"),
           PopularThisSeasonAnime(),
-          Divider(),
           header("Upcoming Next Season"),
           UpcomingNextSeasonAnime(),
-          Divider(),
           header("All Time Popular"),
           AllTimePopularAnime(),
-          Divider(),
           header("Top Ten Anime"),
           TopTenAnime()
         ],
@@ -102,13 +98,10 @@ class _DiscoverPageState extends State<DiscoverPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Divider(),
           header("Popular Manga"),
           AllTimePopularManga(),
           header("Popular Manhwa"),
-          Divider(),
           AllTimePopularManhwa(),
-          Divider(),
           header("Top Ten Manga"),
           TopTenManga()
         ],
