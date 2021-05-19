@@ -1,10 +1,9 @@
-import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
+import '../../classes/e_oauth2_client.dart';
 import '../../graphql/graphql_api.dart';
-import '../../models/e_oauth2_client.dart';
 import '../widgets/profile/anime_stats.dart';
 import '../widgets/profile/manga_stats.dart';
 
@@ -113,13 +112,7 @@ class _ProfileState extends State<Profile>
                     children: [
                       TabBar(
                         controller: _tabController,
-                        indicatorSize: TabBarIndicatorSize.tab,
-                        indicator: BubbleTabIndicator(
-                            indicatorHeight: 30,
-                            indicatorColor: Theme.of(context).accentColor,
-                            tabBarIndicatorSize: TabBarIndicatorSize.tab,
-                            indicatorRadius: 5),
-                        tabs: [makeTab("Anime"), makeTab("Manga")],
+                        tabs: const [Tab(text: "Anime"), Tab(text: "Manga")],
                       ),
                       Container(
                         constraints:
@@ -148,13 +141,4 @@ class _ProfileState extends State<Profile>
 
   @override
   bool get wantKeepAlive => true;
-
-  Widget makeTab(String text) {
-    return Tab(
-      child: Text(
-        text,
-        style: TextStyle(fontFamily: "Rubik"),
-      ),
-    );
-  }
 }

@@ -1,17 +1,30 @@
+import 'package:eiga/classes/adapters/library_item.dart';
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-import '../models/e_graphql_client.dart';
-import '../models/e_oauth2_client.dart';
+import '../classes/e_graphql_client.dart';
+import '../classes/e_oauth2_client.dart';
 import 'e_scaffold.dart';
 import 'login.dart';
 
 // ignore: must_be_immutable
 class App extends StatelessWidget {
   final EigaOAuth2Client eOAuth2Client = EigaOAuth2Client();
-  EigaGraphQLClient? eGQLClient;
+  late EigaGraphQLClient eGQLClient;
 
   App() {
+    init();
+  }
+
+  Future<void> init() async {
+    await Hive.initFlutter();
+    await Hive.openBox(HiveStore.defaultBoxName);
     eGQLClient = EigaGraphQLClient(eOAuth2Client);
+
+    Hive.registerAdapter(LibraryItemAdapter());
+    Hive.openBox<LibraryItem>('library');
   }
 
   @override

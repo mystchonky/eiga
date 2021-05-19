@@ -67,7 +67,6 @@ class _DiscoverPageState extends State<DiscoverPage> {
         style: TextStyle(
           fontSize: 20,
           fontFamily: "Rubik",
-          color: Colors.white,
         ),
       ),
     );
@@ -81,10 +80,13 @@ class _DiscoverPageState extends State<DiscoverPage> {
         children: [
           header("Popular This Season"),
           PopularThisSeasonAnime(),
+          SizedBox(height: 20),
           header("Upcoming Next Season"),
           UpcomingNextSeasonAnime(),
+          SizedBox(height: 20),
           header("All Time Popular"),
           AllTimePopularAnime(),
+          SizedBox(height: 20),
           header("Top Ten Anime"),
           TopTenAnime()
         ],
@@ -100,8 +102,10 @@ class _DiscoverPageState extends State<DiscoverPage> {
         children: [
           header("Popular Manga"),
           AllTimePopularManga(),
+          SizedBox(height: 20),
           header("Popular Manhwa"),
           AllTimePopularManhwa(),
+          SizedBox(height: 20),
           header("Top Ten Manga"),
           TopTenManga()
         ],

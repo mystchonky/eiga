@@ -956,6 +956,126 @@ Map<String, dynamic> _$SearchData$QueryToJson(SearchData$Query instance) =>
       'Page': instance.page?.toJson(),
     };
 
+StudioInfo$Query$Studio$MediaConnection$PageInfo
+    _$StudioInfo$Query$Studio$MediaConnection$PageInfoFromJson(
+        Map<String, dynamic> json) {
+  return StudioInfo$Query$Studio$MediaConnection$PageInfo()
+    ..hasNextPage = json['hasNextPage'] as bool?
+    ..currentPage = json['currentPage'] as int?;
+}
+
+Map<String, dynamic> _$StudioInfo$Query$Studio$MediaConnection$PageInfoToJson(
+        StudioInfo$Query$Studio$MediaConnection$PageInfo instance) =>
+    <String, dynamic>{
+      'hasNextPage': instance.hasNextPage,
+      'currentPage': instance.currentPage,
+    };
+
+StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle
+    _$StudioInfo$Query$Studio$MediaConnection$Media$MediaTitleFromJson(
+        Map<String, dynamic> json) {
+  return StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle()
+    ..userPreferred = json['userPreferred'] as String?;
+}
+
+Map<String,
+    dynamic> _$StudioInfo$Query$Studio$MediaConnection$Media$MediaTitleToJson(
+        StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle instance) =>
+    <String, dynamic>{
+      'userPreferred': instance.userPreferred,
+    };
+
+StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage
+    _$StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImageFromJson(
+        Map<String, dynamic> json) {
+  return StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage()
+    ..large = json['large'] as String?;
+}
+
+Map<String, dynamic>
+    _$StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImageToJson(
+            StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage
+                instance) =>
+        <String, dynamic>{
+          'large': instance.large,
+        };
+
+StudioInfo$Query$Studio$MediaConnection$Media
+    _$StudioInfo$Query$Studio$MediaConnection$MediaFromJson(
+        Map<String, dynamic> json) {
+  return StudioInfo$Query$Studio$MediaConnection$Media()
+    ..id = json['id'] as int
+    ..title = json['title'] == null
+        ? null
+        : StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle.fromJson(
+            json['title'] as Map<String, dynamic>)
+    ..coverImage = json['coverImage'] == null
+        ? null
+        : StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage
+            .fromJson(json['coverImage'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$StudioInfo$Query$Studio$MediaConnection$MediaToJson(
+        StudioInfo$Query$Studio$MediaConnection$Media instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title?.toJson(),
+      'coverImage': instance.coverImage?.toJson(),
+    };
+
+StudioInfo$Query$Studio$MediaConnection
+    _$StudioInfo$Query$Studio$MediaConnectionFromJson(
+        Map<String, dynamic> json) {
+  return StudioInfo$Query$Studio$MediaConnection()
+    ..pageInfo = json['pageInfo'] == null
+        ? null
+        : StudioInfo$Query$Studio$MediaConnection$PageInfo.fromJson(
+            json['pageInfo'] as Map<String, dynamic>)
+    ..nodes = (json['nodes'] as List<dynamic>?)
+        ?.map((e) => e == null
+            ? null
+            : StudioInfo$Query$Studio$MediaConnection$Media.fromJson(
+                e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic> _$StudioInfo$Query$Studio$MediaConnectionToJson(
+        StudioInfo$Query$Studio$MediaConnection instance) =>
+    <String, dynamic>{
+      'pageInfo': instance.pageInfo?.toJson(),
+      'nodes': instance.nodes?.map((e) => e?.toJson()).toList(),
+    };
+
+StudioInfo$Query$Studio _$StudioInfo$Query$StudioFromJson(
+    Map<String, dynamic> json) {
+  return StudioInfo$Query$Studio()
+    ..name = json['name'] as String
+    ..media = json['media'] == null
+        ? null
+        : StudioInfo$Query$Studio$MediaConnection.fromJson(
+            json['media'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$StudioInfo$Query$StudioToJson(
+        StudioInfo$Query$Studio instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'media': instance.media?.toJson(),
+    };
+
+StudioInfo$Query _$StudioInfo$QueryFromJson(Map<String, dynamic> json) {
+  return StudioInfo$Query()
+    ..studio = json['Studio'] == null
+        ? null
+        : StudioInfo$Query$Studio.fromJson(
+            json['Studio'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$StudioInfo$QueryToJson(StudioInfo$Query instance) =>
+    <String, dynamic>{
+      'Studio': instance.studio?.toJson(),
+    };
+
 TopTenAnime$Query$Page$Media$MediaTitle
     _$TopTenAnime$Query$Page$Media$MediaTitleFromJson(
         Map<String, dynamic> json) {
@@ -1462,126 +1582,6 @@ Map<String, dynamic> _$MediaStatsMixin$UserTagStatisticToJson(
     <String, dynamic>{
       'tag': instance.tag?.toJson(),
       'count': instance.count,
-    };
-
-StudioInfo$Query$Studio$MediaConnection$PageInfo
-    _$StudioInfo$Query$Studio$MediaConnection$PageInfoFromJson(
-        Map<String, dynamic> json) {
-  return StudioInfo$Query$Studio$MediaConnection$PageInfo()
-    ..hasNextPage = json['hasNextPage'] as bool?
-    ..currentPage = json['currentPage'] as int?;
-}
-
-Map<String, dynamic> _$StudioInfo$Query$Studio$MediaConnection$PageInfoToJson(
-        StudioInfo$Query$Studio$MediaConnection$PageInfo instance) =>
-    <String, dynamic>{
-      'hasNextPage': instance.hasNextPage,
-      'currentPage': instance.currentPage,
-    };
-
-StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle
-    _$StudioInfo$Query$Studio$MediaConnection$Media$MediaTitleFromJson(
-        Map<String, dynamic> json) {
-  return StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle()
-    ..userPreferred = json['userPreferred'] as String?;
-}
-
-Map<String,
-    dynamic> _$StudioInfo$Query$Studio$MediaConnection$Media$MediaTitleToJson(
-        StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle instance) =>
-    <String, dynamic>{
-      'userPreferred': instance.userPreferred,
-    };
-
-StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage
-    _$StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImageFromJson(
-        Map<String, dynamic> json) {
-  return StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage()
-    ..large = json['large'] as String?;
-}
-
-Map<String, dynamic>
-    _$StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImageToJson(
-            StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage
-                instance) =>
-        <String, dynamic>{
-          'large': instance.large,
-        };
-
-StudioInfo$Query$Studio$MediaConnection$Media
-    _$StudioInfo$Query$Studio$MediaConnection$MediaFromJson(
-        Map<String, dynamic> json) {
-  return StudioInfo$Query$Studio$MediaConnection$Media()
-    ..id = json['id'] as int
-    ..title = json['title'] == null
-        ? null
-        : StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle.fromJson(
-            json['title'] as Map<String, dynamic>)
-    ..coverImage = json['coverImage'] == null
-        ? null
-        : StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage
-            .fromJson(json['coverImage'] as Map<String, dynamic>);
-}
-
-Map<String, dynamic> _$StudioInfo$Query$Studio$MediaConnection$MediaToJson(
-        StudioInfo$Query$Studio$MediaConnection$Media instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title?.toJson(),
-      'coverImage': instance.coverImage?.toJson(),
-    };
-
-StudioInfo$Query$Studio$MediaConnection
-    _$StudioInfo$Query$Studio$MediaConnectionFromJson(
-        Map<String, dynamic> json) {
-  return StudioInfo$Query$Studio$MediaConnection()
-    ..pageInfo = json['pageInfo'] == null
-        ? null
-        : StudioInfo$Query$Studio$MediaConnection$PageInfo.fromJson(
-            json['pageInfo'] as Map<String, dynamic>)
-    ..nodes = (json['nodes'] as List<dynamic>?)
-        ?.map((e) => e == null
-            ? null
-            : StudioInfo$Query$Studio$MediaConnection$Media.fromJson(
-                e as Map<String, dynamic>))
-        .toList();
-}
-
-Map<String, dynamic> _$StudioInfo$Query$Studio$MediaConnectionToJson(
-        StudioInfo$Query$Studio$MediaConnection instance) =>
-    <String, dynamic>{
-      'pageInfo': instance.pageInfo?.toJson(),
-      'nodes': instance.nodes?.map((e) => e?.toJson()).toList(),
-    };
-
-StudioInfo$Query$Studio _$StudioInfo$Query$StudioFromJson(
-    Map<String, dynamic> json) {
-  return StudioInfo$Query$Studio()
-    ..name = json['name'] as String
-    ..media = json['media'] == null
-        ? null
-        : StudioInfo$Query$Studio$MediaConnection.fromJson(
-            json['media'] as Map<String, dynamic>);
-}
-
-Map<String, dynamic> _$StudioInfo$Query$StudioToJson(
-        StudioInfo$Query$Studio instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'media': instance.media?.toJson(),
-    };
-
-StudioInfo$Query _$StudioInfo$QueryFromJson(Map<String, dynamic> json) {
-  return StudioInfo$Query()
-    ..studio = json['Studio'] == null
-        ? null
-        : StudioInfo$Query$Studio.fromJson(
-            json['Studio'] as Map<String, dynamic>);
-}
-
-Map<String, dynamic> _$StudioInfo$QueryToJson(StudioInfo$Query instance) =>
-    <String, dynamic>{
-      'Studio': instance.studio?.toJson(),
     };
 
 MediaInfoArguments _$MediaInfoArgumentsFromJson(Map<String, dynamic> json) {

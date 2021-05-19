@@ -1,4 +1,4 @@
-import 'package:eiga/models/media_card_entry.dart';
+import 'package:eiga/classes/media_card_entry.dart';
 import 'package:eiga/ui/widgets/media_card.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -90,9 +90,9 @@ class _StudioInfoState extends State<StudioInfo> {
                     media.length,
                     (index) => MediaCard(
                           anime: MediaCardEntry(
-                              media[index]!.id,
-                              media[index]!.title!.userPreferred!,
-                              media[index]!.coverImage!.large!),
+                              id: media[index]!.id,
+                              name: media[index]!.title!.userPreferred!,
+                              coverUrl: media[index]!.coverImage!.large!),
                         )),
               ),
             ),

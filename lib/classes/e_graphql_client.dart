@@ -9,8 +9,7 @@ class EigaGraphQLClient {
   );
   late AuthLink authLink;
   late Link link;
-  ValueNotifier<GraphQLClient>? client;
-  final memCache = GraphQLCache();
+  late ValueNotifier<GraphQLClient> client;
 
   EigaGraphQLClient(EigaOAuth2Client eClient) {
     authLink = AuthLink(
@@ -22,7 +21,7 @@ class EigaGraphQLClient {
 
     client = ValueNotifier(
       GraphQLClient(
-        cache: memCache,
+        cache: GraphQLCache(store: HiveStore()),
         link: link,
       ),
     );

@@ -1,20 +1,22 @@
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eiga/classes/adapters/library_item.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:html/parser.dart';
 import 'package:intl/intl.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart' as url;
 
+import '../../classes/extensions/media_format.dart';
+import '../../classes/extensions/media_relation.dart';
+import '../../classes/extensions/media_status.dart';
+import '../../classes/media_card_entry.dart';
+import '../../classes/sources/four_anime.dart';
 import '../../graphql/graphql_api.dart';
-import '../../models/helpers/media_format.dart';
-import '../../models/helpers/media_relation.dart';
-import '../../models/helpers/media_status.dart';
-import '../../models/media_card_entry.dart';
-import '../../models/sources/four_anime.dart';
 import '../widgets/media_card.dart';
 import 'studio_info.dart';
 
@@ -28,8 +30,18 @@ class MediaInfo extends StatefulWidget {
 }
 
 class _MediaInfoState extends State<MediaInfo> {
+  late bool isInLibrary = box.containsKey(widget.id);
+  final box = Hive.box<LibraryItem>('library');
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final canvasColor = Theme.of(context).canvasColor;
+
     return Query(
       options: QueryOptions(
           document: MediaInfoQuery(variables: MediaInfoArguments()).document,
@@ -86,10 +98,10 @@ class _MediaInfoState extends State<MediaInfo> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: <Color>[
-                              Colors.black.withAlpha(0),
-                              Colors.black26,
-                              Colors.black87,
-                              Colors.black,
+                              canvasColor.withAlpha(0),
+                              canvasColor.withOpacity(0.26),
+                              canvasColor.withOpacity(0.87),
+                              canvasColor,
                             ]),
                       ),
                     ),
@@ -126,19 +138,16 @@ class _MediaInfoState extends State<MediaInfo> {
                                     Text(
                                       animeName ?? "N/A",
                                       maxLines: 2,
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 18),
+                                      style: TextStyle(fontSize: 18),
                                     ),
                                     if (anime?.title?.english != null)
                                       Text(
                                         anime?.title?.english ?? "N/A",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 12),
+                                        style: TextStyle(fontSize: 12),
                                       ),
                                     Text(
                                       anime?.title?.native ?? "N/A",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 12),
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                     Row(
                                       children: [
@@ -186,14 +195,30 @@ class _MediaInfoState extends State<MediaInfo> {
                           children: [
                             Expanded(
                               child: ElevatedButton.icon(
-                                  onPressed: () {
-                                    //TODO: Add favorite functionality
+                                  onPressed: () async {
+                                    if (!isInLibrary) {
+                                      await box.put(
+                                          widget.id,
+                                          LibraryItem(
+                                              id: anime!.id,
+                                              name: animeName!,
+                                              coverUrl:
+                                                  anime.coverImage!.large!));
+                                    } else {
+                                      await box.delete(widget.id);
+                                    }
+
+                                    setState(() {
+                                      isInLibrary = box.containsKey(widget.id);
+                                    });
                                   },
                                   style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateProperty.all(
                                               Colors.redAccent[400])),
-                                  icon: Icon(Icons.favorite),
+                                  icon: Icon(isInLibrary
+                                      ? Icons.favorite
+                                      : Icons.favorite_outline),
                                   label: Text("")),
                             ),
                             SizedBox(width: 5),
@@ -225,14 +250,17 @@ class _MediaInfoState extends State<MediaInfo> {
                               fontSize: 18),
                         ),
                         SizedBox(height: 5),
-                        ExpandableText(
-                          cleanText(anime?.description ?? ""),
-                          style: TextStyle(
-                            color: Colors.white60,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                          child: ExpandableText(
+                            cleanText(anime?.description ?? ""),
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                            ),
+                            expandText: 'show more',
+                            collapseText: 'show less',
+                            maxLines: 5,
                           ),
-                          expandText: 'show more',
-                          collapseText: 'show less',
-                          maxLines: 5,
                         ),
                         SizedBox(height: 10),
 
@@ -312,7 +340,6 @@ class _MediaInfoState extends State<MediaInfo> {
                 child: Text(
                   gen ?? "N/A",
                   style: TextStyle(
-                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
                   ),
@@ -487,9 +514,9 @@ class _MediaInfoState extends State<MediaInfo> {
             padding: const EdgeInsets.symmetric(horizontal: 2),
             child: MediaCard(
                 anime: MediaCardEntry(
-                    relation?.id ?? 00,
-                    relation?.title?.userPreferred ?? "",
-                    relation?.coverImage?.large ?? "",
+                    id: relation?.id ?? 00,
+                    name: relation?.title?.userPreferred ?? "",
+                    coverUrl: relation?.coverImage?.large ?? "",
                     relation: relationType)),
           );
         },
@@ -510,9 +537,9 @@ class _MediaInfoState extends State<MediaInfo> {
             padding: const EdgeInsets.symmetric(horizontal: 2),
             child: MediaCard(
                 anime: MediaCardEntry(
-              recommendation?.id ?? 00,
-              recommendation?.title?.userPreferred ?? "",
-              recommendation?.coverImage?.large ?? "",
+              id: recommendation?.id ?? 00,
+              name: recommendation?.title?.userPreferred ?? "",
+              coverUrl: recommendation?.coverImage?.large ?? "",
             )),
           );
         },

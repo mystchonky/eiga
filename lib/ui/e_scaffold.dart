@@ -1,14 +1,16 @@
+import 'package:eiga/ui/theme.dart';
+import 'package:eiga/ui/views/library.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import '../models/e_graphql_client.dart';
-import '../models/e_oauth2_client.dart';
+import '../classes/e_graphql_client.dart';
+import '../classes/e_oauth2_client.dart';
 import 'views/discover.dart';
 import 'views/profile.dart';
 
 class EigaScaffold extends StatefulWidget {
-  final EigaGraphQLClient? gqlClient;
+  final EigaGraphQLClient gqlClient;
   final EigaOAuth2Client oauth2Client;
 
   const EigaScaffold({required this.gqlClient, required this.oauth2Client});
@@ -29,22 +31,12 @@ class _EigaScaffoldState extends State<EigaScaffold> {
     ]);
 
     return GraphQLProvider(
-      client: widget.gqlClient!.client,
+      client: widget.gqlClient.client,
       child: CacheProvider(
         child: MaterialApp(
           theme: ThemeData(fontFamily: "Inter"),
-          darkTheme: ThemeData(
-            fontFamily: "Inter",
-            brightness: Brightness.dark,
-            primaryColor: Colors.deepPurpleAccent,
-            scaffoldBackgroundColor: Colors.black,
-            accentColor: Colors.deepPurpleAccent,
-            canvasColor: Colors.black,
-            dividerColor: Colors.white38,
-            appBarTheme: AppBarTheme(color: Colors.black),
-          ),
+          darkTheme: EigaTheme().darkTheme,
           themeMode: ThemeMode.dark,
-          debugShowCheckedModeBanner: false,
           home: AnnotatedRegion(
             value: SystemUiOverlayStyle(
                 statusBarColor: Colors.transparent,
@@ -57,7 +49,7 @@ class _EigaScaffoldState extends State<EigaScaffold> {
                   Profile(
                     client: widget.oauth2Client,
                   ),
-                  Center(child: Text("Library")),
+                  LibraryPage(),
                   DiscoverPage()
                 ],
               ),
@@ -81,6 +73,7 @@ class _EigaScaffoldState extends State<EigaScaffold> {
                 showUnselectedLabels: false,
                 currentIndex: _selectedIndex,
                 onTap: _onBottomNavTapped,
+                elevation: 0,
               ),
             ),
           ),

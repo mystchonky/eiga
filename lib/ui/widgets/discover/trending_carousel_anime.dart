@@ -2,8 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
+import '../../../classes/media_carousel_entry.dart';
 import '../../../graphql/graphql_api.dart';
-import '../../../models/media_carousel_entry.dart';
 import 'carousel_card.dart';
 
 class TrendingAnimeCarousel extends StatelessWidget {

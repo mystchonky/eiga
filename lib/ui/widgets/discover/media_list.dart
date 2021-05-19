@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gql/ast.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
+import '../../../classes/media_card_entry.dart';
 import '../../../graphql/graphql_api.dart';
-import '../../../models/media_card_entry.dart';
 import '../media_card.dart';
 
 class MediaList {
@@ -68,9 +68,10 @@ class MediaList {
             padding: const EdgeInsets.symmetric(horizontal: 2),
             child: MediaCard(
                 anime: MediaCardEntry(
-                    data?[index]?.id ?? 00,
-                    data?[index]?.title?.userPreferred.toString() ?? "N/A",
-                    data?[index]?.coverImage?.large ?? "N/A")),
+                    id: data?[index]?.id ?? 00,
+                    name:
+                        data?[index]?.title?.userPreferred.toString() ?? "N/A",
+                    coverUrl: data?[index]?.coverImage?.large ?? "N/A")),
           );
         });
   }

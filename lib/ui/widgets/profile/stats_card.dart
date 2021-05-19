@@ -11,7 +11,7 @@ class MediaStatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      color: Theme.of(context).canvasColor,
       padding: EdgeInsets.all(5),
       height: 80,
       width: 120,

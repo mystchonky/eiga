@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart' as url;
 
-import 'package:eiga/models/episode_entry.dart';
-import 'package:eiga/models/scraper.dart';
+import 'package:eiga/classes/scraper.dart';
+
+class EpisodeEntry {
+  final String title;
+  final String link;
+
+  EpisodeEntry(this.title, this.link);
+}
 
 class EpisodeListView extends StatefulWidget {
   final String animeLink;

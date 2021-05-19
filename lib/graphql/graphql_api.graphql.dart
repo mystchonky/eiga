@@ -958,6 +958,132 @@ class SearchData$Query extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class StudioInfo$Query$Studio$MediaConnection$PageInfo extends JsonSerializable
+    with EquatableMixin {
+  StudioInfo$Query$Studio$MediaConnection$PageInfo();
+
+  factory StudioInfo$Query$Studio$MediaConnection$PageInfo.fromJson(
+          Map<String, dynamic> json) =>
+      _$StudioInfo$Query$Studio$MediaConnection$PageInfoFromJson(json);
+
+  bool? hasNextPage;
+
+  int? currentPage;
+
+  @override
+  List<Object?> get props => [hasNextPage, currentPage];
+  Map<String, dynamic> toJson() =>
+      _$StudioInfo$Query$Studio$MediaConnection$PageInfoToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle
+    extends JsonSerializable with EquatableMixin {
+  StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle();
+
+  factory StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle.fromJson(
+          Map<String, dynamic> json) =>
+      _$StudioInfo$Query$Studio$MediaConnection$Media$MediaTitleFromJson(json);
+
+  String? userPreferred;
+
+  @override
+  List<Object?> get props => [userPreferred];
+  Map<String, dynamic> toJson() =>
+      _$StudioInfo$Query$Studio$MediaConnection$Media$MediaTitleToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage
+    extends JsonSerializable with EquatableMixin {
+  StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage();
+
+  factory StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage.fromJson(
+          Map<String, dynamic> json) =>
+      _$StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImageFromJson(
+          json);
+
+  String? large;
+
+  @override
+  List<Object?> get props => [large];
+  Map<String, dynamic> toJson() =>
+      _$StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImageToJson(
+          this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class StudioInfo$Query$Studio$MediaConnection$Media extends JsonSerializable
+    with EquatableMixin {
+  StudioInfo$Query$Studio$MediaConnection$Media();
+
+  factory StudioInfo$Query$Studio$MediaConnection$Media.fromJson(
+          Map<String, dynamic> json) =>
+      _$StudioInfo$Query$Studio$MediaConnection$MediaFromJson(json);
+
+  late int id;
+
+  StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle? title;
+
+  StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage? coverImage;
+
+  @override
+  List<Object?> get props => [id, title, coverImage];
+  Map<String, dynamic> toJson() =>
+      _$StudioInfo$Query$Studio$MediaConnection$MediaToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class StudioInfo$Query$Studio$MediaConnection extends JsonSerializable
+    with EquatableMixin {
+  StudioInfo$Query$Studio$MediaConnection();
+
+  factory StudioInfo$Query$Studio$MediaConnection.fromJson(
+          Map<String, dynamic> json) =>
+      _$StudioInfo$Query$Studio$MediaConnectionFromJson(json);
+
+  StudioInfo$Query$Studio$MediaConnection$PageInfo? pageInfo;
+
+  List<StudioInfo$Query$Studio$MediaConnection$Media?>? nodes;
+
+  @override
+  List<Object?> get props => [pageInfo, nodes];
+  Map<String, dynamic> toJson() =>
+      _$StudioInfo$Query$Studio$MediaConnectionToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class StudioInfo$Query$Studio extends JsonSerializable with EquatableMixin {
+  StudioInfo$Query$Studio();
+
+  factory StudioInfo$Query$Studio.fromJson(Map<String, dynamic> json) =>
+      _$StudioInfo$Query$StudioFromJson(json);
+
+  late String name;
+
+  StudioInfo$Query$Studio$MediaConnection? media;
+
+  @override
+  List<Object?> get props => [name, media];
+  Map<String, dynamic> toJson() => _$StudioInfo$Query$StudioToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class StudioInfo$Query extends JsonSerializable with EquatableMixin {
+  StudioInfo$Query();
+
+  factory StudioInfo$Query.fromJson(Map<String, dynamic> json) =>
+      _$StudioInfo$QueryFromJson(json);
+
+  @JsonKey(name: 'Studio')
+  StudioInfo$Query$Studio? studio;
+
+  @override
+  List<Object?> get props => [studio];
+  Map<String, dynamic> toJson() => _$StudioInfo$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class TopTenAnime$Query$Page$Media$MediaTitle extends JsonSerializable
     with EquatableMixin {
   TopTenAnime$Query$Page$Media$MediaTitle();
@@ -1484,132 +1610,6 @@ class MediaStatsMixin$UserTagStatistic extends JsonSerializable
   List<Object?> get props => [tag, count];
   Map<String, dynamic> toJson() =>
       _$MediaStatsMixin$UserTagStatisticToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class StudioInfo$Query$Studio$MediaConnection$PageInfo extends JsonSerializable
-    with EquatableMixin {
-  StudioInfo$Query$Studio$MediaConnection$PageInfo();
-
-  factory StudioInfo$Query$Studio$MediaConnection$PageInfo.fromJson(
-          Map<String, dynamic> json) =>
-      _$StudioInfo$Query$Studio$MediaConnection$PageInfoFromJson(json);
-
-  bool? hasNextPage;
-
-  int? currentPage;
-
-  @override
-  List<Object?> get props => [hasNextPage, currentPage];
-  Map<String, dynamic> toJson() =>
-      _$StudioInfo$Query$Studio$MediaConnection$PageInfoToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle
-    extends JsonSerializable with EquatableMixin {
-  StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle();
-
-  factory StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle.fromJson(
-          Map<String, dynamic> json) =>
-      _$StudioInfo$Query$Studio$MediaConnection$Media$MediaTitleFromJson(json);
-
-  String? userPreferred;
-
-  @override
-  List<Object?> get props => [userPreferred];
-  Map<String, dynamic> toJson() =>
-      _$StudioInfo$Query$Studio$MediaConnection$Media$MediaTitleToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage
-    extends JsonSerializable with EquatableMixin {
-  StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage();
-
-  factory StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage.fromJson(
-          Map<String, dynamic> json) =>
-      _$StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImageFromJson(
-          json);
-
-  String? large;
-
-  @override
-  List<Object?> get props => [large];
-  Map<String, dynamic> toJson() =>
-      _$StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImageToJson(
-          this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class StudioInfo$Query$Studio$MediaConnection$Media extends JsonSerializable
-    with EquatableMixin {
-  StudioInfo$Query$Studio$MediaConnection$Media();
-
-  factory StudioInfo$Query$Studio$MediaConnection$Media.fromJson(
-          Map<String, dynamic> json) =>
-      _$StudioInfo$Query$Studio$MediaConnection$MediaFromJson(json);
-
-  late int id;
-
-  StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle? title;
-
-  StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage? coverImage;
-
-  @override
-  List<Object?> get props => [id, title, coverImage];
-  Map<String, dynamic> toJson() =>
-      _$StudioInfo$Query$Studio$MediaConnection$MediaToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class StudioInfo$Query$Studio$MediaConnection extends JsonSerializable
-    with EquatableMixin {
-  StudioInfo$Query$Studio$MediaConnection();
-
-  factory StudioInfo$Query$Studio$MediaConnection.fromJson(
-          Map<String, dynamic> json) =>
-      _$StudioInfo$Query$Studio$MediaConnectionFromJson(json);
-
-  StudioInfo$Query$Studio$MediaConnection$PageInfo? pageInfo;
-
-  List<StudioInfo$Query$Studio$MediaConnection$Media?>? nodes;
-
-  @override
-  List<Object?> get props => [pageInfo, nodes];
-  Map<String, dynamic> toJson() =>
-      _$StudioInfo$Query$Studio$MediaConnectionToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class StudioInfo$Query$Studio extends JsonSerializable with EquatableMixin {
-  StudioInfo$Query$Studio();
-
-  factory StudioInfo$Query$Studio.fromJson(Map<String, dynamic> json) =>
-      _$StudioInfo$Query$StudioFromJson(json);
-
-  late String name;
-
-  StudioInfo$Query$Studio$MediaConnection? media;
-
-  @override
-  List<Object?> get props => [name, media];
-  Map<String, dynamic> toJson() => _$StudioInfo$Query$StudioToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class StudioInfo$Query extends JsonSerializable with EquatableMixin {
-  StudioInfo$Query();
-
-  factory StudioInfo$Query.fromJson(Map<String, dynamic> json) =>
-      _$StudioInfo$QueryFromJson(json);
-
-  @JsonKey(name: 'Studio')
-  StudioInfo$Query$Studio? studio;
-
-  @override
-  List<Object?> get props => [studio];
-  Map<String, dynamic> toJson() => _$StudioInfo$QueryToJson(this);
 }
 
 enum MediaStatus {
@@ -2819,6 +2819,158 @@ class SearchDataQuery
       SearchData$Query.fromJson(json);
 }
 
+@JsonSerializable(explicitToJson: true)
+class StudioInfoArguments extends JsonSerializable with EquatableMixin {
+  StudioInfoArguments({this.id, this.page});
+
+  @override
+  factory StudioInfoArguments.fromJson(Map<String, dynamic> json) =>
+      _$StudioInfoArgumentsFromJson(json);
+
+  final int? id;
+
+  final int? page;
+
+  @override
+  List<Object?> get props => [id, page];
+  @override
+  Map<String, dynamic> toJson() => _$StudioInfoArgumentsToJson(this);
+}
+
+final STUDIO_INFO_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'StudioInfo'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'id')),
+            type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'page')),
+            type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'Studio'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'id'),
+                  value: VariableNode(name: NameNode(value: 'id')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'media'),
+                  alias: null,
+                  arguments: [
+                    ArgumentNode(
+                        name: NameNode(value: 'page'),
+                        value: VariableNode(name: NameNode(value: 'page'))),
+                    ArgumentNode(
+                        name: NameNode(value: 'perPage'),
+                        value: IntValueNode(value: '24')),
+                    ArgumentNode(
+                        name: NameNode(value: 'sort'),
+                        value: EnumValueNode(
+                            name: NameNode(value: 'POPULARITY_DESC')))
+                  ],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'pageInfo'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'hasNextPage'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'currentPage'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: 'nodes'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'id'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'title'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'userPreferred'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ])),
+                          FieldNode(
+                              name: NameNode(value: 'coverImage'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'large'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ]))
+                        ]))
+                  ]))
+            ]))
+      ]))
+]);
+
+class StudioInfoQuery
+    extends GraphQLQuery<StudioInfo$Query, StudioInfoArguments> {
+  StudioInfoQuery({required this.variables});
+
+  @override
+  final DocumentNode document = STUDIO_INFO_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'StudioInfo';
+
+  @override
+  final StudioInfoArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  StudioInfo$Query parse(Map<String, dynamic> json) =>
+      StudioInfo$Query.fromJson(json);
+}
+
 final TOP_TEN_ANIME_QUERY_DOCUMENT = DocumentNode(definitions: [
   OperationDefinitionNode(
       type: OperationType.query,
@@ -3447,156 +3599,4 @@ class UserInfoQuery extends GraphQLQuery<UserInfo$Query, JsonSerializable> {
   @override
   UserInfo$Query parse(Map<String, dynamic> json) =>
       UserInfo$Query.fromJson(json);
-}
-
-@JsonSerializable(explicitToJson: true)
-class StudioInfoArguments extends JsonSerializable with EquatableMixin {
-  StudioInfoArguments({this.id, this.page});
-
-  @override
-  factory StudioInfoArguments.fromJson(Map<String, dynamic> json) =>
-      _$StudioInfoArgumentsFromJson(json);
-
-  final int? id;
-
-  final int? page;
-
-  @override
-  List<Object?> get props => [id, page];
-  @override
-  Map<String, dynamic> toJson() => _$StudioInfoArgumentsToJson(this);
-}
-
-final STUDIO_INFO_QUERY_DOCUMENT = DocumentNode(definitions: [
-  OperationDefinitionNode(
-      type: OperationType.query,
-      name: NameNode(value: 'StudioInfo'),
-      variableDefinitions: [
-        VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'id')),
-            type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
-            defaultValue: DefaultValueNode(value: null),
-            directives: []),
-        VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'page')),
-            type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
-            defaultValue: DefaultValueNode(value: null),
-            directives: [])
-      ],
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-            name: NameNode(value: 'Studio'),
-            alias: null,
-            arguments: [
-              ArgumentNode(
-                  name: NameNode(value: 'id'),
-                  value: VariableNode(name: NameNode(value: 'id')))
-            ],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                  name: NameNode(value: 'name'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'media'),
-                  alias: null,
-                  arguments: [
-                    ArgumentNode(
-                        name: NameNode(value: 'page'),
-                        value: VariableNode(name: NameNode(value: 'page'))),
-                    ArgumentNode(
-                        name: NameNode(value: 'perPage'),
-                        value: IntValueNode(value: '24')),
-                    ArgumentNode(
-                        name: NameNode(value: 'sort'),
-                        value: EnumValueNode(
-                            name: NameNode(value: 'POPULARITY_DESC')))
-                  ],
-                  directives: [],
-                  selectionSet: SelectionSetNode(selections: [
-                    FieldNode(
-                        name: NameNode(value: 'pageInfo'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(selections: [
-                          FieldNode(
-                              name: NameNode(value: 'hasNextPage'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null),
-                          FieldNode(
-                              name: NameNode(value: 'currentPage'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null)
-                        ])),
-                    FieldNode(
-                        name: NameNode(value: 'nodes'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(selections: [
-                          FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null),
-                          FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: SelectionSetNode(selections: [
-                                FieldNode(
-                                    name: NameNode(value: 'userPreferred'),
-                                    alias: null,
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: null)
-                              ])),
-                          FieldNode(
-                              name: NameNode(value: 'coverImage'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: SelectionSetNode(selections: [
-                                FieldNode(
-                                    name: NameNode(value: 'large'),
-                                    alias: null,
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: null)
-                              ]))
-                        ]))
-                  ]))
-            ]))
-      ]))
-]);
-
-class StudioInfoQuery
-    extends GraphQLQuery<StudioInfo$Query, StudioInfoArguments> {
-  StudioInfoQuery({required this.variables});
-
-  @override
-  final DocumentNode document = STUDIO_INFO_QUERY_DOCUMENT;
-
-  @override
-  final String operationName = 'StudioInfo';
-
-  @override
-  final StudioInfoArguments variables;
-
-  @override
-  List<Object?> get props => [document, operationName, variables];
-  @override
-  StudioInfo$Query parse(Map<String, dynamic> json) =>
-      StudioInfo$Query.fromJson(json);
 }

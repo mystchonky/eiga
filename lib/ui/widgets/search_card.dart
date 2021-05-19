@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../classes/extensions/media_format.dart';
 import '../../graphql/graphql_api.dart';
-import '../../models/helpers/media_format.dart';
 
 class SearchCard extends StatefulWidget {
   const SearchCard({

@@ -1,7 +1,7 @@
+import 'package:eiga/classes/helpers/custom_query_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../../../graphql/graphql_api.dart';
-import '../../../models/helpers/custom_query_helper.dart';
 import 'media_list.dart';
 
 class PopularThisSeasonAnime extends StatelessWidget {
