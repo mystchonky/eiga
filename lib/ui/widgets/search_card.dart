@@ -50,7 +50,7 @@ class _SearchCardState extends State<SearchCard>
                   Text(
                     widget.data?.title?.romaji ?? "N/A",
                     maxLines: 2,
-                    style: TextStyle(fontFamily: "Rubik", fontSize: 20),
+                    style: TextStyle(fontSize: 20),
                   ),
                   if (widget.data?.title?.english != null)
                     Text(widget.data!.title!.english!,

@@ -12,7 +12,7 @@ import 'login.dart';
 // ignore: must_be_immutable
 class App extends StatelessWidget {
   final EigaOAuth2Client eOAuth2Client = EigaOAuth2Client();
-  late EigaGraphQLClient eGQLClient;
+  EigaGraphQLClient? eGQLClient;
 
   App() {
     init();
@@ -34,7 +34,7 @@ class App extends StatelessWidget {
       routes: {
         '_app': (context) => _App(eOAuth2Client),
         'scaffold': (context) => EigaScaffold(
-              gqlClient: eGQLClient,
+              gqlClient: eGQLClient!,
               oauth2Client: eOAuth2Client,
             ),
         'login': (context) => LoginPrompt(

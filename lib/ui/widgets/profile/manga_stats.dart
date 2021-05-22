@@ -26,31 +26,31 @@ class MangaStats extends StatelessWidget {
       tagData.add(RadarDataEntry(name: e!.tag!.name, value: e.count));
     }
 
-    return Container(
-      constraints: BoxConstraints(minHeight: 300),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              MediaStatCard(
-                  title: "Manga Read",
-                  value: (user.statistics?.manga?.count ?? 0).toString(),
-                  icon: Icons.book),
-              MediaStatCard(
-                  title: "Chapters Read",
-                  value: (user.statistics?.manga?.chaptersRead ?? 0).toString(),
-                  icon: Icons.turned_in),
-              MediaStatCard(
-                  title: "Volumes Read",
-                  value: ((user.statistics?.manga?.volumesRead ?? 0) / 1440)
-                      .toStringAsFixed(2),
-                  icon: Icons.import_contacts)
-            ],
-          ),
-          if (scoreData.isEmpty) ScoreChart(data: scoreData),
+    return ListView(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            MediaStatCard(
+                title: "Manga Read",
+                value: (user.statistics?.manga?.count ?? 0).toString(),
+                icon: Icons.book),
+            MediaStatCard(
+                title: "Chapters Read",
+                value: (user.statistics?.manga?.chaptersRead ?? 0).toString(),
+                icon: Icons.turned_in),
+            MediaStatCard(
+                title: "Volumes Read",
+                value: ((user.statistics?.manga?.volumesRead ?? 0) / 1440)
+                    .toStringAsFixed(2),
+                icon: Icons.import_contacts)
+          ],
+        ),
+        if (scoreData.isNotEmpty) ScoreChart(data: scoreData),
+        if (genreData.isNotEmpty || tagData.isNotEmpty)
           Container(
             constraints: BoxConstraints(maxHeight: 500),
+            color: Colors.blue,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -61,8 +61,7 @@ class MangaStats extends StatelessWidget {
               ],
             ),
           )
-        ],
-      ),
+      ],
     );
   }
 }

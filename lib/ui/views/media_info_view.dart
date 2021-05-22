@@ -245,9 +245,7 @@ class _MediaInfoState extends State<MediaInfo> {
                         Text(
                           "Synopsis",
                           style: TextStyle(
-                              fontFamily: "Rubik",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
+                              fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                         SizedBox(height: 5),
                         Padding(
@@ -268,9 +266,7 @@ class _MediaInfoState extends State<MediaInfo> {
                         Text(
                           "Information",
                           style: TextStyle(
-                              fontFamily: "Rubik",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
+                              fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                         SizedBox(height: 5),
                         infoBuilder(anime),
@@ -288,7 +284,6 @@ class _MediaInfoState extends State<MediaInfo> {
                                 Text(
                                   "Relations",
                                   style: TextStyle(
-                                      fontFamily: "Rubik",
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18),
                                 ),
@@ -305,7 +300,6 @@ class _MediaInfoState extends State<MediaInfo> {
                                 Text(
                                   "Recommendations",
                                   style: TextStyle(
-                                      fontFamily: "Rubik",
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18),
                                 ),
@@ -362,7 +356,7 @@ class _MediaInfoState extends State<MediaInfo> {
   }
 
   Widget infoTitle(String text) {
-    final theme = TextStyle(fontFamily: "Rubik", fontWeight: FontWeight.bold);
+    final theme = TextStyle(fontWeight: FontWeight.bold);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Text(text, style: theme),
@@ -370,7 +364,7 @@ class _MediaInfoState extends State<MediaInfo> {
   }
 
   Widget infoValue(String text) {
-    final theme = TextStyle(fontFamily: "Rubik", fontWeight: FontWeight.bold);
+    final theme = TextStyle(fontWeight: FontWeight.bold);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Text(
@@ -383,9 +377,7 @@ class _MediaInfoState extends State<MediaInfo> {
 
   Widget studioWidget(String text, int id) {
     final theme = TextStyle(
-        fontFamily: "Rubik",
-        fontWeight: FontWeight.bold,
-        color: Theme.of(context).accentColor);
+        fontWeight: FontWeight.bold, color: Theme.of(context).accentColor);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: GestureDetector(

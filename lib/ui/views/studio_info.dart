@@ -63,8 +63,7 @@ class _StudioInfoState extends State<StudioInfo> {
             appBar: AppBar(
               title: Text(
                 studio.name,
-                style:
-                    TextStyle(fontFamily: "Rubik", fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
             body: NotificationListener(

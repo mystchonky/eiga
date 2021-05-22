@@ -1,4 +1,10 @@
+import 'dart:io';
+
+import 'package:android_intent/android_intent.dart';
+import 'package:android_intent/flag.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart' as url;
 
@@ -68,41 +74,52 @@ class _EpisodeListViewState extends State<EpisodeListView> {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text("Launching episode"),
     ));
+    String vidLink;
+    final webview = HeadlessInAppWebView(
+        initialUrlRequest: URLRequest(url: Uri.parse(link)),
+        onLoadStop: (InAppWebViewController controller, uri) async {
+          const String js =
+              "document.getElementById('example_video_1_html5_api').attributes['src'].textContent";
+          vidLink =
+              (await controller.evaluateJavascript(source: js)).toString();
 
-    url.launch(link);
-    // if (Platform.isAndroid) {
-    //   final AndroidIntent intent = AndroidIntent(
-    //     action: 'action_view',
-    //     data: vidLink,
-    //     type: 'video/**',
-    //     flags: [Flag.FLAG_GRANT_READ_URI_PERMISSION],
-    //   );
-    //   try {
-    //     await intent.launch();
-    //   } on PlatformException {
-    //     Navigator.of(context, rootNavigator: true).pop();
-    //     showDialog(
-    //         context: context,
-    //         builder: (context) {
-    //           return AlertDialog(
-    //             contentPadding: EdgeInsets.all(10),
-    //             title: Text(
-    //               "Unable to Launch",
-    //             ),
-    //             content: Text(
-    //               "Can't find any compatible video player. Install suitable video player for it to work.",
-    //             ),
-    //             actions: <Widget>[
-    //               TextButton(
-    //                 onPressed: () {
-    //                   Navigator.of(context).pop();
-    //                 },
-    //                 child: Text('OK'),
-    //               ),
-    //             ],
-    //           );
-    //         });
-    //   }
-    // }
+          if (Platform.isAndroid) {
+            final AndroidIntent intent = AndroidIntent(
+              action: 'action_view',
+              data: vidLink,
+              type: 'video/**',
+              flags: [Flag.FLAG_GRANT_READ_URI_PERMISSION],
+            );
+            try {
+              await intent.launch();
+            } on PlatformException {
+              Navigator.of(context, rootNavigator: true).pop();
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      contentPadding: EdgeInsets.all(10),
+                      title: Text(
+                        "Unable to Launch",
+                      ),
+                      content: Text(
+                        "Can't find any compatible video player. Install suitable video player for it to work.",
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    );
+                  });
+            }
+          }
+        });
+    await webview.run();
+
+    //url.launch(link);
   }
 }

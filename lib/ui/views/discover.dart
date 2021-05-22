@@ -24,11 +24,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
             titlePadding: EdgeInsets.only(left: 10),
             title: Row(
               children: [
-                Expanded(
-                    child: Text(
-                  'Discover',
-                  style: TextStyle(fontFamily: "Rubik"),
-                )),
+                Expanded(child: Text('Discover')),
                 IconButton(
                     icon: animeMode
                         ? Icon(Icons.movie_creation_outlined)
@@ -64,10 +60,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
       padding: const EdgeInsets.all(10.0),
       child: Text(
         title,
-        style: TextStyle(
-          fontSize: 20,
-          fontFamily: "Rubik",
-        ),
+        style: TextStyle(fontSize: 20),
       ),
     );
   }

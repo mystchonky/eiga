@@ -19,8 +19,8 @@ class EigaTheme {
             indicatorColor: Colors.deepPurpleAccent,
             tabBarIndicatorSize: TabBarIndicatorSize.tab,
             indicatorRadius: 5),
-        labelStyle: TextStyle(fontFamily: "Rubik",fontWeight: FontWeight.bold),
+        labelStyle: TextStyle(fontWeight: FontWeight.bold),
         unselectedLabelStyle:
-            TextStyle(fontFamily: "Rubik", color: Colors.white , fontWeight: FontWeight.bold),
+            TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ));
 }

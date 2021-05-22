@@ -29,62 +29,41 @@ class AnimeStats extends StatelessWidget {
       tagData.add(RadarDataEntry(name: e!.tag!.name, value: e.count));
     }
 
-    return Container(
-      constraints: BoxConstraints(minHeight: 300),
-      child: Column(
-        children: [
-          Row(
+    return ListView(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            MediaStatCard(
+                title: "Anime Watched",
+                value: (user.statistics?.anime?.count ?? 0).toString(),
+                icon: Icons.tv),
+            MediaStatCard(
+                title: "Episodes Watched",
+                value:
+                    (user.statistics?.anime?.episodesWatched ?? 0).toString(),
+                icon: Icons.play_arrow_rounded),
+            MediaStatCard(
+                title: "Days Watched",
+                value: ((user.statistics?.anime?.minutesWatched ?? 0) / 1440)
+                    .toStringAsFixed(2),
+                icon: Icons.event)
+          ],
+        ),
+        ScoreChart(data: scoreData),
+        Container(
+          constraints: BoxConstraints(maxHeight: 500),
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              MediaStatCard(
-                  title: "Anime Watched",
-                  value: (user.statistics?.anime?.count ?? 0).toString(),
-                  icon: Icons.tv),
-              MediaStatCard(
-                  title: "Episodes Watched",
-                  value:
-                      (user.statistics?.anime?.episodesWatched ?? 0).toString(),
-                  icon: Icons.play_arrow_rounded),
-              MediaStatCard(
-                  title: "Days Watched",
-                  value: ((user.statistics?.anime?.minutesWatched ?? 0) / 1440)
-                      .toStringAsFixed(2),
-                  icon: Icons.event)
+              if (genreData.isNotEmpty)
+                Expanded(child: ProfileRadar(data: genreData)),
+              if (tagData.isNotEmpty)
+                Expanded(child: ProfileRadar(data: tagData))
             ],
           ),
-          ScoreChart(data: scoreData),
-          Container(
-            constraints: BoxConstraints(maxHeight: 500),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                if (genreData.isNotEmpty)
-                  Expanded(child: ProfileRadar(data: genreData)),
-                if (tagData.isNotEmpty)
-                  Expanded(child: ProfileRadar(data: tagData))
-              ],
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
-  }
-
-  double getMinY() {
-    final x = user.statistics!.anime!.scores!;
-    int min = 9999999;
-    for (final element in x) {
-      if (element!.count < min) min = element.count;
-    }
-    return min - 5;
-  }
-
-  double getMaxY() {
-    final x = user.statistics!.anime!.scores!;
-    int max = 0;
-    for (final element in x) {
-      if (element!.count > max) max = element.count;
-    }
-    return max + 5;
   }
 }

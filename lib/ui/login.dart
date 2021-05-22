@@ -20,7 +20,7 @@ class LoginPrompt extends StatelessWidget {
               },
               child: Text(
                 "LOGIN",
-                style: TextStyle(fontSize: 36, fontFamily: 'Rubik'),
+                style: TextStyle(fontSize: 36),
               )),
         ),
       ),

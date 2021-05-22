@@ -28,9 +28,7 @@ class ProfileRadar extends StatelessWidget {
         radarBorderData: BorderSide(color: Colors.grey),
         titlePositionPercentageOffset: 0.15,
         titleTextStyle: TextStyle(
-            color: Theme.of(context).textTheme.bodyText1!.color,
-            fontSize: 14,
-            fontFamily: "Rubik"),
+            color: Theme.of(context).textTheme.bodyText1!.color, fontSize: 14),
         tickCount: 4,
         getTitle: (value) {
           return data[value].name;

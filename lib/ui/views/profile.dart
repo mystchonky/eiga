@@ -1,3 +1,4 @@
+import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -51,8 +52,8 @@ class _ProfileState extends State<Profile>
 
           return RefreshIndicator(
             onRefresh: () => refetch!(),
-            child: CustomScrollView(
-              slivers: [
+            child: NestedScrollView(
+              headerSliverBuilder: (context, value) => [
                 SliverAppBar(
                   floating: true,
                   expandedHeight: 200.0,
@@ -62,10 +63,7 @@ class _ProfileState extends State<Profile>
                       children: [
                         Container(
                           alignment: Alignment.bottomLeft,
-                          child: Text(
-                            user.name,
-                            style: TextStyle(fontFamily: "Rubik"),
-                          ),
+                          child: Text(user.name),
                         ),
                         Container(
                             alignment: Alignment.bottomRight,
@@ -107,27 +105,18 @@ class _ProfileState extends State<Profile>
                           ),
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      TabBar(
+                SliverPersistentHeader(
+                  delegate: _SliverAppBarDelegate(
+                    getTabBar(
                         controller: _tabController,
-                        tabs: const [Tab(text: "Anime"), Tab(text: "Manga")],
-                      ),
-                      Container(
-                        constraints:
-                            BoxConstraints(minHeight: 300, maxHeight: 900),
-                        child: TabBarView(
-                            controller: _tabController,
-                            children: [
-                              AnimeStats(user: user),
-                              MangaStats(user: user)
-                            ]),
-                      )
-                    ],
+                        tabs: [Text("Anime"), Text("Manga")]),
                   ),
+                  floating: true,
                 )
               ],
+              body: TabBarView(
+                  controller: _tabController,
+                  children: [AnimeStats(user: user), MangaStats(user: user)]),
             ),
           );
         });
@@ -141,4 +130,46 @@ class _ProfileState extends State<Profile>
 
   @override
   bool get wantKeepAlive => true;
+
+  TabBar getTabBar(
+          {required TabController controller, required List<Widget> tabs}) =>
+      TabBar(
+        controller: controller,
+        tabs: tabs,
+        indicatorSize: TabBarIndicatorSize.tab,
+        indicator: BubbleTabIndicator(
+            indicatorHeight: 30,
+            indicatorColor: Colors.deepPurpleAccent,
+            tabBarIndicatorSize: TabBarIndicatorSize.tab,
+            indicatorRadius: 5),
+        labelStyle: TextStyle(fontWeight: FontWeight.bold),
+        unselectedLabelStyle:
+            TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      );
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate(this._tabBar);
+
+  final TabBar _tabBar;
+
+  @override
+  double get minExtent => _tabBar.preferredSize.height;
+  @override
+  double get maxExtent => _tabBar.preferredSize.height;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return new Container(
+      color: Theme.of(context).canvasColor,
+      height: 40,
+      child: _tabBar,
+    );
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return false;
+  }
 }

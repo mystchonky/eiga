@@ -18,6 +18,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   expandable_text: ^2.0.0
   fl_chart: ^0.35.0
+  flutter_inappwebview: ^5.3.2
   graphql_flutter: ^5.0.0-nullsafety.2
   hive: ^2.0.4
   hive_flutter: ^1.0.0
@@ -50,20 +51,6 @@ flutter:
     - family: Inter
       fonts:
         - asset: lib/assets/fonts/Inter-VariableFont_slnt,wght.ttf
-    - family: Rubik
-      fonts:
-        - asset: lib/assets/fonts/Rubik-Regular.ttf
-        #           weight: 400
-        - asset: lib/assets/fonts/Rubik-Light.ttf
-          weight: 300
-        - asset: lib/assets/fonts/Rubik-Medium.ttf
-          weight: 500
-        - asset: lib/assets/fonts/Rubik-Bold.ttf
-          weight: 700
-        - asset: lib/assets/fonts/Rubik-SemiBold.ttf
-          weight: 600
-        - asset: lib/assets/fonts/Rubik-Black.ttf
-          weight: 900
 
 flutter_icons:
   android: true
