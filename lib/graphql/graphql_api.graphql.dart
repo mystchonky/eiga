@@ -7,21 +7,6 @@ import 'package:equatable/equatable.dart';
 import 'package:gql/ast.dart';
 part 'graphql_api.graphql.g.dart';
 
-mixin AnimeInfoMixin {
-  AnimeInfoMixin$StudioConnection? studios;
-  int? episodes;
-  int? duration;
-  @JsonKey(unknownEnumValue: MediaSeason.artemisUnknown)
-  MediaSeason? season;
-  int? seasonYear;
-  AnimeInfoMixin$MediaTrailer? trailer;
-  AnimeInfoMixin$AiringSchedule? nextAiringEpisode;
-}
-mixin MangaInfoMixin {
-  int? chapters;
-  int? volumes;
-}
-
 @JsonSerializable(explicitToJson: true)
 class AllTimePopularAnime$Query$Page$Media$MediaTitle extends JsonSerializable
     with EquatableMixin {
@@ -372,6 +357,84 @@ class MediaInfo$Query$Media$FuzzyDate extends JsonSerializable
 }
 
 @JsonSerializable(explicitToJson: true)
+class MediaInfo$Query$Media$StudioConnection$Studio extends JsonSerializable
+    with EquatableMixin {
+  MediaInfo$Query$Media$StudioConnection$Studio();
+
+  factory MediaInfo$Query$Media$StudioConnection$Studio.fromJson(
+          Map<String, dynamic> json) =>
+      _$MediaInfo$Query$Media$StudioConnection$StudioFromJson(json);
+
+  late int id;
+
+  late String name;
+
+  @override
+  List<Object?> get props => [id, name];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$MediaInfo$Query$Media$StudioConnection$StudioToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class MediaInfo$Query$Media$StudioConnection extends JsonSerializable
+    with EquatableMixin {
+  MediaInfo$Query$Media$StudioConnection();
+
+  factory MediaInfo$Query$Media$StudioConnection.fromJson(
+          Map<String, dynamic> json) =>
+      _$MediaInfo$Query$Media$StudioConnectionFromJson(json);
+
+  List<MediaInfo$Query$Media$StudioConnection$Studio?>? nodes;
+
+  @override
+  List<Object?> get props => [nodes];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$MediaInfo$Query$Media$StudioConnectionToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class MediaInfo$Query$Media$MediaTrailer extends JsonSerializable
+    with EquatableMixin {
+  MediaInfo$Query$Media$MediaTrailer();
+
+  factory MediaInfo$Query$Media$MediaTrailer.fromJson(
+          Map<String, dynamic> json) =>
+      _$MediaInfo$Query$Media$MediaTrailerFromJson(json);
+
+  String? site;
+
+  @override
+  List<Object?> get props => [site];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$MediaInfo$Query$Media$MediaTrailerToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class MediaInfo$Query$Media$AiringSchedule extends JsonSerializable
+    with EquatableMixin {
+  MediaInfo$Query$Media$AiringSchedule();
+
+  factory MediaInfo$Query$Media$AiringSchedule.fromJson(
+          Map<String, dynamic> json) =>
+      _$MediaInfo$Query$Media$AiringScheduleFromJson(json);
+
+  late int id;
+
+  late int episode;
+
+  late int airingAt;
+
+  @override
+  List<Object?> get props => [id, episode, airingAt];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$MediaInfo$Query$Media$AiringScheduleToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class MediaInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle
     extends JsonSerializable with EquatableMixin {
   MediaInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle();
@@ -601,8 +664,7 @@ class MediaInfo$Query$Media$RecommendationConnection extends JsonSerializable
 }
 
 @JsonSerializable(explicitToJson: true)
-class MediaInfo$Query$Media extends JsonSerializable
-    with EquatableMixin, AnimeInfoMixin, MangaInfoMixin {
+class MediaInfo$Query$Media extends JsonSerializable with EquatableMixin {
   MediaInfo$Query$Media();
 
   factory MediaInfo$Query$Media.fromJson(Map<String, dynamic> json) =>
@@ -639,21 +701,31 @@ class MediaInfo$Query$Media extends JsonSerializable
 
   MediaInfo$Query$Media$FuzzyDate? endDate;
 
+  MediaInfo$Query$Media$StudioConnection? studios;
+
+  int? episodes;
+
+  int? duration;
+
+  @JsonKey(unknownEnumValue: MediaSeason.artemisUnknown)
+  MediaSeason? season;
+
+  int? seasonYear;
+
+  MediaInfo$Query$Media$MediaTrailer? trailer;
+
+  MediaInfo$Query$Media$AiringSchedule? nextAiringEpisode;
+
+  int? chapters;
+
+  int? volumes;
+
   MediaInfo$Query$Media$MediaConnection? relations;
 
   MediaInfo$Query$Media$RecommendationConnection? recommendations;
 
   @override
   List<Object?> get props => [
-        studios,
-        episodes,
-        duration,
-        season,
-        seasonYear,
-        trailer,
-        nextAiringEpisode,
-        chapters,
-        volumes,
         id,
         type,
         title,
@@ -668,6 +740,15 @@ class MediaInfo$Query$Media extends JsonSerializable
         siteUrl,
         startDate,
         endDate,
+        studios,
+        episodes,
+        duration,
+        season,
+        seasonYear,
+        trailer,
+        nextAiringEpisode,
+        chapters,
+        volumes,
         relations,
         recommendations
       ];
@@ -689,78 +770,6 @@ class MediaInfo$Query extends JsonSerializable with EquatableMixin {
   List<Object?> get props => [media];
   @override
   Map<String, dynamic> toJson() => _$MediaInfo$QueryToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class AnimeInfoMixin$StudioConnection$Studio extends JsonSerializable
-    with EquatableMixin {
-  AnimeInfoMixin$StudioConnection$Studio();
-
-  factory AnimeInfoMixin$StudioConnection$Studio.fromJson(
-          Map<String, dynamic> json) =>
-      _$AnimeInfoMixin$StudioConnection$StudioFromJson(json);
-
-  late int id;
-
-  late String name;
-
-  @override
-  List<Object?> get props => [id, name];
-  @override
-  Map<String, dynamic> toJson() =>
-      _$AnimeInfoMixin$StudioConnection$StudioToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class AnimeInfoMixin$StudioConnection extends JsonSerializable
-    with EquatableMixin {
-  AnimeInfoMixin$StudioConnection();
-
-  factory AnimeInfoMixin$StudioConnection.fromJson(Map<String, dynamic> json) =>
-      _$AnimeInfoMixin$StudioConnectionFromJson(json);
-
-  List<AnimeInfoMixin$StudioConnection$Studio?>? nodes;
-
-  @override
-  List<Object?> get props => [nodes];
-  @override
-  Map<String, dynamic> toJson() =>
-      _$AnimeInfoMixin$StudioConnectionToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class AnimeInfoMixin$MediaTrailer extends JsonSerializable with EquatableMixin {
-  AnimeInfoMixin$MediaTrailer();
-
-  factory AnimeInfoMixin$MediaTrailer.fromJson(Map<String, dynamic> json) =>
-      _$AnimeInfoMixin$MediaTrailerFromJson(json);
-
-  String? site;
-
-  @override
-  List<Object?> get props => [site];
-  @override
-  Map<String, dynamic> toJson() => _$AnimeInfoMixin$MediaTrailerToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class AnimeInfoMixin$AiringSchedule extends JsonSerializable
-    with EquatableMixin {
-  AnimeInfoMixin$AiringSchedule();
-
-  factory AnimeInfoMixin$AiringSchedule.fromJson(Map<String, dynamic> json) =>
-      _$AnimeInfoMixin$AiringScheduleFromJson(json);
-
-  late int id;
-
-  late int episode;
-
-  late int airingAt;
-
-  @override
-  List<Object?> get props => [id, episode, airingAt];
-  @override
-  Map<String, dynamic> toJson() => _$AnimeInfoMixin$AiringScheduleToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -2296,10 +2305,110 @@ final MEDIA_INFO_QUERY_DOCUMENT = DocumentNode(definitions: [
                         directives: [],
                         selectionSet: null)
                   ])),
-              FragmentSpreadNode(
-                  name: NameNode(value: 'animeInfo'), directives: []),
-              FragmentSpreadNode(
-                  name: NameNode(value: 'mangaInfo'), directives: []),
+              FieldNode(
+                  name: NameNode(value: 'studios'),
+                  alias: null,
+                  arguments: [
+                    ArgumentNode(
+                        name: NameNode(value: 'isMain'),
+                        value: BooleanValueNode(value: true))
+                  ],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'nodes'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'id'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'name'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ]))
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'episodes'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'duration'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'season'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'seasonYear'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'trailer'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'site'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'nextAiringEpisode'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'episode'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'airingAt'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'chapters'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'volumes'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
               FieldNode(
                   name: NameNode(value: 'relations'),
                   alias: null,
@@ -2429,124 +2538,6 @@ final MEDIA_INFO_QUERY_DOCUMENT = DocumentNode(definitions: [
                         ]))
                   ]))
             ]))
-      ])),
-  FragmentDefinitionNode(
-      name: NameNode(value: 'animeInfo'),
-      typeCondition: TypeConditionNode(
-          on: NamedTypeNode(name: NameNode(value: 'Media'), isNonNull: false)),
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-            name: NameNode(value: 'studios'),
-            alias: null,
-            arguments: [
-              ArgumentNode(
-                  name: NameNode(value: 'isMain'),
-                  value: BooleanValueNode(value: true))
-            ],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                  name: NameNode(value: 'nodes'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(selections: [
-                    FieldNode(
-                        name: NameNode(value: 'id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null),
-                    FieldNode(
-                        name: NameNode(value: 'name'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null)
-                  ]))
-            ])),
-        FieldNode(
-            name: NameNode(value: 'episodes'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null),
-        FieldNode(
-            name: NameNode(value: 'duration'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null),
-        FieldNode(
-            name: NameNode(value: 'season'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null),
-        FieldNode(
-            name: NameNode(value: 'seasonYear'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null),
-        FieldNode(
-            name: NameNode(value: 'trailer'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                  name: NameNode(value: 'site'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null)
-            ])),
-        FieldNode(
-            name: NameNode(value: 'nextAiringEpisode'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                  name: NameNode(value: 'id'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'episode'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'airingAt'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null)
-            ]))
-      ])),
-  FragmentDefinitionNode(
-      name: NameNode(value: 'mangaInfo'),
-      typeCondition: TypeConditionNode(
-          on: NamedTypeNode(name: NameNode(value: 'Media'), isNonNull: false)),
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-            name: NameNode(value: 'chapters'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null),
-        FieldNode(
-            name: NameNode(value: 'volumes'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null)
       ]))
 ]);
 

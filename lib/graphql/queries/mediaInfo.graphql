@@ -29,8 +29,26 @@ query MediaInfo($id: Int) {
       month
       day
     }
-    ...animeInfo
-    ...mangaInfo
+    studios(isMain: true) {
+      nodes {
+        id
+        name
+      }
+    }
+    episodes
+    duration
+    season
+    seasonYear
+    trailer {
+      site
+    }
+    nextAiringEpisode {
+      id
+      episode
+      airingAt
+    }
+    chapters
+    volumes
     relations {
       edges {
         relationType
@@ -61,30 +79,4 @@ query MediaInfo($id: Int) {
       }
     }
   }
-}
-
-fragment animeInfo on Media {
-  studios(isMain: true) {
-    nodes {
-      id
-      name
-    }
-  }
-  episodes
-  duration
-  season
-  seasonYear
-  trailer {
-    site
-  }
-  nextAiringEpisode {
-    id
-    episode
-    airingAt
-  }
-}
-
-fragment mangaInfo on Media {
-  chapters
-  volumes
 }

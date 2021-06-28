@@ -357,6 +357,66 @@ Map<String, dynamic> _$MediaInfo$Query$Media$FuzzyDateToJson(
       'day': instance.day,
     };
 
+MediaInfo$Query$Media$StudioConnection$Studio
+    _$MediaInfo$Query$Media$StudioConnection$StudioFromJson(
+        Map<String, dynamic> json) {
+  return MediaInfo$Query$Media$StudioConnection$Studio()
+    ..id = json['id'] as int
+    ..name = json['name'] as String;
+}
+
+Map<String, dynamic> _$MediaInfo$Query$Media$StudioConnection$StudioToJson(
+        MediaInfo$Query$Media$StudioConnection$Studio instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+MediaInfo$Query$Media$StudioConnection
+    _$MediaInfo$Query$Media$StudioConnectionFromJson(
+        Map<String, dynamic> json) {
+  return MediaInfo$Query$Media$StudioConnection()
+    ..nodes = (json['nodes'] as List<dynamic>?)
+        ?.map((e) => e == null
+            ? null
+            : MediaInfo$Query$Media$StudioConnection$Studio.fromJson(
+                e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic> _$MediaInfo$Query$Media$StudioConnectionToJson(
+        MediaInfo$Query$Media$StudioConnection instance) =>
+    <String, dynamic>{
+      'nodes': instance.nodes?.map((e) => e?.toJson()).toList(),
+    };
+
+MediaInfo$Query$Media$MediaTrailer _$MediaInfo$Query$Media$MediaTrailerFromJson(
+    Map<String, dynamic> json) {
+  return MediaInfo$Query$Media$MediaTrailer()..site = json['site'] as String?;
+}
+
+Map<String, dynamic> _$MediaInfo$Query$Media$MediaTrailerToJson(
+        MediaInfo$Query$Media$MediaTrailer instance) =>
+    <String, dynamic>{
+      'site': instance.site,
+    };
+
+MediaInfo$Query$Media$AiringSchedule
+    _$MediaInfo$Query$Media$AiringScheduleFromJson(Map<String, dynamic> json) {
+  return MediaInfo$Query$Media$AiringSchedule()
+    ..id = json['id'] as int
+    ..episode = json['episode'] as int
+    ..airingAt = json['airingAt'] as int;
+}
+
+Map<String, dynamic> _$MediaInfo$Query$Media$AiringScheduleToJson(
+        MediaInfo$Query$Media$AiringSchedule instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'episode': instance.episode,
+      'airingAt': instance.airingAt,
+    };
+
 MediaInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle
     _$MediaInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitleFromJson(
         Map<String, dynamic> json) {
@@ -577,25 +637,6 @@ Map<String, dynamic> _$MediaInfo$Query$Media$RecommendationConnectionToJson(
 MediaInfo$Query$Media _$MediaInfo$Query$MediaFromJson(
     Map<String, dynamic> json) {
   return MediaInfo$Query$Media()
-    ..studios = json['studios'] == null
-        ? null
-        : AnimeInfoMixin$StudioConnection.fromJson(
-            json['studios'] as Map<String, dynamic>)
-    ..episodes = json['episodes'] as int?
-    ..duration = json['duration'] as int?
-    ..season = _$enumDecodeNullable(_$MediaSeasonEnumMap, json['season'],
-        unknownValue: MediaSeason.artemisUnknown)
-    ..seasonYear = json['seasonYear'] as int?
-    ..trailer = json['trailer'] == null
-        ? null
-        : AnimeInfoMixin$MediaTrailer.fromJson(
-            json['trailer'] as Map<String, dynamic>)
-    ..nextAiringEpisode = json['nextAiringEpisode'] == null
-        ? null
-        : AnimeInfoMixin$AiringSchedule.fromJson(
-            json['nextAiringEpisode'] as Map<String, dynamic>)
-    ..chapters = json['chapters'] as int?
-    ..volumes = json['volumes'] as int?
     ..id = json['id'] as int
     ..type = _$enumDecodeNullable(_$MediaTypeEnumMap, json['type'],
         unknownValue: MediaType.artemisUnknown)
@@ -620,8 +661,27 @@ MediaInfo$Query$Media _$MediaInfo$Query$MediaFromJson(
     ..siteUrl = json['siteUrl'] as String?
     ..startDate = json['startDate'] == null
         ? null
-        : MediaInfo$Query$Media$FuzzyDate.fromJson(json['startDate'] as Map<String, dynamic>)
-    ..endDate = json['endDate'] == null ? null : MediaInfo$Query$Media$FuzzyDate.fromJson(json['endDate'] as Map<String, dynamic>)
+        : MediaInfo$Query$Media$FuzzyDate.fromJson(
+            json['startDate'] as Map<String, dynamic>)
+    ..endDate = json['endDate'] == null
+        ? null
+        : MediaInfo$Query$Media$FuzzyDate.fromJson(
+            json['endDate'] as Map<String, dynamic>)
+    ..studios = json['studios'] == null
+        ? null
+        : MediaInfo$Query$Media$StudioConnection.fromJson(
+            json['studios'] as Map<String, dynamic>)
+    ..episodes = json['episodes'] as int?
+    ..duration = json['duration'] as int?
+    ..season = _$enumDecodeNullable(_$MediaSeasonEnumMap, json['season'],
+        unknownValue: MediaSeason.artemisUnknown)
+    ..seasonYear = json['seasonYear'] as int?
+    ..trailer = json['trailer'] == null
+        ? null
+        : MediaInfo$Query$Media$MediaTrailer.fromJson(json['trailer'] as Map<String, dynamic>)
+    ..nextAiringEpisode = json['nextAiringEpisode'] == null ? null : MediaInfo$Query$Media$AiringSchedule.fromJson(json['nextAiringEpisode'] as Map<String, dynamic>)
+    ..chapters = json['chapters'] as int?
+    ..volumes = json['volumes'] as int?
     ..relations = json['relations'] == null ? null : MediaInfo$Query$Media$MediaConnection.fromJson(json['relations'] as Map<String, dynamic>)
     ..recommendations = json['recommendations'] == null ? null : MediaInfo$Query$Media$RecommendationConnection.fromJson(json['recommendations'] as Map<String, dynamic>);
 }
@@ -629,15 +689,6 @@ MediaInfo$Query$Media _$MediaInfo$Query$MediaFromJson(
 Map<String, dynamic> _$MediaInfo$Query$MediaToJson(
         MediaInfo$Query$Media instance) =>
     <String, dynamic>{
-      'studios': instance.studios?.toJson(),
-      'episodes': instance.episodes,
-      'duration': instance.duration,
-      'season': _$MediaSeasonEnumMap[instance.season],
-      'seasonYear': instance.seasonYear,
-      'trailer': instance.trailer?.toJson(),
-      'nextAiringEpisode': instance.nextAiringEpisode?.toJson(),
-      'chapters': instance.chapters,
-      'volumes': instance.volumes,
       'id': instance.id,
       'type': _$MediaTypeEnumMap[instance.type],
       'title': instance.title?.toJson(),
@@ -652,17 +703,18 @@ Map<String, dynamic> _$MediaInfo$Query$MediaToJson(
       'siteUrl': instance.siteUrl,
       'startDate': instance.startDate?.toJson(),
       'endDate': instance.endDate?.toJson(),
+      'studios': instance.studios?.toJson(),
+      'episodes': instance.episodes,
+      'duration': instance.duration,
+      'season': _$MediaSeasonEnumMap[instance.season],
+      'seasonYear': instance.seasonYear,
+      'trailer': instance.trailer?.toJson(),
+      'nextAiringEpisode': instance.nextAiringEpisode?.toJson(),
+      'chapters': instance.chapters,
+      'volumes': instance.volumes,
       'relations': instance.relations?.toJson(),
       'recommendations': instance.recommendations?.toJson(),
     };
-
-const _$MediaSeasonEnumMap = {
-  MediaSeason.winter: 'WINTER',
-  MediaSeason.spring: 'SPRING',
-  MediaSeason.summer: 'SUMMER',
-  MediaSeason.fall: 'FALL',
-  MediaSeason.artemisUnknown: 'ARTEMIS_UNKNOWN',
-};
 
 const _$MediaTypeEnumMap = {
   MediaType.anime: 'ANIME',
@@ -684,6 +736,14 @@ const _$MediaFormatEnumMap = {
   MediaFormat.artemisUnknown: 'ARTEMIS_UNKNOWN',
 };
 
+const _$MediaSeasonEnumMap = {
+  MediaSeason.winter: 'WINTER',
+  MediaSeason.spring: 'SPRING',
+  MediaSeason.summer: 'SUMMER',
+  MediaSeason.fall: 'FALL',
+  MediaSeason.artemisUnknown: 'ARTEMIS_UNKNOWN',
+};
+
 MediaInfo$Query _$MediaInfo$QueryFromJson(Map<String, dynamic> json) {
   return MediaInfo$Query()
     ..media = json['Media'] == null
@@ -694,65 +754,6 @@ MediaInfo$Query _$MediaInfo$QueryFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$MediaInfo$QueryToJson(MediaInfo$Query instance) =>
     <String, dynamic>{
       'Media': instance.media?.toJson(),
-    };
-
-AnimeInfoMixin$StudioConnection$Studio
-    _$AnimeInfoMixin$StudioConnection$StudioFromJson(
-        Map<String, dynamic> json) {
-  return AnimeInfoMixin$StudioConnection$Studio()
-    ..id = json['id'] as int
-    ..name = json['name'] as String;
-}
-
-Map<String, dynamic> _$AnimeInfoMixin$StudioConnection$StudioToJson(
-        AnimeInfoMixin$StudioConnection$Studio instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-    };
-
-AnimeInfoMixin$StudioConnection _$AnimeInfoMixin$StudioConnectionFromJson(
-    Map<String, dynamic> json) {
-  return AnimeInfoMixin$StudioConnection()
-    ..nodes = (json['nodes'] as List<dynamic>?)
-        ?.map((e) => e == null
-            ? null
-            : AnimeInfoMixin$StudioConnection$Studio.fromJson(
-                e as Map<String, dynamic>))
-        .toList();
-}
-
-Map<String, dynamic> _$AnimeInfoMixin$StudioConnectionToJson(
-        AnimeInfoMixin$StudioConnection instance) =>
-    <String, dynamic>{
-      'nodes': instance.nodes?.map((e) => e?.toJson()).toList(),
-    };
-
-AnimeInfoMixin$MediaTrailer _$AnimeInfoMixin$MediaTrailerFromJson(
-    Map<String, dynamic> json) {
-  return AnimeInfoMixin$MediaTrailer()..site = json['site'] as String?;
-}
-
-Map<String, dynamic> _$AnimeInfoMixin$MediaTrailerToJson(
-        AnimeInfoMixin$MediaTrailer instance) =>
-    <String, dynamic>{
-      'site': instance.site,
-    };
-
-AnimeInfoMixin$AiringSchedule _$AnimeInfoMixin$AiringScheduleFromJson(
-    Map<String, dynamic> json) {
-  return AnimeInfoMixin$AiringSchedule()
-    ..id = json['id'] as int
-    ..episode = json['episode'] as int
-    ..airingAt = json['airingAt'] as int;
-}
-
-Map<String, dynamic> _$AnimeInfoMixin$AiringScheduleToJson(
-        AnimeInfoMixin$AiringSchedule instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'episode': instance.episode,
-      'airingAt': instance.airingAt,
     };
 
 PopularCustom$Query$Page$Media$MediaTitle
