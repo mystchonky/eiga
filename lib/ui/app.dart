@@ -30,6 +30,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //TODO Better Routing
       initialRoute: '_app',
       routes: {
         '_app': (context) => _App(eOAuth2Client),

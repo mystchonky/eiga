@@ -6,13 +6,15 @@ import '../widgets/discover/trending_carousel_anime.dart';
 import 'search_page.dart';
 
 class DiscoverPage extends StatefulWidget {
+  final bool animeMode;
+
+  const DiscoverPage({required this.animeMode});
+
   @override
   _DiscoverPageState createState() => _DiscoverPageState();
 }
 
 class _DiscoverPageState extends State<DiscoverPage> {
-  bool animeMode = true;
-
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -24,15 +26,13 @@ class _DiscoverPageState extends State<DiscoverPage> {
             titlePadding: EdgeInsets.only(left: 10),
             title: Row(
               children: [
-                Expanded(child: Text('Discover')),
-                IconButton(
-                    icon: animeMode
-                        ? Icon(Icons.movie_creation_outlined)
-                        : Icon(Icons.book_outlined),
-                    iconSize: 20,
-                    onPressed: () => setState(() {
-                          animeMode = !animeMode;
-                        })),
+                Expanded(
+                    child: Text(
+                  'Discover',
+                  style: TextStyle(
+                      color:
+                          Theme.of(context).primaryTextTheme.bodyText1!.color),
+                )),
                 IconButton(
                     icon: Icon(Icons.search),
                     onPressed: () {
@@ -46,10 +46,11 @@ class _DiscoverPageState extends State<DiscoverPage> {
           ),
         ),
         SliverToBoxAdapter(
-            child:
-                animeMode ? TrendingAnimeCarousel() : TrendingMangaCarousel()),
+            child: widget.animeMode
+                ? TrendingAnimeCarousel()
+                : TrendingMangaCarousel()),
         SliverToBoxAdapter(
-          child: animeMode ? _animeLists() : _mangaLists(),
+          child: widget.animeMode ? _animeLists() : _mangaLists(),
         ),
       ],
     );

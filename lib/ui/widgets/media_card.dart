@@ -58,8 +58,8 @@ class _MediaCardState extends State<MediaCard>
                     end: Alignment.bottomCenter,
                     colors: <Color>[
                       Colors.transparent,
-                      Colors.black45,
-                      Colors.black87
+                      Color(0xFF121212).withOpacity(0.45),
+                      Color(0xFF121212).withOpacity(0.87),
                     ],
                   ),
                 ),
@@ -83,7 +83,8 @@ class _MediaCardState extends State<MediaCard>
                   child: Text(
                     widget.anime!.relation!,
                     style: TextStyle(
-                        color: Colors.white,
+                        color:
+                            Theme.of(context).accentTextTheme.bodyText1!.color,
                         fontSize: 12.0,
                         fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,

@@ -1,26 +1,19 @@
-import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:flutter/material.dart';
 
 class EigaTheme {
+  final bool animeMode;
+
+  const EigaTheme({required this.animeMode});
+
   ThemeData get darkTheme => ThemeData(
-      fontFamily: "Inter",
-      textTheme: TextTheme().apply(bodyColor: Colors.white),
-      brightness: Brightness.dark,
-      primaryColor: Colors.deepPurpleAccent,
-      scaffoldBackgroundColor: Colors.black,
-      accentColor: Colors.deepPurpleAccent,
-      canvasColor: Colors.black,
-      dividerColor: Colors.white38,
-      appBarTheme: AppBarTheme(color: Colors.black),
-      tabBarTheme: TabBarTheme(
-        indicatorSize: TabBarIndicatorSize.tab,
-        indicator: BubbleTabIndicator(
-            indicatorHeight: 30,
-            indicatorColor: Colors.deepPurpleAccent,
-            tabBarIndicatorSize: TabBarIndicatorSize.tab,
-            indicatorRadius: 5),
-        labelStyle: TextStyle(fontWeight: FontWeight.bold),
-        unselectedLabelStyle:
-            TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      ));
+        fontFamily: "Inter",
+        textTheme: TextTheme().apply(bodyColor: Colors.white),
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        accentColor: animeMode ? Colors.deepPurpleAccent : Colors.orange,
+        canvasColor: Colors.black,
+        dividerColor: Colors.white38,
+        appBarTheme: AppBarTheme(color: Colors.transparent),
+        splashFactory: InkRipple.splashFactory,
+      );
 }

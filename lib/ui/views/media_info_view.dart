@@ -1,24 +1,17 @@
 import 'dart:ui';
 
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:eiga/classes/adapters/library_item.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:html/parser.dart';
-import 'package:intl/intl.dart';
-import 'package:share/share.dart';
-import 'package:url_launcher/url_launcher.dart' as url;
 
-import '../../classes/extensions/media_format.dart';
-import '../../classes/extensions/media_relation.dart';
-import '../../classes/extensions/media_status.dart';
-import '../../classes/media_card_entry.dart';
+import '../../classes/adapters/library_item.dart';
 import '../../classes/sources/four_anime.dart';
 import '../../graphql/graphql_api.dart';
-import '../widgets/media_card.dart';
-import 'studio_info.dart';
+import '../widgets/media_info_view/cover.dart';
+import '../widgets/media_info_view/info.dart';
+import '../widgets/media_info_view/media_list.dart';
 
 class MediaInfo extends StatefulWidget {
   final int id;
@@ -34,14 +27,7 @@ class _MediaInfoState extends State<MediaInfo> {
   final box = Hive.box<LibraryItem>('library');
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final canvasColor = Theme.of(context).canvasColor;
-
     return Query(
       options: QueryOptions(
           document: MediaInfoQuery(variables: MediaInfoArguments()).document,
@@ -71,125 +57,20 @@ class _MediaInfoState extends State<MediaInfo> {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                /*
-                * ImageCover
-                * */
-                Container(
-                  height: 300,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(),
-                  child: Stack(children: [
-                    if (anime?.bannerImage != null)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 2),
-                        child: Container(
-                          width: double.infinity,
-                          height: double.infinity,
-                          child: CachedNetworkImage(
-                            imageUrl: anime?.bannerImage ?? "",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    Container(
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: <Color>[
-                              canvasColor.withAlpha(0),
-                              canvasColor.withOpacity(0.26),
-                              canvasColor.withOpacity(0.87),
-                              canvasColor,
-                            ]),
-                      ),
-                    ),
-                    SafeArea(
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                        //color: Colors.purple,
-                        // height: 200,
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 4,
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                    child: CachedNetworkImage(
-                                      imageUrl: anime?.coverImage?.large ?? "",
-                                      fit: BoxFit.contain,
-                                      placeholder: (context, url) => Center(
-                                          child: CircularProgressIndicator()),
-                                      errorWidget: (context, url, error) =>
-                                          Icon(Icons.error),
-                                    ))),
-                            Expanded(
-                              flex: 7,
-                              child: Container(
-                                padding: EdgeInsets.only(
-                                    top: 10, left: 10, bottom: 20),
-                                child: Column(
-                                  //mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      animeName ?? "N/A",
-                                      maxLines: 2,
-                                      style: TextStyle(fontSize: 18),
-                                    ),
-                                    if (anime?.title?.english != null)
-                                      Text(
-                                        anime?.title?.english ?? "N/A",
-                                        style: TextStyle(fontSize: 12),
-                                      ),
-                                    Text(
-                                      anime?.title?.native ?? "N/A",
-                                      style: TextStyle(fontSize: 12),
-                                    ),
-                                    Row(
-                                      children: [
-                                        IconButton(
-                                          icon: Icon(Icons.public),
-                                          padding: EdgeInsets.all(0),
-                                          iconSize: 20,
-                                          color: Theme.of(context).accentColor,
-                                          onPressed: () =>
-                                              launchURL(anime!.siteUrl!),
-                                        ),
-                                        IconButton(
-                                          icon: Icon(Icons.share),
-                                          padding: EdgeInsets.all(0),
-                                          iconSize: 20,
-                                          color: Theme.of(context).accentColor,
-                                          onPressed: () {
-                                            if (anime?.siteUrl != null) {
-                                              Share.share(anime!.siteUrl!);
-                                            }
-                                          },
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ]),
+                Cover(
+                  bannerImage: anime?.bannerImage,
+                  coverImage: anime!.coverImage!.large!,
+                  mediaUrl: anime.siteUrl!,
+                  nameUserPreferred: anime.title!.romaji!,
+                  nameEnglish: anime.title?.english,
+                  nameJapanese: anime.title?.native,
                 ),
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        /*
-                        * BUTTONS
-                        * */
+                        //BUTTONS
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -200,7 +81,7 @@ class _MediaInfoState extends State<MediaInfo> {
                                       await box.put(
                                           widget.id,
                                           LibraryItem(
-                                              id: anime!.id,
+                                              id: anime.id,
                                               name: animeName!,
                                               coverUrl:
                                                   anime.coverImage!.large!));
@@ -242,16 +123,12 @@ class _MediaInfoState extends State<MediaInfo> {
                         ),
 
                         //Synopsis
-                        Text(
-                          "Synopsis",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
+                        header("Synopsis"),
                         SizedBox(height: 5),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
                           child: ExpandableText(
-                            cleanText(anime?.description ?? ""),
+                            cleanText(anime.description ?? ""),
                             style: TextStyle(
                               color: Colors.grey[600],
                             ),
@@ -260,51 +137,50 @@ class _MediaInfoState extends State<MediaInfo> {
                             maxLines: 5,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Divider(),
+                        ),
 
                         //Information
-                        Text(
-                          "Information",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
+                        header("Information"),
                         SizedBox(height: 5),
-                        infoBuilder(anime),
+                        InfoBuilder(media: anime),
                         SizedBox(height: 10),
 
                         //Genres
                         genreBuilder(anime),
                         SizedBox(height: 10),
 
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Divider(),
+                        ),
+
                         //Relations
-                        if (anime!.relations!.edges!.isNotEmpty)
+                        if (anime.relations!.edges!.isNotEmpty)
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  "Relations",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
+                                header("Relations"),
                                 SizedBox(height: 10),
-                                relationsBuilder(anime),
+                                RelationsBuilder(media: anime),
                                 SizedBox(height: 10),
                               ]),
+
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Divider(),
+                        ),
 
                         //Recommendations
                         if (anime.recommendations!.edges!.isNotEmpty)
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  "Recommendations",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
+                                header("Recommendations"),
                                 SizedBox(height: 10),
-                                recommendationsBuilder(anime),
+                                RecommendationsBuilder(media: anime),
                                 SizedBox(height: 50)
                               ])
                       ],
@@ -317,6 +193,17 @@ class _MediaInfoState extends State<MediaInfo> {
     );
   }
 
+  Widget header(String text) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontFamily: "Rubik",
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+      ),
+    );
+  }
+
   Widget genreBuilder(MediaInfo$Query$Media? anime) {
     return Wrap(
       spacing: 5,
@@ -326,228 +213,16 @@ class _MediaInfoState extends State<MediaInfo> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   border: Border.all(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).accentColor,
                   ),
-                  //color: Theme.of(context).primaryColor
                 ),
                 padding: EdgeInsets.all(5),
-                child: Text(
-                  gen ?? "N/A",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
-                ));
+                child: Text(gen ?? "N/A",
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 12)));
           }).toList() ??
           [],
     );
-  }
-
-  Widget infoBuilder(MediaInfo$Query$Media? anime) {
-    return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Table(
-            border: TableBorder(
-                horizontalInside:
-                    BorderSide(width: 0.4, color: Colors.white38)),
-            children: anime!.type == MediaType.anime
-                ? animeInfoBuilder(anime)
-                : mangaInfoBuilder(anime)));
-  }
-
-  Widget infoTitle(String text) {
-    final theme = TextStyle(fontWeight: FontWeight.bold);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2.0),
-      child: Text(text, style: theme),
-    );
-  }
-
-  Widget infoValue(String text) {
-    final theme = TextStyle(fontWeight: FontWeight.bold);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2.0),
-      child: Text(
-        text,
-        style: theme,
-        textAlign: TextAlign.end,
-      ),
-    );
-  }
-
-  Widget studioWidget(String text, int id) {
-    final theme = TextStyle(
-        fontWeight: FontWeight.bold, color: Theme.of(context).accentColor);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2.0),
-      child: GestureDetector(
-        onTap: () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => StudioInfo(id: id))),
-        child: Text(
-          text,
-          style: theme,
-          textAlign: TextAlign.end,
-        ),
-      ),
-    );
-  }
-
-  List<TableRow> animeInfoBuilder(MediaInfo$Query$Media? anime) {
-    return [
-      if (anime?.status == MediaStatus.releasing)
-        TableRow(children: [
-          infoTitle("Next Episode"),
-          infoValue(
-              "EP ${anime?.nextAiringEpisode?.episode} : ${nextAirDate(anime!.nextAiringEpisode!.airingAt)} ")
-        ]),
-      TableRow(children: [
-        infoTitle("Episodes"),
-        infoValue(
-          anime?.episodes?.toString() ?? "0",
-        ),
-      ]),
-      TableRow(children: [
-        infoTitle("Score"),
-        infoValue(
-          "${(anime?.averageScore ?? 0) / 10}",
-        )
-      ]),
-      TableRow(children: [
-        infoTitle("Type"),
-        infoValue(
-          anime?.format?.name ?? "N/A",
-        )
-      ]),
-      TableRow(children: [
-        infoTitle("Studio"),
-        if (anime?.studios?.nodes?[0]?.id != null)
-          studioWidget(
-            anime?.studios?.nodes?[0]?.name ?? "N/A",
-            anime!.studios!.nodes![0]!.id,
-          )
-        else
-          infoValue(
-            anime?.studios?.nodes?[0]?.name ?? "N/A",
-          )
-      ]),
-      TableRow(children: [
-        infoTitle("Status"),
-        infoValue(
-          anime?.status?.name ?? "N/A",
-        )
-      ]),
-      TableRow(children: [
-        infoTitle("Duration"),
-        infoValue(
-          "${anime?.duration ?? 0} Min",
-        )
-      ]),
-      if (anime?.status == MediaStatus.finished)
-        TableRow(children: [
-          infoTitle("Aired"),
-          infoValue(
-              anime?.startDate != null ? cleanDate(anime?.startDate) : "N/A")
-        ])
-    ];
-  }
-
-  List<TableRow> mangaInfoBuilder(MediaInfo$Query$Media? anime) {
-    return [
-      TableRow(children: [
-        infoTitle("Score"),
-        infoValue(
-          "${(anime?.averageScore ?? 0) / 10}",
-        )
-      ]),
-      TableRow(children: [
-        infoTitle("Status"),
-        infoValue(
-          anime?.status?.name ?? "N/A",
-        )
-      ]),
-      if (anime?.status == MediaStatus.finished)
-        TableRow(children: [
-          infoTitle("Chapters"),
-          infoValue(
-            anime?.chapters?.toString() ?? "N/A",
-          )
-        ]),
-      if (anime?.status == MediaStatus.finished)
-        TableRow(children: [
-          infoTitle("Volumes"),
-          infoValue(
-            anime?.volumes?.toString() ?? "N/A",
-          )
-        ]),
-      TableRow(children: [
-        infoTitle("Start Date"),
-        infoValue(
-            anime?.startDate != null ? cleanDate(anime?.startDate) : "N/A")
-      ]),
-      if (anime?.status == MediaStatus.finished)
-        TableRow(children: [
-          infoTitle("End Date"),
-          infoValue(anime?.endDate != null ? cleanDate(anime?.endDate) : "N/A")
-        ]),
-    ];
-  }
-
-  Widget relationsBuilder(MediaInfo$Query$Media? anime) {
-    return Container(
-      height: 160,
-      child: ListView.builder(
-        itemCount: anime?.relations?.edges?.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          final relation = anime?.relations?.edges?[index]?.node;
-          final relationType =
-              anime?.relations?.edges?[index]?.relationType?.name;
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2),
-            child: MediaCard(
-                anime: MediaCardEntry(
-                    id: relation?.id ?? 00,
-                    name: relation?.title?.userPreferred ?? "",
-                    coverUrl: relation?.coverImage?.large ?? "",
-                    relation: relationType)),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget recommendationsBuilder(MediaInfo$Query$Media? anime) {
-    return Container(
-      height: 160,
-      child: ListView.builder(
-        itemCount: anime?.recommendations?.edges?.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          final recommendation =
-              anime?.recommendations?.edges?[index]?.node?.mediaRecommendation;
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2),
-            child: MediaCard(
-                anime: MediaCardEntry(
-              id: recommendation?.id ?? 00,
-              name: recommendation?.title?.userPreferred ?? "",
-              coverUrl: recommendation?.coverImage?.large ?? "",
-            )),
-          );
-        },
-      ),
-    );
-  }
-
-  String nextAirDate(int airingAt) {
-    final airDate = DateTime.fromMillisecondsSinceEpoch(airingAt * 1000);
-    final diff = airDate.difference(DateTime.now());
-
-    final day = diff.abs().inDays;
-    final hour = diff.abs().inHours.remainder(24);
-    final min = diff.abs().inMinutes.remainder(60);
-
-    return "${day}d ${hour}h ${min}m";
   }
 
   String cleanText(String htmlString) {
@@ -557,13 +232,4 @@ class _MediaInfoState extends State<MediaInfo> {
 
     return parsedString;
   }
-
-  String cleanDate(MediaInfo$Query$Media$FuzzyDate? dateIn) {
-    final date =
-        DateTime(dateIn?.year ?? 0, dateIn?.month ?? 0, dateIn?.day ?? 0);
-    final DateFormat formatter = DateFormat('dd MMMM, y');
-    return formatter.format(date);
-  }
-
-  Future<void> launchURL(String _url) async => url.launch(_url);
 }

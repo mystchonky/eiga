@@ -16,17 +16,20 @@ class AnimeStats extends StatelessWidget {
     final List<RadarDataEntry> genreData = [];
     final List<RadarDataEntry> tagData = [];
 
-    for (final e in user.statistics!.anime!.scores!) {
-      scoreData.add(ChartDataEntry(score: e?.score ?? 0, count: e?.count ?? 0));
+    if (user.statistics?.anime?.scores != null) {
+      for (final e in user.statistics!.anime!.scores!) {
+        scoreData.add(ChartDataEntry(score: e!.score ?? 0, count: e.count));
+      }
     }
-    if (scoreData.isEmpty) {
-      scoreData.add(ChartDataEntry(score: 0, count: 0));
+    if (user.statistics?.anime?.genres != null) {
+      for (final e in user.statistics!.anime!.genres!) {
+        genreData.add(RadarDataEntry(name: e!.genre ?? "", value: e.count));
+      }
     }
-    for (final e in user.statistics!.anime!.genres!) {
-      genreData.add(RadarDataEntry(name: e!.genre ?? "", value: e.count));
-    }
-    for (final e in user.statistics!.anime!.tags!) {
-      tagData.add(RadarDataEntry(name: e!.tag!.name, value: e.count));
+    if (user.statistics?.anime?.tags != null) {
+      for (final e in user.statistics!.anime!.tags!) {
+        tagData.add(RadarDataEntry(name: e!.tag!.name, value: e.count));
+      }
     }
 
     return ListView(
@@ -50,7 +53,7 @@ class AnimeStats extends StatelessWidget {
                 icon: Icons.event)
           ],
         ),
-        ScoreChart(data: scoreData),
+        if (scoreData.isNotEmpty) ScoreChart(data: scoreData),
         Container(
           constraints: BoxConstraints(maxHeight: 500),
           child: Column(

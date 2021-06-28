@@ -45,9 +45,9 @@ class MediaCarouselCard extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: <Color>[
-                    Colors.black.withAlpha(0),
-                    Colors.black26,
-                    Colors.black87
+                    Colors.transparent,
+                    Color(0xFF121212).withOpacity(0.26),
+                    Color(0xFF121212).withOpacity(0.87),
                   ],
                 ),
               ),

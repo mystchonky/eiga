@@ -16,14 +16,20 @@ class MangaStats extends StatelessWidget {
     final List<RadarDataEntry> genreData = [];
     final List<RadarDataEntry> tagData = [];
 
-    for (final e in user.statistics!.manga!.scores!) {
-      scoreData.add(ChartDataEntry(score: e?.score ?? 0, count: e?.count ?? 0));
+    if (user.statistics?.manga?.scores != null) {
+      for (final e in user.statistics!.manga!.scores!) {
+        scoreData.add(ChartDataEntry(score: e!.score ?? 0, count: e.count));
+      }
     }
-    for (final e in user.statistics!.manga!.genres!) {
-      genreData.add(RadarDataEntry(name: e!.genre ?? "", value: e.count));
+    if (user.statistics?.manga?.genres != null) {
+      for (final e in user.statistics!.manga!.genres!) {
+        genreData.add(RadarDataEntry(name: e!.genre ?? "", value: e.count));
+      }
     }
-    for (final e in user.statistics!.manga!.tags!) {
-      tagData.add(RadarDataEntry(name: e!.tag!.name, value: e.count));
+    if (user.statistics?.manga?.tags != null) {
+      for (final e in user.statistics!.manga!.tags!) {
+        tagData.add(RadarDataEntry(name: e!.tag!.name, value: e.count));
+      }
     }
 
     return ListView(

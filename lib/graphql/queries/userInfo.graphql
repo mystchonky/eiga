@@ -8,33 +8,47 @@ query UserInfo {
     bannerImage
     statistics {
       anime {
-        ...mediaStats
+        count
+        episodesWatched
+        minutesWatched
+        chaptersRead
+        volumesRead
+        scores(sort: MEAN_SCORE_DESC) {
+          score
+          count
+        }
+        genres(limit: 5) {
+          genre
+          count
+        }
+        tags(limit: 5) {
+          tag {
+            name
+          }
+          count
+        }
       }
       manga {
-        ...mediaStats
+        count
+        episodesWatched
+        minutesWatched
+        chaptersRead
+        volumesRead
+        scores(sort: MEAN_SCORE_DESC) {
+          score
+          count
+        }
+        genres(limit: 5) {
+          genre
+          count
+        }
+        tags(limit: 5) {
+          tag {
+            name
+          }
+          count
+        }
       }
     }
-  }
-}
-
-fragment mediaStats on UserStatistics {
-  count
-  episodesWatched
-  minutesWatched
-  chaptersRead
-  volumesRead
-  scores(sort: MEAN_SCORE_DESC) {
-    score
-    count
-  }
-  genres(limit: 5) {
-    genre
-    count
-  }
-  tags(limit: 5) {
-    tag {
-      name
-    }
-    count
   }
 }

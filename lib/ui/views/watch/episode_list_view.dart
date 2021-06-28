@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart' as url;
+//import 'package:url_launcher/url_launcher.dart' as url;
 
 import 'package:eiga/classes/scraper.dart';
 

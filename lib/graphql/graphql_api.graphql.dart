@@ -21,16 +21,6 @@ mixin MangaInfoMixin {
   int? chapters;
   int? volumes;
 }
-mixin MediaStatsMixin {
-  late int count;
-  late int episodesWatched;
-  late int minutesWatched;
-  late int chaptersRead;
-  late int volumesRead;
-  List<MediaStatsMixin$UserScoreStatistic?>? scores;
-  List<MediaStatsMixin$UserGenreStatistic?>? genres;
-  List<MediaStatsMixin$UserTagStatistic?>? tags;
-}
 
 @JsonSerializable(explicitToJson: true)
 class AllTimePopularAnime$Query$Page$Media$MediaTitle extends JsonSerializable
@@ -45,6 +35,7 @@ class AllTimePopularAnime$Query$Page$Media$MediaTitle extends JsonSerializable
 
   @override
   List<Object?> get props => [userPreferred];
+  @override
   Map<String, dynamic> toJson() =>
       _$AllTimePopularAnime$Query$Page$Media$MediaTitleToJson(this);
 }
@@ -62,6 +53,7 @@ class AllTimePopularAnime$Query$Page$Media$MediaCoverImage
 
   @override
   List<Object?> get props => [large];
+  @override
   Map<String, dynamic> toJson() =>
       _$AllTimePopularAnime$Query$Page$Media$MediaCoverImageToJson(this);
 }
@@ -88,6 +80,7 @@ class AllTimePopularAnime$Query$Page$Media extends JsonSerializable
 
   @override
   List<Object?> get props => [id, title, episodes, status, coverImage];
+  @override
   Map<String, dynamic> toJson() =>
       _$AllTimePopularAnime$Query$Page$MediaToJson(this);
 }
@@ -104,6 +97,7 @@ class AllTimePopularAnime$Query$Page extends JsonSerializable
 
   @override
   List<Object?> get props => [media];
+  @override
   Map<String, dynamic> toJson() => _$AllTimePopularAnime$Query$PageToJson(this);
 }
 
@@ -119,6 +113,7 @@ class AllTimePopularAnime$Query extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [page];
+  @override
   Map<String, dynamic> toJson() => _$AllTimePopularAnime$QueryToJson(this);
 }
 
@@ -135,6 +130,7 @@ class AllTimePopularManga$Query$Page$Media$MediaTitle extends JsonSerializable
 
   @override
   List<Object?> get props => [userPreferred];
+  @override
   Map<String, dynamic> toJson() =>
       _$AllTimePopularManga$Query$Page$Media$MediaTitleToJson(this);
 }
@@ -152,6 +148,7 @@ class AllTimePopularManga$Query$Page$Media$MediaCoverImage
 
   @override
   List<Object?> get props => [large];
+  @override
   Map<String, dynamic> toJson() =>
       _$AllTimePopularManga$Query$Page$Media$MediaCoverImageToJson(this);
 }
@@ -178,6 +175,7 @@ class AllTimePopularManga$Query$Page$Media extends JsonSerializable
 
   @override
   List<Object?> get props => [id, title, episodes, status, coverImage];
+  @override
   Map<String, dynamic> toJson() =>
       _$AllTimePopularManga$Query$Page$MediaToJson(this);
 }
@@ -194,6 +192,7 @@ class AllTimePopularManga$Query$Page extends JsonSerializable
 
   @override
   List<Object?> get props => [media];
+  @override
   Map<String, dynamic> toJson() => _$AllTimePopularManga$Query$PageToJson(this);
 }
 
@@ -209,6 +208,7 @@ class AllTimePopularManga$Query extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [page];
+  @override
   Map<String, dynamic> toJson() => _$AllTimePopularManga$QueryToJson(this);
 }
 
@@ -225,6 +225,7 @@ class AllTimePopularManhwa$Query$Page$Media$MediaTitle extends JsonSerializable
 
   @override
   List<Object?> get props => [userPreferred];
+  @override
   Map<String, dynamic> toJson() =>
       _$AllTimePopularManhwa$Query$Page$Media$MediaTitleToJson(this);
 }
@@ -242,6 +243,7 @@ class AllTimePopularManhwa$Query$Page$Media$MediaCoverImage
 
   @override
   List<Object?> get props => [large];
+  @override
   Map<String, dynamic> toJson() =>
       _$AllTimePopularManhwa$Query$Page$Media$MediaCoverImageToJson(this);
 }
@@ -268,6 +270,7 @@ class AllTimePopularManhwa$Query$Page$Media extends JsonSerializable
 
   @override
   List<Object?> get props => [id, title, episodes, status, coverImage];
+  @override
   Map<String, dynamic> toJson() =>
       _$AllTimePopularManhwa$Query$Page$MediaToJson(this);
 }
@@ -284,6 +287,7 @@ class AllTimePopularManhwa$Query$Page extends JsonSerializable
 
   @override
   List<Object?> get props => [media];
+  @override
   Map<String, dynamic> toJson() =>
       _$AllTimePopularManhwa$Query$PageToJson(this);
 }
@@ -300,6 +304,7 @@ class AllTimePopularManhwa$Query extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [page];
+  @override
   Map<String, dynamic> toJson() => _$AllTimePopularManhwa$QueryToJson(this);
 }
 
@@ -320,6 +325,7 @@ class MediaInfo$Query$Media$MediaTitle extends JsonSerializable
 
   @override
   List<Object?> get props => [english, romaji, native];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$MediaTitleToJson(this);
 }
@@ -339,6 +345,7 @@ class MediaInfo$Query$Media$MediaCoverImage extends JsonSerializable
 
   @override
   List<Object?> get props => [large, color];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$MediaCoverImageToJson(this);
 }
@@ -359,6 +366,7 @@ class MediaInfo$Query$Media$FuzzyDate extends JsonSerializable
 
   @override
   List<Object?> get props => [year, month, day];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$FuzzyDateToJson(this);
 }
@@ -377,6 +385,7 @@ class MediaInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitle
 
   @override
   List<Object?> get props => [userPreferred];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaTitleToJson(
           this);
@@ -396,6 +405,7 @@ class MediaInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImage
 
   @override
   List<Object?> get props => [large];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$MediaConnection$MediaEdge$Media$MediaCoverImageToJson(
           this);
@@ -419,6 +429,7 @@ class MediaInfo$Query$Media$MediaConnection$MediaEdge$Media
 
   @override
   List<Object?> get props => [id, title, coverImage];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$MediaConnection$MediaEdge$MediaToJson(this);
 }
@@ -439,6 +450,7 @@ class MediaInfo$Query$Media$MediaConnection$MediaEdge extends JsonSerializable
 
   @override
   List<Object?> get props => [relationType, node];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$MediaConnection$MediaEdgeToJson(this);
 }
@@ -456,6 +468,7 @@ class MediaInfo$Query$Media$MediaConnection extends JsonSerializable
 
   @override
   List<Object?> get props => [edges];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$MediaConnectionToJson(this);
 }
@@ -474,6 +487,7 @@ class MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommen
 
   @override
   List<Object?> get props => [userPreferred];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommendation$Media$MediaTitleToJson(
           this);
@@ -493,6 +507,7 @@ class MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommen
 
   @override
   List<Object?> get props => [large];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommendation$Media$MediaCoverImageToJson(
           this);
@@ -518,6 +533,7 @@ class MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommen
 
   @override
   List<Object?> get props => [id, title, coverImage];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommendation$MediaToJson(
           this);
@@ -538,6 +554,7 @@ class MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$Recommen
 
   @override
   List<Object?> get props => [mediaRecommendation];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge$RecommendationToJson(
           this);
@@ -558,6 +575,7 @@ class MediaInfo$Query$Media$RecommendationConnection$RecommendationEdge
 
   @override
   List<Object?> get props => [node];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$RecommendationConnection$RecommendationEdgeToJson(
           this);
@@ -577,6 +595,7 @@ class MediaInfo$Query$Media$RecommendationConnection extends JsonSerializable
 
   @override
   List<Object?> get props => [edges];
+  @override
   Map<String, dynamic> toJson() =>
       _$MediaInfo$Query$Media$RecommendationConnectionToJson(this);
 }
@@ -652,6 +671,7 @@ class MediaInfo$Query$Media extends JsonSerializable
         relations,
         recommendations
       ];
+  @override
   Map<String, dynamic> toJson() => _$MediaInfo$Query$MediaToJson(this);
 }
 
@@ -667,6 +687,7 @@ class MediaInfo$Query extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [media];
+  @override
   Map<String, dynamic> toJson() => _$MediaInfo$QueryToJson(this);
 }
 
@@ -685,6 +706,7 @@ class AnimeInfoMixin$StudioConnection$Studio extends JsonSerializable
 
   @override
   List<Object?> get props => [id, name];
+  @override
   Map<String, dynamic> toJson() =>
       _$AnimeInfoMixin$StudioConnection$StudioToJson(this);
 }
@@ -701,6 +723,7 @@ class AnimeInfoMixin$StudioConnection extends JsonSerializable
 
   @override
   List<Object?> get props => [nodes];
+  @override
   Map<String, dynamic> toJson() =>
       _$AnimeInfoMixin$StudioConnectionToJson(this);
 }
@@ -716,6 +739,7 @@ class AnimeInfoMixin$MediaTrailer extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [site];
+  @override
   Map<String, dynamic> toJson() => _$AnimeInfoMixin$MediaTrailerToJson(this);
 }
 
@@ -735,6 +759,7 @@ class AnimeInfoMixin$AiringSchedule extends JsonSerializable
 
   @override
   List<Object?> get props => [id, episode, airingAt];
+  @override
   Map<String, dynamic> toJson() => _$AnimeInfoMixin$AiringScheduleToJson(this);
 }
 
@@ -751,6 +776,7 @@ class PopularCustom$Query$Page$Media$MediaTitle extends JsonSerializable
 
   @override
   List<Object?> get props => [userPreferred];
+  @override
   Map<String, dynamic> toJson() =>
       _$PopularCustom$Query$Page$Media$MediaTitleToJson(this);
 }
@@ -768,6 +794,7 @@ class PopularCustom$Query$Page$Media$MediaCoverImage extends JsonSerializable
 
   @override
   List<Object?> get props => [large];
+  @override
   Map<String, dynamic> toJson() =>
       _$PopularCustom$Query$Page$Media$MediaCoverImageToJson(this);
 }
@@ -793,6 +820,7 @@ class PopularCustom$Query$Page$Media extends JsonSerializable
 
   @override
   List<Object?> get props => [id, title, episodes, status, coverImage];
+  @override
   Map<String, dynamic> toJson() => _$PopularCustom$Query$Page$MediaToJson(this);
 }
 
@@ -807,6 +835,7 @@ class PopularCustom$Query$Page extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [media];
+  @override
   Map<String, dynamic> toJson() => _$PopularCustom$Query$PageToJson(this);
 }
 
@@ -822,6 +851,7 @@ class PopularCustom$Query extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [page];
+  @override
   Map<String, dynamic> toJson() => _$PopularCustom$QueryToJson(this);
 }
 
@@ -846,6 +876,7 @@ class SearchData$Query$Page$PageInfo extends JsonSerializable
   @override
   List<Object?> get props =>
       [total, currentPage, lastPage, hasNextPage, perPage];
+  @override
   Map<String, dynamic> toJson() => _$SearchData$Query$Page$PageInfoToJson(this);
 }
 
@@ -866,6 +897,7 @@ class SearchData$Query$Page$Media$MediaTitle extends JsonSerializable
 
   @override
   List<Object?> get props => [english, romaji, native];
+  @override
   Map<String, dynamic> toJson() =>
       _$SearchData$Query$Page$Media$MediaTitleToJson(this);
 }
@@ -883,6 +915,7 @@ class SearchData$Query$Page$Media$MediaCoverImage extends JsonSerializable
 
   @override
   List<Object?> get props => [large];
+  @override
   Map<String, dynamic> toJson() =>
       _$SearchData$Query$Page$Media$MediaCoverImageToJson(this);
 }
@@ -923,6 +956,7 @@ class SearchData$Query$Page$Media extends JsonSerializable with EquatableMixin {
         seasonYear,
         episodes
       ];
+  @override
   Map<String, dynamic> toJson() => _$SearchData$Query$Page$MediaToJson(this);
 }
 
@@ -939,6 +973,7 @@ class SearchData$Query$Page extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [pageInfo, media];
+  @override
   Map<String, dynamic> toJson() => _$SearchData$Query$PageToJson(this);
 }
 
@@ -954,6 +989,7 @@ class SearchData$Query extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [page];
+  @override
   Map<String, dynamic> toJson() => _$SearchData$QueryToJson(this);
 }
 
@@ -972,6 +1008,7 @@ class StudioInfo$Query$Studio$MediaConnection$PageInfo extends JsonSerializable
 
   @override
   List<Object?> get props => [hasNextPage, currentPage];
+  @override
   Map<String, dynamic> toJson() =>
       _$StudioInfo$Query$Studio$MediaConnection$PageInfoToJson(this);
 }
@@ -989,6 +1026,7 @@ class StudioInfo$Query$Studio$MediaConnection$Media$MediaTitle
 
   @override
   List<Object?> get props => [userPreferred];
+  @override
   Map<String, dynamic> toJson() =>
       _$StudioInfo$Query$Studio$MediaConnection$Media$MediaTitleToJson(this);
 }
@@ -1007,6 +1045,7 @@ class StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImage
 
   @override
   List<Object?> get props => [large];
+  @override
   Map<String, dynamic> toJson() =>
       _$StudioInfo$Query$Studio$MediaConnection$Media$MediaCoverImageToJson(
           this);
@@ -1029,6 +1068,7 @@ class StudioInfo$Query$Studio$MediaConnection$Media extends JsonSerializable
 
   @override
   List<Object?> get props => [id, title, coverImage];
+  @override
   Map<String, dynamic> toJson() =>
       _$StudioInfo$Query$Studio$MediaConnection$MediaToJson(this);
 }
@@ -1048,6 +1088,7 @@ class StudioInfo$Query$Studio$MediaConnection extends JsonSerializable
 
   @override
   List<Object?> get props => [pageInfo, nodes];
+  @override
   Map<String, dynamic> toJson() =>
       _$StudioInfo$Query$Studio$MediaConnectionToJson(this);
 }
@@ -1065,6 +1106,7 @@ class StudioInfo$Query$Studio extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [name, media];
+  @override
   Map<String, dynamic> toJson() => _$StudioInfo$Query$StudioToJson(this);
 }
 
@@ -1080,6 +1122,7 @@ class StudioInfo$Query extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [studio];
+  @override
   Map<String, dynamic> toJson() => _$StudioInfo$QueryToJson(this);
 }
 
@@ -1096,6 +1139,7 @@ class TopTenAnime$Query$Page$Media$MediaTitle extends JsonSerializable
 
   @override
   List<Object?> get props => [userPreferred];
+  @override
   Map<String, dynamic> toJson() =>
       _$TopTenAnime$Query$Page$Media$MediaTitleToJson(this);
 }
@@ -1113,6 +1157,7 @@ class TopTenAnime$Query$Page$Media$MediaCoverImage extends JsonSerializable
 
   @override
   List<Object?> get props => [large];
+  @override
   Map<String, dynamic> toJson() =>
       _$TopTenAnime$Query$Page$Media$MediaCoverImageToJson(this);
 }
@@ -1141,6 +1186,7 @@ class TopTenAnime$Query$Page$Media extends JsonSerializable
   @override
   List<Object?> get props =>
       [id, title, popularity, episodes, status, coverImage];
+  @override
   Map<String, dynamic> toJson() => _$TopTenAnime$Query$Page$MediaToJson(this);
 }
 
@@ -1155,6 +1201,7 @@ class TopTenAnime$Query$Page extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [media];
+  @override
   Map<String, dynamic> toJson() => _$TopTenAnime$Query$PageToJson(this);
 }
 
@@ -1170,6 +1217,7 @@ class TopTenAnime$Query extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [page];
+  @override
   Map<String, dynamic> toJson() => _$TopTenAnime$QueryToJson(this);
 }
 
@@ -1186,6 +1234,7 @@ class TopTenManga$Query$Page$Media$MediaTitle extends JsonSerializable
 
   @override
   List<Object?> get props => [userPreferred];
+  @override
   Map<String, dynamic> toJson() =>
       _$TopTenManga$Query$Page$Media$MediaTitleToJson(this);
 }
@@ -1203,6 +1252,7 @@ class TopTenManga$Query$Page$Media$MediaCoverImage extends JsonSerializable
 
   @override
   List<Object?> get props => [large];
+  @override
   Map<String, dynamic> toJson() =>
       _$TopTenManga$Query$Page$Media$MediaCoverImageToJson(this);
 }
@@ -1231,6 +1281,7 @@ class TopTenManga$Query$Page$Media extends JsonSerializable
   @override
   List<Object?> get props =>
       [id, title, popularity, episodes, status, coverImage];
+  @override
   Map<String, dynamic> toJson() => _$TopTenManga$Query$Page$MediaToJson(this);
 }
 
@@ -1245,6 +1296,7 @@ class TopTenManga$Query$Page extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [media];
+  @override
   Map<String, dynamic> toJson() => _$TopTenManga$Query$PageToJson(this);
 }
 
@@ -1260,6 +1312,7 @@ class TopTenManga$Query extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [page];
+  @override
   Map<String, dynamic> toJson() => _$TopTenManga$QueryToJson(this);
 }
 
@@ -1276,6 +1329,7 @@ class TrendingAnime$Query$Page$Media$MediaTitle extends JsonSerializable
 
   @override
   List<Object?> get props => [userPreferred];
+  @override
   Map<String, dynamic> toJson() =>
       _$TrendingAnime$Query$Page$Media$MediaTitleToJson(this);
 }
@@ -1293,6 +1347,7 @@ class TrendingAnime$Query$Page$Media$MediaCoverImage extends JsonSerializable
 
   @override
   List<Object?> get props => [large];
+  @override
   Map<String, dynamic> toJson() =>
       _$TrendingAnime$Query$Page$Media$MediaCoverImageToJson(this);
 }
@@ -1321,6 +1376,7 @@ class TrendingAnime$Query$Page$Media extends JsonSerializable
   @override
   List<Object?> get props =>
       [id, title, episodes, status, coverImage, bannerImage];
+  @override
   Map<String, dynamic> toJson() => _$TrendingAnime$Query$Page$MediaToJson(this);
 }
 
@@ -1335,6 +1391,7 @@ class TrendingAnime$Query$Page extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [media];
+  @override
   Map<String, dynamic> toJson() => _$TrendingAnime$Query$PageToJson(this);
 }
 
@@ -1350,6 +1407,7 @@ class TrendingAnime$Query extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [page];
+  @override
   Map<String, dynamic> toJson() => _$TrendingAnime$QueryToJson(this);
 }
 
@@ -1366,6 +1424,7 @@ class TrendingManga$Query$Page$Media$MediaTitle extends JsonSerializable
 
   @override
   List<Object?> get props => [userPreferred];
+  @override
   Map<String, dynamic> toJson() =>
       _$TrendingManga$Query$Page$Media$MediaTitleToJson(this);
 }
@@ -1383,6 +1442,7 @@ class TrendingManga$Query$Page$Media$MediaCoverImage extends JsonSerializable
 
   @override
   List<Object?> get props => [large];
+  @override
   Map<String, dynamic> toJson() =>
       _$TrendingManga$Query$Page$Media$MediaCoverImageToJson(this);
 }
@@ -1411,6 +1471,7 @@ class TrendingManga$Query$Page$Media extends JsonSerializable
   @override
   List<Object?> get props =>
       [id, title, episodes, status, coverImage, bannerImage];
+  @override
   Map<String, dynamic> toJson() => _$TrendingManga$Query$Page$MediaToJson(this);
 }
 
@@ -1425,6 +1486,7 @@ class TrendingManga$Query$Page extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [media];
+  @override
   Map<String, dynamic> toJson() => _$TrendingManga$Query$PageToJson(this);
 }
 
@@ -1440,6 +1502,7 @@ class TrendingManga$Query extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [page];
+  @override
   Map<String, dynamic> toJson() => _$TrendingManga$QueryToJson(this);
 }
 
@@ -1455,17 +1518,124 @@ class UserInfo$Query$User$UserAvatar extends JsonSerializable
 
   @override
   List<Object?> get props => [medium];
+  @override
   Map<String, dynamic> toJson() => _$UserInfo$Query$User$UserAvatarToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
+class UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserScoreStatistic
+    extends JsonSerializable with EquatableMixin {
+  UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserScoreStatistic();
+
+  factory UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserScoreStatistic.fromJson(
+          Map<String, dynamic> json) =>
+      _$UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserScoreStatisticFromJson(
+          json);
+
+  int? score;
+
+  late int count;
+
+  @override
+  List<Object?> get props => [score, count];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserScoreStatisticToJson(
+          this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserGenreStatistic
+    extends JsonSerializable with EquatableMixin {
+  UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserGenreStatistic();
+
+  factory UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserGenreStatistic.fromJson(
+          Map<String, dynamic> json) =>
+      _$UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserGenreStatisticFromJson(
+          json);
+
+  String? genre;
+
+  late int count;
+
+  @override
+  List<Object?> get props => [genre, count];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserGenreStatisticToJson(
+          this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserTagStatistic$MediaTag
+    extends JsonSerializable with EquatableMixin {
+  UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserTagStatistic$MediaTag();
+
+  factory UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserTagStatistic$MediaTag.fromJson(
+          Map<String, dynamic> json) =>
+      _$UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserTagStatistic$MediaTagFromJson(
+          json);
+
+  late String name;
+
+  @override
+  List<Object?> get props => [name];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserTagStatistic$MediaTagToJson(
+          this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserTagStatistic
+    extends JsonSerializable with EquatableMixin {
+  UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserTagStatistic();
+
+  factory UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserTagStatistic.fromJson(
+          Map<String, dynamic> json) =>
+      _$UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserTagStatisticFromJson(
+          json);
+
+  UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserTagStatistic$MediaTag?
+      tag;
+
+  late int count;
+
+  @override
+  List<Object?> get props => [tag, count];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserTagStatisticToJson(
+          this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class UserInfo$Query$User$UserStatisticTypes$UserStatistics
-    extends JsonSerializable with EquatableMixin, MediaStatsMixin {
+    extends JsonSerializable with EquatableMixin {
   UserInfo$Query$User$UserStatisticTypes$UserStatistics();
 
   factory UserInfo$Query$User$UserStatisticTypes$UserStatistics.fromJson(
           Map<String, dynamic> json) =>
       _$UserInfo$Query$User$UserStatisticTypes$UserStatisticsFromJson(json);
+
+  late int count;
+
+  late int episodesWatched;
+
+  late int minutesWatched;
+
+  late int chaptersRead;
+
+  late int volumesRead;
+
+  List<UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserScoreStatistic?>?
+      scores;
+
+  List<UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserGenreStatistic?>?
+      genres;
+
+  List<UserInfo$Query$User$UserStatisticTypes$UserStatistics$UserTagStatistic?>?
+      tags;
 
   @override
   List<Object?> get props => [
@@ -1478,6 +1648,7 @@ class UserInfo$Query$User$UserStatisticTypes$UserStatistics
         genres,
         tags
       ];
+  @override
   Map<String, dynamic> toJson() =>
       _$UserInfo$Query$User$UserStatisticTypes$UserStatisticsToJson(this);
 }
@@ -1497,6 +1668,7 @@ class UserInfo$Query$User$UserStatisticTypes extends JsonSerializable
 
   @override
   List<Object?> get props => [anime, manga];
+  @override
   Map<String, dynamic> toJson() =>
       _$UserInfo$Query$User$UserStatisticTypesToJson(this);
 }
@@ -1520,6 +1692,7 @@ class UserInfo$Query$User extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [id, name, avatar, bannerImage, statistics];
+  @override
   Map<String, dynamic> toJson() => _$UserInfo$Query$UserToJson(this);
 }
 
@@ -1535,81 +1708,8 @@ class UserInfo$Query extends JsonSerializable with EquatableMixin {
 
   @override
   List<Object?> get props => [viewer];
+  @override
   Map<String, dynamic> toJson() => _$UserInfo$QueryToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class MediaStatsMixin$UserScoreStatistic extends JsonSerializable
-    with EquatableMixin {
-  MediaStatsMixin$UserScoreStatistic();
-
-  factory MediaStatsMixin$UserScoreStatistic.fromJson(
-          Map<String, dynamic> json) =>
-      _$MediaStatsMixin$UserScoreStatisticFromJson(json);
-
-  int? score;
-
-  late int count;
-
-  @override
-  List<Object?> get props => [score, count];
-  Map<String, dynamic> toJson() =>
-      _$MediaStatsMixin$UserScoreStatisticToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class MediaStatsMixin$UserGenreStatistic extends JsonSerializable
-    with EquatableMixin {
-  MediaStatsMixin$UserGenreStatistic();
-
-  factory MediaStatsMixin$UserGenreStatistic.fromJson(
-          Map<String, dynamic> json) =>
-      _$MediaStatsMixin$UserGenreStatisticFromJson(json);
-
-  String? genre;
-
-  late int count;
-
-  @override
-  List<Object?> get props => [genre, count];
-  Map<String, dynamic> toJson() =>
-      _$MediaStatsMixin$UserGenreStatisticToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class MediaStatsMixin$UserTagStatistic$MediaTag extends JsonSerializable
-    with EquatableMixin {
-  MediaStatsMixin$UserTagStatistic$MediaTag();
-
-  factory MediaStatsMixin$UserTagStatistic$MediaTag.fromJson(
-          Map<String, dynamic> json) =>
-      _$MediaStatsMixin$UserTagStatistic$MediaTagFromJson(json);
-
-  late String name;
-
-  @override
-  List<Object?> get props => [name];
-  Map<String, dynamic> toJson() =>
-      _$MediaStatsMixin$UserTagStatistic$MediaTagToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class MediaStatsMixin$UserTagStatistic extends JsonSerializable
-    with EquatableMixin {
-  MediaStatsMixin$UserTagStatistic();
-
-  factory MediaStatsMixin$UserTagStatistic.fromJson(
-          Map<String, dynamic> json) =>
-      _$MediaStatsMixin$UserTagStatisticFromJson(json);
-
-  MediaStatsMixin$UserTagStatistic$MediaTag? tag;
-
-  late int count;
-
-  @override
-  List<Object?> get props => [tag, count];
-  Map<String, dynamic> toJson() =>
-      _$MediaStatsMixin$UserTagStatisticToJson(this);
 }
 
 enum MediaStatus {
@@ -3451,9 +3551,114 @@ final USER_INFO_QUERY_DOCUMENT = DocumentNode(definitions: [
                         arguments: [],
                         directives: [],
                         selectionSet: SelectionSetNode(selections: [
-                          FragmentSpreadNode(
-                              name: NameNode(value: 'mediaStats'),
-                              directives: [])
+                          FieldNode(
+                              name: NameNode(value: 'count'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'episodesWatched'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'minutesWatched'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'chaptersRead'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'volumesRead'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'scores'),
+                              alias: null,
+                              arguments: [
+                                ArgumentNode(
+                                    name: NameNode(value: 'sort'),
+                                    value: EnumValueNode(
+                                        name:
+                                            NameNode(value: 'MEAN_SCORE_DESC')))
+                              ],
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'score'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'count'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ])),
+                          FieldNode(
+                              name: NameNode(value: 'genres'),
+                              alias: null,
+                              arguments: [
+                                ArgumentNode(
+                                    name: NameNode(value: 'limit'),
+                                    value: IntValueNode(value: '5'))
+                              ],
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'genre'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'count'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ])),
+                          FieldNode(
+                              name: NameNode(value: 'tags'),
+                              alias: null,
+                              arguments: [
+                                ArgumentNode(
+                                    name: NameNode(value: 'limit'),
+                                    value: IntValueNode(value: '5'))
+                              ],
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'tag'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FieldNode(
+                                          name: NameNode(value: 'name'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null)
+                                    ])),
+                                FieldNode(
+                                    name: NameNode(value: 'count'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ]))
                         ])),
                     FieldNode(
                         name: NameNode(value: 'manga'),
@@ -3461,126 +3666,116 @@ final USER_INFO_QUERY_DOCUMENT = DocumentNode(definitions: [
                         arguments: [],
                         directives: [],
                         selectionSet: SelectionSetNode(selections: [
-                          FragmentSpreadNode(
-                              name: NameNode(value: 'mediaStats'),
-                              directives: [])
+                          FieldNode(
+                              name: NameNode(value: 'count'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'episodesWatched'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'minutesWatched'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'chaptersRead'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'volumesRead'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'scores'),
+                              alias: null,
+                              arguments: [
+                                ArgumentNode(
+                                    name: NameNode(value: 'sort'),
+                                    value: EnumValueNode(
+                                        name:
+                                            NameNode(value: 'MEAN_SCORE_DESC')))
+                              ],
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'score'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'count'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ])),
+                          FieldNode(
+                              name: NameNode(value: 'genres'),
+                              alias: null,
+                              arguments: [
+                                ArgumentNode(
+                                    name: NameNode(value: 'limit'),
+                                    value: IntValueNode(value: '5'))
+                              ],
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'genre'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'count'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ])),
+                          FieldNode(
+                              name: NameNode(value: 'tags'),
+                              alias: null,
+                              arguments: [
+                                ArgumentNode(
+                                    name: NameNode(value: 'limit'),
+                                    value: IntValueNode(value: '5'))
+                              ],
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'tag'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FieldNode(
+                                          name: NameNode(value: 'name'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null)
+                                    ])),
+                                FieldNode(
+                                    name: NameNode(value: 'count'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ]))
                         ]))
                   ]))
-            ]))
-      ])),
-  FragmentDefinitionNode(
-      name: NameNode(value: 'mediaStats'),
-      typeCondition: TypeConditionNode(
-          on: NamedTypeNode(
-              name: NameNode(value: 'UserStatistics'), isNonNull: false)),
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-            name: NameNode(value: 'count'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null),
-        FieldNode(
-            name: NameNode(value: 'episodesWatched'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null),
-        FieldNode(
-            name: NameNode(value: 'minutesWatched'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null),
-        FieldNode(
-            name: NameNode(value: 'chaptersRead'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null),
-        FieldNode(
-            name: NameNode(value: 'volumesRead'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null),
-        FieldNode(
-            name: NameNode(value: 'scores'),
-            alias: null,
-            arguments: [
-              ArgumentNode(
-                  name: NameNode(value: 'sort'),
-                  value:
-                      EnumValueNode(name: NameNode(value: 'MEAN_SCORE_DESC')))
-            ],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                  name: NameNode(value: 'score'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'count'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null)
-            ])),
-        FieldNode(
-            name: NameNode(value: 'genres'),
-            alias: null,
-            arguments: [
-              ArgumentNode(
-                  name: NameNode(value: 'limit'),
-                  value: IntValueNode(value: '5'))
-            ],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                  name: NameNode(value: 'genre'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'count'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null)
-            ])),
-        FieldNode(
-            name: NameNode(value: 'tags'),
-            alias: null,
-            arguments: [
-              ArgumentNode(
-                  name: NameNode(value: 'limit'),
-                  value: IntValueNode(value: '5'))
-            ],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                  name: NameNode(value: 'tag'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(selections: [
-                    FieldNode(
-                        name: NameNode(value: 'name'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null)
-                  ])),
-              FieldNode(
-                  name: NameNode(value: 'count'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null)
             ]))
       ]))
 ]);
