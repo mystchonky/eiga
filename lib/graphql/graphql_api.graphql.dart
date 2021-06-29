@@ -898,14 +898,10 @@ class SearchData$Query$Page$Media$MediaTitle extends JsonSerializable
           Map<String, dynamic> json) =>
       _$SearchData$Query$Page$Media$MediaTitleFromJson(json);
 
-  String? english;
-
-  String? romaji;
-
-  String? native;
+  String? userPreferred;
 
   @override
-  List<Object?> get props => [english, romaji, native];
+  List<Object?> get props => [userPreferred];
   @override
   Map<String, dynamic> toJson() =>
       _$SearchData$Query$Page$Media$MediaTitleToJson(this);
@@ -930,6 +926,42 @@ class SearchData$Query$Page$Media$MediaCoverImage extends JsonSerializable
 }
 
 @JsonSerializable(explicitToJson: true)
+class SearchData$Query$Page$Media$StudioConnection$Studio
+    extends JsonSerializable with EquatableMixin {
+  SearchData$Query$Page$Media$StudioConnection$Studio();
+
+  factory SearchData$Query$Page$Media$StudioConnection$Studio.fromJson(
+          Map<String, dynamic> json) =>
+      _$SearchData$Query$Page$Media$StudioConnection$StudioFromJson(json);
+
+  late String name;
+
+  @override
+  List<Object?> get props => [name];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$SearchData$Query$Page$Media$StudioConnection$StudioToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class SearchData$Query$Page$Media$StudioConnection extends JsonSerializable
+    with EquatableMixin {
+  SearchData$Query$Page$Media$StudioConnection();
+
+  factory SearchData$Query$Page$Media$StudioConnection.fromJson(
+          Map<String, dynamic> json) =>
+      _$SearchData$Query$Page$Media$StudioConnectionFromJson(json);
+
+  List<SearchData$Query$Page$Media$StudioConnection$Studio?>? nodes;
+
+  @override
+  List<Object?> get props => [nodes];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$SearchData$Query$Page$Media$StudioConnectionToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class SearchData$Query$Page$Media extends JsonSerializable with EquatableMixin {
   SearchData$Query$Page$Media();
 
@@ -941,6 +973,8 @@ class SearchData$Query$Page$Media extends JsonSerializable with EquatableMixin {
   SearchData$Query$Page$Media$MediaTitle? title;
 
   SearchData$Query$Page$Media$MediaCoverImage? coverImage;
+
+  SearchData$Query$Page$Media$StudioConnection? studios;
 
   @JsonKey(unknownEnumValue: MediaFormat.artemisUnknown)
   MediaFormat? format;
@@ -954,16 +988,20 @@ class SearchData$Query$Page$Media extends JsonSerializable with EquatableMixin {
 
   int? episodes;
 
+  List<String?>? genres;
+
   @override
   List<Object?> get props => [
         id,
         title,
         coverImage,
+        studios,
         format,
         averageScore,
         season,
         seasonYear,
-        episodes
+        episodes,
+        genres
       ];
   @override
   Map<String, dynamic> toJson() => _$SearchData$Query$Page$MediaToJson(this);
@@ -2824,19 +2862,7 @@ final SEARCH_DATA_QUERY_DOCUMENT = DocumentNode(definitions: [
                         directives: [],
                         selectionSet: SelectionSetNode(selections: [
                           FieldNode(
-                              name: NameNode(value: 'english'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null),
-                          FieldNode(
-                              name: NameNode(value: 'romaji'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null),
-                          FieldNode(
-                              name: NameNode(value: 'native'),
+                              name: NameNode(value: 'userPreferred'),
                               alias: null,
                               arguments: [],
                               directives: [],
@@ -2854,6 +2880,30 @@ final SEARCH_DATA_QUERY_DOCUMENT = DocumentNode(definitions: [
                               arguments: [],
                               directives: [],
                               selectionSet: null)
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: 'studios'),
+                        alias: null,
+                        arguments: [
+                          ArgumentNode(
+                              name: NameNode(value: 'isMain'),
+                              value: BooleanValueNode(value: true))
+                        ],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'nodes'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'name'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ]))
                         ])),
                     FieldNode(
                         name: NameNode(value: 'format'),
@@ -2881,6 +2931,12 @@ final SEARCH_DATA_QUERY_DOCUMENT = DocumentNode(definitions: [
                         selectionSet: null),
                     FieldNode(
                         name: NameNode(value: 'episodes'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'genres'),
                         alias: null,
                         arguments: [],
                         directives: [],

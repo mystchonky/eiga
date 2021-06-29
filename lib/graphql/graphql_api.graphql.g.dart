@@ -864,17 +864,13 @@ SearchData$Query$Page$Media$MediaTitle
     _$SearchData$Query$Page$Media$MediaTitleFromJson(
         Map<String, dynamic> json) {
   return SearchData$Query$Page$Media$MediaTitle()
-    ..english = json['english'] as String?
-    ..romaji = json['romaji'] as String?
-    ..native = json['native'] as String?;
+    ..userPreferred = json['userPreferred'] as String?;
 }
 
 Map<String, dynamic> _$SearchData$Query$Page$Media$MediaTitleToJson(
         SearchData$Query$Page$Media$MediaTitle instance) =>
     <String, dynamic>{
-      'english': instance.english,
-      'romaji': instance.romaji,
-      'native': instance.native,
+      'userPreferred': instance.userPreferred,
     };
 
 SearchData$Query$Page$Media$MediaCoverImage
@@ -890,6 +886,38 @@ Map<String, dynamic> _$SearchData$Query$Page$Media$MediaCoverImageToJson(
       'large': instance.large,
     };
 
+SearchData$Query$Page$Media$StudioConnection$Studio
+    _$SearchData$Query$Page$Media$StudioConnection$StudioFromJson(
+        Map<String, dynamic> json) {
+  return SearchData$Query$Page$Media$StudioConnection$Studio()
+    ..name = json['name'] as String;
+}
+
+Map<String, dynamic>
+    _$SearchData$Query$Page$Media$StudioConnection$StudioToJson(
+            SearchData$Query$Page$Media$StudioConnection$Studio instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+        };
+
+SearchData$Query$Page$Media$StudioConnection
+    _$SearchData$Query$Page$Media$StudioConnectionFromJson(
+        Map<String, dynamic> json) {
+  return SearchData$Query$Page$Media$StudioConnection()
+    ..nodes = (json['nodes'] as List<dynamic>?)
+        ?.map((e) => e == null
+            ? null
+            : SearchData$Query$Page$Media$StudioConnection$Studio.fromJson(
+                e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic> _$SearchData$Query$Page$Media$StudioConnectionToJson(
+        SearchData$Query$Page$Media$StudioConnection instance) =>
+    <String, dynamic>{
+      'nodes': instance.nodes?.map((e) => e?.toJson()).toList(),
+    };
+
 SearchData$Query$Page$Media _$SearchData$Query$Page$MediaFromJson(
     Map<String, dynamic> json) {
   return SearchData$Query$Page$Media()
@@ -902,13 +930,19 @@ SearchData$Query$Page$Media _$SearchData$Query$Page$MediaFromJson(
         ? null
         : SearchData$Query$Page$Media$MediaCoverImage.fromJson(
             json['coverImage'] as Map<String, dynamic>)
+    ..studios = json['studios'] == null
+        ? null
+        : SearchData$Query$Page$Media$StudioConnection.fromJson(
+            json['studios'] as Map<String, dynamic>)
     ..format = _$enumDecodeNullable(_$MediaFormatEnumMap, json['format'],
         unknownValue: MediaFormat.artemisUnknown)
     ..averageScore = json['averageScore'] as int?
     ..season = _$enumDecodeNullable(_$MediaSeasonEnumMap, json['season'],
         unknownValue: MediaSeason.artemisUnknown)
     ..seasonYear = json['seasonYear'] as int?
-    ..episodes = json['episodes'] as int?;
+    ..episodes = json['episodes'] as int?
+    ..genres =
+        (json['genres'] as List<dynamic>?)?.map((e) => e as String?).toList();
 }
 
 Map<String, dynamic> _$SearchData$Query$Page$MediaToJson(
@@ -917,11 +951,13 @@ Map<String, dynamic> _$SearchData$Query$Page$MediaToJson(
       'id': instance.id,
       'title': instance.title?.toJson(),
       'coverImage': instance.coverImage?.toJson(),
+      'studios': instance.studios?.toJson(),
       'format': _$MediaFormatEnumMap[instance.format],
       'averageScore': instance.averageScore,
       'season': _$MediaSeasonEnumMap[instance.season],
       'seasonYear': instance.seasonYear,
       'episodes': instance.episodes,
+      'genres': instance.genres,
     };
 
 SearchData$Query$Page _$SearchData$Query$PageFromJson(

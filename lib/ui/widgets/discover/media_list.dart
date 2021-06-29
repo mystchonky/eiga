@@ -9,6 +9,7 @@ import '../media_card.dart';
 class MediaList {
   final DocumentNode? mediaQuery;
   final Map<String, dynamic>? queryVariables;
+  EdgeInsetsGeometry get _padding => const EdgeInsets.only(bottom: 5.0);
 
   const MediaList({
     this.mediaQuery,
@@ -16,35 +17,39 @@ class MediaList {
   });
 
   Widget generate(BuildContext context) {
-    // ignore: sized_box_for_whitespace
-    return Container(
-      height: 180,
-      child: Query(
-          options: QueryOptions(
-            document: mediaQuery!,
-          ),
-          builder: (
-            QueryResult result, {
-            Future<QueryResult?> Function()? refetch,
-            FetchMore? fetchMore,
-          }) =>
-              _generateDefault(result)),
+    return Padding(
+      padding: _padding,
+      child: Container(
+        height: 180,
+        child: Query(
+            options: QueryOptions(
+              document: mediaQuery!,
+            ),
+            builder: (
+              QueryResult result, {
+              Future<QueryResult?> Function()? refetch,
+              FetchMore? fetchMore,
+            }) =>
+                _generateDefault(result)),
+      ),
     );
   }
 
   Widget generateWithVariables(BuildContext context) {
-    // ignore: sized_box_for_whitespace
-    return Container(
-      height: 180,
-      child: Query(
-          options:
-              QueryOptions(document: mediaQuery!, variables: queryVariables!),
-          builder: (
-            QueryResult result, {
-            Future<QueryResult?> Function()? refetch,
-            FetchMore? fetchMore,
-          }) =>
-              _generateDefault(result)),
+    return Padding(
+      padding: _padding,
+      child: Container(
+        height: 180,
+        child: Query(
+            options:
+                QueryOptions(document: mediaQuery!, variables: queryVariables!),
+            builder: (
+              QueryResult result, {
+              Future<QueryResult?> Function()? refetch,
+              FetchMore? fetchMore,
+            }) =>
+                _generateDefault(result)),
+      ),
     );
   }
 

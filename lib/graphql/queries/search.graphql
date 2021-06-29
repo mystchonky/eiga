@@ -10,18 +10,22 @@ query SearchData($page: Int, $perPage: Int, $search: String) {
     media(search: $search, type: ANIME, isAdult: false) {
       id
       title {
-        english
-        romaji
-        native
+        userPreferred
       }
       coverImage {
         large
+      }
+      studios(isMain: true) {
+        nodes {
+          name
+        }
       }
       format
       averageScore
       season
       seasonYear
       episodes
+      genres
     }
   }
 }

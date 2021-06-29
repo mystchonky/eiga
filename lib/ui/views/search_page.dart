@@ -49,7 +49,7 @@ class _SearchPageState extends State<SearchPage> {
                         : null),
                 controller: searchController,
                 onSubmitted: updateSearch,
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20, fontFamily: "Rubik"),
                 textInputAction: TextInputAction.search,
               ),
             ),

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../classes/extensions/media_format.dart';
+import '../../classes/extensions/media_season.dart';
 import '../../graphql/graphql_api.dart';
 
 class SearchCard extends StatefulWidget {
@@ -20,8 +21,10 @@ class _SearchCardState extends State<SearchCard>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+
+    final media = widget.data;
     return Container(
-      height: 150,
+      constraints: BoxConstraints(minHeight: 150),
       child: Row(
         children: [
           Expanded(
@@ -48,21 +51,25 @@ class _SearchCardState extends State<SearchCard>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.data?.title?.romaji ?? "N/A",
+                    media?.title?.userPreferred ?? "N/A",
                     maxLines: 2,
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  if (widget.data?.title?.english != null)
-                    Text(widget.data!.title!.english!,
-                        maxLines: 1, style: TextStyle(fontSize: 12)),
-                  Text(
-                    widget.data?.title?.native ?? "N/A",
-                    maxLines: 1,
-                    style: TextStyle(fontSize: 12),
+                  SizedBox(height: 5),
+                  Text("${media?.season?.name} ${media?.seasonYear}"),
+                  if (media!.studios!.nodes!.isNotEmpty)
+                    Text(media.studios!.nodes![0]?.name ?? ""),
+                  Row(
+                    children: [
+                      Text("Score: ${(widget.data?.averageScore ?? 0) / 10}"),
+                      Text(" \u2B25 "),
+                      Text(widget.data?.format?.name ?? ""),
+                      if (widget.data?.format == MediaFormat.tv &&
+                          widget.data?.episodes != null)
+                        Text(" ${widget.data!.episodes} EPS")
+                    ],
                   ),
-                  SizedBox(height: 10),
-                  Text(
-                      "Score: ${(widget.data?.averageScore ?? 0) / 10} | ${widget.data?.format?.name} ${widget.data?.episodes} Eps"),
+                  genreBuilder(media)
                 ],
               ),
             ),
@@ -74,4 +81,29 @@ class _SearchCardState extends State<SearchCard>
 
   @override
   bool get wantKeepAlive => true;
+
+  Widget genreBuilder(SearchData$Query$Page$Media? media) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Wrap(
+        spacing: 5,
+        runSpacing: 5,
+        children: media?.genres?.map((gen) {
+              return Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Theme.of(context).accentColor,
+                    border: Border.all(
+                      color: Theme.of(context).accentColor,
+                    ),
+                  ),
+                  padding: EdgeInsets.all(5),
+                  child: Text(gen ?? "N/A",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 12)));
+            }).toList() ??
+            [],
+      ),
+    );
+  }
 }

@@ -1,8 +1,7 @@
-import 'package:eiga/ui/widgets/discover/trending_carousel_manga.dart';
+import 'package:eiga/ui/widgets/discover/trending_carousel.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/discover/custom_lists.dart';
-import '../widgets/discover/trending_carousel_anime.dart';
 import 'search_page.dart';
 
 class DiscoverPage extends StatefulWidget {
@@ -17,51 +16,55 @@ class DiscoverPage extends StatefulWidget {
 class _DiscoverPageState extends State<DiscoverPage> {
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          floating: true,
-          expandedHeight: 60.0,
-          flexibleSpace: FlexibleSpaceBar(
-            titlePadding: EdgeInsets.only(left: 10),
-            title: Row(
-              children: [
-                Expanded(
-                    child: Text(
-                  'Discover',
-                  style: TextStyle(
-                      color:
-                          Theme.of(context).primaryTextTheme.bodyText1!.color),
-                )),
-                IconButton(
-                    icon: Icon(Icons.search),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SearchPage()));
-                    }),
-              ],
-            ),
-          ),
-        ),
-        SliverToBoxAdapter(
-            child: widget.animeMode
-                ? TrendingAnimeCarousel()
-                : TrendingMangaCarousel()),
-        SliverToBoxAdapter(
-          child: widget.animeMode ? _animeLists() : _mangaLists(),
-        ),
-      ],
-    );
+    return NestedScrollView(
+        floatHeaderSlivers: true,
+        headerSliverBuilder: (context, value) => [
+              SliverAppBar(
+                floating: true,
+                expandedHeight: 60.0,
+                flexibleSpace: FlexibleSpaceBar(
+                  titlePadding: EdgeInsets.only(left: 10),
+                  title: Row(
+                    children: [
+                      Expanded(
+                          child: Text(
+                        'Discover',
+                        style: TextStyle(
+                            color: Theme.of(context)
+                                .primaryTextTheme
+                                .bodyText1!
+                                .color,
+                            fontFamily: "Rubik"),
+                      )),
+                      IconButton(
+                          icon: Icon(Icons.search),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SearchPage()));
+                          }),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+        body: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            TrendingCarousel(animeMode: widget.animeMode),
+            SizedBox(height: 10),
+            if (widget.animeMode) _animeLists() else _mangaLists(),
+          ],
+        ));
   }
 
   Widget header(String title) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Text(
         title,
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );
   }

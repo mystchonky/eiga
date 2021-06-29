@@ -33,7 +33,7 @@ class _MediaCardState extends State<MediaCard>
         child: Container(
           width: 120,
           decoration:
-              BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8))),
+              BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5))),
           clipBehavior: Clip.hardEdge,
           child: Stack(
             children: [
