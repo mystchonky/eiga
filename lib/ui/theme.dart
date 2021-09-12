@@ -6,12 +6,13 @@ class EigaTheme {
   const EigaTheme({required this.animeMode});
 
   ThemeData get darkTheme => ThemeData(
-        fontFamily: "Inter",
+        //fontFamily: "Inter",
+        applyElevationOverlayColor: true,
         textTheme: TextTheme().apply(bodyColor: Colors.white),
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.black,
+        scaffoldBackgroundColor: Color(0x00121212),
         accentColor: animeMode ? Colors.deepPurpleAccent : Colors.orange,
-        canvasColor: Colors.black,
+        canvasColor: Color(0x00121212),
         dividerColor: Colors.white38,
         appBarTheme: AppBarTheme(color: Colors.transparent),
         splashFactory: InkRipple.splashFactory,

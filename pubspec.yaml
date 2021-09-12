@@ -11,13 +11,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  multi_charts:
+    git:
+      url: https://github.com/luiq54/multi_charts.git
+      ref: fill_alpha
   android_intent: ^2.0.0
   cached_network_image: ^3.0.0
   carousel_slider: ^4.0.0-nullsafety.0
   cupertino_icons: ^1.0.2
   expandable_text: ^2.0.0
   fl_chart: ^0.36.2
-  flutter_inappwebview: ^5.3.2
   graphql_flutter: ^5.0.0-nullsafety.2
   hive: ^2.0.4
   hive_flutter: ^1.0.0
@@ -28,6 +31,7 @@ dependencies:
   oauth2_client: ^2.0.1
   share: ^2.0.1
   url_launcher: ^6.0.3
+  wave: ^0.2.0
 
 dev_dependencies:
   flutter_test:

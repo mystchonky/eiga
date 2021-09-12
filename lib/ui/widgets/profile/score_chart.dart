@@ -1,6 +1,12 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+class ChartDataEntry {
+  final int score;
+  final int count;
+  ChartDataEntry({required this.score, required this.count});
+}
+
 class ScoreChart extends StatelessWidget {
   final List<ChartDataEntry> data;
 
@@ -11,9 +17,8 @@ class ScoreChart extends StatelessWidget {
     final List<ChartDataEntry> sortedData = data;
     sortedData.sort((a, b) => a.score.compareTo(b.score));
     return Container(
-        padding: EdgeInsets.all(20),
+        //padding: EdgeInsets.all(20),
         height: 300,
-        //color: Colors.red,
         child: BarChart(BarChartData(
             alignment: BarChartAlignment.spaceEvenly,
             maxY: getMaxY(),
@@ -80,14 +85,6 @@ class ScoreChart extends StatelessWidget {
                 )))));
   }
 
-  double getMinY() {
-    int min = 9999999;
-    for (final element in data) {
-      if (element.count < min) min = element.count;
-    }
-    return min - 5;
-  }
-
   double getMaxY() {
     int max = 0;
     for (final element in data) {
@@ -95,10 +92,12 @@ class ScoreChart extends StatelessWidget {
     }
     return max + 4;
   }
-}
 
-class ChartDataEntry {
-  final int score;
-  final int count;
-  ChartDataEntry({required this.score, required this.count});
+  double getMinY() {
+    int min = 9999999;
+    for (final element in data) {
+      if (element.count < min) min = element.count;
+    }
+    return min - 5;
+  }
 }

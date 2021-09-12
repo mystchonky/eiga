@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import 'e_oauth2_client.dart';
+import 'oauth2_client.dart';
 
-class EigaGraphQLClient {
+class CustomGraphQLClient {
   final HttpLink httpLink = HttpLink(
     'https://graphql.anilist.co/',
   );
@@ -11,7 +11,7 @@ class EigaGraphQLClient {
   late Link link;
   late ValueNotifier<GraphQLClient> client;
 
-  EigaGraphQLClient(EigaOAuth2Client eClient) {
+  CustomGraphQLClient(CustomOAuth2Client eClient) {
     authLink = AuthLink(
       getToken: () async =>
           'Bearer ${(await eClient.getTokenFromStorage())!.accessToken}',

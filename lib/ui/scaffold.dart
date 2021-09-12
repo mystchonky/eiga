@@ -4,22 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import '../classes/e_graphql_client.dart';
-import '../classes/e_oauth2_client.dart';
+import '../classes/graphql_client.dart';
+import '../classes/oauth2_client.dart';
 import 'views/discover.dart';
 import 'views/profile.dart';
 
-class EigaScaffold extends StatefulWidget {
-  final EigaGraphQLClient gqlClient;
-  final EigaOAuth2Client oauth2Client;
+class CustomScaffold extends StatefulWidget {
+  final CustomGraphQLClient gqlClient;
+  final CustomOAuth2Client oauth2Client;
 
-  const EigaScaffold({required this.gqlClient, required this.oauth2Client});
+  const CustomScaffold({required this.gqlClient, required this.oauth2Client});
 
   @override
-  _EigaScaffoldState createState() => _EigaScaffoldState();
+  _CustomScaffoldState createState() => _CustomScaffoldState();
 }
 
-class _EigaScaffoldState extends State<EigaScaffold>
+class _CustomScaffoldState extends State<CustomScaffold>
     with TickerProviderStateMixin {
   int _selectedIndex = 0;
   final _pageViewController = PageController();
@@ -54,7 +54,6 @@ class _EigaScaffoldState extends State<EigaScaffold>
       client: widget.gqlClient.client,
       child: CacheProvider(
         child: MaterialApp(
-          theme: ThemeData(fontFamily: "Inter"),
           darkTheme: EigaTheme(animeMode: isModeAnime).darkTheme,
           themeMode: ThemeMode.dark,
           home: AnnotatedRegion(
@@ -62,31 +61,14 @@ class _EigaScaffoldState extends State<EigaScaffold>
                 statusBarColor: Colors.transparent,
                 systemNavigationBarColor: Colors.black),
             child: Scaffold(
-              floatingActionButton: AnimatedSwitcher(
-                duration: Duration(milliseconds: 200),
-                transitionBuilder: (Widget child, Animation<double> animation) {
-                  final scaleTween = TweenSequence([
-                    TweenSequenceItem(
-                        tween: Tween(begin: 1.0, end: 1.2), weight: 1),
-                    TweenSequenceItem(
-                        tween: Tween(begin: 1.2, end: 1.0), weight: 1),
-                  ]);
-                  return ScaleTransition(
-                    scale: scaleTween.animate(animation),
-                    child: child,
-                  );
-                },
-                child: isModeAnime
-                    ? FloatingActionButton(
-                        key: UniqueKey(),
-                        onPressed: () => modeChanged(animeMode: false),
-                        child: Icon(Icons.movie_creation_outlined),
-                      )
-                    : FloatingActionButton(
-                        key: UniqueKey(),
-                        onPressed: () => modeChanged(),
-                        child: Icon(Icons.book_outlined)),
-              ),
+              floatingActionButton: isModeAnime
+                  ? FloatingActionButton(
+                      onPressed: () => modeChanged(animeMode: false),
+                      child: Icon(Icons.movie_creation_outlined),
+                    )
+                  : FloatingActionButton(
+                      onPressed: () => modeChanged(animeMode: true),
+                      child: Icon(Icons.book_outlined)),
               body: Stack(children: [
                 PageView(
                   physics: NeverScrollableScrollPhysics(),
@@ -97,9 +79,7 @@ class _EigaScaffoldState extends State<EigaScaffold>
                       animeMode: isModeAnime,
                     ),
                     LibraryPage(),
-                    DiscoverPage(
-                      animeMode: isModeAnime,
-                    )
+                    DiscoverPage(animeMode: isModeAnime)
                   ],
                 ),
                 Align(
@@ -123,26 +103,30 @@ class _EigaScaffoldState extends State<EigaScaffold>
                 ),
               ]),
               resizeToAvoidBottomInset: false,
-              bottomNavigationBar: BottomNavigationBar(
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.account_circle),
-                    label: "Profile",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.collections_bookmark),
-                    label: "Library",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.explore),
-                    label: "Discover",
-                  )
-                ],
-                showSelectedLabels: false,
-                showUnselectedLabels: false,
-                currentIndex: _selectedIndex,
-                onTap: _onBottomNavTapped,
-                //elevation: 0,
+              bottomNavigationBar: Container(
+                decoration: BoxDecoration(
+                    border: Border(top: BorderSide(color: Colors.white24))),
+                child: BottomNavigationBar(
+                  items: const [
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.account_circle),
+                      label: "Profile",
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.collections_bookmark),
+                      label: "Library",
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.explore),
+                      label: "Discover",
+                    )
+                  ],
+                  showSelectedLabels: false,
+                  showUnselectedLabels: false,
+                  currentIndex: _selectedIndex,
+                  onTap: _onBottomNavTapped,
+                  //elevation: 0,
+                ),
               ),
             ),
           ),
@@ -167,9 +151,7 @@ class _EigaScaffoldState extends State<EigaScaffold>
         setState(() => isModeAnime = animeMode);
         scaleController.reverse();
       } else if (status == AnimationStatus.dismissed) {
-        setState(() {
-          splashVisible = false;
-        });
+        setState(() => splashVisible = false);
       }
     });
   }

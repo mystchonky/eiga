@@ -7,7 +7,6 @@ import 'package:hive/hive.dart';
 import 'package:html/parser.dart';
 
 import '../../classes/adapters/library_item.dart';
-import '../../classes/sources/four_anime.dart';
 import '../../graphql/graphql_api.dart';
 import '../widgets/media_info_view/cover.dart';
 import '../widgets/media_info_view/info.dart';
@@ -103,43 +102,20 @@ class _MediaInfoState extends State<MediaInfo> {
                                   label: Text("")),
                             ),
                             SizedBox(width: 5),
-                            Expanded(
-                              child: ElevatedButton.icon(
-                                label: Text(""),
-                                icon: Icon(Icons.play_arrow),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => FourAnime(
-                                              search: animeName ?? "")));
-                                },
-                                style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                        Theme.of(context).accentColor)),
-                              ),
-                            ),
                           ],
                         ),
 
                         //Synopsis
                         header("Synopsis"),
-                        SizedBox(height: 5),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                          padding: const EdgeInsets.all(5.0),
                           child: ExpandableText(
                             cleanText(anime.description ?? ""),
-                            style: TextStyle(
-                              color: Colors.grey[600],
-                            ),
+                            style: TextStyle(color: Colors.grey),
                             expandText: 'show more',
                             collapseText: 'show less',
                             maxLines: 5,
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Divider(),
                         ),
 
                         //Information
@@ -152,11 +128,6 @@ class _MediaInfoState extends State<MediaInfo> {
                         genreBuilder(anime),
                         SizedBox(height: 10),
 
-                        Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Divider(),
-                        ),
-
                         //Relations
                         if (anime.relations!.edges!.isNotEmpty)
                           Column(
@@ -167,11 +138,6 @@ class _MediaInfoState extends State<MediaInfo> {
                                 RelationsBuilder(media: anime),
                                 SizedBox(height: 10),
                               ]),
-
-                        Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Divider(),
-                        ),
 
                         //Recommendations
                         if (anime.recommendations!.edges!.isNotEmpty)
@@ -194,12 +160,15 @@ class _MediaInfoState extends State<MediaInfo> {
   }
 
   Widget header(String text) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontFamily: "Rubik",
-        fontWeight: FontWeight.bold,
-        fontSize: 20,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontFamily: "Rubik",
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ),
       ),
     );
   }

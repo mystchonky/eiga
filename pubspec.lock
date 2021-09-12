@@ -328,13 +328,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.2"
-  flutter_inappwebview:
-    dependency: "direct main"
-    description:
-      name: flutter_inappwebview
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.3.2"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -597,6 +590,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  multi_charts:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: fill_alpha
+      resolved-ref: "34a961093ba2326deb887e18f5a8a2eb551bdb79"
+      url: "https://github.com/luiq54/multi_charts.git"
+    source: git
+    version: "0.3.0"
   normalize:
     dependency: transitive
     description:
@@ -938,6 +940,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  wave:
+    dependency: "direct main"
+    description:
+      name: wave
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   web_socket_channel:
     dependency: transitive
     description:

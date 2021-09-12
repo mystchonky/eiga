@@ -1,14 +1,16 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import '../../classes/e_oauth2_client.dart';
+import '../../classes/oauth2_client.dart';
 import '../../graphql/graphql_api.dart';
 import '../widgets/profile/anime_stats.dart';
 import '../widgets/profile/manga_stats.dart';
 
 class Profile extends StatefulWidget {
-  final EigaOAuth2Client client;
+  final CustomOAuth2Client client;
   final bool animeMode;
 
   const Profile({required this.client, required this.animeMode});
@@ -19,6 +21,19 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> animation;
+
+  @override
+  void initState() {
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 5));
+    animation = Tween<double>(begin: 0, end: 2 * pi).animate(_controller);
+    super.initState();
+
+    _controller.repeat();
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -49,52 +64,81 @@ class _ProfileState extends State<Profile>
                 floating: true,
                 expandedHeight: 200.0,
                 flexibleSpace: FlexibleSpaceBar(
-                  titlePadding: EdgeInsets.only(left: 10),
-                  title: Stack(
-                    children: [
-                      Container(
-                        alignment: Alignment.bottomLeft,
-                        child: Text(user.name),
-                      ),
-                      Container(
-                          alignment: Alignment.bottomRight,
-                          padding: EdgeInsets.only(right: 5, bottom: 5),
-                          child: Container(
-                            height: 100,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodyText1!
-                                      .color!,
-                                  width: 5),
-                            ),
-                            clipBehavior: Clip.hardEdge,
-                            child: CachedNetworkImage(
-                              imageUrl: user.avatar!.medium!,
-                              fit: BoxFit.cover,
-                            ),
-                          ))
-                    ],
-                  ),
-                  background: user.bannerImage != null
-                      ? CachedNetworkImage(
-                          imageUrl: user.bannerImage!, fit: BoxFit.cover)
-                      : Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft,
-                              colors: const [
-                                Colors.blue,
-                                Colors.purple,
-                              ],
-                            ),
-                          ),
+                    titlePadding: EdgeInsets.only(left: 10),
+                    title: Stack(
+                      children: [
+                        Container(
+                          alignment: Alignment.bottomLeft,
+                          child: Text(user.name),
                         ),
-                ),
+                        Container(
+                            alignment: Alignment.bottomRight,
+                            padding: EdgeInsets.only(right: 5, bottom: 5),
+                            child: Container(
+                              height: 100,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              clipBehavior: Clip.hardEdge,
+                              child: CachedNetworkImage(
+                                imageUrl: user.avatar!.medium!,
+                                fit: BoxFit.cover,
+                              ),
+                            ))
+                      ],
+                    ),
+                    background: user.bannerImage != null
+                        ? CachedNetworkImage(
+                            imageUrl: user.bannerImage!, fit: BoxFit.cover)
+                        : Stack(alignment: Alignment.bottomCenter, children: [
+                            Container(
+                              width: double.infinity,
+                              height: double.infinity,
+                              child: AnimatedBuilder(
+                                animation: animation,
+                                builder: (context, _) => CustomPaint(
+                                  size: Size(double.infinity, 100),
+                                  painter: CurvePainter(
+                                    animation.value,
+                                    Theme.of(context)
+                                        .accentColor
+                                        .withAlpha(100),
+                                    offset: 0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: double.infinity,
+                              child: AnimatedBuilder(
+                                animation: animation,
+                                builder: (context, _) => CustomPaint(
+                                  size: Size(double.infinity, 100),
+                                  painter: CurvePainter(animation.value,
+                                      Colors.white.withAlpha(100),
+                                      offset: 0),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: double.infinity,
+                              child: AnimatedBuilder(
+                                animation: animation,
+                                builder: (context, _) => CustomPaint(
+                                  size: Size(double.infinity, 100),
+                                  painter: CurvePainter(
+                                      animation.value,
+                                      Theme.of(context)
+                                          .accentColor
+                                          .withAlpha(100),
+                                      offset: 0),
+                                ),
+                              ),
+                            ),
+                          ])),
                 actions: [
                   IconButton(
                       onPressed: () => logout(),
@@ -102,7 +146,6 @@ class _ProfileState extends State<Profile>
                 ],
               ),
             ],
-            //TODO API CHANGE
             body: RefreshIndicator(
               onRefresh: () => refetch!(),
               child: widget.animeMode
@@ -121,4 +164,41 @@ class _ProfileState extends State<Profile>
 
   @override
   bool get wantKeepAlive => true;
+}
+
+class CurvePainter extends CustomPainter {
+  final double value;
+  final Color color;
+  final double offset;
+  final double minHeight;
+
+  CurvePainter(this.value, this.color,
+      {required this.offset, this.minHeight = 0});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = color;
+    final path = Path();
+
+    final y1 = sin(value + offset);
+    final y2 = sin(value + pi / 2 + offset);
+    final y3 = sin(value + pi + offset);
+
+    final startPointY = size.height * (0.5 + 0.4 * y1) + minHeight;
+    final controlPointY = size.height * (0.5 + 0.4 * y2) + minHeight;
+    final endPointY = size.height * (0.5 + 0.4 * y3) + minHeight;
+
+    path.moveTo(size.width * 0, startPointY);
+    path.quadraticBezierTo(
+        size.width * 0.5, controlPointY, size.width, endPointY);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.close();
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CurvePainter oldDelegate) {
+    return true;
+  }
 }

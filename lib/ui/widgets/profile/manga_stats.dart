@@ -47,8 +47,7 @@ class MangaStats extends StatelessWidget {
                 icon: Icons.turned_in),
             MediaStatCard(
                 title: "Volumes Read",
-                value: ((user.statistics?.manga?.volumesRead ?? 0) / 1440)
-                    .toStringAsFixed(2),
+                value: (user.statistics?.manga?.volumesRead ?? 0).toString(),
                 icon: Icons.import_contacts)
           ],
         ),
@@ -56,14 +55,14 @@ class MangaStats extends StatelessWidget {
         if (genreData.isNotEmpty || tagData.isNotEmpty)
           Container(
             constraints: BoxConstraints(maxHeight: 500),
-            color: Colors.blue,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 if (genreData.isNotEmpty)
-                  Expanded(child: ProfileRadar(data: genreData)),
+                  Expanded(
+                      child: ProfileRadar(data: genreData, key: UniqueKey())),
                 if (tagData.isNotEmpty)
-                  Expanded(child: ProfileRadar(data: tagData))
+                  Expanded(child: ProfileRadar(data: tagData, key: UniqueKey()))
               ],
             ),
           )

@@ -4,11 +4,11 @@ import 'package:oauth2_client/oauth2_helper.dart';
 // ignore: implementation_imports
 import 'package:oauth2_client/src/oauth2_utils.dart';
 
-class EigaOAuth2Client {
+class CustomOAuth2Client {
   late _OAuth2Client client;
   late OAuth2Helper helper;
 
-  EigaOAuth2Client() {
+  CustomOAuth2Client() {
     client = _OAuth2Client();
     helper = OAuth2Helper(
       client,

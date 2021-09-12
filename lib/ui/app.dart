@@ -1,57 +1,43 @@
-import 'package:eiga/classes/adapters/library_item.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
-import '../classes/e_graphql_client.dart';
-import '../classes/e_oauth2_client.dart';
-import 'e_scaffold.dart';
+import '../classes/graphql_client.dart';
+import '../classes/oauth2_client.dart';
 import 'login.dart';
+import 'scaffold.dart';
 
-// ignore: must_be_immutable
 class App extends StatelessWidget {
-  final EigaOAuth2Client eOAuth2Client = EigaOAuth2Client();
-  EigaGraphQLClient? eGQLClient;
+  late final CustomOAuth2Client oauth2Client;
+  late final CustomGraphQLClient gqlClient;
 
   App() {
-    init();
-  }
-
-  Future<void> init() async {
-    await Hive.initFlutter();
-    await Hive.openBox(HiveStore.defaultBoxName);
-    eGQLClient = EigaGraphQLClient(eOAuth2Client);
-
-    Hive.registerAdapter(LibraryItemAdapter());
-    Hive.openBox<LibraryItem>('library');
+    oauth2Client = CustomOAuth2Client();
+    gqlClient = CustomGraphQLClient(oauth2Client);
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       //TODO Better Routing
-      initialRoute: '_app',
+      initialRoute: 'validator',
       routes: {
-        '_app': (context) => _App(eOAuth2Client),
-        'scaffold': (context) => EigaScaffold(
-              gqlClient: eGQLClient!,
-              oauth2Client: eOAuth2Client,
+        'validator': (context) => TokenValidator(oauth2Client),
+        'scaffold': (context) => CustomScaffold(
+              gqlClient: gqlClient,
+              oauth2Client: oauth2Client,
             ),
         'login': (context) => LoginPrompt(
-              eigaOAuth2Client: eOAuth2Client,
+              oAuth2Client: oauth2Client,
             )
       },
     );
   }
 }
 
-// ignore: must_be_immutable
-class _App extends StatelessWidget {
-  final EigaOAuth2Client client;
-  bool? tokenValid;
+class TokenValidator extends StatelessWidget {
+  final CustomOAuth2Client client;
+  late final bool tokenValid;
 
-  _App(this.client) {
+  TokenValidator(this.client) {
     checkTokenValid();
   }
 

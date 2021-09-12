@@ -1,41 +1,27 @@
-import 'package:fl_chart/fl_chart.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:multi_charts/multi_charts.dart';
 
 class ProfileRadar extends StatelessWidget {
   final List<RadarDataEntry> data;
 
-  const ProfileRadar({required this.data});
+  const ProfileRadar({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
-      width: 200,
-      constraints: BoxConstraints(maxWidth: 300, maxHeight: 200),
-      child: RadarChart(RadarChartData(
-        dataSets: [
-          RadarDataSet(
-            fillColor: Theme.of(context).accentColor.withAlpha(200),
-            borderColor: Theme.of(context).accentColor,
-            entryRadius: 0,
-            borderWidth: 2,
-            dataEntries:
-                data.map((e) => RadarEntry(value: e.value.toDouble())).toList(),
-          )
-        ],
-        radarBackgroundColor: Colors.transparent,
-        borderData: FlBorderData(show: false),
-        radarBorderData: BorderSide(color: Colors.grey),
-        titlePositionPercentageOffset: 0.15,
-        titleTextStyle: TextStyle(
-            color: Theme.of(context).textTheme.bodyText1!.color, fontSize: 14),
-        tickCount: 4,
-        getTitle: (value) {
-          return data[value].name;
-        },
-        tickBorderData: BorderSide(color: Colors.grey),
-        gridBorderData: BorderSide(color: Colors.grey),
-      )),
+      height: 200,
+      child: RadarChart(
+        animate: false,
+        labels: data.map((e) => e.name).toList(),
+        values: data.map((e) => e.value.toDouble()).toList(),
+        maxValue: data.map((e) => e.value.toDouble()).reduce(max),
+        fillColor: Theme.of(context).accentColor,
+        fillAlpha: 100,
+        strokeColor: Colors.white10,
+        labelColor: Colors.white,
+      ),
     );
   }
 }
