@@ -17,46 +17,50 @@ class _DiscoverPageState extends State<DiscoverPage> {
   @override
   Widget build(BuildContext context) {
     return NestedScrollView(
-        floatHeaderSlivers: true,
-        headerSliverBuilder: (context, value) => [
-              SliverAppBar(
-                floating: true,
-                expandedHeight: 60.0,
-                flexibleSpace: FlexibleSpaceBar(
-                  titlePadding: EdgeInsets.only(left: 10),
-                  title: Row(
-                    children: [
-                      Expanded(
-                          child: Text(
-                        'Discover',
-                        style: TextStyle(
-                            color: Theme.of(context)
-                                .primaryTextTheme
-                                .bodyText1!
-                                .color,
-                            fontFamily: "Rubik"),
-                      )),
-                      IconButton(
-                          icon: Icon(Icons.search),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SearchPage()));
-                          }),
-                    ],
+      floatHeaderSlivers: true,
+      headerSliverBuilder: (context, value) => [
+        SliverAppBar(
+          floating: true,
+          expandedHeight: 60.0,
+          flexibleSpace: FlexibleSpaceBar(
+            titlePadding: EdgeInsets.only(left: 10),
+            title: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Discover',
+                    style: TextStyle(
+                      color:
+                          Theme.of(context).primaryTextTheme.bodyText1!.color,
+                      fontFamily: "Rubik",
+                    ),
                   ),
                 ),
-              ),
-            ],
-        body: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            TrendingCarousel(animeMode: widget.animeMode),
-            SizedBox(height: 10),
-            if (widget.animeMode) _animeLists() else _mangaLists(),
-          ],
-        ));
+                IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SearchPage(),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+      body: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          TrendingCarousel(animeMode: widget.animeMode),
+          SizedBox(height: 10),
+          if (widget.animeMode) _animeLists() else _mangaLists(),
+        ],
+      ),
+    );
   }
 
   Widget header(String title) {

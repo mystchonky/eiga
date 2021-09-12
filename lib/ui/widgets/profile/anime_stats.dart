@@ -40,24 +40,29 @@ class AnimeStats extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               MediaStatCard(
-                  title: "Anime Watched",
-                  value: (user.statistics?.anime?.count ?? 0).toString(),
-                  icon: Icons.tv),
+                title: "Anime Watched",
+                value: (user.statistics?.anime?.count ?? 0).toString(),
+                icon: Icons.tv,
+              ),
               MediaStatCard(
-                  title: "Episodes Watched",
-                  value:
-                      (user.statistics?.anime?.episodesWatched ?? 0).toString(),
-                  icon: Icons.play_arrow_rounded),
+                title: "Episodes Watched",
+                value:
+                    (user.statistics?.anime?.episodesWatched ?? 0).toString(),
+                icon: Icons.play_arrow_rounded,
+              ),
               MediaStatCard(
-                  title: "Days Watched",
-                  value: ((user.statistics?.anime?.minutesWatched ?? 0) / 1440)
-                      .toStringAsFixed(2),
-                  icon: Icons.event)
+                title: "Days Watched",
+                value: ((user.statistics?.anime?.minutesWatched ?? 0) / 1440)
+                    .toStringAsFixed(2),
+                icon: Icons.event,
+              )
             ],
           ),
           SizedBox(height: 10),
-          Text("Score Distribution",
-              style: Theme.of(context).textTheme.headline5),
+          Text(
+            "Score Distribution",
+            style: Theme.of(context).textTheme.headline5,
+          ),
           if (scoreData.isNotEmpty) ScoreChart(data: scoreData),
           Container(
             constraints: BoxConstraints(maxHeight: 500),
@@ -66,7 +71,8 @@ class AnimeStats extends StatelessWidget {
               children: [
                 if (genreData.isNotEmpty)
                   Expanded(
-                      child: ProfileRadar(data: genreData, key: UniqueKey())),
+                    child: ProfileRadar(data: genreData, key: UniqueKey()),
+                  ),
                 if (tagData.isNotEmpty)
                   Expanded(child: ProfileRadar(data: tagData, key: UniqueKey()))
               ],

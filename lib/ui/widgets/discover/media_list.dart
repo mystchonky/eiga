@@ -22,15 +22,16 @@ class MediaList {
       child: Container(
         height: 180,
         child: Query(
-            options: QueryOptions(
-              document: mediaQuery!,
-            ),
-            builder: (
-              QueryResult result, {
-              Future<QueryResult?> Function()? refetch,
-              FetchMore? fetchMore,
-            }) =>
-                _generateDefault(result)),
+          options: QueryOptions(
+            document: mediaQuery!,
+          ),
+          builder: (
+            QueryResult result, {
+            Future<QueryResult?> Function()? refetch,
+            FetchMore? fetchMore,
+          }) =>
+              _generateDefault(result),
+        ),
       ),
     );
   }
@@ -41,14 +42,15 @@ class MediaList {
       child: Container(
         height: 180,
         child: Query(
-            options:
-                QueryOptions(document: mediaQuery!, variables: queryVariables!),
-            builder: (
-              QueryResult result, {
-              Future<QueryResult?> Function()? refetch,
-              FetchMore? fetchMore,
-            }) =>
-                _generateDefault(result)),
+          options:
+              QueryOptions(document: mediaQuery!, variables: queryVariables!),
+          builder: (
+            QueryResult result, {
+            Future<QueryResult?> Function()? refetch,
+            FetchMore? fetchMore,
+          }) =>
+              _generateDefault(result),
+        ),
       ),
     );
   }
@@ -66,18 +68,20 @@ class MediaList {
         AllTimePopularAnime$Query.fromJson(result.data!).page?.media;
 
     return ListView.builder(
-        itemCount: data?.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2),
-            child: MediaCard(
-                anime: MediaCardEntry(
-                    id: data?[index]?.id ?? 00,
-                    name:
-                        data?[index]?.title?.userPreferred.toString() ?? "N/A",
-                    coverUrl: data?[index]?.coverImage?.large ?? "N/A")),
-          );
-        });
+      itemCount: data?.length,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 2),
+          child: MediaCard(
+            anime: MediaCardEntry(
+              id: data?[index]?.id ?? 00,
+              name: data?[index]?.title?.userPreferred.toString() ?? "N/A",
+              coverUrl: data?[index]?.coverImage?.large ?? "N/A",
+            ),
+          ),
+        );
+      },
+    );
   }
 }

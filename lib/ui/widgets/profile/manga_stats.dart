@@ -38,17 +38,20 @@ class MangaStats extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             MediaStatCard(
-                title: "Manga Read",
-                value: (user.statistics?.manga?.count ?? 0).toString(),
-                icon: Icons.book),
+              title: "Manga Read",
+              value: (user.statistics?.manga?.count ?? 0).toString(),
+              icon: Icons.book,
+            ),
             MediaStatCard(
-                title: "Chapters Read",
-                value: (user.statistics?.manga?.chaptersRead ?? 0).toString(),
-                icon: Icons.turned_in),
+              title: "Chapters Read",
+              value: (user.statistics?.manga?.chaptersRead ?? 0).toString(),
+              icon: Icons.turned_in,
+            ),
             MediaStatCard(
-                title: "Volumes Read",
-                value: (user.statistics?.manga?.volumesRead ?? 0).toString(),
-                icon: Icons.import_contacts)
+              title: "Volumes Read",
+              value: (user.statistics?.manga?.volumesRead ?? 0).toString(),
+              icon: Icons.import_contacts,
+            )
           ],
         ),
         if (scoreData.isNotEmpty) ScoreChart(data: scoreData),
@@ -60,7 +63,8 @@ class MangaStats extends StatelessWidget {
               children: [
                 if (genreData.isNotEmpty)
                   Expanded(
-                      child: ProfileRadar(data: genreData, key: UniqueKey())),
+                    child: ProfileRadar(data: genreData, key: UniqueKey()),
+                  ),
                 if (tagData.isNotEmpty)
                   Expanded(child: ProfileRadar(data: tagData, key: UniqueKey()))
               ],

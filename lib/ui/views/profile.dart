@@ -38,128 +38,138 @@ class _ProfileState extends State<Profile>
   Widget build(BuildContext context) {
     super.build(context);
     return Query(
-        options: QueryOptions(
-          document: UserInfoQuery().document,
-          // fetchPolicy: FetchPolicy.networkOnly,
-        ),
-        builder: (
-          QueryResult result, {
-          Future<QueryResult?> Function()? refetch,
-          FetchMore? fetchMore,
-        }) {
-          if (result.hasException) {
-            return Center(child: Text(result.exception.toString()));
-          }
+      options: QueryOptions(
+        document: UserInfoQuery().document,
+        // fetchPolicy: FetchPolicy.networkOnly,
+      ),
+      builder: (
+        QueryResult result, {
+        Future<QueryResult?> Function()? refetch,
+        FetchMore? fetchMore,
+      }) {
+        if (result.hasException) {
+          return Center(child: Text(result.exception.toString()));
+        }
 
-          if (result.data == null && result.isLoading) {
-            return Center(child: CircularProgressIndicator());
-          }
+        if (result.data == null && result.isLoading) {
+          return Center(child: CircularProgressIndicator());
+        }
 
-          final UserInfo$Query$User user =
-              UserInfo$Query.fromJson(result.data!).viewer!;
+        final UserInfo$Query$User user =
+            UserInfo$Query.fromJson(result.data!).viewer!;
 
-          return NestedScrollView(
-            headerSliverBuilder: (context, value) => [
-              SliverAppBar(
-                floating: true,
-                expandedHeight: 200.0,
-                flexibleSpace: FlexibleSpaceBar(
-                    titlePadding: EdgeInsets.only(left: 10),
-                    title: Stack(
-                      children: [
-                        Container(
-                          alignment: Alignment.bottomLeft,
-                          child: Text(user.name),
-                        ),
-                        Container(
-                            alignment: Alignment.bottomRight,
-                            padding: EdgeInsets.only(right: 5, bottom: 5),
-                            child: Container(
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              clipBehavior: Clip.hardEdge,
-                              child: CachedNetworkImage(
-                                imageUrl: user.avatar!.medium!,
-                                fit: BoxFit.cover,
-                              ),
-                            ))
-                      ],
+        return NestedScrollView(
+          headerSliverBuilder: (context, value) => [
+            SliverAppBar(
+              floating: true,
+              expandedHeight: 200.0,
+              flexibleSpace: FlexibleSpaceBar(
+                titlePadding: EdgeInsets.only(left: 10),
+                title: Stack(
+                  children: [
+                    Container(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(user.name),
                     ),
-                    background: user.bannerImage != null
-                        ? CachedNetworkImage(
-                            imageUrl: user.bannerImage!, fit: BoxFit.cover)
-                        : Stack(alignment: Alignment.bottomCenter, children: [
-                            Container(
-                              width: double.infinity,
-                              height: double.infinity,
-                              child: AnimatedBuilder(
-                                animation: animation,
-                                builder: (context, _) => CustomPaint(
-                                  size: Size(double.infinity, 100),
-                                  painter: CurvePainter(
-                                    animation.value,
-                                    Theme.of(context)
-                                        .accentColor
-                                        .withAlpha(100),
-                                    offset: 0,
-                                  ),
+                    Container(
+                      alignment: Alignment.bottomRight,
+                      padding: EdgeInsets.only(right: 5, bottom: 5),
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        clipBehavior: Clip.hardEdge,
+                        child: CachedNetworkImage(
+                          imageUrl: user.avatar!.medium!,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                background: user.bannerImage != null
+                    ? CachedNetworkImage(
+                        imageUrl: user.bannerImage!,
+                        fit: BoxFit.cover,
+                      )
+                    : Stack(
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            child: AnimatedBuilder(
+                              animation: animation,
+                              builder: (context, _) => CustomPaint(
+                                size: Size(double.infinity, 100),
+                                painter: CurvePainter(
+                                  animation.value,
+                                  Theme.of(context).primaryColor.withAlpha(100),
+                                  offset: 0,
                                 ),
                               ),
                             ),
-                            Container(
-                              width: double.infinity,
-                              height: double.infinity,
-                              child: AnimatedBuilder(
-                                animation: animation,
-                                builder: (context, _) => CustomPaint(
-                                  size: Size(double.infinity, 100),
-                                  painter: CurvePainter(animation.value,
-                                      Colors.white.withAlpha(100),
-                                      offset: 0),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            child: AnimatedBuilder(
+                              animation: animation,
+                              builder: (context, _) => CustomPaint(
+                                size: Size(double.infinity, 100),
+                                painter: CurvePainter(
+                                  animation.value,
+                                  Colors.white.withAlpha(100),
+                                  offset: 0,
                                 ),
                               ),
                             ),
-                            Container(
-                              width: double.infinity,
-                              height: double.infinity,
-                              child: AnimatedBuilder(
-                                animation: animation,
-                                builder: (context, _) => CustomPaint(
-                                  size: Size(double.infinity, 100),
-                                  painter: CurvePainter(
-                                      animation.value,
-                                      Theme.of(context)
-                                          .accentColor
-                                          .withAlpha(100),
-                                      offset: 0),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            child: AnimatedBuilder(
+                              animation: animation,
+                              builder: (context, _) => CustomPaint(
+                                size: Size(double.infinity, 100),
+                                painter: CurvePainter(
+                                  animation.value,
+                                  Theme.of(context).primaryColor.withAlpha(100),
+                                  offset: 0,
                                 ),
                               ),
                             ),
-                          ])),
-                actions: [
-                  IconButton(
-                      onPressed: () => logout(),
-                      icon: Icon(Icons.ac_unit_outlined)),
-                ],
+                          ),
+                        ],
+                      ),
               ),
-            ],
-            body: RefreshIndicator(
-              onRefresh: () => refetch!(),
-              child: widget.animeMode
-                  ? AnimeStats(user: user)
-                  : MangaStats(user: user),
+              actions: [
+                IconButton(
+                  onPressed: () => logout(),
+                  icon: Icon(Icons.ac_unit_outlined),
+                ),
+              ],
             ),
-          );
-        });
+          ],
+          body: RefreshIndicator(
+            onRefresh: () => refetch!(),
+            child: widget.animeMode
+                ? AnimeStats(user: user)
+                : MangaStats(user: user),
+          ),
+        );
+      },
+    );
   }
 
   void logout() {
     widget.client.deleteToken();
     Future.delayed(
-        Duration.zero, () => Navigator.popAndPushNamed(context, '_app'));
+      Duration.zero,
+      () => Navigator.popAndPushNamed(context, '_app'),
+    );
   }
 
   @override
@@ -172,8 +182,12 @@ class CurvePainter extends CustomPainter {
   final double offset;
   final double minHeight;
 
-  CurvePainter(this.value, this.color,
-      {required this.offset, this.minHeight = 0});
+  CurvePainter(
+    this.value,
+    this.color, {
+    required this.offset,
+    this.minHeight = 0,
+  });
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -190,7 +204,11 @@ class CurvePainter extends CustomPainter {
 
     path.moveTo(size.width * 0, startPointY);
     path.quadraticBezierTo(
-        size.width * 0.5, controlPointY, size.width, endPointY);
+      size.width * 0.5,
+      controlPointY,
+      size.width,
+      endPointY,
+    );
     path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
     path.close();

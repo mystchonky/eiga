@@ -5,8 +5,11 @@ class MediaStatCard extends StatelessWidget {
   final String title;
   final String value;
 
-  const MediaStatCard(
-      {required this.icon, required this.title, required this.value});
+  const MediaStatCard({
+    required this.icon,
+    required this.title,
+    required this.value,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,9 @@ class MediaStatCard extends StatelessWidget {
                     value,
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                        fontSize: 24, color: Theme.of(context).accentColor),
+                      fontSize: 24,
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
                 ),
                 Text(

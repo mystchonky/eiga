@@ -13,14 +13,16 @@ class LoginPrompt extends StatelessWidget {
       home: Scaffold(
         body: Center(
           child: ElevatedButton(
-              onPressed: () async {
-                await oAuth2Client.generateToken();
-                Navigator.popAndPushNamed(context, '_app');
-              },
-              child: Text(
-                "LOGIN",
-                style: TextStyle(fontSize: 36),
-              )),
+            onPressed: () async {
+              await oAuth2Client.generateToken().whenComplete(
+                    () => Navigator.popAndPushNamed(context, 'validator'),
+                  );
+            },
+            child: Text(
+              "LOGIN",
+              style: TextStyle(fontSize: 36),
+            ),
+          ),
         ),
       ),
     );

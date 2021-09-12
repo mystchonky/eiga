@@ -17,72 +17,82 @@ class ScoreChart extends StatelessWidget {
     final List<ChartDataEntry> sortedData = data;
     sortedData.sort((a, b) => a.score.compareTo(b.score));
     return Container(
-        //padding: EdgeInsets.all(20),
-        height: 300,
-        child: BarChart(BarChartData(
-            alignment: BarChartAlignment.spaceEvenly,
-            maxY: getMaxY(),
-            barGroups: sortedData
-                .map((e) => BarChartGroupData(
-                      x: e.score,
-                      barRods: [
-                        BarChartRodData(
-                            y: e.count.toDouble(),
-                            width: 15,
-                            borderRadius:
-                                BorderRadius.vertical(top: Radius.circular(10)),
-                            colors: [
-                              Colors.deepPurple,
-                              Theme.of(context).accentColor,
-                            ])
+      //padding: EdgeInsets.all(20),
+      height: 300,
+      child: BarChart(
+        BarChartData(
+          alignment: BarChartAlignment.spaceEvenly,
+          maxY: getMaxY(),
+          barGroups: sortedData
+              .map(
+                (e) => BarChartGroupData(
+                  x: e.score,
+                  barRods: [
+                    BarChartRodData(
+                      y: e.count.toDouble(),
+                      width: 15,
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(10)),
+                      colors: [
+                        Colors.deepPurple,
+                        Theme.of(context).primaryColor,
                       ],
-                      showingTooltipIndicators: [0],
-                    ))
-                .toList(),
-            barTouchData: BarTouchData(
-              enabled: false,
-              touchTooltipData: BarTouchTooltipData(
-                tooltipBgColor: Colors.transparent,
-                tooltipPadding: const EdgeInsets.all(0),
-                tooltipMargin: 4,
-                getTooltipItem: (
-                  BarChartGroupData group,
-                  int groupIndex,
-                  BarChartRodData rod,
-                  int rodIndex,
-                ) {
-                  return BarTooltipItem(
-                    rod.y.round().toString(),
-                    TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  );
-                },
-              ),
-            ),
-            borderData: FlBorderData(show: false),
-            titlesData: FlTitlesData(
-                leftTitles: SideTitles(
-                  showTitles: true,
-                  interval: 4,
-                  getTextStyles: (value) {
-                    return TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12);
-                  },
+                    )
+                  ],
+                  showingTooltipIndicators: [0],
                 ),
-                bottomTitles: SideTitles(
-                  showTitles: true,
-                  getTextStyles: (value) {
-                    return TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12);
-                  },
-                  getTitles: (value) => value.toInt().toString(),
-                )))));
+              )
+              .toList(),
+          barTouchData: BarTouchData(
+            enabled: false,
+            touchTooltipData: BarTouchTooltipData(
+              tooltipBgColor: Colors.transparent,
+              tooltipPadding: EdgeInsets.zero,
+              tooltipMargin: 4,
+              getTooltipItem: (
+                BarChartGroupData group,
+                int groupIndex,
+                BarChartRodData rod,
+                int rodIndex,
+              ) {
+                return BarTooltipItem(
+                  rod.y.round().toString(),
+                  TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
+            ),
+          ),
+          borderData: FlBorderData(show: false),
+          titlesData: FlTitlesData(
+            leftTitles: SideTitles(
+              showTitles: true,
+              interval: 4,
+              getTextStyles: (context, value) {
+                return TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                );
+              },
+            ),
+            bottomTitles: SideTitles(
+              showTitles: true,
+              getTextStyles: (context, value) {
+                return TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                );
+              },
+              getTitles: (value) => value.toInt().toString(),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   double getMaxY() {

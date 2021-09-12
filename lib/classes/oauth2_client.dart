@@ -38,21 +38,23 @@ class CustomOAuth2Client {
 class _OAuth2Client extends OAuth2Client {
   _OAuth2Client()
       : super(
-            authorizeUrl: 'http://anilist.co/api/v2/oauth/authorize',
-            tokenUrl: 'http://anilist.co/api/v2/oauth/authorize',
-            redirectUri: 'com.eiga.app://redirect',
-            customUriScheme: 'com.eiga.app');
+          authorizeUrl: 'http://anilist.co/api/v2/oauth/authorize',
+          tokenUrl: 'http://anilist.co/api/v2/oauth/authorize',
+          redirectUri: 'com.eiga.app://redirect',
+          customUriScheme: 'com.eiga.app',
+        );
 
   @override
-  String getAuthorizeUrl(
-      {required String clientId,
-      String responseType = 'code',
-      String? redirectUri,
-      List<String>? scopes,
-      bool enableState = true,
-      String? state,
-      String? codeChallenge,
-      Map<String, dynamic>? customParams}) {
+  String getAuthorizeUrl({
+    required String clientId,
+    String responseType = 'code',
+    String? redirectUri,
+    List<String>? scopes,
+    bool enableState = true,
+    String? state,
+    String? codeChallenge,
+    Map<String, dynamic>? customParams,
+  }) {
     final params = <String, dynamic>{
       'response_type': responseType,
       'client_id': clientId

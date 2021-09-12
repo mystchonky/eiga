@@ -12,19 +12,25 @@ class MediaCarouselCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => MediaInfo(id: anime.id)));
-        },
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-              boxShadow: [
-                BoxShadow(
-                    color: Theme.of(context).accentColor, offset: Offset(4, 4))
-              ]),
-          clipBehavior: Clip.hardEdge,
-          child: Stack(children: [
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MediaInfo(id: anime.id)),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).primaryColor,
+              offset: Offset(4, 4),
+            )
+          ],
+        ),
+        clipBehavior: Clip.hardEdge,
+        child: Stack(
+          children: [
             Padding(
               padding: const EdgeInsets.all(1.0),
               child: CachedNetworkImage(
@@ -57,15 +63,18 @@ class MediaCarouselCard extends StatelessWidget {
                   anime.name,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold),
+                    color: Colors.white,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),
-          ]),
-        ));
+          ],
+        ),
+      ),
+    );
   }
 }

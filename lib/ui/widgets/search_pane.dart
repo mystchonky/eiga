@@ -25,8 +25,9 @@ class _SearchPaneState extends State<SearchPane> {
   Widget build(BuildContext context) {
     return Query(
       options: QueryOptions(
-          document: SearchDataQuery(variables: SearchDataArguments()).document,
-          variables: {'search': widget.searchStr, 'page': 1, 'perPage': 5}),
+        document: SearchDataQuery(variables: SearchDataArguments()).document,
+        variables: {'search': widget.searchStr, 'page': 1, 'perPage': 5},
+      ),
       builder: (
         QueryResult result, {
         Future<QueryResult?> Function()? refetch,
@@ -46,29 +47,31 @@ class _SearchPaneState extends State<SearchPane> {
         final nextPage = pageInfo.currentPage! + 1;
 
         final FetchMoreOptions opts = FetchMoreOptions(
-            variables: {'page': nextPage},
-            updateQuery: (previousResultData, fetchMoreResultData) {
-              final oldData = previousResultData!['Page']['media'];
-              final newData = fetchMoreResultData!['Page']['media'];
+          variables: {'page': nextPage},
+          updateQuery: (previousResultData, fetchMoreResultData) {
+            final oldData = previousResultData!['Page']['media'];
+            final newData = fetchMoreResultData!['Page']['media'];
 
-              final List<dynamic> combined = [
-                ...oldData as List<dynamic>,
-                ...newData as List<dynamic>
-              ];
+            final List<dynamic> combined = [
+              ...oldData as List<dynamic>,
+              ...newData as List<dynamic>
+            ];
 
-              fetchMoreResultData['Page']['media'] = combined;
-              updating = false;
+            fetchMoreResultData['Page']['media'] = combined;
+            updating = false;
 
-              return fetchMoreResultData;
-            });
+            return fetchMoreResultData;
+          },
+        );
 
         if (data.isEmpty) {
           return Center(
-              child: Icon(
-            Icons.search_off_rounded,
-            size: 108,
-            color: Colors.grey,
-          ));
+            child: Icon(
+              Icons.search_off_rounded,
+              size: 108,
+              color: Colors.grey,
+            ),
+          );
         }
 
         return Column(
@@ -93,10 +96,12 @@ class _SearchPaneState extends State<SearchPane> {
                     return InkWell(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    MediaInfo(id: data[index]!.id)));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                MediaInfo(id: data[index]!.id),
+                          ),
+                        );
                       },
                       child: SearchCard(
                         data: data[index],

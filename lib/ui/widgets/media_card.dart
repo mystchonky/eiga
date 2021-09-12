@@ -21,14 +21,19 @@ class _MediaCardState extends State<MediaCard>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+
+    final ThemeData theme = Theme.of(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: InkWell(
         onTap: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => MediaInfo(id: widget.anime!.id)));
+            context,
+            MaterialPageRoute(
+              builder: (context) => MediaInfo(id: widget.anime!.id),
+            ),
+          );
         },
         child: Container(
           width: 120,
@@ -66,9 +71,10 @@ class _MediaCardState extends State<MediaCard>
                 child: Text(
                   widget.anime!.name,
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold),
+                    color: Colors.white,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -76,17 +82,22 @@ class _MediaCardState extends State<MediaCard>
               if (widget.anime!.relation != null)
                 Container(
                   decoration: BoxDecoration(
-                      color: Theme.of(context).accentColor,
-                      borderRadius: BorderRadius.all(Radius.circular(4))),
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.all(Radius.circular(4)),
+                  ),
                   padding: EdgeInsets.all(2),
                   margin: EdgeInsets.only(left: 2, top: 2),
                   child: Text(
                     widget.anime!.relation!,
                     style: TextStyle(
-                        color:
-                            Theme.of(context).accentTextTheme.bodyText1!.color,
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.bold),
+                      color: theme.textTheme.bodyText1!
+                          .copyWith(
+                            color: theme.colorScheme.primary,
+                          )
+                          .color,
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                     overflow: TextOverflow.ellipsis,
                   ),
                 )

@@ -17,7 +17,7 @@ class ProfileRadar extends StatelessWidget {
         labels: data.map((e) => e.name).toList(),
         values: data.map((e) => e.value.toDouble()).toList(),
         maxValue: data.map((e) => e.value.toDouble()).reduce(max),
-        fillColor: Theme.of(context).accentColor,
+        fillColor: Theme.of(context).primaryColor,
         fillAlpha: 100,
         strokeColor: Colors.white10,
         labelColor: Colors.white,

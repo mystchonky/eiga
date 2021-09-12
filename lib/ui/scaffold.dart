@@ -58,8 +58,9 @@ class _CustomScaffoldState extends State<CustomScaffold>
           themeMode: ThemeMode.dark,
           home: AnnotatedRegion(
             value: SystemUiOverlayStyle(
-                statusBarColor: Colors.transparent,
-                systemNavigationBarColor: Colors.black),
+              statusBarColor: Colors.transparent,
+              systemNavigationBarColor: Colors.black,
+            ),
             child: Scaffold(
               floatingActionButton: isModeAnime
                   ? FloatingActionButton(
@@ -68,44 +69,50 @@ class _CustomScaffoldState extends State<CustomScaffold>
                     )
                   : FloatingActionButton(
                       onPressed: () => modeChanged(animeMode: true),
-                      child: Icon(Icons.book_outlined)),
-              body: Stack(children: [
-                PageView(
-                  physics: NeverScrollableScrollPhysics(),
-                  controller: _pageViewController,
-                  children: [
-                    Profile(
-                      client: widget.oauth2Client,
-                      animeMode: isModeAnime,
+                      child: Icon(Icons.book_outlined),
                     ),
-                    LibraryPage(),
-                    DiscoverPage(animeMode: isModeAnime)
-                  ],
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Visibility(
-                    visible: splashVisible,
-                    child: AnimatedBuilder(
+              body: Stack(
+                children: [
+                  PageView(
+                    physics: NeverScrollableScrollPhysics(),
+                    controller: _pageViewController,
+                    children: [
+                      Profile(
+                        client: widget.oauth2Client,
+                        animeMode: isModeAnime,
+                      ),
+                      LibraryPage(),
+                      DiscoverPage(animeMode: isModeAnime)
+                    ],
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Visibility(
+                      visible: splashVisible,
+                      child: AnimatedBuilder(
                         animation: scaleAnimation,
                         builder: (context, child) => Transform.scale(
-                              scale: scaleAnimation.value,
-                              child: Container(
-                                  height: 30,
-                                  width: 30,
-                                  margin: EdgeInsets.all(25),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Theme.of(context).accentColor,
-                                  )),
-                            )),
+                          scale: scaleAnimation.value,
+                          child: Container(
+                            height: 30,
+                            width: 30,
+                            margin: EdgeInsets.all(25),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ]),
+                ],
+              ),
               resizeToAvoidBottomInset: false,
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(
-                    border: Border(top: BorderSide(color: Colors.white24))),
+                  border: Border(top: BorderSide(color: Colors.white24)),
+                ),
                 child: BottomNavigationBar(
                   items: const [
                     BottomNavigationBarItem(
@@ -137,13 +144,16 @@ class _CustomScaffoldState extends State<CustomScaffold>
 
   void _onBottomNavTapped(int index) {
     setState(() {
-      _pageViewController.animateToPage(index,
-          duration: Duration(milliseconds: 500), curve: Curves.linearToEaseOut);
+      _pageViewController.animateToPage(
+        index,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.linearToEaseOut,
+      );
       _selectedIndex = index;
     });
   }
 
-  Future<void> modeChanged({bool animeMode = true}) async {
+  Future<void> modeChanged({required bool animeMode}) async {
     scaleController.forward();
     setState(() => splashVisible = true);
     scaleController.addStatusListener((status) {

@@ -33,20 +33,22 @@ class _SearchPageState extends State<SearchPage> {
             Expanded(
               child: TextField(
                 decoration: InputDecoration(
-                    hintText: "Search",
-                    border: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                    suffixIcon: shouldShowClear
-                        ? IconButton(
-                            icon: Icon(Icons.cancel),
-                            color: Theme.of(context).accentColor,
-                            onPressed: () {
-                              searchController.clear();
-                            })
-                        : null),
+                  hintText: "Search",
+                  border: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  errorBorder: InputBorder.none,
+                  disabledBorder: InputBorder.none,
+                  suffixIcon: shouldShowClear
+                      ? IconButton(
+                          icon: Icon(Icons.cancel),
+                          color: Theme.of(context).primaryColor,
+                          onPressed: () {
+                            searchController.clear();
+                          },
+                        )
+                      : null,
+                ),
                 controller: searchController,
                 onSubmitted: updateSearch,
                 style: TextStyle(fontSize: 20, fontFamily: "Rubik"),
@@ -54,20 +56,25 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
             IconButton(
-                icon: Icon(Icons.tune),
-                onPressed: () => showMaterialModalBottomSheet(
-                    context: context,
-                    backgroundColor: Colors.grey[900],
-                    shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(20))),
-                    bounce: true,
-                    builder: (context) {
-                      return Container(
-                          height: 300,
-                          padding: EdgeInsets.only(top: 30),
-                          child: Text('A'));
-                    })),
+              icon: Icon(Icons.tune),
+              onPressed: () => showMaterialModalBottomSheet(
+                context: context,
+                backgroundColor: Colors.grey[900],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(20),
+                  ),
+                ),
+                bounce: true,
+                builder: (context) {
+                  return Container(
+                    height: 300,
+                    padding: EdgeInsets.only(top: 30),
+                    child: Text('A'),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -87,11 +94,12 @@ class _SearchPageState extends State<SearchPage> {
   Widget searchView() {
     if (searchStr == "") {
       return Center(
-          child: Icon(
-        Icons.search,
-        size: 108,
-        color: Colors.grey,
-      ));
+        child: Icon(
+          Icons.search,
+          size: 108,
+          color: Colors.grey,
+        ),
+      );
     } else {
       return SearchPane(
         searchStr: searchStr,

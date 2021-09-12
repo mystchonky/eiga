@@ -13,11 +13,13 @@ class InfoBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Table(
-            children: media!.type == MediaType.anime
-                ? animeInfoBuilder(media, context)
-                : mangaInfoBuilder(media)));
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Table(
+        children: media!.type == MediaType.anime
+            ? animeInfoBuilder(media, context)
+            : mangaInfoBuilder(media),
+      ),
+    );
   }
 
   Widget infoTitle(String text) {
@@ -60,7 +62,9 @@ class InfoBuilder extends StatelessWidget {
 
   Widget studioWidget(String text, int id, BuildContext context) {
     final theme = TextStyle(
-        fontWeight: FontWeight.bold, color: Theme.of(context).accentColor);
+      fontWeight: FontWeight.bold,
+      color: Theme.of(context).primaryColor,
+    );
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: GestureDetector(
@@ -76,102 +80,140 @@ class InfoBuilder extends StatelessWidget {
   }
 
   List<TableRow> animeInfoBuilder(
-      MediaInfo$Query$Media? anime, BuildContext context) {
+    MediaInfo$Query$Media? anime,
+    BuildContext context,
+  ) {
     return [
       if (anime?.status == MediaStatus.releasing &&
           anime?.nextAiringEpisode?.airingAt != null)
-        TableRow(children: [
-          infoTitle("Next Episode"),
-          infoValue(
-              "EP ${anime?.nextAiringEpisode?.episode} : ${nextAirDate(anime!.nextAiringEpisode!.airingAt)} ")
-        ]),
-      TableRow(children: [
-        infoTitle("Episodes"),
-        infoValue(
-          anime?.episodes?.toString() ?? "0",
+        TableRow(
+          children: [
+            infoTitle("Next Episode"),
+            infoValue(
+              "EP ${anime?.nextAiringEpisode?.episode} : ${nextAirDate(anime!.nextAiringEpisode!.airingAt)} ",
+            )
+          ],
         ),
-      ]),
-      TableRow(children: [
-        infoTitle("Score"),
-        infoValue(
-          "${(anime?.averageScore ?? 0) / 10}",
-        )
-      ]),
-      TableRow(children: [
-        infoTitle("Type"),
-        infoValue(
-          anime?.format?.name ?? "N/A",
-        )
-      ]),
-      TableRow(children: [
-        infoTitle("Studio"),
-        if (anime?.studios?.nodes?[0]?.id != null)
-          studioWidget(anime?.studios?.nodes?[0]?.name ?? "N/A",
-              anime!.studios!.nodes![0]!.id, context)
-        else
+      TableRow(
+        children: [
+          infoTitle("Episodes"),
           infoValue(
-            anime?.studios?.nodes?[0]?.name ?? "N/A",
+            anime?.episodes?.toString() ?? "0",
+          ),
+        ],
+      ),
+      TableRow(
+        children: [
+          infoTitle("Score"),
+          infoValue(
+            "${(anime?.averageScore ?? 0) / 10}",
           )
-      ]),
-      TableRow(children: [
-        infoTitle("Status"),
-        infoValue(
-          anime?.status?.name ?? "N/A",
-        )
-      ]),
-      TableRow(children: [
-        infoTitle("Duration"),
-        infoValue(
-          "${anime?.duration ?? 0} Min",
-        )
-      ]),
-      if (anime?.status == MediaStatus.finished)
-        TableRow(children: [
-          infoTitle("Aired"),
+        ],
+      ),
+      TableRow(
+        children: [
+          infoTitle("Type"),
           infoValue(
-              anime?.startDate != null ? cleanDate(anime?.startDate) : "N/A")
-        ])
+            anime?.format?.name ?? "N/A",
+          )
+        ],
+      ),
+      TableRow(
+        children: [
+          infoTitle("Studio"),
+          if (anime?.studios?.nodes?[0]?.id != null)
+            studioWidget(
+              anime?.studios?.nodes?[0]?.name ?? "N/A",
+              anime!.studios!.nodes![0]!.id,
+              context,
+            )
+          else
+            infoValue(
+              anime?.studios?.nodes?[0]?.name ?? "N/A",
+            )
+        ],
+      ),
+      TableRow(
+        children: [
+          infoTitle("Status"),
+          infoValue(
+            anime?.status?.name ?? "N/A",
+          )
+        ],
+      ),
+      TableRow(
+        children: [
+          infoTitle("Duration"),
+          infoValue(
+            "${anime?.duration ?? 0} Min",
+          )
+        ],
+      ),
+      if (anime?.status == MediaStatus.finished)
+        TableRow(
+          children: [
+            infoTitle("Aired"),
+            infoValue(
+              anime?.startDate != null ? cleanDate(anime?.startDate) : "N/A",
+            )
+          ],
+        )
     ];
   }
 
   List<TableRow> mangaInfoBuilder(MediaInfo$Query$Media? media) {
     return [
-      TableRow(children: [
-        infoTitle("Score"),
-        infoValue(
-          "${(media?.averageScore ?? 0) / 10}",
-        )
-      ]),
-      TableRow(children: [
-        infoTitle("Status"),
-        infoValue(
-          media?.status?.name ?? "N/A",
-        )
-      ]),
-      if (media?.status == MediaStatus.finished)
-        TableRow(children: [
-          infoTitle("Chapters"),
+      TableRow(
+        children: [
+          infoTitle("Score"),
           infoValue(
-            media?.chapters?.toString() ?? "N/A",
+            "${(media?.averageScore ?? 0) / 10}",
           )
-        ]),
-      if (media?.status == MediaStatus.finished)
-        TableRow(children: [
-          infoTitle("Volumes"),
+        ],
+      ),
+      TableRow(
+        children: [
+          infoTitle("Status"),
           infoValue(
-            media?.volumes?.toString() ?? "N/A",
+            media?.status?.name ?? "N/A",
           )
-        ]),
-      TableRow(children: [
-        infoTitle("Start Date"),
-        infoValue(
-            media?.startDate != null ? cleanDate(media?.startDate) : "N/A")
-      ]),
+        ],
+      ),
       if (media?.status == MediaStatus.finished)
-        TableRow(children: [
-          infoTitle("End Date"),
-          infoValue(media?.endDate != null ? cleanDate(media?.endDate) : "N/A")
-        ]),
+        TableRow(
+          children: [
+            infoTitle("Chapters"),
+            infoValue(
+              media?.chapters?.toString() ?? "N/A",
+            )
+          ],
+        ),
+      if (media?.status == MediaStatus.finished)
+        TableRow(
+          children: [
+            infoTitle("Volumes"),
+            infoValue(
+              media?.volumes?.toString() ?? "N/A",
+            )
+          ],
+        ),
+      TableRow(
+        children: [
+          infoTitle("Start Date"),
+          infoValue(
+            media?.startDate != null ? cleanDate(media?.startDate) : "N/A",
+          )
+        ],
+      ),
+      if (media?.status == MediaStatus.finished)
+        TableRow(
+          children: [
+            infoTitle("End Date"),
+            infoValue(
+              media?.endDate != null ? cleanDate(media?.endDate) : "N/A",
+            )
+          ],
+        ),
     ];
   }
 }

@@ -678,12 +678,22 @@ MediaInfo$Query$Media _$MediaInfo$Query$MediaFromJson(
     ..seasonYear = json['seasonYear'] as int?
     ..trailer = json['trailer'] == null
         ? null
-        : MediaInfo$Query$Media$MediaTrailer.fromJson(json['trailer'] as Map<String, dynamic>)
-    ..nextAiringEpisode = json['nextAiringEpisode'] == null ? null : MediaInfo$Query$Media$AiringSchedule.fromJson(json['nextAiringEpisode'] as Map<String, dynamic>)
+        : MediaInfo$Query$Media$MediaTrailer.fromJson(
+            json['trailer'] as Map<String, dynamic>)
+    ..nextAiringEpisode = json['nextAiringEpisode'] == null
+        ? null
+        : MediaInfo$Query$Media$AiringSchedule.fromJson(
+            json['nextAiringEpisode'] as Map<String, dynamic>)
     ..chapters = json['chapters'] as int?
     ..volumes = json['volumes'] as int?
-    ..relations = json['relations'] == null ? null : MediaInfo$Query$Media$MediaConnection.fromJson(json['relations'] as Map<String, dynamic>)
-    ..recommendations = json['recommendations'] == null ? null : MediaInfo$Query$Media$RecommendationConnection.fromJson(json['recommendations'] as Map<String, dynamic>);
+    ..relations = json['relations'] == null
+        ? null
+        : MediaInfo$Query$Media$MediaConnection.fromJson(
+            json['relations'] as Map<String, dynamic>)
+    ..recommendations = json['recommendations'] == null
+        ? null
+        : MediaInfo$Query$Media$RecommendationConnection.fromJson(
+            json['recommendations'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$MediaInfo$Query$MediaToJson(

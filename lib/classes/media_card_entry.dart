@@ -4,9 +4,10 @@ class MediaCardEntry {
   final String coverUrl;
   final String? relation;
 
-  MediaCardEntry(
-      {required this.id,
-      required this.name,
-      required this.coverUrl,
-      this.relation});
+  MediaCardEntry({
+    required this.id,
+    required this.name,
+    required this.coverUrl,
+    this.relation,
+  });
 }

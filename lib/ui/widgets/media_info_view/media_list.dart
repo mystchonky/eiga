@@ -23,11 +23,12 @@ class RecommendationsBuilder extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 2),
             child: MediaCard(
-                anime: MediaCardEntry(
-              id: recommendation?.id ?? 00,
-              name: recommendation?.title?.userPreferred ?? "",
-              coverUrl: recommendation?.coverImage?.large ?? "",
-            )),
+              anime: MediaCardEntry(
+                id: recommendation?.id ?? 00,
+                name: recommendation?.title?.userPreferred ?? "",
+                coverUrl: recommendation?.coverImage?.large ?? "",
+              ),
+            ),
           );
         },
       ),
@@ -54,11 +55,13 @@ class RelationsBuilder extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 2),
             child: MediaCard(
-                anime: MediaCardEntry(
-                    id: relation?.id ?? 00,
-                    name: relation?.title?.userPreferred ?? "",
-                    coverUrl: relation?.coverImage?.large ?? "",
-                    relation: relationType)),
+              anime: MediaCardEntry(
+                id: relation?.id ?? 00,
+                name: relation?.title?.userPreferred ?? "",
+                coverUrl: relation?.coverImage?.large ?? "",
+                relation: relationType,
+              ),
+            ),
           );
         },
       ),

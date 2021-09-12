@@ -48,23 +48,24 @@ class TokenValidator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: client.getTokenFromStorage(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.data != null) {
-              Future.delayed(Duration.zero, () {
-                Navigator.popAndPushNamed(context, 'scaffold');
-              });
-            } else {
-              Future.delayed(Duration.zero, () {
-                Navigator.popAndPushNamed(context, 'login');
-              });
-            }
-
-            return Container();
+      future: client.getTokenFromStorage(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.data != null) {
+            Future.delayed(Duration.zero, () {
+              Navigator.popAndPushNamed(context, 'scaffold');
+            });
           } else {
-            return CircularProgressIndicator();
+            Future.delayed(Duration.zero, () {
+              Navigator.popAndPushNamed(context, 'login');
+            });
           }
-        });
+
+          return Container();
+        } else {
+          return CircularProgressIndicator();
+        }
+      },
+    );
   }
 }

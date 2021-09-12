@@ -90,17 +90,22 @@ class _SearchCardState extends State<SearchCard>
         runSpacing: 5,
         children: media?.genres?.map((gen) {
               return Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Theme.of(context).accentColor,
-                    border: Border.all(
-                      color: Theme.of(context).accentColor,
-                    ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Theme.of(context).primaryColor,
+                  border: Border.all(
+                    color: Theme.of(context).primaryColor,
                   ),
-                  padding: EdgeInsets.all(5),
-                  child: Text(gen ?? "N/A",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 12)));
+                ),
+                padding: EdgeInsets.all(5),
+                child: Text(
+                  gen ?? "N/A",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                  ),
+                ),
+              );
             }).toList() ??
             [],
       ),

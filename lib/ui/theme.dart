@@ -11,7 +11,14 @@ class EigaTheme {
         textTheme: TextTheme().apply(bodyColor: Colors.white),
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Color(0x00121212),
-        accentColor: animeMode ? Colors.deepPurpleAccent : Colors.orange,
+        primaryColor: animeMode ? Colors.deepPurpleAccent : Colors.orange,
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: animeMode ? Colors.deepPurpleAccent : Colors.orange,
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          selectedItemColor:
+              animeMode ? Colors.deepPurpleAccent : Colors.orange,
+        ),
         canvasColor: Color(0x00121212),
         dividerColor: Colors.white38,
         appBarTheme: AppBarTheme(color: Colors.transparent),

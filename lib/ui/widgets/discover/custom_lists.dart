@@ -1,4 +1,4 @@
-import 'package:eiga/classes/helpers/custom_query_helper.dart';
+import 'package:eiga/classes/helpers/custom_query_helper.dart' as cqh;
 import 'package:flutter/material.dart';
 
 import '../../../graphql/graphql_api.dart';
@@ -6,33 +6,33 @@ import 'media_list.dart';
 
 class PopularThisSeasonAnime extends StatelessWidget {
   final queryVariables = {
-    'season': CustomQueryHelper.currentSeason(),
-    'seasonYear': CustomQueryHelper.currentYear()
+    'season': cqh.currentSeason(),
+    'seasonYear': cqh.currentYear()
   };
 
   @override
   Widget build(BuildContext context) {
     return MediaList(
-            mediaQuery: PopularCustomQuery(variables: PopularCustomArguments())
-                .document,
-            queryVariables: queryVariables)
-        .generateWithVariables(context);
+      mediaQuery:
+          PopularCustomQuery(variables: PopularCustomArguments()).document,
+      queryVariables: queryVariables,
+    ).generateWithVariables(context);
   }
 }
 
 class UpcomingNextSeasonAnime extends StatelessWidget {
   final queryVariables = {
-    'season': CustomQueryHelper.upcomingSeason(),
-    'seasonYear': CustomQueryHelper.upcomingYear()
+    'season': cqh.upcomingSeason(),
+    'seasonYear': cqh.upcomingYear()
   };
 
   @override
   Widget build(BuildContext context) {
     return MediaList(
-            mediaQuery: PopularCustomQuery(variables: PopularCustomArguments())
-                .document,
-            queryVariables: queryVariables)
-        .generateWithVariables(context);
+      mediaQuery:
+          PopularCustomQuery(variables: PopularCustomArguments()).document,
+      queryVariables: queryVariables,
+    ).generateWithVariables(context);
   }
 }
 
