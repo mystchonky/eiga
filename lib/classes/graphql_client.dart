@@ -1,7 +1,6 @@
+import 'package:eiga/classes/oauth2_client.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-
-import 'oauth2_client.dart';
 
 class CustomGraphQLClient {
   final HttpLink httpLink = HttpLink(

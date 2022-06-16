@@ -1,9 +1,8 @@
+import 'package:eiga/graphql/graphql_api.dart';
+import 'package:eiga/ui/widgets/profile/radar.dart';
+import 'package:eiga/ui/widgets/profile/score_chart.dart';
+import 'package:eiga/ui/widgets/profile/stats_card.dart';
 import 'package:flutter/material.dart';
-
-import '../../../graphql/graphql_api.dart';
-import 'radar.dart';
-import 'score_chart.dart';
-import 'stats_card.dart';
 
 class AnimeStats extends StatelessWidget {
   final UserInfo$Query$User user;

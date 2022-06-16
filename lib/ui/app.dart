@@ -1,9 +1,8 @@
+import 'package:eiga/classes/graphql_client.dart';
+import 'package:eiga/classes/oauth2_client.dart';
+import 'package:eiga/ui/login.dart';
+import 'package:eiga/ui/scaffold.dart';
 import 'package:flutter/material.dart';
-
-import '../classes/graphql_client.dart';
-import '../classes/oauth2_client.dart';
-import 'login.dart';
-import 'scaffold.dart';
 
 class App extends StatelessWidget {
   late final CustomOAuth2Client oauth2Client;

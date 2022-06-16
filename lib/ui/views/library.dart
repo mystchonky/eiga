@@ -2,7 +2,6 @@ import 'package:eiga/classes/adapters/library_item.dart';
 import 'package:eiga/classes/media_card_entry.dart';
 import 'package:eiga/ui/widgets/media_card.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class LibraryPage extends StatelessWidget {

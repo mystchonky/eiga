@@ -1,8 +1,7 @@
+import 'package:eiga/ui/views/search_page.dart';
+import 'package:eiga/ui/widgets/discover/custom_lists.dart';
 import 'package:eiga/ui/widgets/discover/trending_carousel.dart';
 import 'package:flutter/material.dart';
-
-import '../widgets/discover/custom_lists.dart';
-import 'search_page.dart';
 
 class DiscoverPage extends StatefulWidget {
   final bool animeMode;

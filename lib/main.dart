@@ -1,9 +1,8 @@
+import 'package:eiga/classes/adapters/library_item.dart';
+import 'package:eiga/ui/app.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
-import 'classes/adapters/library_item.dart';
-import 'ui/app.dart';
 
 Future<void> initHive() async {
   await Hive.initFlutter();

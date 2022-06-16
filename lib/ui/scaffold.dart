@@ -1,13 +1,12 @@
+import 'package:eiga/classes/graphql_client.dart';
+import 'package:eiga/classes/oauth2_client.dart';
 import 'package:eiga/ui/theme.dart';
+import 'package:eiga/ui/views/discover.dart';
 import 'package:eiga/ui/views/library.dart';
+import 'package:eiga/ui/views/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-
-import '../classes/graphql_client.dart';
-import '../classes/oauth2_client.dart';
-import 'views/discover.dart';
-import 'views/profile.dart';
 
 class CustomScaffold extends StatefulWidget {
   final CustomGraphQLClient gqlClient;

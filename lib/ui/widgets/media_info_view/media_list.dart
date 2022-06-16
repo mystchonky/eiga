@@ -1,9 +1,8 @@
+import 'package:eiga/classes/extensions/media_relation.dart';
+import 'package:eiga/classes/media_card_entry.dart';
+import 'package:eiga/graphql/graphql_api.dart';
+import 'package:eiga/ui/widgets/media_card.dart';
 import 'package:flutter/material.dart';
-
-import '../../../classes/extensions/media_relation.dart';
-import '../../../classes/media_card_entry.dart';
-import '../../../graphql/graphql_api.dart';
-import '../media_card.dart';
 
 class RecommendationsBuilder extends StatelessWidget {
   final MediaInfo$Query$Media? media;

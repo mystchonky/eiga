@@ -1,13 +1,12 @@
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eiga/classes/oauth2_client.dart';
+import 'package:eiga/graphql/graphql_api.dart';
+import 'package:eiga/ui/widgets/profile/anime_stats.dart';
+import 'package:eiga/ui/widgets/profile/manga_stats.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-
-import '../../classes/oauth2_client.dart';
-import '../../graphql/graphql_api.dart';
-import '../widgets/profile/anime_stats.dart';
-import '../widgets/profile/manga_stats.dart';
 
 class Profile extends StatefulWidget {
   final CustomOAuth2Client client;

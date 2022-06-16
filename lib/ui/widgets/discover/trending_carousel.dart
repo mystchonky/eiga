@@ -1,11 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:eiga/classes/media_carousel_entry.dart';
+import 'package:eiga/graphql/graphql_api.dart';
+import 'package:eiga/ui/widgets/discover/carousel_card.dart';
 import 'package:flutter/material.dart';
 import 'package:gql/ast.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-
-import '../../../classes/media_carousel_entry.dart';
-import '../../../graphql/graphql_api.dart';
-import 'carousel_card.dart';
 
 class TrendingCarousel extends StatelessWidget {
   final bool animeMode;

@@ -1,4 +1,4 @@
-import '../../graphql/graphql_api.graphql.dart';
+import 'package:eiga/graphql/graphql_api.graphql.dart';
 
 extension MediaRelationExtension on MediaRelation {
   String get name {

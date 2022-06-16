@@ -1,8 +1,10 @@
+// ignore_for_file: avoid_dynamic_calls
+//TODO
+import 'package:eiga/graphql/graphql_api.dart';
+import 'package:eiga/ui/views/media_info_view.dart';
+import 'package:eiga/ui/widgets/search_card.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import '../../graphql/graphql_api.dart';
-import '../views/media_info_view.dart';
-import 'search_card.dart';
 
 class SearchPane extends StatefulWidget {
   final String? searchStr;

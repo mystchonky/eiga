@@ -1,8 +1,7 @@
 import 'package:eiga/classes/helpers/custom_query_helper.dart' as cqh;
+import 'package:eiga/graphql/graphql_api.dart';
+import 'package:eiga/ui/widgets/discover/media_list.dart';
 import 'package:flutter/material.dart';
-
-import '../../../graphql/graphql_api.dart';
-import 'media_list.dart';
 
 class PopularThisSeasonAnime extends StatelessWidget {
   final queryVariables = {

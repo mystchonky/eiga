@@ -1,10 +1,9 @@
+import 'package:eiga/classes/extensions/media_format.dart';
+import 'package:eiga/classes/extensions/media_status.dart';
+import 'package:eiga/graphql/graphql_api.dart';
+import 'package:eiga/ui/views/studio_info.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
-import '../../../classes/extensions/media_format.dart';
-import '../../../classes/extensions/media_status.dart';
-import '../../../graphql/graphql_api.dart';
-import '../../views/studio_info.dart';
 
 class InfoBuilder extends StatelessWidget {
   final MediaInfo$Query$Media? media;

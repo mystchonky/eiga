@@ -1,6 +1,5 @@
+import 'package:eiga/classes/oauth2_client.dart';
 import 'package:flutter/material.dart';
-
-import '../classes/oauth2_client.dart';
 
 class LoginPrompt extends StatelessWidget {
   final CustomOAuth2Client oAuth2Client;

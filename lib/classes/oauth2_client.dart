@@ -75,7 +75,7 @@ class _OAuth2Client extends OAuth2Client {
       params['code_challenge_method'] = 'S256';
     }
 
-    if (customParams != null && customParams is Map) {
+    if (customParams != null) {
       params.addAll(customParams);
     }
 

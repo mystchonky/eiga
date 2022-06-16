@@ -1,16 +1,14 @@
-import 'dart:ui';
 
+import 'package:eiga/classes/adapters/library_item.dart';
+import 'package:eiga/graphql/graphql_api.dart';
+import 'package:eiga/ui/widgets/media_info_view/cover.dart';
+import 'package:eiga/ui/widgets/media_info_view/info.dart';
+import 'package:eiga/ui/widgets/media_info_view/media_list.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:html/parser.dart';
-
-import '../../classes/adapters/library_item.dart';
-import '../../graphql/graphql_api.dart';
-import '../widgets/media_info_view/cover.dart';
-import '../widgets/media_info_view/info.dart';
-import '../widgets/media_info_view/media_list.dart';
 
 class MediaInfo extends StatefulWidget {
   final int id;

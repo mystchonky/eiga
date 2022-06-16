@@ -1,9 +1,10 @@
+// ignore_for_file: avoid_dynamic_calls
+//TODO
 import 'package:eiga/classes/media_card_entry.dart';
+import 'package:eiga/graphql/graphql_api.dart';
 import 'package:eiga/ui/widgets/media_card.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-
-import '../../graphql/graphql_api.dart';
 
 class StudioInfo extends StatefulWidget {
   final int id;
