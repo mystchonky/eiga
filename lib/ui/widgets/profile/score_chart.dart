@@ -29,14 +29,12 @@ class ScoreChart extends StatelessWidget {
                   x: e.score,
                   barRods: [
                     BarChartRodData(
-                      y: e.count.toDouble(),
+                      fromY: 0,
+                      toY: e.count.toDouble(),
                       width: 15,
                       borderRadius:
                           BorderRadius.vertical(top: Radius.circular(10)),
-                      colors: [
-                        Colors.deepPurple,
-                        Theme.of(context).primaryColor,
-                      ],
+                      color: Theme.of(context).primaryColor,
                     )
                   ],
                   showingTooltipIndicators: [0],
@@ -56,7 +54,7 @@ class ScoreChart extends StatelessWidget {
                 int rodIndex,
               ) {
                 return BarTooltipItem(
-                  rod.y.round().toString(),
+                  rod.toY.round().toString(),
                   TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -66,30 +64,35 @@ class ScoreChart extends StatelessWidget {
             ),
           ),
           borderData: FlBorderData(show: false),
-          titlesData: FlTitlesData(
-            leftTitles: SideTitles(
-              showTitles: true,
-              interval: 4,
-              getTextStyles: (context, value) {
-                return TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                );
-              },
-            ),
-            bottomTitles: SideTitles(
-              showTitles: true,
-              getTextStyles: (context, value) {
-                return TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                );
-              },
-              getTitles: (value) => value.toInt().toString(),
-            ),
-          ),
+          // titlesData: FlTitlesData(
+          //   leftTitles: AxisTitles(
+          //     sideTitles: SideTitles(
+          //     showTitles: true,
+          //     interval: 4,
+          //     getTitlesWidget: (context, value) {
+          //       return Sidde
+
+          //       TextStyle(
+          //         color: Colors.grey,
+          //         fontWeight: FontWeight.bold,
+          //         fontSize: 12,
+          //       );
+          //     },
+          //   ),
+          //   )
+
+          // bottomTitles: SideTitles(
+          //   showTitles: true,
+          //   getTextStyles: (context, value) {
+          //     return TextStyle(
+          //       color: Colors.grey,
+          //       fontWeight: FontWeight.bold,
+          //       fontSize: 12,
+          //     );
+          //   },
+          //   getTitles: (value) => value.toInt().toString(),
+          // ),
+          // ),
         ),
       ),
     );

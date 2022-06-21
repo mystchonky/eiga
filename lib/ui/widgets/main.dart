@@ -6,8 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> initHive() async {
   // await Hive.initFlutter();
-  await initHiveForFlutter();
-  // await Hive.openBox(HiveStore.defaultBoxName);
+  await Hive.openBox(HiveStore.defaultBoxName);
 
   Hive.registerAdapter(LibraryItemAdapter());
   Hive.openBox<LibraryItem>('library');

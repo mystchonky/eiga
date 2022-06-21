@@ -9,18 +9,15 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
-  multi_charts:
-    git:
-      url: https://github.com/luiq54/multi_charts.git
-      ref: fill_alpha
   android_intent: ^2.0.0
   cached_network_image: ^3.0.0
   carousel_slider: ^4.0.0-nullsafety.0
   cupertino_icons: ^1.0.2
   expandable_text: ^2.0.0
-  fl_chart: ^0.36.2
+  fl_chart: ^0.55.0
+  flutter:
+    sdk: flutter
+  gql: ^0.13.0
   graphql_flutter: ^5.0.0-nullsafety.2
   hive: ^2.0.4
   hive_flutter: ^1.0.0
@@ -28,21 +25,24 @@ dependencies:
   http: ^0.13.1
   intl: ^0.17.0
   modal_bottom_sheet: ^2.0.0
+  multi_charts:
+    git:
+      url: https://github.com/luiq54/multi_charts.git
+      ref: fill_alpha
   oauth2_client: ^2.0.1
-  share: ^2.0.1
+  share_plus: ^4.0.9
   url_launcher: ^6.0.3
   wave: ^0.2.0
-  gql: ^0.13.0
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
   artemis: ^7.0.0-beta.3
   build_runner: ^2.0.3
   flutter_launcher_icons: ^0.9.0
-  flutter_native_splash: ^1.1.8+4
+  flutter_native_splash: ^2.2.3+1
+  flutter_test:
+    sdk: flutter
   hive_generator: ^1.1.0
-  json_serializable: ^4.1.0
+  json_serializable: ^6.2.0
   lint: ^1.5.3
 
 flutter:
