@@ -1,4 +1,3 @@
-
 import 'package:eiga/classes/adapters/library_item.dart';
 import 'package:eiga/graphql/graphql_api.dart';
 import 'package:eiga/ui/widgets/media_info_view/cover.dart';
@@ -189,7 +188,7 @@ class _MediaInfoState extends State<MediaInfo> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 border: Border.all(
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               padding: EdgeInsets.all(5),

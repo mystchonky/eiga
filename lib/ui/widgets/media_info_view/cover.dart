@@ -104,7 +104,7 @@ class Cover extends StatelessWidget {
                                 icon: Icon(Icons.public),
                                 padding: EdgeInsets.all(0),
                                 iconSize: 20,
-                                color: Theme.of(context).primaryColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 onPressed: () =>
                                     url.launchUrl(Uri(path: mediaUrl)),
                               ),
@@ -112,7 +112,7 @@ class Cover extends StatelessWidget {
                                 icon: Icon(Icons.share),
                                 padding: EdgeInsets.all(0),
                                 iconSize: 20,
-                                color: Theme.of(context).primaryColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 onPressed: () => Share.share(mediaUrl),
                               )
                             ],

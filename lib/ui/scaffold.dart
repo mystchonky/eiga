@@ -98,7 +98,7 @@ class _CustomScaffoldState extends State<CustomScaffold>
                             margin: EdgeInsets.all(25),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Theme.of(context).primaryColor,
+                              color: Theme.of(context).colorScheme.background,
                             ),
                           ),
                         ),
@@ -112,25 +112,23 @@ class _CustomScaffoldState extends State<CustomScaffold>
                 decoration: BoxDecoration(
                   border: Border(top: BorderSide(color: Colors.white24)),
                 ),
-                child: BottomNavigationBar(
-                  items: const [
-                    BottomNavigationBarItem(
+                child: NavigationBar(
+                  destinations: const [
+                    NavigationDestination(
                       icon: Icon(Icons.account_circle),
                       label: "Profile",
                     ),
-                    BottomNavigationBarItem(
+                    NavigationDestination(
                       icon: Icon(Icons.collections_bookmark),
                       label: "Library",
                     ),
-                    BottomNavigationBarItem(
+                    NavigationDestination(
                       icon: Icon(Icons.explore),
                       label: "Discover",
                     )
                   ],
-                  showSelectedLabels: false,
-                  showUnselectedLabels: false,
-                  currentIndex: _selectedIndex,
-                  onTap: _onBottomNavTapped,
+                  selectedIndex: _selectedIndex,
+                  onDestinationSelected: _onBottomNavTapped,
                   //elevation: 0,
                 ),
               ),

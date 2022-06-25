@@ -62,7 +62,7 @@ class InfoBuilder extends StatelessWidget {
   Widget studioWidget(String text, int id, BuildContext context) {
     final theme = TextStyle(
       fontWeight: FontWeight.bold,
-      color: Theme.of(context).primaryColor,
+      color: Theme.of(context).colorScheme.primary,
     );
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),

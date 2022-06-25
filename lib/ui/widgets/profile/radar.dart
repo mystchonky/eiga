@@ -17,10 +17,11 @@ class ProfileRadar extends StatelessWidget {
         labels: data.map((e) => e.name).toList(),
         values: data.map((e) => e.value.toDouble()).toList(),
         maxValue: data.map((e) => e.value.toDouble()).reduce(max),
-        fillColor: Theme.of(context).primaryColor,
-        fillAlpha: 100,
-        strokeColor: Colors.white10,
-        labelColor: Colors.white,
+        fillColor: Theme.of(context).colorScheme.primary,
+        fillAlpha: 150,
+        strokeColor:
+            Theme.of(context).colorScheme.onBackground.withOpacity(0.25),
+        labelColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
       ),
     );
   }

@@ -34,7 +34,7 @@ class ScoreChart extends StatelessWidget {
                       width: 15,
                       borderRadius:
                           BorderRadius.vertical(top: Radius.circular(10)),
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).colorScheme.primary,
                     )
                   ],
                   showingTooltipIndicators: [0],

@@ -105,7 +105,10 @@ class _ProfileState extends State<Profile>
                                 size: Size(double.infinity, 100),
                                 painter: CurvePainter(
                                   animation.value,
-                                  Theme.of(context).primaryColor.withAlpha(100),
+                                  Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withAlpha(100),
                                   offset: 0,
                                 ),
                               ),
@@ -135,7 +138,10 @@ class _ProfileState extends State<Profile>
                                 size: Size(double.infinity, 100),
                                 painter: CurvePainter(
                                   animation.value,
-                                  Theme.of(context).primaryColor.withAlpha(100),
+                                  Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withAlpha(100),
                                   offset: 0,
                                 ),
                               ),

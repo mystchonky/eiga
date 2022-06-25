@@ -22,7 +22,7 @@ class MediaCarouselCard extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(8)),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).colorScheme.primary,
               offset: Offset(4, 4),
             )
           ],

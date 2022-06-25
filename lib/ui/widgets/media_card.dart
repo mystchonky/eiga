@@ -81,7 +81,7 @@ class _MediaCardState extends State<MediaCard>
               if (widget.anime!.relation != null)
                 Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).colorScheme.tertiary,
                     borderRadius: BorderRadius.all(Radius.circular(4)),
                   ),
                   padding: EdgeInsets.all(2),
@@ -89,11 +89,11 @@ class _MediaCardState extends State<MediaCard>
                   child: Text(
                     widget.anime!.relation!,
                     style: TextStyle(
-                      color: theme.textTheme.bodyText1!
-                          .copyWith(
-                            color: theme.colorScheme.primary,
-                          )
-                          .color,
+                      // color: theme.textTheme.bodyText1!
+                      //     .copyWith(
+                      //       color: theme.colorScheme.primary,
+                      //     )
+                      //     .color,
                       fontSize: 12.0,
                       fontWeight: FontWeight.bold,
                     ),

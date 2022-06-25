@@ -29,8 +29,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                   child: Text(
                     'Discover',
                     style: TextStyle(
-                      color:
-                          Theme.of(context).primaryTextTheme.bodyText1!.color,
+                      color: Theme.of(context).colorScheme.onBackground,
                       fontFamily: "Rubik",
                     ),
                   ),

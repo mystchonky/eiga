@@ -16,7 +16,7 @@ class MediaStatCard extends StatelessWidget {
     return Container(
       color: Theme.of(context).canvasColor,
       padding: EdgeInsets.all(5),
-      height: 80,
+      height: 100,
       width: 120,
       child: Row(
         children: [
@@ -37,7 +37,7 @@ class MediaStatCard extends StatelessWidget {
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       fontSize: 24,
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 ),

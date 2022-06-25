@@ -91,16 +91,14 @@ class _SearchCardState extends State<SearchCard>
               return Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Theme.of(context).primaryColor,
-                  border: Border.all(
-                    color: Theme.of(context).primaryColor,
-                  ),
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
                 padding: EdgeInsets.all(5),
                 child: Text(
                   gen ?? "N/A",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onSecondary,
                     fontSize: 12,
                   ),
                 ),
