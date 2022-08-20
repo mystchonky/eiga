@@ -62,6 +62,7 @@ class AnimeStats extends StatelessWidget {
             "Score Distribution",
             style: Theme.of(context).textTheme.headline5,
           ),
+          SizedBox(height: 20),
           if (scoreData.isNotEmpty) ScoreChart(data: scoreData),
           Container(
             constraints: BoxConstraints(maxHeight: 500),

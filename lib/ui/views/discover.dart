@@ -35,6 +35,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                   ),
                 ),
                 IconButton(
+                    color: Theme.of(context).colorScheme.onBackground,
                   icon: Icon(Icons.search),
                   onPressed: () {
                     Navigator.push(

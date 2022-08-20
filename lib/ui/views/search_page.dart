@@ -94,8 +94,8 @@ class _SearchPageState extends State<SearchPage> {
       return Center(
         child: Icon(
           Icons.search,
+          color: Theme.of(context).colorScheme.onBackground,
           size: 108,
-          color: Colors.grey,
         ),
       );
     } else {

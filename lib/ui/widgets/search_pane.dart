@@ -68,10 +68,16 @@ class _SearchPaneState extends State<SearchPane> {
 
         if (data.isEmpty) {
           return Center(
-            child: Icon(
-              Icons.search_off_rounded,
-              size: 108,
-              color: Colors.grey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.search_off_rounded,
+                  size: 108,
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
+                Text("No results found")
+              ],
             ),
           );
         }
